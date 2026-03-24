@@ -48,7 +48,7 @@ class EuVatService
             $rate = $this->vatRates[$sellerCountry] ?? 0;
 
             return [
-                'rate'   => $rate,
+                'rate'   => (float) $rate,
                 'amount' => round($amount * $rate / 100, 2),
                 'type'   => 'standard',
             ];
@@ -59,8 +59,8 @@ class EuVatService
         // Non-EU buyer — exempt
         if (!$buyerIsEu) {
             return [
-                'rate'   => 0,
-                'amount' => 0.00,
+                'rate'   => 0.0,
+                'amount' => 0.0,
                 'type'   => 'exempt',
             ];
         }
@@ -68,8 +68,8 @@ class EuVatService
         // EU business buyer with a VAT number — reverse charge
         if ($buyerHasVat) {
             return [
-                'rate'   => 0,
-                'amount' => 0.00,
+                'rate'   => 0.0,
+                'amount' => 0.0,
                 'type'   => 'reverse_charge',
             ];
         }
@@ -78,7 +78,7 @@ class EuVatService
         $rate = $this->vatRates[$sellerCountry] ?? 0;
 
         return [
-            'rate'   => $rate,
+            'rate'   => (float) $rate,
             'amount' => round($amount * $rate / 100, 2),
             'type'   => 'oss',
         ];

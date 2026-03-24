@@ -29,9 +29,11 @@
 
         <div class="flex items-center justify-between">
             @if($isRunning)
-                <span class="text-2xl font-mono font-bold text-green-600" wire:poll.1s="$refresh">
-                    {{ $elapsedTime }}
-                </span>
+                <span
+                    class="text-2xl font-mono font-bold text-green-600"
+                    x-data="elapsedTimer('{{ $startedAt }}')"
+                    x-text="display"
+                >{{ $elapsedTime }}</span>
                 <button
                     wire:click="stopTimer"
                     class="px-6 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 font-medium text-sm"
@@ -54,3 +56,30 @@
         @endif
     </div>
 </div>
+
+@push('scripts')
+<script>
+function elapsedTimer(startedAt) {
+    return {
+        display: '00:00:00',
+        interval: null,
+        init() {
+            const start = new Date(startedAt).getTime();
+            const update = () => {
+                const elapsed = Math.floor((Date.now() - start) / 1000);
+                const h = Math.floor(elapsed / 3600);
+                const m = Math.floor((elapsed % 3600) / 60);
+                const s = elapsed % 60;
+                this.display = [h, m, s].map(v => String(v).padStart(2, '0')).join(':');
+            };
+            update();
+            this.interval = setInterval(update, 1000);
+        },
+        destroy() {
+            clearInterval(this.interval);
+        }
+    };
+}
+</script>
+@endpush
+
