@@ -21,24 +21,24 @@ One tool: track time → generate legally compliant VAT invoice → get paid.
 ---
 
 ## Phase 0 — Laravel Scaffold (Week 1)
-- [ ] `composer create-project laravel/laravel .`
-- [ ] Install: livewire/livewire, stancl/tenancy, barryvdh/laravel-dompdf, stripe/stripe-php
+- [x] `composer create-project laravel/laravel .`
+- [x] Install: livewire/livewire, stancl/tenancy, barryvdh/laravel-dompdf, stripe/stripe-php
 - [ ] Configure PostgreSQL connection
 - [ ] Set up multi-tenancy (one DB per workspace, subdomain routing)
 - [ ] Auth: Laravel Breeze (email + password)
 - [ ] Base layout: sidebar nav + Tailwind
 
 ## Phase 1 — Core Models & Migrations (Week 1–2)
-- [ ] `users` table (standard)
-- [ ] `clients` table: id, user_id, name, email, address, country (ISO 2), vat_number (nullable), currency, timestamps
-- [ ] `projects` table: id, user_id, client_id, name, hourly_rate, currency, status (active/archived), timestamps
-- [ ] `time_entries` table: id, user_id, project_id, description, started_at, stopped_at (nullable), duration_minutes (nullable), timestamps
-- [ ] `invoices` table: id, user_id, client_id, invoice_number, status (draft/sent/paid/overdue), issue_date, due_date, currency, subtotal, vat_rate, vat_amount, total, notes, paid_at, timestamps
-- [ ] `invoice_items` table: id, invoice_id, description, quantity, unit_price, vat_rate, total, timestamps
-- [ ] Eloquent models with relationships + casts
+- [x] `users` table (standard)
+- [x] `clients` table: id, user_id, name, email, address, country (ISO 2), vat_number (nullable), currency, timestamps
+- [x] `projects` table: id, user_id, client_id, name, hourly_rate, currency, status (active/archived), timestamps
+- [x] `time_entries` table: id, user_id, project_id, description, started_at, stopped_at (nullable), duration_minutes (nullable), timestamps
+- [x] `invoices` table: id, user_id, client_id, invoice_number, status (draft/sent/paid/overdue), issue_date, due_date, currency, subtotal, vat_rate, vat_amount, total, notes, paid_at, timestamps
+- [x] `invoice_items` table: id, invoice_id, description, quantity, unit_price, vat_rate, total, timestamps
+- [x] Eloquent models with relationships + casts
 
 ## Phase 2 — EU VAT Engine (Week 2)
-- [ ] `app/Services/EuVatService.php`
+- [x] `app/Services/EuVatService.php`
   - `calculateVat(sellerCountry, buyerCountry, buyerHasVat, amount)` → `[rate, amount, type]`
   - Types: `standard` | `reverse_charge` | `oss` | `exempt`
   - Rules:
@@ -50,7 +50,7 @@ One tool: track time → generate legally compliant VAT invoice → get paid.
 - [ ] Unit tests for all VAT rule combinations
 
 ## Phase 3 — Timer (Week 2–3)
-- [ ] Livewire component: `ActiveTimer`
+- [x] Livewire component: `ActiveTimer`
   - Select project from dropdown
   - Start/stop button with running clock display
   - Description field
@@ -60,7 +60,7 @@ One tool: track time → generate legally compliant VAT invoice → get paid.
 - [ ] Weekly summary: hours per project, total hours
 
 ## Phase 4 — Client Management (Week 3)
-- [ ] `Clients/ClientList` Livewire: table with search, country flag, VAT number, action buttons
+- [x] `Clients/ClientList` Livewire: table with search, country flag, VAT number, action buttons
 - [ ] `Clients/CreateEditClient` modal form
 - [ ] Country selector with ISO 2 codes + EU VAT number validation format check
 - [ ] Currency per client (EUR, USD, BGN, RON, PLN, CZK, HUF)
@@ -74,7 +74,7 @@ One tool: track time → generate legally compliant VAT invoice → get paid.
   - Issue date + due date
   - Notes field
 - [ ] Invoice number auto-generation (format: INV-2026-0001)
-- [ ] `Invoices/InvoiceList` Livewire: sortable table with status badges
+- [x] `Invoices/InvoiceList` Livewire: sortable table with status badges
 - [ ] Status transitions: draft → sent → paid / overdue
 - [ ] Overdue auto-flag via scheduled job (daily)
 
@@ -85,7 +85,7 @@ One tool: track time → generate legally compliant VAT invoice → get paid.
   - Reverse charge notice when applicable ("VAT reverse charge — buyer accounts for VAT")
   - OSS notice when applicable
   - Issue date, due date, invoice number, payment terms
-- [ ] `InvoiceController::pdf()` → DomPDF → download or inline view
+- [x] `InvoiceController::pdf()` → DomPDF → download or inline view
 - [ ] BG + EN language toggles on PDF
 - [ ] BGN + EUR + USD currency formatting
 
@@ -96,7 +96,7 @@ One tool: track time → generate legally compliant VAT invoice → get paid.
   - On due date
   - 7 days overdue
 - [ ] Email template: clean, professional, includes invoice PDF attachment
-- [ ] Dashboard widget: overdue invoices list + total outstanding
+- [x] Dashboard widget: overdue invoices list + total outstanding
 
 ## Phase 8 — Stripe Subscriptions (Week 5–6)
 - [ ] Stripe Checkout integration (Laravel Cashier)
