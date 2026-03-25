@@ -6,6 +6,7 @@ use App\Models\Client;
 use App\Models\Invoice;
 use App\Models\InvoiceItem;
 use App\Services\EuVatService;
+use App\Services\PlanService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\Computed;
@@ -150,7 +151,7 @@ class CreateInvoice extends Component
             'clientId' => ['required', 'integer'],
             'invoiceNumber' => ['required', 'string', 'max:50'],
             'issueDate' => ['required', 'date'],
-            'dueDate' => ['required', 'date', 'after_or_equal:issueDate'],
+            'dueDate' => ['required', 'date', 'after_or_equal:' . ($this->issueDate ?: now()->format('Y-m-d'))],
             'currency' => ['required', 'string', 'max:3'],
             'notes' => ['nullable', 'string', 'max:2000'],
             'language' => ['required', 'string', 'in:en,bg'],
@@ -165,6 +166,17 @@ class CreateInvoice extends Component
     {
         $this->validate();
         $this->recalculate();
+
+        // Enforce plan limit when creating a new invoice
+        if (! $this->invoice || ! $this->invoice->exists) {
+            $planService = app(PlanService::class);
+            if (! $planService->canCreateInvoice(Auth::user())) {
+                session()->flash('error', 'You have reached the invoice limit for your plan this month. Please upgrade to create more invoices.');
+                $this->redirect(route('billing.index'), navigate: true);
+
+                return;
+            }
+        }
 
         DB::transaction(function () {
             $data = [

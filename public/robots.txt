@@ -1,2 +1,9 @@
 User-agent: *
-Disallow:
+Disallow: /dashboard
+Disallow: /profile
+Disallow: /clients
+Disallow: /projects
+Disallow: /invoices
+Disallow: /timer
+Disallow: /billing
+Disallow: /onboarding

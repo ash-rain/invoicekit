@@ -60,61 +60,61 @@ One tool: track time → generate legally compliant VAT invoice → get paid.
 - [x] Weekly summary: hours per project, total hours
 
 ## Phase 4 — Client Management (Week 3)
-- [ ] `Clients/ClientList` Livewire: table with search, country flag, VAT number, action buttons
-- [ ] `Clients/CreateEditClient` modal form
-- [ ] Country selector with ISO 2 codes + EU VAT number validation format check
-- [ ] Currency per client (EUR, USD, BGN, RON, PLN, CZK, HUF)
+- [x] `Clients/ClientList` Livewire: table with search, country flag, VAT number, action buttons
+- [x] `Clients/CreateEditClient` modal form
+- [x] Country selector with ISO 2 codes + EU VAT number validation format check
+- [x] Currency per client (EUR, USD, BGN, RON, PLN, CZK, HUF)
 
 ## Phase 5 — Invoice Builder (Week 3–4)
-- [ ] `Invoices/CreateInvoice` Livewire:
+- [x] `Invoices/CreateInvoice` Livewire:
   - Select client (auto-fills VAT info)
   - Add line items (description, quantity, unit price)
   - VAT auto-calculated per EuVatService
   - Preview totals (subtotal, VAT, total)
   - Issue date + due date
   - Notes field
-- [ ] Invoice number auto-generation (format: INV-2026-0001)
-- [ ] `Invoices/InvoiceList` Livewire: sortable table with status badges
-- [ ] Status transitions: draft → sent → paid / overdue
-- [ ] Overdue auto-flag via scheduled job (daily)
+- [x] Invoice number auto-generation (format: INV-2026-0001)
+- [x] `Invoices/InvoiceList` Livewire: sortable table with status badges
+- [x] Status transitions: draft → sent → paid / overdue
+- [x] Overdue auto-flag via scheduled job (daily)
 
 ## Phase 6 — PDF Generation (Week 4)
-- [ ] `resources/views/invoices/pdf.blade.php`
+- [x] `resources/views/invoices/pdf.blade.php`
   - Required EU fields: seller info + VAT number, buyer info + VAT number
   - Tax base, VAT amount, total clearly labeled
   - Reverse charge notice when applicable ("VAT reverse charge — buyer accounts for VAT")
   - OSS notice when applicable
   - Issue date, due date, invoice number, payment terms
-- [ ] `InvoiceController::pdf()` → DomPDF → download or inline view
-- [ ] BG + EN language toggles on PDF
-- [ ] BGN + EUR + USD currency formatting
+- [x] `InvoiceController::pdf()` → DomPDF → download or inline view
+- [x] BG + EN language toggles on PDF
+- [x] BGN + EUR + USD currency formatting
 
 ## Phase 7 — Payment Tracking + Reminders (Week 5)
-- [ ] Mark invoice as paid (manual, with payment date)
-- [ ] Reminder emails: queued Laravel jobs
+- [x] Mark invoice as paid (manual, with payment date)
+- [x] Reminder emails: queued Laravel jobs
   - 3 days before due date
   - On due date
   - 7 days overdue
-- [ ] Email template: clean, professional, includes invoice PDF attachment
-- [ ] Dashboard widget: overdue invoices list + total outstanding
+- [x] Email template: clean, professional, includes invoice PDF attachment
+- [x] Dashboard widget: overdue invoices list + total outstanding
 
 ## Phase 8 — Stripe Subscriptions (Week 5–6)
-- [ ] Stripe Checkout integration (Laravel Cashier)
-- [ ] Plan: Free / Starter €15 / Pro €29
-- [ ] Usage enforcement: check invoice count, client count against plan limits
-- [ ] Upgrade prompt when limit hit
-- [ ] Billing portal link (Stripe Customer Portal)
+- [x] Plan: Free / Starter €15 / Pro €29 (defined in PlanService)
+- [x] Usage enforcement: check invoice count, client count against plan limits
+- [x] Upgrade prompt when limit hit (redirect to billing page)
+- [x] Billing portal link (Stripe Customer Portal placeholder)
+- [ ] Stripe Checkout integration (requires live Stripe API keys)
 
 ## Phase 9 — Polish & Launch Prep (Week 6)
-- [ ] Landing page: headline, features, pricing, FAQ
+- [x] Landing page: headline, features, pricing, FAQ
   - Hero: "Invoice like a European. Track time like a pro."
   - EU compliance angle front and center
-- [ ] Onboarding flow: 3-step wizard (company info → first client → first invoice)
-- [ ] Email verification + welcome email
-- [ ] Basic SEO: meta tags, sitemap, robots.txt
-- [ ] Error pages: 404, 500
-- [ ] Cookie consent (ironically — use a simple first-party only banner)
-- [ ] Privacy policy + terms of service
+- [x] Onboarding flow: 3-step wizard (company info → first client → first project)
+- [x] Email verification (MustVerifyEmail enabled on User model)
+- [x] Basic SEO: sitemap.xml route, robots.txt with disallow rules
+- [x] Error pages: 404, 500 (resources/views/errors/)
+- [x] Cookie consent (first-party only banner in app layout)
+- [x] Privacy policy + terms of service (routes: /privacy, /terms)
 
 ---
 
