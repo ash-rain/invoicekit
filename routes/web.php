@@ -53,7 +53,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
             abort(403);
         }
         $lang = $invoice->language ?? 'en';
+        $previousLocale = app()->getLocale();
+        app()->setLocale($lang);
         $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('invoices.pdf', compact('invoice', 'lang'));
+        app()->setLocale($previousLocale);
         return $pdf->stream("invoice-{$invoice->invoice_number}.pdf");
     })->name('invoices.pdf');
 });

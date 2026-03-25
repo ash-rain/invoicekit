@@ -1,10 +1,10 @@
 <div class="p-6 max-w-4xl mx-auto">
     <div class="flex items-center justify-between mb-6">
         <h2 class="text-2xl font-bold text-gray-900">
-            {{ $this->invoice && $this->invoice->exists ? 'Edit Invoice' : 'New Invoice' }}
+            {{ $this->invoice && $this->invoice->exists ? __('Edit Invoice') : __('New Invoice') }}
         </h2>
         <a href="{{ route('invoices.index') }}" class="text-sm text-gray-500 hover:text-gray-700">
-            ← Back to invoices
+            {{ __('← Back to invoices') }}
         </a>
     </div>
 
@@ -22,7 +22,7 @@
             {{-- Invoice Number --}}
             <div>
                 <label class="block text-sm font-medium text-gray-700 mb-1">
-                    Invoice Number <span class="text-red-500">*</span>
+                    {{ __('Invoice Number') }} <span class="text-red-500">*</span>
                 </label>
                 <input
                     wire:model="invoiceNumber"
@@ -34,26 +34,48 @@
 
             {{-- Language --}}
             <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">PDF Language</label>
+                <label class="block text-sm font-medium text-gray-700 mb-1">{{ __('PDF Language') }}</label>
                 <select
                     wire:model="language"
                     class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
                 >
-                    <option value="en">English</option>
-                    <option value="bg">Bulgarian (Български)</option>
+                    <option value="en">{{ __('English') }}</option>
+                    <option value="bg">{{ __('Bulgarian (Български)') }}</option>
+                    <option value="de">Deutsch</option>
+                    <option value="fr">Français</option>
+                    <option value="es">Español</option>
+                    <option value="it">Italiano</option>
+                    <option value="nl">Nederlands</option>
+                    <option value="pl">Polski</option>
+                    <option value="pt">Português</option>
+                    <option value="ro">Română</option>
+                    <option value="cs">Čeština</option>
+                    <option value="hu">Magyar</option>
+                    <option value="sv">Svenska</option>
+                    <option value="da">Dansk</option>
+                    <option value="fi">Suomi</option>
+                    <option value="el">Ελληνικά</option>
+                    <option value="sk">Slovenčina</option>
+                    <option value="hr">Hrvatski</option>
+                    <option value="lt">Lietuvių</option>
+                    <option value="lv">Latviešu</option>
+                    <option value="et">Eesti</option>
+                    <option value="sl">Slovenščina</option>
+                    <option value="mt">Malti</option>
+                    <option value="ga">Gaeilge</option>
                 </select>
             </div>
 
             {{-- Client --}}
             <div class="md:col-span-2">
                 <label class="block text-sm font-medium text-gray-700 mb-1">
-                    Client <span class="text-red-500">*</span>
+                    {{ __('Client') }} <span class="text-red-500">*</span>
                 </label>
                 <select
                     wire:model.live="clientId"
                     class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 @error('clientId') border-red-400 @enderror"
                 >
-                    <option value="">— Select a client —</option>
+                    <option value="">{{ __('— Select a client —') }}</option>
                     @foreach($clients as $client)
                         <option value="{{ $client->id }}">{{ $client->name }} ({{ $client->country }})</option>
                     @endforeach
@@ -64,7 +86,7 @@
                     <div class="mt-2 p-3 bg-indigo-50 rounded-lg text-xs text-indigo-700 space-y-0.5">
                         <p><strong>{{ $selected->name }}</strong> · {{ $selected->country }}</p>
                         @if($selected->vat_number)
-                            <p>VAT: {{ $selected->vat_number }}</p>
+                            <p>{{ __('VAT:') }} {{ $selected->vat_number }}</p>
                         @endif
                         @if($selected->address)
                             <p>{{ $selected->address }}</p>
@@ -76,7 +98,7 @@
             {{-- Issue Date --}}
             <div>
                 <label class="block text-sm font-medium text-gray-700 mb-1">
-                    Issue Date <span class="text-red-500">*</span>
+                    {{ __('Issue Date') }} <span class="text-red-500">*</span>
                 </label>
                 <input
                     wire:model="issueDate"
@@ -89,7 +111,7 @@
             {{-- Due Date --}}
             <div>
                 <label class="block text-sm font-medium text-gray-700 mb-1">
-                    Due Date <span class="text-red-500">*</span>
+                    {{ __('Due Date') }} <span class="text-red-500">*</span>
                 </label>
                 <input
                     wire:model="dueDate"
@@ -101,7 +123,7 @@
 
             {{-- Currency --}}
             <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">Currency</label>
+                <label class="block text-sm font-medium text-gray-700 mb-1">{{ __('Currency') }}</label>
                 <select
                     wire:model="currency"
                     class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
@@ -117,16 +139,16 @@
         {{-- Line items --}}
         <div class="bg-white rounded-xl shadow overflow-hidden">
             <div class="px-6 py-4 border-b border-gray-200 flex items-center justify-between">
-                <h3 class="text-base font-semibold text-gray-900">Line Items</h3>
+                <h3 class="text-base font-semibold text-gray-900">{{ __('Line Items') }}</h3>
             </div>
 
             <table class="min-w-full">
                 <thead class="bg-gray-50">
                     <tr>
-                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Description</th>
-                        <th class="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase w-24">Qty</th>
-                        <th class="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase w-32">Unit Price</th>
-                        <th class="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase w-32">Line Total</th>
+                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">{{ __('Description') }}</th>
+                        <th class="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase w-24">{{ __('Qty') }}</th>
+                        <th class="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase w-32">{{ __('Unit Price') }}</th>
+                        <th class="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase w-32">{{ __('Line Total') }}</th>
                         <th class="px-4 py-3 w-10"></th>
                     </tr>
                 </thead>
@@ -137,7 +159,7 @@
                                 <input
                                     wire:model.live="items.{{ $i }}.description"
                                     type="text"
-                                    placeholder="Service description"
+                                    placeholder="{{ __('Service description') }}"
                                     class="w-full border border-gray-200 rounded px-2 py-1.5 text-sm focus:outline-none focus:ring-1 focus:ring-indigo-400 @error('items.'.$i.'.description') border-red-400 @enderror"
                                 />
                                 @error('items.'.$i.'.description') <p class="text-xs text-red-500">{{ $message }}</p> @enderror
@@ -187,7 +209,7 @@
                     wire:click="addItem"
                     class="text-sm text-indigo-600 hover:text-indigo-800 font-medium"
                 >
-                    + Add line item
+                    {{ __('+ Add line item') }}
                 </button>
             </div>
         </div>
@@ -197,28 +219,28 @@
 
             {{-- Notes --}}
             <div class="bg-white rounded-xl shadow p-6">
-                <label class="block text-sm font-medium text-gray-700 mb-2">Notes / Payment Terms</label>
+                <label class="block text-sm font-medium text-gray-700 mb-2">{{ __('Notes / Payment Terms') }}</label>
                 <textarea
                     wire:model="notes"
                     rows="4"
-                    placeholder="Bank details, payment instructions, thank you message..."
+                    placeholder="{{ __('Bank details, payment instructions, thank you message...') }}"
                     class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
                 ></textarea>
             </div>
 
             {{-- VAT Summary --}}
             <div class="bg-white rounded-xl shadow p-6">
-                <h3 class="text-base font-semibold text-gray-900 mb-4">Summary</h3>
+                <h3 class="text-base font-semibold text-gray-900 mb-4">{{ __('Summary') }}</h3>
 
                 <div class="space-y-2 text-sm">
                     <div class="flex justify-between text-gray-600">
-                        <span>Subtotal</span>
+                        <span>{{ __('Subtotal') }}</span>
                         <span class="font-medium">{{ $currency }} {{ number_format($subtotal, 2) }}</span>
                     </div>
 
                     <div class="flex justify-between text-gray-600">
                         <span>
-                            VAT
+                            {{ __('VAT') }}
                             @if($vatRate > 0)
                                 ({{ $vatRate }}%)
                             @endif
@@ -232,17 +254,17 @@
                             @elseif($vatType === 'oss') bg-blue-50 text-blue-700
                             @else bg-gray-50 text-gray-600 @endif">
                             @if($vatType === 'reverse_charge')
-                                ⚡ Reverse charge — buyer accounts for VAT
+                                ⚡ {{ __('Reverse charge — buyer accounts for VAT') }}
                             @elseif($vatType === 'oss')
-                                🌍 OSS rate applied (seller's country rate)
+                                🌍 {{ __('OSS rate applied (seller\'s country rate)') }}
                             @elseif($vatType === 'exempt')
-                                ✓ VAT exempt (non-EU buyer)
+                                ✓ {{ __('VAT exempt (non-EU buyer)') }}
                             @endif
                         </div>
                     @endif
 
                     <div class="flex justify-between text-gray-900 font-semibold text-base border-t border-gray-200 pt-2 mt-2">
-                        <span>Total</span>
+                        <span>{{ __('Total') }}</span>
                         <span>{{ $currency }} {{ number_format($total, 2) }}</span>
                     </div>
                 </div>
@@ -253,13 +275,13 @@
         <div class="flex items-center justify-end gap-3">
             <a href="{{ route('invoices.index') }}"
                class="px-4 py-2 text-sm text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-50">
-                Cancel
+                {{ __('Cancel') }}
             </a>
             <button
                 type="submit"
                 class="px-5 py-2 bg-indigo-600 text-white text-sm font-medium rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
             >
-                {{ $this->invoice && $this->invoice->exists ? 'Update Invoice' : 'Create Invoice' }}
+                {{ $this->invoice && $this->invoice->exists ? __('Update Invoice') : __('Create Invoice') }}
             </button>
         </div>
 

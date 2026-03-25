@@ -1,6 +1,6 @@
 <div class="bg-white rounded-xl shadow p-6">
     <div class="flex items-center justify-between mb-4">
-        <h2 class="text-lg font-semibold text-gray-900">Weekly Summary</h2>
+        <h2 class="text-lg font-semibold text-gray-900">{{ __('Weekly Summary') }}</h2>
         <div class="flex items-center gap-2">
             <button wire:click="previousWeek" class="p-1 rounded hover:bg-gray-100 text-gray-500">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -19,7 +19,7 @@
     </div>
 
     @if($byProject->isEmpty())
-        <p class="text-sm text-gray-500 text-center py-6">No time tracked this week.</p>
+        <p class="text-sm text-gray-500 text-center py-6">{{ __('No time tracked this week.') }}</p>
     @else
         <div class="space-y-3">
             @foreach($byProject as $item)
@@ -30,7 +30,7 @@
                 <div>
                     <div class="flex items-center justify-between text-sm mb-1">
                         <span class="text-gray-700">
-                            {{ $item['project']?->client?->name }} / {{ $item['project']?->name ?? 'Unknown' }}
+                            {{ $item['project']?->client?->name }} / {{ $item['project']?->name ?? __('Unknown') }}
                         </span>
                         <span class="font-mono font-semibold text-indigo-700">{{ $hours }}h</span>
                     </div>
@@ -44,7 +44,7 @@
             @endforeach
 
             <div class="pt-3 border-t border-gray-200 flex items-center justify-between text-sm font-semibold">
-                <span class="text-gray-900">Total</span>
+                <span class="text-gray-900">{{ __('Total') }}</span>
                 <span class="font-mono text-indigo-700">{{ number_format($totalMinutes / 60, 1) }}h</span>
             </div>
         </div>

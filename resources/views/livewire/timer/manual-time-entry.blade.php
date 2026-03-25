@@ -1,15 +1,15 @@
 <div class="bg-white rounded-xl shadow p-6">
-    <h2 class="text-lg font-semibold text-gray-900 mb-4">Add Manual Entry</h2>
+    <h2 class="text-lg font-semibold text-gray-900 mb-4">{{ __('Add Manual Entry') }}</h2>
 
     <form wire:submit="save" class="space-y-4">
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">Project</label>
+                <label class="block text-sm font-medium text-gray-700 mb-1">{{ __('Project') }}</label>
                 <select
                     wire:model="projectId"
                     class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
                 >
-                    <option value="">— Select project —</option>
+                    <option value="">{{ __('— Select project —') }}</option>
                     @foreach($projects as $project)
                         <option value="{{ $project->id }}">{{ $project->client->name }} / {{ $project->name }}</option>
                     @endforeach
@@ -18,7 +18,7 @@
             </div>
 
             <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">Date</label>
+                <label class="block text-sm font-medium text-gray-700 mb-1">{{ __('Date') }}</label>
                 <input
                     wire:model="date"
                     type="date"
@@ -28,7 +28,7 @@
             </div>
 
             <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">Start Time</label>
+                <label class="block text-sm font-medium text-gray-700 mb-1">{{ __('Start Time') }}</label>
                 <input
                     wire:model="startTime"
                     type="time"
@@ -38,7 +38,7 @@
             </div>
 
             <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">End Time</label>
+                <label class="block text-sm font-medium text-gray-700 mb-1">{{ __('End Time') }}</label>
                 <input
                     wire:model="endTime"
                     type="time"
@@ -49,11 +49,11 @@
         </div>
 
         <div>
-            <label class="block text-sm font-medium text-gray-700 mb-1">Description</label>
+            <label class="block text-sm font-medium text-gray-700 mb-1">{{ __('Description') }}</label>
             <input
                 wire:model="description"
                 type="text"
-                placeholder="What did you work on?"
+                placeholder="{{ __('What did you work on?') }}"
                 class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
             />
             @error('description') <p class="mt-1 text-xs text-red-500">{{ $message }}</p> @enderror
@@ -64,7 +64,7 @@
                 type="submit"
                 class="px-5 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 text-sm font-medium"
             >
-                Save Entry
+                {{ __('Save Entry') }}
             </button>
         </div>
     </form>

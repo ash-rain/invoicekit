@@ -29,23 +29,23 @@
                 <!-- Navigation -->
                 <nav class="flex-1 px-4 py-6 space-y-1 overflow-y-auto">
                     <x-sidebar-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" icon="grid">
-                        Dashboard
+                        {{ __('Dashboard') }}
                     </x-sidebar-link>
 
                     <x-sidebar-link :href="route('timer')" :active="request()->routeIs('timer')" icon="clock">
-                        Timer
+                        {{ __('Timer') }}
                     </x-sidebar-link>
 
                     <x-sidebar-link :href="route('clients.index')" :active="request()->routeIs('clients.*')" icon="users">
-                        Clients
+                        {{ __('Clients') }}
                     </x-sidebar-link>
 
                     <x-sidebar-link :href="route('projects.index')" :active="request()->routeIs('projects.*')" icon="folder">
-                        Projects
+                        {{ __('Projects') }}
                     </x-sidebar-link>
 
                     <x-sidebar-link :href="route('invoices.index')" :active="request()->routeIs('invoices.*')" icon="document">
-                        Invoices
+                        {{ __('Invoices') }}
                     </x-sidebar-link>
                 </nav>
 
