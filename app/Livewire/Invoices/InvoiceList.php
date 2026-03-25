@@ -26,6 +26,22 @@ class InvoiceList extends Component
         $this->resetPage();
     }
 
+    public function markSent(int $invoiceId): void
+    {
+        $invoice = Invoice::where('user_id', Auth::id())->findOrFail($invoiceId);
+        if ($invoice->status === 'draft') {
+            $invoice->update(['status' => 'sent']);
+        }
+    }
+
+    public function markPaid(int $invoiceId): void
+    {
+        $invoice = Invoice::where('user_id', Auth::id())->findOrFail($invoiceId);
+        if (in_array($invoice->status, ['sent', 'overdue'])) {
+            $invoice->update(['status' => 'paid', 'paid_at' => now()]);
+        }
+    }
+
     public function render()
     {
         $invoices = Invoice::where('user_id', Auth::id())

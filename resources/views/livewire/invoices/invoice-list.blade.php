@@ -67,7 +67,21 @@
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium space-x-2">
                             <a href="{{ route('invoices.show', $invoice) }}" class="text-indigo-600 hover:text-indigo-900">View</a>
-                            <a href="{{ route('invoices.edit', $invoice) }}" class="text-gray-600 hover:text-gray-900">Edit</a>
+                            @if($invoice->status === 'draft')
+                                <a href="{{ route('invoices.edit', $invoice) }}" class="text-gray-600 hover:text-gray-900">Edit</a>
+                                <button
+                                    wire:click="markSent({{ $invoice->id }})"
+                                    wire:confirm="Mark this invoice as sent?"
+                                    class="text-blue-600 hover:text-blue-900"
+                                >Send</button>
+                            @endif
+                            @if(in_array($invoice->status, ['sent', 'overdue']))
+                                <button
+                                    wire:click="markPaid({{ $invoice->id }})"
+                                    wire:confirm="Mark this invoice as paid?"
+                                    class="text-green-600 hover:text-green-900"
+                                >Mark Paid</button>
+                            @endif
                             <a href="{{ route('invoices.pdf', $invoice) }}" target="_blank" class="text-gray-600 hover:text-gray-900">PDF</a>
                         </td>
                     </tr>
