@@ -75,12 +75,21 @@ git config --global credential.helper 'store --file /root/.git-credentials'
 echo "https://x-access-token:${GH_PAT}@github.com" > /root/.git-credentials
 chmod 600 /root/.git-credentials
 
-# ── Clone repository ──────────────────────────────────────────────────────────
-echo "» Cloning repository to ${DEPLOY_PATH}..."
-git clone "${GITHUB_REPO}" "${DEPLOY_PATH}"
-cd "${DEPLOY_PATH}"
+# ── Clone or update repository ───────────────────────────────────────────────
+if [ -d "${DEPLOY_PATH}/.git" ]; then
+  echo "» Repository already present — pulling latest code..."
+  cd "${DEPLOY_PATH}"
+  git pull origin main
+else
+  echo "» Cloning repository to ${DEPLOY_PATH}..."
+  git clone "${GITHUB_REPO}" "${DEPLOY_PATH}"
+  cd "${DEPLOY_PATH}"
+fi
 
 # ── Production .env ───────────────────────────────────────────────────────────
+if [ -f .env ]; then
+  echo "» .env already exists — skipping creation."
+else
 echo "» Creating .env..."
 cat > .env <<EOF
 APP_NAME=InvoiceKit
@@ -132,6 +141,7 @@ POSTGRES_USER=invoicekit
 POSTGRES_PASSWORD=${DB_PASSWORD}
 EOF
 chmod 600 .env
+fi
 
 # ── Build & start ─────────────────────────────────────────────────────────────
 echo "» Installing PHP dependencies..."
