@@ -16,7 +16,7 @@ echo "║   InvoiceKit — Server Setup Wizard   ║"
 echo "╚══════════════════════════════════════╝"
 echo ""
 
-read -r -p "GitHub Personal Access Token (repo read scope): " GITHUB_PAT </dev/tty
+read -r -p "GitHub Personal Access Token (repo read scope): " GH_PAT </dev/tty
 read -r -p "Application URL (e.g. http://204.168.164.127): " APP_URL </dev/tty
 read -r -s -p "Database password: " DB_PASSWORD </dev/tty
 echo ""
@@ -72,7 +72,7 @@ ufw --force enable
 # ── Git credentials ───────────────────────────────────────────────────────────
 echo "» Configuring git..."
 git config --global credential.helper 'store --file /root/.git-credentials'
-echo "https://x-access-token:${GITHUB_PAT}@github.com" > /root/.git-credentials
+echo "https://x-access-token:${GH_PAT}@github.com" > /root/.git-credentials
 chmod 600 /root/.git-credentials
 
 # ── Clone repository ──────────────────────────────────────────────────────────
@@ -174,7 +174,7 @@ echo "  (Settings → Secrets and variables → Actions → New secret):"
 echo ""
 echo "    DEPLOY_HOST      →  204.168.164.127"
 echo "    DEPLOY_SSH_KEY   →  (paste your SSH private key)"
-echo "    GITHUB_PAT       →  ${GITHUB_PAT:0:8}...  (the token you entered above)"
+echo "    GH_PAT           →  ${GH_PAT:0:8}...  (the token you entered above)"
 echo ""
 echo "  Then create a 'production' environment under:"
 echo "  Settings → Environments → New environment"
