@@ -5,8 +5,10 @@ namespace App\Livewire;
 use App\Models\Invoice;
 use App\Models\TimeEntry;
 use Illuminate\Support\Facades\Auth;
+use Livewire\Attributes\Layout;
 use Livewire\Component;
 
+#[Layout('layouts.app')]
 class Dashboard extends Component
 {
     public int $trackedHoursThisMonth = 0;

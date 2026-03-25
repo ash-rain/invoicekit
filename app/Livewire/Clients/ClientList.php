@@ -4,9 +4,11 @@ namespace App\Livewire\Clients;
 
 use App\Models\Client;
 use Illuminate\Support\Facades\Auth;
+use Livewire\Attributes\Layout;
 use Livewire\Component;
 use Livewire\WithPagination;
 
+#[Layout('layouts.app')]
 class ClientList extends Component
 {
     use WithPagination;

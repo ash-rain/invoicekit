@@ -5,8 +5,10 @@ namespace App\Livewire\Timer;
 use App\Models\Project;
 use App\Models\TimeEntry;
 use Illuminate\Support\Facades\Auth;
+use Livewire\Attributes\Layout;
 use Livewire\Component;
 
+#[Layout('layouts.app')]
 class ActiveTimer extends Component
 {
     public ?int $projectId = null;
@@ -14,6 +16,7 @@ class ActiveTimer extends Component
     public ?int $activeTimerId = null;
     public bool $isRunning = false;
     public string $elapsedTime = '00:00:00';
+    public ?string $startedAt = null;
 
     public function mount(): void
     {
@@ -27,6 +30,8 @@ class ActiveTimer extends Component
             $this->projectId = $active->project_id;
             $this->description = $active->description ?? '';
             $this->isRunning = true;
+            $this->startedAt = $active->started_at->toIso8601String();
+            $this->elapsedTime = $this->computeElapsed($active->started_at);
         }
     }
 
@@ -46,6 +51,8 @@ class ActiveTimer extends Component
 
         $this->activeTimerId = $entry->id;
         $this->isRunning = true;
+        $this->startedAt = $entry->started_at->toIso8601String();
+        $this->elapsedTime = '00:00:00';
     }
 
     public function stopTimer(): void
@@ -61,8 +68,30 @@ class ActiveTimer extends Component
 
         $this->activeTimerId = null;
         $this->isRunning = false;
+        $this->startedAt = null;
         $this->description = '';
+        $this->elapsedTime = '00:00:00';
         $this->dispatch('timer-stopped');
+    }
+
+    public function tick(): void
+    {
+        if ($this->isRunning && $this->activeTimerId) {
+            $entry = TimeEntry::where('user_id', Auth::id())->find($this->activeTimerId);
+            if ($entry) {
+                $this->elapsedTime = $this->computeElapsed($entry->started_at);
+            }
+        }
+    }
+
+    private function computeElapsed(\Carbon\Carbon $startedAt): string
+    {
+        $seconds = (int) now()->diffInSeconds($startedAt);
+        $h = intdiv($seconds, 3600);
+        $m = intdiv($seconds % 3600, 60);
+        $s = $seconds % 60;
+
+        return sprintf('%02d:%02d:%02d', $h, $m, $s);
     }
 
     public function render()

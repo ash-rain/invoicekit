@@ -1,14 +1,24 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\Dashboard;
 use App\Livewire\Clients\ClientList;
 use App\Livewire\Timer\ActiveTimer;
 use App\Livewire\Invoices\InvoiceList;
 
-Route::middleware(['auth'])->group(function () {
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::middleware(['auth', 'verified'])->group(function () {
     // Dashboard
-    Route::get('/', Dashboard::class)->name('dashboard');
+    Route::get('/dashboard', Dashboard::class)->name('dashboard');
+
+    // Profile
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     // Clients
     Route::get('/clients', ClientList::class)->name('clients.index');
@@ -21,7 +31,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/projects/{project}/edit', fn ($project) => view('projects.edit', compact('project')))->name('projects.edit');
 
     // Timer
-    Route::get('/timer', ActiveTimer::class)->name('timer');
+    Route::get('/timer', fn () => view('timer.index'))->name('timer');
 
     // Invoices
     Route::get('/invoices', InvoiceList::class)->name('invoices.index');
@@ -42,3 +52,5 @@ Route::get('/pay/{invoice}', function ($invoice) {
     $invoice = \App\Models\Invoice::with(['client', 'items'])->findOrFail($invoice);
     return view('invoices.pay', compact('invoice'));
 })->name('invoices.pay');
+
+require __DIR__.'/auth.php';

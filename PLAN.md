@@ -21,24 +21,24 @@ One tool: track time → generate legally compliant VAT invoice → get paid.
 ---
 
 ## Phase 0 — Laravel Scaffold (Week 1)
-- [ ] `composer create-project laravel/laravel .`
-- [ ] Install: livewire/livewire, stancl/tenancy, barryvdh/laravel-dompdf, stripe/stripe-php
-- [ ] Configure PostgreSQL connection
-- [ ] Set up multi-tenancy (one DB per workspace, subdomain routing)
-- [ ] Auth: Laravel Breeze (email + password)
-- [ ] Base layout: sidebar nav + Tailwind
+- [x] `composer create-project laravel/laravel .`
+- [x] Install: livewire/livewire, stancl/tenancy, barryvdh/laravel-dompdf, stripe/stripe-php
+- [x] Configure PostgreSQL connection
+- [x] Set up multi-tenancy (one DB per workspace, subdomain routing)
+- [x] Auth: Laravel Breeze (email + password)
+- [x] Base layout: sidebar nav + Tailwind
 
 ## Phase 1 — Core Models & Migrations (Week 1–2)
-- [ ] `users` table (standard)
-- [ ] `clients` table: id, user_id, name, email, address, country (ISO 2), vat_number (nullable), currency, timestamps
-- [ ] `projects` table: id, user_id, client_id, name, hourly_rate, currency, status (active/archived), timestamps
-- [ ] `time_entries` table: id, user_id, project_id, description, started_at, stopped_at (nullable), duration_minutes (nullable), timestamps
-- [ ] `invoices` table: id, user_id, client_id, invoice_number, status (draft/sent/paid/overdue), issue_date, due_date, currency, subtotal, vat_rate, vat_amount, total, notes, paid_at, timestamps
-- [ ] `invoice_items` table: id, invoice_id, description, quantity, unit_price, vat_rate, total, timestamps
-- [ ] Eloquent models with relationships + casts
+- [x] `users` table (standard)
+- [x] `clients` table: id, user_id, name, email, address, country (ISO 2), vat_number (nullable), currency, timestamps
+- [x] `projects` table: id, user_id, client_id, name, hourly_rate, currency, status (active/archived), timestamps
+- [x] `time_entries` table: id, user_id, project_id, description, started_at, stopped_at (nullable), duration_minutes (nullable), timestamps
+- [x] `invoices` table: id, user_id, client_id, invoice_number, status (draft/sent/paid/overdue), issue_date, due_date, currency, subtotal, vat_rate, vat_amount, total, notes, paid_at, timestamps
+- [x] `invoice_items` table: id, invoice_id, description, quantity, unit_price, vat_rate, total, timestamps
+- [x] Eloquent models with relationships + casts
 
 ## Phase 2 — EU VAT Engine (Week 2)
-- [ ] `app/Services/EuVatService.php`
+- [x] `app/Services/EuVatService.php`
   - `calculateVat(sellerCountry, buyerCountry, buyerHasVat, amount)` → `[rate, amount, type]`
   - Types: `standard` | `reverse_charge` | `oss` | `exempt`
   - Rules:
@@ -47,17 +47,17 @@ One tool: track time → generate legally compliant VAT invoice → get paid.
     - EU consumer (no VAT number) → OSS rules (seller's rate)
     - Non-EU buyer → 0% exempt
   - VAT rates hardcoded: BG 20%, DE 19%, FR 20%, RO 19%, PL 23%, CZ 21%, IT 22%, ES 21%, NL 21%, PT 23%, AT 20%, BE 21%, HR 25%, HU 27%, SE 25%
-- [ ] Unit tests for all VAT rule combinations
+- [x] Unit tests for all VAT rule combinations
 
 ## Phase 3 — Timer (Week 2–3)
-- [ ] Livewire component: `ActiveTimer`
+- [x] Livewire component: `ActiveTimer`
   - Select project from dropdown
   - Start/stop button with running clock display
   - Description field
   - Auto-saves entry on stop
-- [ ] Time entries list: log per day, total hours per project
-- [ ] Manual time entry form (for past work)
-- [ ] Weekly summary: hours per project, total hours
+- [x] Time entries list: log per day, total hours per project
+- [x] Manual time entry form (for past work)
+- [x] Weekly summary: hours per project, total hours
 
 ## Phase 4 — Client Management (Week 3)
 - [ ] `Clients/ClientList` Livewire: table with search, country flag, VAT number, action buttons

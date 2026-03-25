@@ -4,9 +4,11 @@ namespace App\Livewire\Invoices;
 
 use App\Models\Invoice;
 use Illuminate\Support\Facades\Auth;
+use Livewire\Attributes\Layout;
 use Livewire\Component;
 use Livewire\WithPagination;
 
+#[Layout('layouts.app')]
 class InvoiceList extends Component
 {
     use WithPagination;
