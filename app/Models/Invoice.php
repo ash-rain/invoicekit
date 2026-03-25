@@ -22,6 +22,8 @@ class Invoice extends Model
         'total',
         'notes',
         'paid_at',
+        'vat_type',
+        'language',
     ];
 
     protected $casts = [
@@ -62,5 +64,23 @@ class Invoice extends Model
     public function scopeOverdue($query)
     {
         return $query->where('status', 'overdue');
+    }
+
+    /**
+     * Generate the next invoice number in the format INV-YYYY-NNNN.
+     */
+    public static function generateNumber(int $userId): string
+    {
+        $year = now()->year;
+        $prefix = "INV-{$year}-";
+
+        $last = static::where('user_id', $userId)
+            ->where('invoice_number', 'like', "{$prefix}%")
+            ->orderByDesc('invoice_number')
+            ->value('invoice_number');
+
+        $next = $last ? (int) substr($last, strlen($prefix)) + 1 : 1;
+
+        return $prefix . str_pad($next, 4, '0', STR_PAD_LEFT);
     }
 }

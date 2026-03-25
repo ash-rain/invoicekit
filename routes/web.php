@@ -4,8 +4,10 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\Dashboard;
 use App\Livewire\Clients\ClientList;
+use App\Livewire\Clients\CreateEditClient;
 use App\Livewire\Timer\ActiveTimer;
 use App\Livewire\Invoices\InvoiceList;
+use App\Livewire\Invoices\CreateInvoice;
 
 Route::get('/', function () {
     return view('welcome');
@@ -22,8 +24,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     // Clients
     Route::get('/clients', ClientList::class)->name('clients.index');
-    Route::get('/clients/create', fn () => view('clients.create'))->name('clients.create');
-    Route::get('/clients/{client}/edit', fn ($client) => view('clients.edit', compact('client')))->name('clients.edit');
+    Route::get('/clients/create', CreateEditClient::class)->name('clients.create');
+    Route::get('/clients/{client}/edit', CreateEditClient::class)->name('clients.edit');
 
     // Projects
     Route::get('/projects', fn () => view('projects.index'))->name('projects.index');
@@ -35,14 +37,23 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     // Invoices
     Route::get('/invoices', InvoiceList::class)->name('invoices.index');
-    Route::get('/invoices/create', fn () => view('invoices.create'))->name('invoices.create');
-    Route::get('/invoices/{invoice}', fn ($invoice) => view('invoices.show', compact('invoice')))->name('invoices.show');
-    Route::get('/invoices/{invoice}/edit', fn ($invoice) => view('invoices.edit', compact('invoice')))->name('invoices.edit');
+    Route::get('/invoices/create', CreateInvoice::class)->name('invoices.create');
+    Route::get('/invoices/{invoice}', function (\App\Models\Invoice $invoice) {
+        if ($invoice->user_id !== auth()->id()) {
+            abort(403);
+        }
+        return view('invoices.show', compact('invoice'));
+    })->name('invoices.show');
+    Route::get('/invoices/{invoice}/edit', CreateInvoice::class)->name('invoices.edit');
 
     // Invoice PDF
     Route::get('/invoices/{invoice}/pdf', function ($invoice) {
         $invoice = \App\Models\Invoice::with(['client', 'items', 'user'])->findOrFail($invoice);
-        $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('invoices.pdf', compact('invoice'));
+        if ($invoice->user_id !== auth()->id()) {
+            abort(403);
+        }
+        $lang = $invoice->language ?? 'en';
+        $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('invoices.pdf', compact('invoice', 'lang'));
         return $pdf->stream("invoice-{$invoice->invoice_number}.pdf");
     })->name('invoices.pdf');
 });

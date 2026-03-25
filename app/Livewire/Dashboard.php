@@ -37,6 +37,13 @@ class Dashboard extends Component
 
     public function render()
     {
-        return view('livewire.dashboard');
+        $overdueInvoices = Invoice::where('user_id', Auth::id())
+            ->overdue()
+            ->with('client')
+            ->orderBy('due_date')
+            ->limit(10)
+            ->get();
+
+        return view('livewire.dashboard', compact('overdueInvoices'));
     }
 }
