@@ -20,8 +20,8 @@ Route::get('/', function () {
 });
 
 // ── Legal pages ───────────────────────────────────────────────────────────────
-Route::get('/privacy', fn () => view('legal.privacy'))->name('privacy');
-Route::get('/terms', fn () => view('legal.terms'))->name('terms');
+Route::get('/privacy', fn() => view('legal.privacy'))->name('privacy');
+Route::get('/terms', fn() => view('legal.terms'))->name('terms');
 
 // ── SEO ───────────────────────────────────────────────────────────────────────
 Route::get('/sitemap.xml', function () {
@@ -52,6 +52,17 @@ Route::get('/robots.txt', function () {
     return response($content, 200, ['Content-Type' => 'text/plain']);
 })->name('robots');
 
+// ── Locale switcher ──────────────────────────────────────────────────────────
+Route::post('/locale', function (\Illuminate\Http\Request $request) {
+    $locale = $request->input('locale');
+
+    if (in_array($locale, config('invoicekit.supported_languages', ['en']))) {
+        session(['locale' => $locale]);
+    }
+
+    return back();
+})->name('locale.switch');
+
 // ── Onboarding (auth required, email NOT required here) ───────────────────────
 Route::middleware('auth')->get('/onboarding', OnboardingWizard::class)->name('onboarding');
 
@@ -70,12 +81,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/clients/{client}/edit', CreateEditClient::class)->name('clients.edit');
 
     // Projects
-    Route::get('/projects', fn () => view('projects.index'))->name('projects.index');
-    Route::get('/projects/create', fn () => view('projects.create'))->name('projects.create');
-    Route::get('/projects/{project}/edit', fn ($project) => view('projects.edit', compact('project')))->name('projects.edit');
+    Route::get('/projects', fn() => view('projects.index'))->name('projects.index');
+    Route::get('/projects/create', fn() => view('projects.create'))->name('projects.create');
+    Route::get('/projects/{project}/edit', fn($project) => view('projects.edit', compact('project')))->name('projects.edit');
 
     // Timer
-    Route::get('/timer', fn () => view('timer.index'))->name('timer');
+    Route::get('/timer', fn() => view('timer.index'))->name('timer');
 
     // Invoices
     Route::get('/invoices', InvoiceList::class)->name('invoices.index');
@@ -117,4 +128,4 @@ Route::get('/pay/{invoice}', function ($invoice) {
     return view('invoices.pay', compact('invoice'));
 })->name('invoices.pay');
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
