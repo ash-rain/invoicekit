@@ -20,24 +20,24 @@ Use `search-docs` for detailed Livewire 4 patterns and documentation.
 
 # Single-file component (default in v4)
 
-vendor/bin/sail artisan make:livewire create-post
+php artisan make:livewire create-post
 
 # Multi-file component
 
-vendor/bin/sail artisan make:livewire create-post --mfc
+php artisan make:livewire create-post --mfc
 
 # Class-based component (v3 style)
 
-vendor/bin/sail artisan make:livewire create-post --class
+php artisan make:livewire create-post --class
 
 # With namespace
 
-vendor/bin/sail artisan make:livewire Posts/CreatePost
+php artisan make:livewire Posts/CreatePost
 ```
 
 ### Converting Between Formats
 
-Use `vendor/bin/sail artisan livewire:convert create-post` to convert between single-file, multi-file, and class-based formats.
+Use `php artisan livewire:convert create-post` to convert between single-file, multi-file, and class-based formats.
 
 ### Choosing a Component Format
 
