@@ -47,6 +47,10 @@
                     <x-sidebar-link :href="route('invoices.index')" :active="request()->routeIs('invoices.*')" icon="document">
                         {{ __('Invoices') }}
                     </x-sidebar-link>
+
+                    <x-sidebar-link :href="route('billing.index')" :active="request()->routeIs('billing.*')" icon="credit-card">
+                        {{ __('Billing') }}
+                    </x-sidebar-link>
                 </nav>
 
                 <!-- User -->
@@ -89,5 +93,24 @@
 
         @livewireScripts
         @stack('scripts')
+
+        {{-- Cookie consent banner (first-party session cookies only) --}}
+        <div id="cookie-banner"
+             class="fixed bottom-0 inset-x-0 z-50 bg-gray-900 text-white px-6 py-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-lg"
+             style="display:none!important">
+            <p class="text-sm leading-relaxed max-w-2xl">
+                We use only essential first-party session cookies required for authentication. No tracking or advertising cookies are used.
+                <a href="{{ url('/privacy') }}" class="underline ml-1">Privacy Policy</a>
+            </p>
+            <button onclick="document.getElementById('cookie-banner').style.setProperty('display','none','important');localStorage.setItem('ik_cookie_consent','1')"
+                    class="shrink-0 px-4 py-2 bg-indigo-500 hover:bg-indigo-400 rounded-lg text-sm font-medium">
+                Got it
+            </button>
+        </div>
+        <script>
+            if (!localStorage.getItem('ik_cookie_consent')) {
+                document.getElementById('cookie-banner').style.removeProperty('display');
+            }
+        </script>
     </body>
 </html>

@@ -3,6 +3,7 @@
 namespace App\Livewire\Clients;
 
 use App\Models\Client;
+use App\Services\PlanService;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
@@ -129,6 +130,16 @@ class CreateEditClient extends Component
     public function save(): void
     {
         $validated = $this->validate();
+
+        // Enforce plan limit when creating a new client
+        if (! $this->client || ! $this->client->exists) {
+            $planService = app(PlanService::class);
+            if (! $planService->canAddClient(Auth::user())) {
+                $this->addError('name', 'You have reached the client limit for your plan. Please upgrade to add more clients.');
+
+                return;
+            }
+        }
 
         // EU VAT number format check
         if (! empty($validated['vat_number'])) {
