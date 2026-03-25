@@ -10,6 +10,9 @@ use App\Livewire\Invoices\InvoiceList;
 use App\Livewire\Invoices\CreateInvoice;
 
 Route::get('/', function () {
+    if (auth()->check()) {
+        return redirect()->route('dashboard');
+    }
     return view('welcome');
 });
 

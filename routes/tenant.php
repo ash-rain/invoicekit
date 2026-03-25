@@ -23,7 +23,5 @@ Route::middleware([
     InitializeTenancyBySubdomain::class,
     PreventAccessFromCentralDomains::class,
 ])->group(function () {
-    Route::get('/', function () {
-        return redirect('/dashboard');
-    });
+    // Tenant subdomain routes go here.
 });
