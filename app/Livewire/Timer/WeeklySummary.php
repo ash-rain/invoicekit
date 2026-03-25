@@ -10,12 +10,13 @@ use Livewire\Component;
 class WeeklySummary extends Component
 {
     public Carbon $weekStart;
+
     public Carbon $weekEnd;
 
     public function mount(): void
     {
         $this->weekStart = now()->startOfWeek();
-        $this->weekEnd   = now()->endOfWeek();
+        $this->weekEnd = now()->endOfWeek();
     }
 
     public function previousWeek(): void

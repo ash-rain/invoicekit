@@ -12,8 +12,11 @@ use Livewire\Component;
 class Dashboard extends Component
 {
     public int $trackedHoursThisMonth = 0;
+
     public int $unpaidInvoicesCount = 0;
+
     public float $unpaidInvoicesTotal = 0;
+
     public int $overdueInvoicesCount = 0;
 
     public function mount(): void

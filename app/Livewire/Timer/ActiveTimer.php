@@ -12,10 +12,15 @@ use Livewire\Component;
 class ActiveTimer extends Component
 {
     public ?int $projectId = null;
+
     public string $description = '';
+
     public ?int $activeTimerId = null;
+
     public bool $isRunning = false;
+
     public string $elapsedTime = '00:00:00';
+
     public ?string $startedAt = null;
 
     public function mount(): void
@@ -37,8 +42,9 @@ class ActiveTimer extends Component
 
     public function startTimer(): void
     {
-        if (!$this->projectId) {
+        if (! $this->projectId) {
             $this->addError('projectId', 'Please select a project.');
+
             return;
         }
 
@@ -57,7 +63,7 @@ class ActiveTimer extends Component
 
     public function stopTimer(): void
     {
-        if (!$this->activeTimerId) {
+        if (! $this->activeTimerId) {
             return;
         }
 

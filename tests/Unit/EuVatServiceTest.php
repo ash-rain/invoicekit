@@ -12,7 +12,7 @@ class EuVatServiceTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->vat = new EuVatService();
+        $this->vat = new EuVatService;
     }
 
     // ──────────────────────────────────────────────────────────────────

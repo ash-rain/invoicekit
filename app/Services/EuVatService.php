@@ -29,9 +29,9 @@ class EuVatService
      * Calculate VAT for a transaction.
      *
      * @param  string  $sellerCountry  ISO 2-letter code of the seller's country
-     * @param  string  $buyerCountry   ISO 2-letter code of the buyer's country
-     * @param  bool    $buyerHasVat    Whether the buyer has a valid EU VAT number
-     * @param  float   $amount         Net amount (before VAT)
+     * @param  string  $buyerCountry  ISO 2-letter code of the buyer's country
+     * @param  bool  $buyerHasVat  Whether the buyer has a valid EU VAT number
+     * @param  float  $amount  Net amount (before VAT)
      * @return array{rate: float, amount: float, type: string}
      */
     public function calculateVat(
@@ -41,36 +41,36 @@ class EuVatService
         float $amount
     ): array {
         $sellerCountry = strtoupper($sellerCountry);
-        $buyerCountry  = strtoupper($buyerCountry);
+        $buyerCountry = strtoupper($buyerCountry);
 
         // Same country — always apply local VAT
         if ($sellerCountry === $buyerCountry) {
             $rate = $this->vatRates[$sellerCountry] ?? 0;
 
             return [
-                'rate'   => (float) $rate,
+                'rate' => (float) $rate,
                 'amount' => round($amount * $rate / 100, 2),
-                'type'   => 'standard',
+                'type' => 'standard',
             ];
         }
 
         $buyerIsEu = isset($this->vatRates[$buyerCountry]);
 
         // Non-EU buyer — exempt
-        if (!$buyerIsEu) {
+        if (! $buyerIsEu) {
             return [
-                'rate'   => 0.0,
+                'rate' => 0.0,
                 'amount' => 0.0,
-                'type'   => 'exempt',
+                'type' => 'exempt',
             ];
         }
 
         // EU business buyer with a VAT number — reverse charge
         if ($buyerHasVat) {
             return [
-                'rate'   => 0.0,
+                'rate' => 0.0,
                 'amount' => 0.0,
-                'type'   => 'reverse_charge',
+                'type' => 'reverse_charge',
             ];
         }
 
@@ -78,9 +78,9 @@ class EuVatService
         $rate = $this->vatRates[$sellerCountry] ?? 0;
 
         return [
-            'rate'   => (float) $rate,
+            'rate' => (float) $rate,
             'amount' => round($amount * $rate / 100, 2),
-            'type'   => 'oss',
+            'type' => 'oss',
         ];
     }
 

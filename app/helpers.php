@@ -5,7 +5,7 @@ if (! function_exists('formatCurrency')) {
      * Format a monetary amount with the correct currency symbol and format.
      *
      * @param  string  $currency  ISO 4217 currency code
-     * @param  float   $amount    The amount to format
+     * @param  float  $amount  The amount to format
      */
     function formatCurrency(string $currency, float $amount): string
     {

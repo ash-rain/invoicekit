@@ -27,8 +27,8 @@ class InvoiceReminder extends Mailable
     {
         $subject = match ($this->reminderType) {
             'due_today' => "Payment Due Today — Invoice {$this->invoice->invoice_number}",
-            'overdue'   => "Overdue Invoice — {$this->invoice->invoice_number}",
-            default     => "Payment Reminder — Invoice {$this->invoice->invoice_number}",
+            'overdue' => "Overdue Invoice — {$this->invoice->invoice_number}",
+            default => "Payment Reminder — Invoice {$this->invoice->invoice_number}",
         };
 
         return new Envelope(
@@ -42,7 +42,7 @@ class InvoiceReminder extends Mailable
         return new Content(
             view: 'emails.invoice-reminder',
             with: [
-                'invoice'      => $this->invoice,
+                'invoice' => $this->invoice,
                 'reminderType' => $this->reminderType,
             ],
         );
@@ -53,7 +53,7 @@ class InvoiceReminder extends Mailable
         $lang = $this->invoice->language ?? 'en';
         $pdfContent = Pdf::loadView('invoices.pdf', [
             'invoice' => $this->invoice,
-            'lang'    => $lang,
+            'lang' => $lang,
         ])->output();
 
         return [

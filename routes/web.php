@@ -1,18 +1,18 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
-use Illuminate\Support\Facades\Route;
-use App\Livewire\Dashboard;
 use App\Livewire\Clients\ClientList;
 use App\Livewire\Clients\CreateEditClient;
-use App\Livewire\Timer\ActiveTimer;
-use App\Livewire\Invoices\InvoiceList;
+use App\Livewire\Dashboard;
 use App\Livewire\Invoices\CreateInvoice;
+use App\Livewire\Invoices\InvoiceList;
+use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     if (auth()->check()) {
         return redirect()->route('dashboard');
     }
+
     return view('welcome');
 });
 
@@ -45,6 +45,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         if ($invoice->user_id !== auth()->id()) {
             abort(403);
         }
+
         return view('invoices.show', compact('invoice'));
     })->name('invoices.show');
     Route::get('/invoices/{invoice}/edit', CreateInvoice::class)->name('invoices.edit');
@@ -60,6 +61,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         app()->setLocale($lang);
         $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('invoices.pdf', compact('invoice', 'lang'));
         app()->setLocale($previousLocale);
+
         return $pdf->stream("invoice-{$invoice->invoice_number}.pdf");
     })->name('invoices.pdf');
 });
@@ -67,6 +69,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 // Public invoice view (for payment links)
 Route::get('/pay/{invoice}', function ($invoice) {
     $invoice = \App\Models\Invoice::with(['client', 'items'])->findOrFail($invoice);
+
     return view('invoices.pay', compact('invoice'));
 })->name('invoices.pay');
 

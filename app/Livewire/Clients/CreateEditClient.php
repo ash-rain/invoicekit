@@ -13,10 +13,15 @@ class CreateEditClient extends Component
     public ?Client $client = null;
 
     public string $name = '';
+
     public string $email = '';
+
     public string $address = '';
+
     public string $country = 'BG';
+
     public string $vat_number = '';
+
     public string $currency = 'EUR';
 
     public const CURRENCIES = ['EUR', 'USD', 'BGN', 'RON', 'PLN', 'CZK', 'HUF'];
@@ -112,12 +117,12 @@ class CreateEditClient extends Component
     protected function rules(): array
     {
         return [
-            'name'       => ['required', 'string', 'max:255'],
-            'email'      => ['nullable', 'email', 'max:255'],
-            'address'    => ['nullable', 'string', 'max:1000'],
-            'country'    => ['required', 'string', 'size:2'],
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['nullable', 'email', 'max:255'],
+            'address' => ['nullable', 'string', 'max:1000'],
+            'country' => ['required', 'string', 'size:2'],
             'vat_number' => ['nullable', 'string', 'max:30'],
-            'currency'   => ['required', 'string', 'in:' . implode(',', self::CURRENCIES)],
+            'currency' => ['required', 'string', 'in:'.implode(',', self::CURRENCIES)],
         ];
     }
 
@@ -126,11 +131,12 @@ class CreateEditClient extends Component
         $validated = $this->validate();
 
         // EU VAT number format check
-        if (!empty($validated['vat_number'])) {
+        if (! empty($validated['vat_number'])) {
             $vatNumber = strtoupper(trim($validated['vat_number']));
             $pattern = self::VAT_PATTERNS[$validated['country']] ?? null;
-            if ($pattern && !preg_match($pattern, $vatNumber)) {
-                $this->addError('vat_number', 'Invalid VAT number format for ' . ($this::COUNTRIES[$validated['country']] ?? $validated['country']) . '.');
+            if ($pattern && ! preg_match($pattern, $vatNumber)) {
+                $this->addError('vat_number', 'Invalid VAT number format for '.($this::COUNTRIES[$validated['country']] ?? $validated['country']).'.');
+
                 return;
             }
             $validated['vat_number'] = $vatNumber;
@@ -152,7 +158,7 @@ class CreateEditClient extends Component
     public function render()
     {
         return view('livewire.clients.create-edit-client', [
-            'countries'  => self::COUNTRIES,
+            'countries' => self::COUNTRIES,
             'currencies' => self::CURRENCIES,
         ]);
     }

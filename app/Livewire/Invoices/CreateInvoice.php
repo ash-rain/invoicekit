@@ -19,11 +19,17 @@ class CreateInvoice extends Component
 
     // Invoice header
     public ?int $clientId = null;
+
     public string $issueDate = '';
+
     public string $dueDate = '';
+
     public string $notes = '';
+
     public string $currency = 'EUR';
+
     public string $invoiceNumber = '';
+
     public string $language = 'en';
 
     // Line items: array of ['description', 'quantity', 'unit_price']
@@ -34,9 +40,13 @@ class CreateInvoice extends Component
 
     // Computed totals (updated reactively)
     public float $subtotal = 0.0;
+
     public float $vatRate = 0.0;
+
     public float $vatAmount = 0.0;
+
     public float $total = 0.0;
+
     public string $vatType = 'standard';
 
     public function mount(?Invoice $invoice = null): void
@@ -56,8 +66,8 @@ class CreateInvoice extends Component
             $this->vatType = $invoice->vat_type ?? 'standard';
             $this->items = $invoice->items->map(fn ($item) => [
                 'description' => $item->description,
-                'quantity'    => (string) $item->quantity,
-                'unit_price'  => (string) $item->unit_price,
+                'quantity' => (string) $item->quantity,
+                'unit_price' => (string) $item->unit_price,
             ])->toArray();
         } else {
             $this->issueDate = now()->format('Y-m-d');
@@ -97,7 +107,7 @@ class CreateInvoice extends Component
 
     private function selectedClient(): ?Client
     {
-        if (!$this->clientId) {
+        if (! $this->clientId) {
             return null;
         }
 
@@ -108,7 +118,7 @@ class CreateInvoice extends Component
     {
         $subtotal = 0.0;
         foreach ($this->items as $item) {
-            $qty   = max(0.0, (float) ($item['quantity'] ?? 0));
+            $qty = max(0.0, (float) ($item['quantity'] ?? 0));
             $price = max(0.0, (float) ($item['unit_price'] ?? 0));
             $subtotal += $qty * $price;
         }
@@ -122,32 +132,32 @@ class CreateInvoice extends Component
             $vatResult = $vatService->calculateVat(
                 $this->sellerCountry,
                 $client->country,
-                !empty($client->vat_number),
+                ! empty($client->vat_number),
                 $subtotal
             );
         }
 
-        $this->subtotal  = round($subtotal, 2);
-        $this->vatRate   = $vatResult['rate'];
+        $this->subtotal = round($subtotal, 2);
+        $this->vatRate = $vatResult['rate'];
         $this->vatAmount = $vatResult['amount'];
-        $this->vatType   = $vatResult['type'];
-        $this->total     = round($subtotal + $vatResult['amount'], 2);
+        $this->vatType = $vatResult['type'];
+        $this->total = round($subtotal + $vatResult['amount'], 2);
     }
 
     protected function rules(): array
     {
         return [
-            'clientId'      => ['required', 'integer'],
+            'clientId' => ['required', 'integer'],
             'invoiceNumber' => ['required', 'string', 'max:50'],
-            'issueDate'     => ['required', 'date'],
-            'dueDate'       => ['required', 'date', 'after_or_equal:issueDate'],
-            'currency'      => ['required', 'string', 'max:3'],
-            'notes'         => ['nullable', 'string', 'max:2000'],
-            'language'      => ['required', 'string', 'in:en,bg'],
-            'items'         => ['required', 'array', 'min:1'],
+            'issueDate' => ['required', 'date'],
+            'dueDate' => ['required', 'date', 'after_or_equal:issueDate'],
+            'currency' => ['required', 'string', 'max:3'],
+            'notes' => ['nullable', 'string', 'max:2000'],
+            'language' => ['required', 'string', 'in:en,bg'],
+            'items' => ['required', 'array', 'min:1'],
             'items.*.description' => ['required', 'string', 'max:500'],
-            'items.*.quantity'    => ['required', 'numeric', 'min:0.01'],
-            'items.*.unit_price'  => ['required', 'numeric', 'min:0'],
+            'items.*.quantity' => ['required', 'numeric', 'min:0.01'],
+            'items.*.unit_price' => ['required', 'numeric', 'min:0'],
         ];
     }
 
@@ -158,20 +168,20 @@ class CreateInvoice extends Component
 
         DB::transaction(function () {
             $data = [
-                'user_id'        => Auth::id(),
-                'client_id'      => $this->clientId,
+                'user_id' => Auth::id(),
+                'client_id' => $this->clientId,
                 'invoice_number' => $this->invoiceNumber,
-                'status'         => $this->invoice?->status ?? 'draft',
-                'issue_date'     => $this->issueDate,
-                'due_date'       => $this->dueDate,
-                'currency'       => $this->currency,
-                'language'       => $this->language,
-                'subtotal'       => $this->subtotal,
-                'vat_rate'       => $this->vatRate,
-                'vat_amount'     => $this->vatAmount,
-                'vat_type'       => $this->vatType,
-                'total'          => $this->total,
-                'notes'          => $this->notes ?: null,
+                'status' => $this->invoice?->status ?? 'draft',
+                'issue_date' => $this->issueDate,
+                'due_date' => $this->dueDate,
+                'currency' => $this->currency,
+                'language' => $this->language,
+                'subtotal' => $this->subtotal,
+                'vat_rate' => $this->vatRate,
+                'vat_amount' => $this->vatAmount,
+                'vat_type' => $this->vatType,
+                'total' => $this->total,
+                'notes' => $this->notes ?: null,
             ];
 
             if ($this->invoice && $this->invoice->exists) {
@@ -182,17 +192,17 @@ class CreateInvoice extends Component
             }
 
             foreach ($this->items as $item) {
-                $qty    = (float) $item['quantity'];
-                $price  = (float) $item['unit_price'];
+                $qty = (float) $item['quantity'];
+                $price = (float) $item['unit_price'];
                 $lineTotal = round($qty * $price, 2);
 
                 InvoiceItem::create([
-                    'invoice_id'  => $this->invoice->id,
+                    'invoice_id' => $this->invoice->id,
                     'description' => $item['description'],
-                    'quantity'    => $qty,
-                    'unit_price'  => $price,
-                    'vat_rate'    => $this->vatRate,
-                    'total'       => $lineTotal,
+                    'quantity' => $qty,
+                    'unit_price' => $price,
+                    'vat_rate' => $this->vatRate,
+                    'total' => $lineTotal,
                 ]);
             }
         });
@@ -206,7 +216,7 @@ class CreateInvoice extends Component
         $clients = Client::where('user_id', Auth::id())->orderBy('name')->get();
 
         return view('livewire.invoices.create-invoice', [
-            'clients'  => $clients,
+            'clients' => $clients,
             'selected' => $this->selectedClient(),
         ]);
     }

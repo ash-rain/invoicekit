@@ -18,31 +18,31 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $user = User::factory()->create([
-            'name'              => 'Demo User',
-            'email'             => 'demo@invoicekit.test',
-            'password'          => Hash::make('password'),
+            'name' => 'Demo User',
+            'email' => 'demo@invoicekit.test',
+            'password' => Hash::make('password'),
             'email_verified_at' => now(),
         ]);
 
         $clients = [
             [
-                'name'       => 'Acme Corp',
-                'email'      => 'billing@acme.example',
-                'address'    => "123 Main Street\nNew York, NY 10001",
-                'country'    => 'DE',
+                'name' => 'Acme Corp',
+                'email' => 'billing@acme.example',
+                'address' => "123 Main Street\nNew York, NY 10001",
+                'country' => 'DE',
                 'vat_number' => 'DE123456789',
-                'currency'   => 'EUR',
+                'currency' => 'EUR',
             ],
             [
-                'name'    => 'Bright Ideas Ltd',
-                'email'   => 'accounts@brightideas.example',
+                'name' => 'Bright Ideas Ltd',
+                'email' => 'accounts@brightideas.example',
                 'address' => "45 High Street\nLondon EC1A 1BB",
                 'country' => 'FR',
                 'currency' => 'EUR',
             ],
             [
-                'name'    => 'Skyline Solutions',
-                'email'   => 'finance@skyline.example',
+                'name' => 'Skyline Solutions',
+                'email' => 'finance@skyline.example',
                 'address' => "77 Rue de la Paix\n75002 Paris",
                 'country' => 'FR',
                 'currency' => 'EUR',
@@ -53,12 +53,12 @@ class DatabaseSeeder extends Seeder
             $client = Client::create(array_merge($data, ['user_id' => $user->id]));
 
             $project = Project::create([
-                'user_id'     => $user->id,
-                'client_id'   => $client->id,
-                'name'        => $client['name'] . ' – Website Redesign',
+                'user_id' => $user->id,
+                'client_id' => $client->id,
+                'name' => $client['name'].' – Website Redesign',
                 'hourly_rate' => 95.00,
-                'currency'    => 'EUR',
-                'status'      => 'active',
+                'currency' => 'EUR',
+                'status' => 'active',
             ]);
 
             // Paid invoice
@@ -86,30 +86,30 @@ class DatabaseSeeder extends Seeder
         $total = $subtotal + $vatAmount;
 
         $invoice = Invoice::create([
-            'user_id'        => $user->id,
-            'client_id'      => $client->id,
-            'invoice_number' => 'INV-' . str_pad($counter++, 4, '0', STR_PAD_LEFT),
-            'status'         => $status,
-            'issue_date'     => $date,
-            'due_date'       => (clone $date)->modify('+30 days'),
-            'currency'       => 'EUR',
-            'subtotal'       => $subtotal,
-            'vat_rate'       => $vatRate,
-            'vat_amount'     => $vatAmount,
-            'vat_type'       => 'standard',
-            'total'          => $total,
-            'language'       => 'en',
-            'paid_at'        => $status === 'paid' ? $date : null,
+            'user_id' => $user->id,
+            'client_id' => $client->id,
+            'invoice_number' => 'INV-'.str_pad($counter++, 4, '0', STR_PAD_LEFT),
+            'status' => $status,
+            'issue_date' => $date,
+            'due_date' => (clone $date)->modify('+30 days'),
+            'currency' => 'EUR',
+            'subtotal' => $subtotal,
+            'vat_rate' => $vatRate,
+            'vat_amount' => $vatAmount,
+            'vat_type' => 'standard',
+            'total' => $total,
+            'language' => 'en',
+            'paid_at' => $status === 'paid' ? $date : null,
         ]);
 
         foreach ($items as $item) {
             InvoiceItem::create([
-                'invoice_id'  => $invoice->id,
+                'invoice_id' => $invoice->id,
                 'description' => $item['description'],
-                'quantity'    => $item['quantity'],
-                'unit_price'  => $item['unit_price'],
-                'vat_rate'    => $vatRate,
-                'total'       => round($item['quantity'] * $item['unit_price'] * (1 + $vatRate / 100), 2),
+                'quantity' => $item['quantity'],
+                'unit_price' => $item['unit_price'],
+                'vat_rate' => $vatRate,
+                'total' => round($item['quantity'] * $item['unit_price'] * (1 + $vatRate / 100), 2),
             ]);
         }
     }

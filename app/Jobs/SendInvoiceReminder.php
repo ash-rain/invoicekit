@@ -16,6 +16,7 @@ class SendInvoiceReminder implements ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     public int $tries = 3;
+
     public int $backoff = 60;
 
     /**
@@ -29,7 +30,7 @@ class SendInvoiceReminder implements ShouldQueue
     public function handle(): void
     {
         // Only send if the invoice still needs attention
-        if (!in_array($this->invoice->status, ['sent', 'overdue'])) {
+        if (! in_array($this->invoice->status, ['sent', 'overdue'])) {
             return;
         }
 

@@ -14,6 +14,7 @@ class InvoiceList extends Component
     use WithPagination;
 
     public string $statusFilter = '';
+
     public string $search = '';
 
     public function updatingStatusFilter(): void

@@ -10,9 +10,13 @@ use Livewire\Component;
 class ManualTimeEntry extends Component
 {
     public ?int $projectId = null;
+
     public string $description = '';
+
     public string $date = '';
+
     public string $startTime = '';
+
     public string $endTime = '';
 
     public function mount(): void
@@ -23,10 +27,10 @@ class ManualTimeEntry extends Component
     public function save(): void
     {
         $this->validate([
-            'projectId'   => 'required|integer',
-            'date'        => 'required|date',
-            'startTime'   => 'required|date_format:H:i',
-            'endTime'     => 'required|date_format:H:i|after:startTime',
+            'projectId' => 'required|integer',
+            'date' => 'required|date',
+            'startTime' => 'required|date_format:H:i',
+            'endTime' => 'required|date_format:H:i|after:startTime',
             'description' => 'nullable|string|max:255',
         ]);
 
@@ -34,11 +38,11 @@ class ManualTimeEntry extends Component
         $stoppedAt = \Carbon\Carbon::parse("{$this->date} {$this->endTime}");
 
         TimeEntry::create([
-            'user_id'          => Auth::id(),
-            'project_id'       => $this->projectId,
-            'description'      => $this->description,
-            'started_at'       => $startedAt,
-            'stopped_at'       => $stoppedAt,
+            'user_id' => Auth::id(),
+            'project_id' => $this->projectId,
+            'description' => $this->description,
+            'started_at' => $startedAt,
+            'stopped_at' => $stoppedAt,
             'duration_minutes' => (int) $startedAt->diffInMinutes($stoppedAt),
         ]);
 
