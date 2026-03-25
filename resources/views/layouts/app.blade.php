@@ -93,72 +93,73 @@
                 @php
                     $supportedLanguages = config('invoicekit.supported_languages', ['en']);
                     $locales = [
-                        'bg' => ['name' => 'Български',   'flag' => '🇧🇬'],
-                        'cs' => ['name' => 'Čeština',      'flag' => '🇨🇿'],
-                        'da' => ['name' => 'Dansk',         'flag' => '🇩🇰'],
-                        'de' => ['name' => 'Deutsch',       'flag' => '🇩🇪'],
-                        'el' => ['name' => 'Ελληνικά',    'flag' => '🇬🇷'],
-                        'en' => ['name' => 'English',       'flag' => '🇬🇧'],
-                        'es' => ['name' => 'Español',       'flag' => '🇪🇸'],
-                        'et' => ['name' => 'Eesti',         'flag' => '🇪🇪'],
-                        'fi' => ['name' => 'Suomi',         'flag' => '🇫🇮'],
-                        'fr' => ['name' => 'Français',      'flag' => '🇫🇷'],
-                        'ga' => ['name' => 'Gaeilge',       'flag' => '🇮🇪'],
-                        'hr' => ['name' => 'Hrvatski',      'flag' => '🇭🇷'],
-                        'hu' => ['name' => 'Magyar',        'flag' => '🇭🇺'],
-                        'it' => ['name' => 'Italiano',      'flag' => '🇮🇹'],
-                        'lt' => ['name' => 'Lietuvių',     'flag' => '🇱🇹'],
-                        'lv' => ['name' => 'Latviešu',    'flag' => '🇱🇻'],
-                        'mt' => ['name' => 'Malti',         'flag' => '🇲🇹'],
-                        'nl' => ['name' => 'Nederlands',    'flag' => '🇳🇱'],
-                        'pl' => ['name' => 'Polski',        'flag' => '🇵🇱'],
-                        'pt' => ['name' => 'Português',     'flag' => '🇵🇹'],
-                        'ro' => ['name' => 'Română',        'flag' => '🇷🇴'],
-                        'sk' => ['name' => 'Slovenčina',   'flag' => '🇸🇰'],
-                        'sl' => ['name' => 'Slovenščina',  'flag' => '🇸🇮'],
-                        'sv' => ['name' => 'Svenska',       'flag' => '🇸🇪'],
+                        'bg' => ['name' => 'Български', 'flag' => '🇧🇬'],
+                        'cs' => ['name' => 'Čeština', 'flag' => '🇨🇿'],
+                        'da' => ['name' => 'Dansk', 'flag' => '🇩🇰'],
+                        'de' => ['name' => 'Deutsch', 'flag' => '🇩🇪'],
+                        'el' => ['name' => 'Ελληνικά', 'flag' => '🇬🇷'],
+                        'en' => ['name' => 'English', 'flag' => '🇬🇧'],
+                        'es' => ['name' => 'Español', 'flag' => '🇪🇸'],
+                        'et' => ['name' => 'Eesti', 'flag' => '🇪🇪'],
+                        'fi' => ['name' => 'Suomi', 'flag' => '🇫🇮'],
+                        'fr' => ['name' => 'Français', 'flag' => '🇫🇷'],
+                        'ga' => ['name' => 'Gaeilge', 'flag' => '🇮🇪'],
+                        'hr' => ['name' => 'Hrvatski', 'flag' => '🇭🇷'],
+                        'hu' => ['name' => 'Magyar', 'flag' => '🇭🇺'],
+                        'it' => ['name' => 'Italiano', 'flag' => '🇮🇹'],
+                        'lt' => ['name' => 'Lietuvių', 'flag' => '🇱🇹'],
+                        'lv' => ['name' => 'Latviešu', 'flag' => '🇱🇻'],
+                        'mt' => ['name' => 'Malti', 'flag' => '🇲🇹'],
+                        'nl' => ['name' => 'Nederlands', 'flag' => '🇳🇱'],
+                        'pl' => ['name' => 'Polski', 'flag' => '🇵🇱'],
+                        'pt' => ['name' => 'Português', 'flag' => '🇵🇹'],
+                        'ro' => ['name' => 'Română', 'flag' => '🇷🇴'],
+                        'sk' => ['name' => 'Slovenčina', 'flag' => '🇸🇰'],
+                        'sl' => ['name' => 'Slovenščina', 'flag' => '🇸🇮'],
+                        'sv' => ['name' => 'Svenska', 'flag' => '🇸🇪'],
                     ];
                     $currentLocale = app()->getLocale();
-                    $currentLocaleData = $locales[$currentLocale] ?? ['name' => strtoupper($currentLocale), 'flag' => '🌐'];
+                    $currentLocaleData = $locales[$currentLocale] ?? [
+                        'name' => strtoupper($currentLocale),
+                        'flag' => '🌐',
+                    ];
                 @endphp
 
                 <div x-data="{ open: false, search: '' }" class="relative">
                     {{-- Trigger button --}}
                     <button @click="open = !open; if (open) $nextTick(() => $refs.search.focus())"
-                            @click.outside="open = false; search = ''"
-                            class="flex items-center gap-2 h-9 px-3 rounded-lg border border-gray-200 bg-white hover:bg-gray-50 hover:border-gray-300 text-sm text-gray-700 font-medium transition-colors shadow-sm">
+                        @click.outside="open = false; search = ''"
+                        class="flex items-center gap-2 h-9 px-3 rounded-lg border border-gray-200 bg-white hover:bg-gray-50 hover:border-gray-300 text-sm text-gray-700 font-medium transition-colors shadow-sm">
                         <span class="text-base leading-none">{{ $currentLocaleData['flag'] }}</span>
                         <span class="text-sm font-medium text-gray-700">{{ $currentLocaleData['name'] }}</span>
-                        <span class="uppercase tracking-wide text-xs font-semibold text-gray-400">{{ $currentLocale }}</span>
+                        <span
+                            class="uppercase tracking-wide text-xs font-semibold text-gray-400">{{ $currentLocale }}</span>
                         <svg class="w-3.5 h-3.5 text-gray-400 transition-transform" :class="{ 'rotate-180': open }"
-                             fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7" />
+                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                d="M19 9l-7 7-7-7" />
                         </svg>
                     </button>
 
                     {{-- Dropdown panel --}}
-                    <div x-show="open"
-                         x-transition:enter="transition ease-out duration-100"
-                         x-transition:enter-start="opacity-0 translate-y-1"
-                         x-transition:enter-end="opacity-100 translate-y-0"
-                         x-transition:leave="transition ease-in duration-75"
-                         x-transition:leave-start="opacity-100 translate-y-0"
-                         x-transition:leave-end="opacity-0 translate-y-1"
-                         class="absolute right-0 mt-2 w-72 bg-white rounded-xl shadow-xl border border-gray-200 z-50 overflow-hidden">
+                    <div x-show="open" x-transition:enter="transition ease-out duration-100"
+                        x-transition:enter-start="opacity-0 translate-y-1"
+                        x-transition:enter-end="opacity-100 translate-y-0"
+                        x-transition:leave="transition ease-in duration-75"
+                        x-transition:leave-start="opacity-100 translate-y-0"
+                        x-transition:leave-end="opacity-0 translate-y-1"
+                        class="absolute right-0 mt-2 w-72 bg-white rounded-xl shadow-xl border border-gray-200 z-50 overflow-hidden">
 
                         {{-- Search --}}
                         <div class="px-3 pt-3 pb-2 border-b border-gray-100">
                             <div class="relative">
                                 <svg class="absolute left-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-400 pointer-events-none"
-                                     fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0" />
+                                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0" />
                                 </svg>
-                                <input x-ref="search"
-                                       x-model="search"
-                                       type="text"
-                                       placeholder="Search language…"
-                                       class="w-full pl-8 pr-3 py-1.5 text-sm bg-gray-50 border border-gray-200 rounded-lg placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
+                                <input x-ref="search" x-model="search" type="text" placeholder="Search language…"
+                                    class="w-full pl-8 pr-3 py-1.5 text-sm bg-gray-50 border border-gray-200 rounded-lg placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
                             </div>
                         </div>
 
@@ -170,19 +171,22 @@
                                     $isActive = $locale === $currentLocale;
                                 @endphp
                                 <form method="POST" action="{{ route('locale.switch') }}"
-                                      x-show="search === '' || '{{ strtolower($data['name']) }} {{ $locale }}'.includes(search.toLowerCase())">
+                                    x-show="search === '' || '{{ strtolower($data['name']) }} {{ $locale }}'.includes(search.toLowerCase())">
                                     @csrf
                                     <input type="hidden" name="locale" value="{{ $locale }}">
                                     <button type="submit"
-                                            class="w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm transition-colors text-left
+                                        class="w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm transition-colors text-left
                                                    {{ $isActive
                                                        ? 'bg-indigo-50 text-indigo-700 font-medium ring-1 ring-inset ring-indigo-200'
                                                        : 'text-gray-700 hover:bg-gray-50' }}">
                                         <span class="text-lg leading-none shrink-0">{{ $data['flag'] }}</span>
                                         <span class="truncate">{{ $data['name'] }}</span>
                                         @if ($isActive)
-                                            <svg class="ml-auto w-3.5 h-3.5 text-indigo-500 shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                                            <svg class="ml-auto w-3.5 h-3.5 text-indigo-500 shrink-0"
+                                                fill="currentColor" viewBox="0 0 20 20">
+                                                <path fill-rule="evenodd"
+                                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                                    clip-rule="evenodd" />
                                             </svg>
                                         @endif
                                     </button>
