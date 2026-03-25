@@ -16,12 +16,12 @@ echo "║   InvoiceKit — Server Setup Wizard   ║"
 echo "╚══════════════════════════════════════╝"
 echo ""
 
-read -r -p "GitHub Personal Access Token (repo read scope): " GITHUB_PAT
-read -r -p "Application URL (e.g. http://204.168.164.127): " APP_URL
-read -r -s -p "Database password: " DB_PASSWORD
+read -r -p "GitHub Personal Access Token (repo read scope): " GITHUB_PAT </dev/tty
+read -r -p "Application URL (e.g. http://204.168.164.127): " APP_URL </dev/tty
+read -r -s -p "Database password: " DB_PASSWORD </dev/tty
 echo ""
-read -r -p "Mail host (leave blank to use log driver): " MAIL_HOST
-read -r -p "Mail from address [hello@example.com]: " MAIL_FROM
+read -r -p "Mail host (leave blank to use log driver): " MAIL_HOST </dev/tty
+read -r -p "Mail from address [hello@example.com]: " MAIL_FROM </dev/tty
 MAIL_FROM="${MAIL_FROM:-hello@example.com}"
 
 APP_KEY="base64:$(openssl rand -base64 32)"
