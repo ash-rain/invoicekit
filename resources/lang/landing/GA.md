@@ -1,0 +1,303 @@
+[nav_features]
+Gnéithe
+
+[nav_pricing]
+Praghsanna
+
+[nav_login]
+Logáil isteach
+
+[nav_cta]
+Tosaigh saor in aisce
+
+[hero_badge]
+🇪🇺 Tógtha do shaorfhostaithe Eorpacha
+
+[hero_headline]
+Sonraíobh sonrasc mar Eorpach.
+Rían am mar ghairmiúil.
+
+[hero_subheadline]
+An t-aon uirlis a theastaíonn ó shaorfhostaithe AE — ó rianú ama go sonraisc CBL a chomhlíonann an dlí. Déileálann sé go huathoibríoch le haistriú muirear, OSS agus na 24 ráta CBL AE go léir.
+
+[hero_cta_primary]
+Tosaigh saor in aisce — gan cárta
+
+[hero_cta_secondary]
+Féach ar ghnéithe ↓
+
+[hero_trust_1]
+Tús saor in aisce
+
+[hero_trust_2]
+Ní theastaíonn cárta creidmheasa
+
+[hero_trust_3]
+Cealaigh am ar bith
+
+[features_tag]
+Gnéithe
+
+[features_title]
+Gach rud in aon áit amháin
+
+[features_subtitle]
+Stad ag iomrascáil le scarbhileoga agus aipeanna ar leith. Déileálann InvoiceKit le gach céim ón gcéad nóiméad incháilithe go dtí an euro deireanach a bailíodh.
+
+[f1_title]
+Rianú ama
+
+[f1_desc]
+Uaineadóir tosaigh/stop in aghaidh an tionscadail. Iontráil láimhe d'obair roimhe sin. Loga laethúla, achoimrí seachtainiúla agus tuarascálacha míosúla le huaireanna inbhilleáilte iomlána.
+
+[f2_title]
+Tógálaí sonraisc
+
+[f2_desc]
+Gin sonraisc PDF gairmiúla i soicindí. Uimhriú uathoibríoch, formáidiú dlíthiúil, le gach réimse AE éigeantach lena n-áirítear miondealú CBL iomlán.
+
+[f3_title]
+Inneall CBL AE
+
+[f3_desc]
+CBL uathoibríoch do gach cás AE: ráta caighdeánach, aistriú muirear (B2B), OSS (tomhaltóirí B2C AE) agus 0% díolmhaithe do cheannaitheoir lasmuigh den AE.
+
+[f4_title]
+Bainistíocht cliant
+
+[f4_desc]
+Sábháil cliant le tír, uimhir CBL agus airgeadra. Bratacha tíortha, cuardach láithreach agus stair iomlán billeála in aghaidh an chliaint.
+
+[f5_title]
+Il-airgeadra
+
+[f5_desc]
+Sonraíobh i EUR, USD, BGN, RON, PLN, CZK nó HUF. Airgeadra curtha i bhfeidhm go huathoibríoch in aghaidh gach cliaint. Suimeanna formáidithe i gceart do gach réigiún.
+
+[f6_title]
+Meabhrúcháin íocaíochta
+
+[f6_desc]
+Ríomhphoist uathoibríocha: 3 lá roimh an spriocdháta, ar an spriocdháta, 7 lá thar am. PDF ceangailte. Do shreabhadh airgid ar autopilot.
+
+[how_tag]
+Conas a oibríonn sé
+
+[how_title]
+Ó shoicindí rianaithe go sonrasc íoctha
+
+[how_subtitle]
+Trí chéim shimplí. Sin é go léir.
+
+[s1_title]
+Rián do chuid ama
+
+[s1_desc]
+Cliceáil Tosaigh do thionscadal. Oibríomar. Cliceáil Stop. Taifeadtar gach soicind go huathoibríoch — gan scarbhileoga, gan dearmad.
+
+[s2_title]
+Gin sonrasc
+
+[s2_desc]
+Roghnaigh cliant, roghnaigh iontrálacha ama le billeáil. Tógann InvoiceKit an sonrasc le CBL ceart, formáidiú dlíthiúil agus do bhranda.
+
+[s3_title]
+Faigh íocaíocht
+
+[s3_desc]
+Seol le haon chliceáil. Íocann do chliant trí Stripe. Feiceann tú an t-airgead i do chuntas. Déanta.
+
+[vat_tag]
+Comhlíonadh AE
+
+[vat_title]
+CBL i gceart gach uair
+
+[vat_desc]
+Tá dlí CBL AE casta. Déileálann InvoiceKit le gach cás go huathoibríoch — rátaí caighdeánacha, aistriú muirear do chliaint B2B, OSS do thomhaltóirí AE agus 0% do cheannaitheoir lasmuigh den AE.
+
+[vat_r1_label]
+Billeáil sa tír chéanna
+
+[vat_r1_sub]
+Ráta caighdeánach CBL áitiúil curtha i bhfeidhm go huathoibríoch
+
+[vat_r2_label]
+AE B2B (Aistriú muirear)
+
+[vat_r2_sub]
+0% CBL — cuntasaíonn an ceannaitheoir CBL de réir Alt 44 Treoir 2006/112/CE
+
+[vat_r3_label]
+AE B2C (Rialacha OSS)
+
+[vat_r3_sub]
+Ráta an díoltóra curtha i bhfeidhm (nó ráta OSS nuair is infheidhme)
+
+[vat_r4_label]
+Ceannaitheoir lasmuigh den AE
+
+[vat_r4_sub]
+0% CBL — lasmuigh de raon feidhme CBL AE, díolmhaithe
+
+[vat_rates_title]
+Rátaí CBL a dtacaítear leo
+
+[pricing_tag]
+Praghsanna
+
+[pricing_title]
+Praghsanna simplí, macánta
+
+[pricing_subtitle]
+Tosaigh saor in aisce. Uasghrádaigh nuair a fhásann do ghnó. Gan conarthaí, cealaigh am ar bith.
+
+[p_free_name]
+Saor in aisce
+
+[p_free_price]
+€0
+
+[p_free_period]
+go deo
+
+[p_free_desc]
+Gach rud a theastaíonn uait le tosú.
+
+[p_free_l1]
+Suas le 3 cliant
+
+[p_free_l2]
+5 sonrasc in aghaidh na míosa
+
+[p_free_l3]
+Rianú ama
+
+[p_free_l4]
+Easpórtáil sonrasc PDF
+
+[p_free_cta]
+Tosaigh saor in aisce
+
+[p_starter_name]
+Starter
+
+[p_starter_price]
+€15
+
+[p_starter_period]
+in aghaidh na míosa
+
+[p_starter_desc]
+Do shaorfhostaithe atá ag fás.
+
+[p_starter_l1]
+Cliant gan teorainn
+
+[p_starter_l2]
+20 sonrasc in aghaidh na míosa
+
+[p_starter_l3]
+Rianú ama
+
+[p_starter_l4]
+Gach riail CBL AE
+
+[p_starter_l5]
+Meabhrúcháin íocaíochta
+
+[p_starter_cta]
+Roghnaigh Starter
+
+[p_pro_name]
+Pro
+
+[p_pro_price]
+€29
+
+[p_pro_period]
+in aghaidh na míosa
+
+[p_pro_desc]
+D'fhaorfhostaithe dáiríre.
+
+[p_pro_l1]
+Gach rud gan teorainn
+
+[p_pro_l2]
+Sonraisc athfhillteacha
+
+[p_pro_l3]
+Tairseach cliaint
+
+[p_pro_l4]
+Tacaíocht tosaíochta
+
+[p_pro_l5]
+Rochtain API
+
+[p_pro_l6]
+Gach riail CBL AE
+
+[p_pro_cta]
+Téigh go Pro
+
+[p_popular]
+Is mó tóir air
+
+[faq_tag]
+CCF
+
+[faq_title]
+Ceisteanna coitianta
+
+[faq1_q]
+An bhfuil InvoiceKit i ndáiríre comhlíontach le CBL AE?
+
+[faq1_a]
+Tá. Ríomhann InvoiceKit an CBL ceart go huathoibríoch do gach sonrasc bunaithe ar do thír, tír do chliaint agus an bhfuil uimhir CBL AE bailí acu. Déileálann sé i gceart le rátaí caighdeánacha, aistriú muirear, OSS agus díolúintí lasmuigh den AE.
+
+[faq2_q]
+Cé na tíortha AE a dtacaítear leo?
+
+[faq2_a]
+Na 27 ballstát AE go léir. Tá rátaí CBL códaithe crua do BG, DE, FR, RO, PL, CZ, IT, ES, NL, PT, AT, BE, HR, HU, SE agus gach ceann eile. Déantar rátaí a nuashonrú nuair a athraíonn reachtaíocht AE.
+
+[faq3_q]
+An féidir liom InvoiceKit a úsáid lasmuigh den AE?
+
+[faq3_a]
+Go deimhin. Is féidir leat InvoiceKit a úsáid ó áit ar bith ar domhan. Tá inneall CBL AE is luachmhaire do shaorfhostaithe atá bunaithe san AE, ach baineann gach saorfhostaí leas as gnéithe rianú ama agus sonraisce.
+
+[faq4_q]
+Conas a oibríonn rianú ama?
+
+[faq4_a]
+Cruthaigh tionscadail le cliaint agus rátaí uaireanta. Úsáid an t-uaineadóir tosaigh/stop ionsuite agus tú ag oibriú. Stóráiltear gach am rianaithe agus is féidir é a thiontú go díreach ina línte sonraisc le haon chliceáil.
+
+[faq5_q]
+An féidir liom cealaigh am ar bith?
+
+[faq5_a]
+Is féidir. Gan conarthaí, gan ceangal. Cealaigh am ar bith agus coinneoidh tú rochtain go deireadh do thréimhse billeála. Tá gach sonra is féidir a easpórtáil am ar bith.
+
+[cta_title]
+Réidh le sonrasc a eisiúint mar Eorpach?
+
+[cta_subtitle]
+Glac páirt le saorfhostaithe Eorpacha a stop ag troid le scarbhileoga agus a thosaigh á íoc in am.
+
+[cta_button]
+Tosaigh saor in aisce inniu →
+
+[footer_tagline]
+Sonrascú comhlíontach AE do shaorfhostaithe Eorpacha.
+
+[footer_privacy]
+Polasaí Príobháideachais
+
+[footer_terms]
+Téarmaí Seirbhíse
+
+[footer_copy]
+© 2026 InvoiceKit. Gach ceart ar cosaint.

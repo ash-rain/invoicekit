@@ -1,0 +1,303 @@
+[nav_features]
+Funkcijas
+
+[nav_pricing]
+Cenas
+
+[nav_login]
+Pieslēgties
+
+[nav_cta]
+Sākt bez maksas
+
+[hero_badge]
+🇪🇺 Radīts Eiropas ārštata darbiniekiem
+
+[hero_headline]
+Izraksti rēķinus kā eiropietis.
+Izseko laiku kā profesionālis.
+
+[hero_subheadline]
+Vienīgais rīks, kas nepieciešams ES ārštata darbiniekiem — no laika uzskaites līdz juridiski atbilstošiem PVN rēķiniem. Automātiski apstrādā apgriezto nodokļu uzlikšanu, OSS un visas 24 ES PVN likmes.
+
+[hero_cta_primary]
+Sākt bez maksas — bez kartes
+
+[hero_cta_secondary]
+Skatīt funkcijas ↓
+
+[hero_trust_1]
+Bezmaksas sākums
+
+[hero_trust_2]
+Kredītkarte nav nepieciešama
+
+[hero_trust_3]
+Atcelt jebkurā laikā
+
+[features_tag]
+Funkcijas
+
+[features_title]
+Viss vienā vietā
+
+[features_subtitle]
+Pārtrauciet žonglēt ar izklājlapām un atsevišķām lietotnēm. InvoiceKit pārvalda katru soli no pirmās apmaksājamās minūtes līdz pēdējam iekasētajam eiro.
+
+[f1_title]
+Laika uzskaite
+
+[f1_desc]
+Sākt/apturēt taimeris katram projektam. Manuāla ievade iepriekšējam darbam. Dienas žurnāli, nedēļas kopsavilkumi un ikmēneša pārskati ar kopējām apmaksājamajām stundām.
+
+[f2_title]
+Rēķinu veidotājs
+
+[f2_desc]
+Ģenerē profesionālus PDF rēķinus sekundēs. Automātiska numerācija, juridisks formatējums, ar visiem obligātajiem ES laukiem, ieskaitot pilnu PVN sadalījumu.
+
+[f3_title]
+ES PVN dzinējs
+
+[f3_desc]
+Automātisks PVN katram ES scenārijam: standarta likme, apgrieztā nodokļu uzlikšana (B2B), OSS (B2C ES patērētāji) un 0% atbrīvots pircējiem ārpus ES.
+
+[f4_title]
+Klientu pārvaldība
+
+[f4_desc]
+Saglabāt klientus ar valsti, PVN numuru un valūtu. Valstu karodziņi, tūlītēja meklēšana un pilna rēķinu vēsture katram klientam.
+
+[f5_title]
+Vairākas valūtas
+
+[f5_desc]
+Izraksti rēķinus EUR, USD, BGN, RON, PLN, CZK vai HUF. Valūta tiek piemērota automātiski katram klientam. Summas formatētas atbilstoši katram reģionam.
+
+[f6_title]
+Maksājumu atgādinājumi
+
+[f6_desc]
+Automātiski e-pasti: 3 dienas pirms termiņa, termiņa dienā, 7 dienas nokavēts. PDF pielikumā. Jūsu naudas plūsma autopilotā.
+
+[how_tag]
+Kā tas darbojas
+
+[how_title]
+No izsekotajām sekundēm līdz apmaksātam rēķinam
+
+[how_subtitle]
+Trīs vienkārši soļi. Tas ir viss.
+
+[s1_title]
+Izseko savu laiku
+
+[s1_desc]
+Noklikšķini Sākt projektam. Strādā. Noklikšķini Apturēt. Katra sekunde tiek reģistrēta automātiski — nav izklājlapu, nav aizmirstu datu.
+
+[s2_title]
+Ģenerē rēķinu
+
+[s2_desc]
+Izvēlies klientu, atzīmē laika ierakstus rēķinam. InvoiceKit veido rēķinu ar pareizu PVN, juridisku formatējumu un tavu zīmolu.
+
+[s3_title]
+Saņem samaksu
+
+[s3_desc]
+Nosūti ar vienu klikšķi. Klients maksā caur Stripe. Redzi naudu savā kontā. Pabeigts.
+
+[vat_tag]
+ES atbilstība
+
+[vat_title]
+PVN pareizi katru reizi
+
+[vat_desc]
+ES PVN tiesību akti ir sarežģīti. InvoiceKit automātiski apstrādā katru scenāriju — standarta likmes, apgrieztā nodokļu uzlikšana B2B klientiem, OSS ES patērētājiem un 0% pircējiem ārpus ES.
+
+[vat_r1_label]
+Rēķins tajā pašā valstī
+
+[vat_r1_sub]
+Pielietota vietējā standarta PVN likme automātiski
+
+[vat_r2_label]
+ES B2B (Apgrieztā nodokļu uzlikšana)
+
+[vat_r2_sub]
+0% PVN — pircējs uzskaita PVN saskaņā ar Art. 44 Dir. 2006/112/EK
+
+[vat_r3_label]
+ES B2C (OSS noteikumi)
+
+[vat_r3_sub]
+Piemērota pārdevēja likme (vai OSS likme, ja piemērojams)
+
+[vat_r4_label]
+Pircējs ārpus ES
+
+[vat_r4_sub]
+0% PVN — ārpus ES PVN darbības jomas, atbrīvots
+
+[vat_rates_title]
+Atbalstītās PVN likmes
+
+[pricing_tag]
+Cenas
+
+[pricing_title]
+Vienkāršas, godīgas cenas
+
+[pricing_subtitle]
+Sāciet bez maksas. Uzlabojiet, kad jūsu uzņēmums aug. Nav līgumu, atcelt jebkurā laikā.
+
+[p_free_name]
+Bezmaksas
+
+[p_free_price]
+€0
+
+[p_free_period]
+mūžīgi
+
+[p_free_desc]
+Viss kas nepieciešams, lai sāktu.
+
+[p_free_l1]
+Līdz 3 klientiem
+
+[p_free_l2]
+5 rēķini mēnesī
+
+[p_free_l3]
+Laika uzskaite
+
+[p_free_l4]
+PDF rēķinu eksports
+
+[p_free_cta]
+Sākt bez maksas
+
+[p_starter_name]
+Starter
+
+[p_starter_price]
+€15
+
+[p_starter_period]
+mēnesī
+
+[p_starter_desc]
+Augošiem ārštata darbiniekiem.
+
+[p_starter_l1]
+Neierobežots skaits klientu
+
+[p_starter_l2]
+20 rēķini mēnesī
+
+[p_starter_l3]
+Laika uzskaite
+
+[p_starter_l4]
+Visi ES PVN noteikumi
+
+[p_starter_l5]
+Maksājumu atgādinājumi
+
+[p_starter_cta]
+Izvēlēties Starter
+
+[p_pro_name]
+Pro
+
+[p_pro_price]
+€29
+
+[p_pro_period]
+mēnesī
+
+[p_pro_desc]
+Nopietniem ārštata darbiniekiem.
+
+[p_pro_l1]
+Viss neierobežots
+
+[p_pro_l2]
+Atkārtoti rēķini
+
+[p_pro_l3]
+Klientu portāls
+
+[p_pro_l4]
+Prioritārs atbalsts
+
+[p_pro_l5]
+API piekļuve
+
+[p_pro_l6]
+Visi ES PVN noteikumi
+
+[p_pro_cta]
+Pāriet uz Pro
+
+[p_popular]
+Populārākais
+
+[faq_tag]
+BUJ
+
+[faq_title]
+Bieži uzdotie jautājumi
+
+[faq1_q]
+Vai InvoiceKit tiešām atbilst ES PVN prasībām?
+
+[faq1_a]
+Jā. InvoiceKit automātiski aprēķina pareizo PVN katram rēķinam, balstoties uz jūsu valsti, klienta valsti un vai tiem ir derīgs ES PVN numurs. Tas pareizi apstrādā standarta likmes, apgriezto nodokļu uzlikšanu, OSS un atbrīvojumus ārpus ES.
+
+[faq2_q]
+Kuras ES valstis tiek atbalstītas?
+
+[faq2_a]
+Visas 27 ES dalībvalstis. PVN likmes ir iekodētas BG, DE, FR, RO, PL, CZ, IT, ES, NL, PT, AT, BE, HR, HU, SE un visiem pārējiem. Likmes tiek atjauninātas, mainoties ES tiesību aktiem.
+
+[faq3_q]
+Vai varu izmantot InvoiceKit ārpus ES?
+
+[faq3_a]
+Absolūti. Varat izmantot InvoiceKit no jebkuras pasaules vietas. ES PVN dzinējs ir vērtīgākais ES bāzētiem ārštata darbiniekiem, bet katrs ārštata darbinieks gūst labumu no laika uzskaites un rēķinu izrakstīšanas funkcijām.
+
+[faq4_q]
+Kā darbojas laika uzskaite?
+
+[faq4_a]
+Izveidojiet projektus ar klientiem un stundas tarifiem. Izmantojiet iebūvēto sākt/apturēt taimeri darba laikā. Viss izsekotais laiks tiek saglabāts un ar vienu klikšķi var tikt pārvērsts tieši rēķina rindās.
+
+[faq5_q]
+Vai varu atcelt jebkurā laikā?
+
+[faq5_a]
+Jā. Nav līgumu, nav saistības. Atcelt jebkurā laikā un paturiet piekļuvi līdz norēķinu perioda beigām. Visi jūsu dati ir eksportējami jebkurā laikā.
+
+[cta_title]
+Gatavs izrakstīt rēķinus kā eiropietis?
+
+[cta_subtitle]
+Pievienojies Eiropas ārštata darbiniekiem, kuri pārstāja cīnīties ar izklājlapām un sāka savlaicīgi saņemt samaksu.
+
+[cta_button]
+Sākt šodien bez maksas →
+
+[footer_tagline]
+ES atbilstoša rēķinu izrakstīšana Eiropas ārštata darbiniekiem.
+
+[footer_privacy]
+Privātuma politika
+
+[footer_terms]
+Pakalpojuma noteikumi
+
+[footer_copy]
+© 2026 InvoiceKit. Visas tiesības aizsargātas.
