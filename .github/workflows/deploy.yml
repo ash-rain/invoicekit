@@ -1,69 +1,69 @@
 name: Deploy to Production
 
 on:
-  push:
-    branches: [main]
-  workflow_dispatch:
+    push:
+        branches: [main]
+    workflow_dispatch:
 
 # Prevent concurrent deployments
 concurrency:
-  group: production
-  cancel-in-progress: false
+    group: production
+    cancel-in-progress: false
 
 jobs:
-  deploy:
-    name: Deploy
-    runs-on: ubuntu-latest
-    environment: production
+    deploy:
+        name: Deploy
+        runs-on: ubuntu-latest
+        environment: production
 
-    steps:
-      - name: Deploy to server
-        uses: appleboy/ssh-action@v1.2.0
-        env:
-          GH_PAT: ${{ secrets.GITHUB_PAT }}
-        with:
-          host: ${{ secrets.DEPLOY_HOST }}
-          username: root
-          key: ${{ secrets.DEPLOY_SSH_KEY }}
-          envs: GH_PAT
-          script_stop: true
-          timeout: 300s
-          script: |
-            set -euo pipefail
-            cd /opt/invoicekit
+        steps:
+            - name: Deploy to server
+              uses: appleboy/ssh-action@v1.2.0
+              env:
+                  GH_PAT: ${{ secrets.GITHUB_PAT }}
+              with:
+                  host: ${{ secrets.DEPLOY_HOST }}
+                  username: root
+                  key: ${{ secrets.DEPLOY_SSH_KEY }}
+                  envs: GH_PAT
+                  script_stop: true
+                  timeout: 300s
+                  script: |
+                      set -euo pipefail
+                      cd /opt/invoicekit
 
-            echo "==> Updating git credentials..."
-            if [ -n "${GH_PAT}" ]; then
-              echo "https://x-access-token:${GH_PAT}@github.com" > /root/.git-credentials
-              chmod 600 /root/.git-credentials
-            fi
+                      echo "==> Updating git credentials..."
+                      if [ -n "${GH_PAT}" ]; then
+                        echo "https://x-access-token:${GH_PAT}@github.com" > /root/.git-credentials
+                        chmod 600 /root/.git-credentials
+                      fi
 
-            echo "==> Pulling latest code..."
-            git pull origin main
+                      echo "==> Pulling latest code..."
+                      git pull origin main
 
-            echo "==> Installing PHP dependencies..."
-            docker compose run --rm --no-deps app \
-              composer install --no-dev --optimize-autoloader --no-interaction --quiet
+                      echo "==> Installing PHP dependencies..."
+                      docker compose run --rm --no-deps app \
+                        composer install --no-dev --optimize-autoloader --no-interaction --quiet
 
-            echo "==> Building frontend assets..."
-            docker compose run --rm --no-deps app \
-              sh -c "npm ci --silent && npm run build && rm -rf node_modules"
+                      echo "==> Building frontend assets..."
+                      docker compose run --rm --no-deps app \
+                        sh -c "npm ci --silent && npm run build && rm -rf node_modules"
 
-            echo "==> Restarting services..."
-            docker compose up -d --remove-orphans
+                      echo "==> Restarting services..."
+                      docker compose up -d --remove-orphans
 
-            echo "==> Waiting for services..."
-            sleep 5
+                      echo "==> Waiting for services..."
+                      sleep 5
 
-            echo "==> Running migrations..."
-            docker compose exec -T app php artisan migrate --force
+                      echo "==> Running migrations..."
+                      docker compose exec -T app php artisan migrate --force
 
-            echo "==> Rebuilding caches..."
-            docker compose exec -T app php artisan config:cache
-            docker compose exec -T app php artisan route:cache
-            docker compose exec -T app php artisan view:cache
+                      echo "==> Rebuilding caches..."
+                      docker compose exec -T app php artisan config:cache
+                      docker compose exec -T app php artisan route:cache
+                      docker compose exec -T app php artisan view:cache
 
-            echo "==> Restarting queue workers..."
-            docker compose exec -T app php artisan queue:restart || true
+                      echo "==> Restarting queue workers..."
+                      docker compose exec -T app php artisan queue:restart || true
 
-            echo "==> Done!"
+                      echo "==> Done!"
