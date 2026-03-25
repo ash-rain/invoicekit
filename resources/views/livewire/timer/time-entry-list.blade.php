@@ -1,12 +1,12 @@
 <div>
     @if($totalsByProject->isNotEmpty())
         <div class="mb-6 bg-white rounded-xl shadow p-6">
-            <h3 class="text-sm font-semibold text-gray-700 uppercase tracking-wider mb-3">Total Hours by Project</h3>
+            <h3 class="text-sm font-semibold text-gray-700 uppercase tracking-wider mb-3">{{ __('Total Hours by Project') }}</h3>
             <div class="space-y-2">
                 @foreach($totalsByProject as $item)
                     <div class="flex items-center justify-between text-sm">
                         <span class="text-gray-700">
-                            {{ $item['project']?->client?->name }} / {{ $item['project']?->name ?? 'Unknown project' }}
+                            {{ $item['project']?->client?->name }} / {{ $item['project']?->name ?? __('Unknown project') }}
                         </span>
                         <span class="font-mono font-semibold text-indigo-700">
                             {{ number_format($item['minutes'] / 60, 1) }}h
@@ -19,7 +19,7 @@
 
     @if($entries->isEmpty())
         <div class="bg-white rounded-xl shadow p-10 text-center text-gray-500">
-            No time entries yet. Start the timer or add a manual entry above.
+            {{ __('No time entries yet. Start the timer or add a manual entry above.') }}
         </div>
     @else
         @foreach($entries as $date => $dayEntries)
@@ -51,9 +51,9 @@
                                 <td class="px-4 py-3 text-right">
                                     <button
                                         wire:click="deleteEntry({{ $entry->id }})"
-                                        wire:confirm="Delete this time entry?"
+                                        wire:confirm="{{ __('Delete this time entry?') }}"
                                         class="text-xs text-red-500 hover:text-red-700"
-                                    >Delete</button>
+                                    >{{ __('Delete') }}</button>
                                 </td>
                             </tr>
                         @endforeach

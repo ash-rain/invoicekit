@@ -243,11 +243,7 @@
     <div class="header">
         <div class="brand">InvoiceKit</div>
         <div class="invoice-title">
-            @if($lang === 'bg')
-                <h2>ФАКТУРА</h2>
-            @else
-                <h2>INVOICE</h2>
-            @endif
+            <h2>{{ __('INVOICE') }}</h2>
             <div class="number">{{ $invoice->invoice_number }}</div>
         </div>
     </div>
@@ -255,14 +251,14 @@
     {{-- Paid stamp --}}
     @if($invoice->status === 'paid')
         <div class="status-overlay">
-            <span class="status-paid">{{ $lang === 'bg' ? 'ПЛАТЕНО' : 'PAID' }}</span>
+            <span class="status-paid">{{ __('PAID') }}</span>
         </div>
     @endif
 
     {{-- Parties --}}
     <div class="parties">
         <div class="party">
-            <div class="party-label">{{ $lang === 'bg' ? 'Продавач' : 'From' }}</div>
+            <div class="party-label">{{ __('From') }}</div>
             <div class="party-name">{{ $invoice->user->name }}</div>
             <div class="party-detail">
                 {{ $invoice->user->email }}<br>
@@ -272,7 +268,7 @@
             </div>
         </div>
         <div class="party">
-            <div class="party-label">{{ $lang === 'bg' ? 'Купувач' : 'Bill To' }}</div>
+            <div class="party-label">{{ __('Bill To') }}</div>
             <div class="party-name">{{ $invoice->client->name }}</div>
             <div class="party-detail">
                 @if($invoice->client->address)
@@ -292,16 +288,16 @@
     {{-- Dates --}}
     <div class="dates-row">
         <div class="date-box">
-            <div class="label">{{ $lang === 'bg' ? 'Дата на издаване' : 'Issue Date' }}</div>
+            <div class="label">{{ __('Issue Date') }}</div>
             <div class="value">{{ $invoice->issue_date->format('d M Y') }}</div>
         </div>
         <div class="date-box">
-            <div class="label">{{ $lang === 'bg' ? 'Дата на падеж' : 'Due Date' }}</div>
+            <div class="label">{{ __('Due Date') }}</div>
             <div class="value">{{ $invoice->due_date->format('d M Y') }}</div>
         </div>
         @if($invoice->paid_at)
         <div class="date-box">
-            <div class="label">{{ $lang === 'bg' ? 'Дата на плащане' : 'Payment Date' }}</div>
+            <div class="label">{{ __('Payment Date') }}</div>
             <div class="value">{{ $invoice->paid_at->format('d M Y') }}</div>
         </div>
         @endif
@@ -311,10 +307,10 @@
     <table class="items">
         <thead>
             <tr>
-                <th>{{ $lang === 'bg' ? 'Описание' : 'Description' }}</th>
-                <th class="right" style="width:70px">{{ $lang === 'bg' ? 'Кол.' : 'Qty' }}</th>
-                <th class="right" style="width:100px">{{ $lang === 'bg' ? 'Ед. цена' : 'Unit Price' }}</th>
-                <th class="right" style="width:110px">{{ $lang === 'bg' ? 'Сума' : 'Amount' }}</th>
+                <th>{{ __('Description') }}</th>
+                <th class="right" style="width:70px">{{ __('Qty') }}</th>
+                <th class="right" style="width:100px">{{ __('Unit Price') }}</th>
+                <th class="right" style="width:110px">{{ __('Amount') }}</th>
             </tr>
         </thead>
         <tbody>
@@ -333,27 +329,15 @@
     @php $vatType = $invoice->vat_type ?? 'standard'; @endphp
     @if($vatType === 'reverse_charge')
     <div class="vat-notice reverse-charge">
-        @if($lang === 'bg')
-            <strong>Обратно данъчно задължение</strong> — Купувачът е задължен да начисли и внесе ДДС съгласно чл. 21, ал. 2 от Директива 2006/112/ЕО.
-        @else
-            <strong>VAT Reverse Charge</strong> — VAT is to be accounted for by the recipient pursuant to Art. 196 of Council Directive 2006/112/EC.
-        @endif
+        {!! __('VAT Reverse Charge — VAT is to be accounted for by the recipient pursuant to Art. 196 of Council Directive 2006/112/EC.') !!}
     </div>
     @elseif($vatType === 'oss')
     <div class="vat-notice oss">
-        @if($lang === 'bg')
-            <strong>OSS режим</strong> — ДДС се прилага по ставката на страната на продавача съгласно правилата на OSS.
-        @else
-            <strong>OSS Scheme</strong> — VAT applied at the seller's country rate under the EU One-Stop-Shop scheme.
-        @endif
+        {!! __('OSS Scheme — VAT applied at the seller\'s country rate under the EU One-Stop-Shop scheme.') !!}
     </div>
     @elseif($vatType === 'exempt')
     <div class="vat-notice exempt">
-        @if($lang === 'bg')
-            <strong>Освободена доставка</strong> — Покупката е освободена от ДДС (купувачът е извън ЕС).
-        @else
-            <strong>VAT Exempt</strong> — Supply is exempt from VAT (buyer located outside the EU).
-        @endif
+        {!! __('VAT Exempt — Supply is exempt from VAT (buyer located outside the EU).') !!}
     </div>
     @endif
 
@@ -361,12 +345,12 @@
     <div class="totals">
         <table>
             <tr>
-                <td>{{ $lang === 'bg' ? 'Данъчна основа' : 'Tax Base (Subtotal)' }}</td>
+                <td>{{ __('Tax Base (Subtotal)') }}</td>
                 <td class="right">{{ formatCurrency($invoice->currency, (float)$invoice->subtotal) }}</td>
             </tr>
             <tr>
                 <td>
-                    {{ $lang === 'bg' ? 'ДДС' : 'VAT' }}
+                    {{ __('VAT') }}
                     @if($invoice->vat_rate > 0)
                         ({{ $invoice->vat_rate }}%)
                     @endif
@@ -374,7 +358,7 @@
                 <td class="right">{{ formatCurrency($invoice->currency, (float)$invoice->vat_amount) }}</td>
             </tr>
             <tr class="grand-total">
-                <td>{{ $lang === 'bg' ? 'Общо за плащане' : 'Total Due' }}</td>
+                <td>{{ __('Total Due') }}</td>
                 <td class="right">{{ formatCurrency($invoice->currency, (float)$invoice->total) }}</td>
             </tr>
         </table>
@@ -383,14 +367,14 @@
     {{-- Notes --}}
     @if($invoice->notes)
     <div class="notes-section">
-        <div class="notes-label">{{ $lang === 'bg' ? 'Забележки' : 'Notes' }}</div>
+        <div class="notes-label">{{ __('Notes') }}</div>
         {!! nl2br(e($invoice->notes)) !!}
     </div>
     @endif
 
     {{-- Footer --}}
     <div class="footer">
-        {{ $invoice->invoice_number }} · {{ $lang === 'bg' ? 'Генерирано от' : 'Generated by' }} InvoiceKit ·
+        {{ $invoice->invoice_number }} · {{ __('Generated by') }} InvoiceKit ·
         {{ now()->format('d M Y') }}
     </div>
 

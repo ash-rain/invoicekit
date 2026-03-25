@@ -100,11 +100,11 @@
         <h1>InvoiceKit</h1>
         <p>
             @if($reminderType === 'overdue')
-                Overdue invoice notice
+                {{ __('Overdue invoice notice') }}
             @elseif($reminderType === 'due_today')
-                Payment due today
+                {{ __('Payment due today') }}
             @else
-                Friendly payment reminder
+                {{ __('Friendly payment reminder') }}
             @endif
         </p>
     </div>
@@ -146,29 +146,29 @@
         <div class="invoice-box">
             <table>
                 <tr>
-                    <td style="color:#6b7280">Invoice Number</td>
+                    <td style="color:#6b7280">{{ __('Invoice Number') }}</td>
                     <td>{{ $invoice->invoice_number }}</td>
                 </tr>
                 <tr>
-                    <td style="color:#6b7280">Issue Date</td>
+                    <td style="color:#6b7280">{{ __('Issue Date') }}</td>
                     <td>{{ $invoice->issue_date->format('d M Y') }}</td>
                 </tr>
                 <tr>
-                    <td style="color:#6b7280">Due Date</td>
+                    <td style="color:#6b7280">{{ __('Due Date') }}</td>
                     <td>{{ $invoice->due_date->format('d M Y') }}</td>
                 </tr>
                 <tr>
-                    <td style="color:#6b7280">Tax Base</td>
+                    <td style="color:#6b7280">{{ __('Tax Base') }}</td>
                     <td>{{ formatCurrency($invoice->currency, (float)$invoice->subtotal) }}</td>
                 </tr>
                 @if((float)$invoice->vat_amount > 0)
                 <tr>
-                    <td style="color:#6b7280">VAT ({{ $invoice->vat_rate }}%)</td>
+                    <td style="color:#6b7280">{{ __('VAT') }} ({{ $invoice->vat_rate }}%)</td>
                     <td>{{ formatCurrency($invoice->currency, (float)$invoice->vat_amount) }}</td>
                 </tr>
                 @endif
                 <tr class="total-row">
-                    <td>Total Due</td>
+                    <td>{{ __('Total Due') }}</td>
                     <td>{{ formatCurrency($invoice->currency, (float)$invoice->total) }}</td>
                 </tr>
             </table>
@@ -178,10 +178,10 @@
             <p style="color:#6b7280; font-size:13px"><em>{{ $invoice->notes }}</em></p>
         @endif
 
-        <p>The invoice PDF is attached to this email for your records.</p>
+        <p>{{ __('The invoice PDF is attached to this email for your records.') }}</p>
 
         <p>
-            Thank you for your business!<br>
+            {{ __('Thank you for your business!') }}<br>
             <strong>{{ $invoice->user->name }}</strong>
         </p>
 
