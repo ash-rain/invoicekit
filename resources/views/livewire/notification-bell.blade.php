@@ -41,14 +41,10 @@
         </div>
 
         {{-- Push setup prompt (shown when browser push is not yet granted) --}}
-        <div
-            x-data="{ pushGranted: ('Notification' in window && Notification.permission === 'granted') }"
-            x-show="!pushGranted"
-            class="flex items-center justify-between gap-3 px-4 py-2.5"
+        <div x-data="{ pushGranted: ('Notification' in window && Notification.permission === 'granted') }" x-show="!pushGranted" class="flex items-center justify-between gap-3 px-4 py-2.5"
             style="background:rgba(245,158,11,0.08);border-bottom:1px solid rgba(245,158,11,0.12);">
             <span class="text-[11px]" style="color:rgba(255,255,255,0.5);">🔔 {{ __('Push notifications off') }}</span>
-            <button
-                class="text-[11px] font-semibold px-2.5 py-1 rounded-lg transition-all"
+            <button class="text-[11px] font-semibold px-2.5 py-1 rounded-lg transition-all"
                 style="background:rgba(245,158,11,0.2);color:#f59e0b;"
                 onmouseover="this.style.background='rgba(245,158,11,0.35)'"
                 onmouseout="this.style.background='rgba(245,158,11,0.2)'"
