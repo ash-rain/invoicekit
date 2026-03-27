@@ -10,7 +10,7 @@
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.bunny.net/css?family=syne:400,500,600,700|dm-sans:400,500,600&display=swap" rel="stylesheet" />
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -20,22 +20,19 @@
         <script async src="https://www.googletagmanager.com/gtag/js?id={{ config('services.google.analytics_id') }}"></script>
         <script>
             window.dataLayer = window.dataLayer || [];
-
-            function gtag() {
-                dataLayer.push(arguments);
-            }
+            function gtag() { dataLayer.push(arguments); }
             gtag('js', new Date());
             gtag('config', '{{ config('services.google.analytics_id') }}');
         </script>
     @endif
 </head>
 
-<body class="font-sans text-gray-900 antialiased">
-    <div class="min-h-screen bg-indigo-950 flex items-center justify-center p-6">
+<body class="antialiased" style="font-family:'DM Sans',sans-serif;background:#0f1117;">
+    <div class="min-h-screen flex items-center justify-center p-6">
         <div class="w-full max-w-md">
             <!-- Branding -->
             <div class="flex items-center justify-center mb-8">
-                <a href="/" class="flex items-center gap-3 text-2xl font-bold tracking-tight text-white">
+                <a href="/" class="flex items-center gap-3 text-2xl font-bold tracking-tight text-white" style="font-family:'Syne',sans-serif;">
                     <img src="/img/logo.png" alt="{{ config('app.name', 'InvoiceKit') }}" class="h-8 w-auto">
                     {{ config('app.name', 'InvoiceKit') }}
                 </a>
