@@ -80,7 +80,7 @@
                         <div class="border-2 border-blue-500 rounded-xl p-5">
                             <div class="flex items-center justify-between mb-3">
                                 <h4 class="text-lg font-bold text-gray-900">Starter</h4>
-                                <span class="text-2xl font-bold text-blue-600">€15<span class="text-sm font-normal text-gray-500">/mo</span></span>
+                                <span class="text-2xl font-bold text-blue-600">€9<span class="text-sm font-normal text-gray-500">/mo</span></span>
                             </div>
                             <ul class="text-sm text-gray-600 space-y-2 mb-4">
                                 <li>✓ Unlimited clients</li>

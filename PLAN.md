@@ -15,7 +15,7 @@ One tool: track time → generate legally compliant VAT invoice → get paid.
 | Plan | Price | Limits |
 |------|-------|--------|
 | Free | €0 | 3 clients, 5 invoices/mo |
-| Starter | €15/mo | Unlimited clients, 20 invoices/mo |
+| Starter | €9/mo | Unlimited clients, 20 invoices/mo |
 | Pro | €29/mo | Unlimited everything, recurring invoices, client portal |
 
 ---
@@ -99,7 +99,7 @@ One tool: track time → generate legally compliant VAT invoice → get paid.
 - [x] Dashboard widget: overdue invoices list + total outstanding
 
 ## Phase 8 — Stripe Subscriptions (Week 5–6)
-- [x] Plan: Free / Starter €15 / Pro €29 (defined in PlanService)
+- [x] Plan: Free / Starter €9 / Pro €29 (defined in PlanService)
 - [x] Usage enforcement: check invoice count, client count against plan limits
 - [x] Upgrade prompt when limit hit (redirect to billing page)
 - [x] Billing portal link (Stripe Customer Portal placeholder)

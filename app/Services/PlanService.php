@@ -22,7 +22,7 @@ class PlanService
         ],
         'starter' => [
             'label' => 'Starter',
-            'price' => 15,
+            'price' => 9,
             'clients_limit' => null,
             'invoices_per_month_limit' => 20,
             'recurring_invoices' => false,
