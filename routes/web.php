@@ -8,6 +8,9 @@ use App\Livewire\Dashboard;
 use App\Livewire\Invoices\CreateInvoice;
 use App\Livewire\Invoices\InvoiceList;
 use App\Livewire\OnboardingWizard;
+use App\Livewire\Projects\CreateEditProject;
+use App\Livewire\Projects\ProjectDetail;
+use App\Livewire\Projects\ProjectList;
 use Illuminate\Support\Facades\Route;
 
 // ── Landing page ─────────────────────────────────────────────────────────────
@@ -81,9 +84,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/clients/{client}/edit', CreateEditClient::class)->name('clients.edit');
 
     // Projects
-    Route::get('/projects', fn() => view('projects.index'))->name('projects.index');
-    Route::get('/projects/create', fn() => view('projects.create'))->name('projects.create');
-    Route::get('/projects/{project}/edit', fn($project) => view('projects.edit', compact('project')))->name('projects.edit');
+    Route::get('/projects', ProjectList::class)->name('projects.index');
+    Route::get('/projects/create', CreateEditProject::class)->name('projects.create');
+    Route::get('/projects/{project}', ProjectDetail::class)->name('projects.show');
+    Route::get('/projects/{project}/edit', CreateEditProject::class)->name('projects.edit');
 
     // Timer
     Route::get('/timer', fn() => view('timer.index'))->name('timer');
