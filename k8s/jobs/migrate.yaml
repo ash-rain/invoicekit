@@ -1,0 +1,36 @@
+# Used by GitHub Actions deploy workflows.
+# Placeholders substituted at deploy time with sed:
+#   IMAGE_PLACEHOLDER     → registry.digitalocean.com/invoicekit-registry/app:{sha}
+#   JOB_NAME_PLACEHOLDER  → migrate-{sha-short}
+#   NAMESPACE_PLACEHOLDER → production | staging
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: JOB_NAME_PLACEHOLDER
+  namespace: NAMESPACE_PLACEHOLDER
+spec:
+  ttlSecondsAfterFinished: 120
+  backoffLimit: 0
+  template:
+    spec:
+      imagePullSecrets:
+        - name: registry-invoicekit-registry
+      restartPolicy: Never
+      containers:
+        - name: migrate
+          image: IMAGE_PLACEHOLDER
+          command:
+            - sh
+            - -c
+            - "php artisan migrate --force && php artisan tenants:migrate --force"
+          envFrom:
+            - secretRef:
+                name: app-secrets
+          volumeMounts:
+            - name: mysql-ca
+              mountPath: /etc/ssl/mysql
+              readOnly: true
+      volumes:
+        - name: mysql-ca
+          secret:
+            secretName: mysql-ca

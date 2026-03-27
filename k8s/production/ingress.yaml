@@ -1,0 +1,54 @@
+# Wildcard TLS certificate for invoicekit.eu and *.invoicekit.eu
+# Issued via cert-manager DNS-01 challenge against DigitalOcean DNS
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: invoicekit-tls
+  namespace: production
+spec:
+  secretName: invoicekit-tls
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  dnsNames:
+    - invoicekit.eu
+    - "*.invoicekit.eu"
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: app
+  namespace: production
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/proxy-body-size: "50m"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "300"
+    nginx.ingress.kubernetes.io/proxy-connect-timeout: "60"
+    nginx.ingress.kubernetes.io/use-forwarded-headers: "true"
+spec:
+  tls:
+    - hosts:
+        - invoicekit.eu
+        - "*.invoicekit.eu"
+      secretName: invoicekit-tls
+  rules:
+    - host: invoicekit.eu
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: app
+                port:
+                  number: 80
+    - host: "*.invoicekit.eu"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: app
+                port:
+                  number: 80

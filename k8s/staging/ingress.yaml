@@ -1,0 +1,52 @@
+# Wildcard TLS certificate for staging.invoicekit.eu and *.staging.invoicekit.eu
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: staging-invoicekit-tls
+  namespace: staging
+spec:
+  secretName: staging-invoicekit-tls
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  dnsNames:
+    - staging.invoicekit.eu
+    - "*.staging.invoicekit.eu"
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: app
+  namespace: staging
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/proxy-body-size: "50m"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "300"
+    nginx.ingress.kubernetes.io/use-forwarded-headers: "true"
+spec:
+  tls:
+    - hosts:
+        - staging.invoicekit.eu
+        - "*.staging.invoicekit.eu"
+      secretName: staging-invoicekit-tls
+  rules:
+    - host: staging.invoicekit.eu
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: app
+                port:
+                  number: 80
+    - host: "*.staging.invoicekit.eu"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: app
+                port:
+                  number: 80

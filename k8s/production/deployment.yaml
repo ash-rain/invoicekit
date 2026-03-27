@@ -1,0 +1,153 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app
+  namespace: production
+  labels:
+    app: invoicekit
+    component: app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: invoicekit
+      component: app
+  template:
+    metadata:
+      labels:
+        app: invoicekit
+        component: app
+    spec:
+      imagePullSecrets:
+        - name: registry-invoicekit-registry
+      initContainers:
+        - name: copy-public
+          image: registry.digitalocean.com/invoicekit-registry/app:latest
+          command: ["sh", "-c", "cp -rp /var/www/public/. /mnt/public/"]
+          volumeMounts:
+            - name: public-assets
+              mountPath: /mnt/public
+      containers:
+        - name: app
+          image: registry.digitalocean.com/invoicekit-registry/app:latest
+          command:
+            - sh
+            - -c
+            - "php artisan config:cache && php artisan route:cache && php artisan view:cache && exec php-fpm"
+          ports:
+            - containerPort: 9000
+              name: php-fpm
+          envFrom:
+            - secretRef:
+                name: app-secrets
+          volumeMounts:
+            - name: mysql-ca
+              mountPath: /etc/ssl/mysql
+              readOnly: true
+          resources:
+            requests:
+              cpu: 250m
+              memory: 256Mi
+            limits:
+              cpu: 500m
+              memory: 512Mi
+          readinessProbe:
+            tcpSocket:
+              port: 9000
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          livenessProbe:
+            tcpSocket:
+              port: 9000
+            initialDelaySeconds: 30
+            periodSeconds: 30
+        - name: nginx
+          image: nginx:1.27-alpine
+          ports:
+            - containerPort: 80
+              name: http
+          volumeMounts:
+            - name: nginx-config
+              mountPath: /etc/nginx/conf.d
+            - name: public-assets
+              mountPath: /var/www/public
+              readOnly: true
+          resources:
+            requests:
+              cpu: 50m
+              memory: 32Mi
+            limits:
+              cpu: 100m
+              memory: 64Mi
+          readinessProbe:
+            httpGet:
+              path: /robots.txt
+              port: 80
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /robots.txt
+              port: 80
+            initialDelaySeconds: 15
+            periodSeconds: 30
+      volumes:
+        - name: public-assets
+          emptyDir: {}
+        - name: nginx-config
+          configMap:
+            name: nginx-config
+        - name: mysql-ca
+          secret:
+            secretName: mysql-ca
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: queue-worker
+  namespace: production
+  labels:
+    app: invoicekit
+    component: queue-worker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: invoicekit
+      component: queue-worker
+  template:
+    metadata:
+      labels:
+        app: invoicekit
+        component: queue-worker
+    spec:
+      imagePullSecrets:
+        - name: registry-invoicekit-registry
+      containers:
+        - name: worker
+          image: registry.digitalocean.com/invoicekit-registry/app:latest
+          command:
+            - php
+            - artisan
+            - queue:work
+            - --sleep=3
+            - --tries=3
+            - --max-time=3600
+          envFrom:
+            - secretRef:
+                name: app-secrets
+          volumeMounts:
+            - name: mysql-ca
+              mountPath: /etc/ssl/mysql
+              readOnly: true
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 250m
+              memory: 256Mi
+      volumes:
+        - name: mysql-ca
+          secret:
+            secretName: mysql-ca

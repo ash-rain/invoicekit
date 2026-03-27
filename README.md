@@ -1,6 +1,6 @@
 # InvoiceKit
 
-EU freelancer invoicing + time tracking SaaS built with Laravel 12, Livewire 4, and PostgreSQL.
+EU freelancer invoicing + time tracking SaaS built with Laravel 12, Livewire 4, and MySQL.
 
 ## Overview
 
@@ -23,7 +23,7 @@ InvoiceKit helps EU-based freelancers manage clients, track billable time, gener
 |-------|------------|
 | Framework | Laravel 12 |
 | Frontend | Livewire 4 |
-| Database | PostgreSQL |
+| Database | MySQL (DigitalOcean Managed) |
 | Cache/Queue | Redis |
 | PDF | barryvdh/laravel-dompdf |
 | Payments | Stripe |
@@ -51,6 +51,8 @@ docker-compose up -d
 docker-compose exec app php artisan key:generate
 docker-compose exec app php artisan migrate
 ```
+
+See [DEPLOY.md](DEPLOY.md) for production and staging deployment on DigitalOcean Kubernetes.
 
 ## Environment Variables
 
