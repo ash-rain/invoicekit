@@ -2,14 +2,13 @@
 
 namespace App\Jobs;
 
-use App\Mail\InvoiceReminder;
 use App\Models\Invoice;
+use App\Notifications\InvoiceReminderNotification;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Support\Facades\Mail;
 
 class SendInvoiceReminder implements ShouldQueue
 {
@@ -34,11 +33,11 @@ class SendInvoiceReminder implements ShouldQueue
             return;
         }
 
-        // Only send if the client has an email address
-        if (empty($this->invoice->client->email)) {
+        // Only send if the invoice owner exists
+        if (! $this->invoice->user) {
             return;
         }
 
-        Mail::send(new InvoiceReminder($this->invoice, $this->reminderType));
+        $this->invoice->user->notify(new InvoiceReminderNotification($this->invoice, $this->reminderType));
     }
 }

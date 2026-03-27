@@ -3,6 +3,7 @@
 namespace App\Livewire\Invoices;
 
 use App\Models\Invoice;
+use App\Notifications\InvoicePaidNotification;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
@@ -37,9 +38,10 @@ class InvoiceList extends Component
 
     public function markPaid(int $invoiceId): void
     {
-        $invoice = Invoice::where('user_id', Auth::id())->findOrFail($invoiceId);
+        $invoice = Invoice::where('user_id', Auth::id())->with('client')->findOrFail($invoiceId);
         if (in_array($invoice->status, ['sent', 'overdue'])) {
             $invoice->update(['status' => 'paid', 'paid_at' => now()]);
+            Auth::user()->notify(new InvoicePaidNotification($invoice));
         }
     }
 

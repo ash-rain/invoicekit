@@ -39,4 +39,10 @@ return [
         'analytics_id' => env('GOOGLE_ANALYTICS_ID'),
     ],
 
+    'webpush' => [
+        'public_key' => env('VAPID_PUBLIC_KEY'),
+        'private_key' => env('VAPID_PRIVATE_KEY'),
+        'subscriber_email' => env('VAPID_SUBSCRIBER_EMAIL', env('MAIL_FROM_ADDRESS', 'admin@example.com')),
+    ],
+
 ];

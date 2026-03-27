@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BillingController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PushSubscriptionController;
 use App\Livewire\Clients\ClientList;
 use App\Livewire\Clients\CreateEditClient;
 use App\Livewire\Dashboard;
@@ -23,8 +24,8 @@ Route::get('/', function () {
 });
 
 // ── Legal pages ───────────────────────────────────────────────────────────────
-Route::get('/privacy', fn() => view('legal.privacy'))->name('privacy');
-Route::get('/terms', fn() => view('legal.terms'))->name('terms');
+Route::get('/privacy', fn () => view('legal.privacy'))->name('privacy');
+Route::get('/terms', fn () => view('legal.terms'))->name('terms');
 
 // ── SEO ───────────────────────────────────────────────────────────────────────
 Route::get('/sitemap.xml', function () {
@@ -50,7 +51,7 @@ Route::get('/robots.txt', function () {
     $content .= "Disallow: /timer\n";
     $content .= "Disallow: /billing\n";
     $content .= "Disallow: /onboarding\n";
-    $content .= 'Sitemap: ' . route('sitemap') . "\n";
+    $content .= 'Sitemap: '.route('sitemap')."\n";
 
     return response($content, 200, ['Content-Type' => 'text/plain']);
 })->name('robots');
@@ -90,7 +91,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/projects/{project}/edit', CreateEditProject::class)->name('projects.edit');
 
     // Timer
-    Route::get('/timer', fn() => view('timer.index'))->name('timer');
+    Route::get('/timer', fn () => view('timer.index'))->name('timer');
 
     // Invoices
     Route::get('/invoices', InvoiceList::class)->name('invoices.index');
@@ -123,6 +124,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/billing', [BillingController::class, 'index'])->name('billing.index');
     Route::post('/billing/checkout/{plan}', [BillingController::class, 'checkout'])->name('billing.checkout');
     Route::post('/billing/portal', [BillingController::class, 'portal'])->name('billing.portal');
+
+    // Push subscriptions
+    Route::post('/push-subscriptions', [PushSubscriptionController::class, 'store'])->name('push-subscriptions.store');
+    Route::delete('/push-subscriptions', [PushSubscriptionController::class, 'destroy'])->name('push-subscriptions.destroy');
 });
 
 // Public invoice view (for payment links)
@@ -132,4 +137,4 @@ Route::get('/pay/{invoice}', function ($invoice) {
     return view('invoices.pay', compact('invoice'));
 })->name('invoices.pay');
 
-require __DIR__ . '/auth.php';
+require __DIR__.'/auth.php';

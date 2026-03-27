@@ -45,6 +45,20 @@ services:
     networks:
       - invoicekit
 
+  worker:
+    image: invoicekit-app
+    container_name: invoicekit_worker
+    restart: unless-stopped
+    working_dir: /var/www
+    command: php artisan queue:work --sleep=3 --tries=3 --max-time=3600
+    volumes:
+      - .:/var/www
+    depends_on:
+      - postgres
+      - redis
+    networks:
+      - invoicekit
+
   redis:
     image: redis:7-alpine
     container_name: invoicekit_redis
