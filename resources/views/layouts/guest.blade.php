@@ -35,7 +35,8 @@
         <div class="w-full max-w-md">
             <!-- Branding -->
             <div class="flex items-center justify-center mb-8">
-                <a href="/" class="text-2xl font-bold tracking-tight text-white">
+                <a href="/" class="flex items-center gap-3 text-2xl font-bold tracking-tight text-white">
+                    <img src="/img/logo.png" alt="{{ config('app.name', 'InvoiceKit') }}" class="h-8 w-auto">
                     {{ config('app.name', 'InvoiceKit') }}
                 </a>
             </div>

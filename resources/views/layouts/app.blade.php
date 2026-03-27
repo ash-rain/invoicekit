@@ -23,7 +23,8 @@
         <aside class="w-64 bg-indigo-900 text-white flex flex-col shrink-0">
             <!-- Logo -->
             <div class="flex items-center h-16 px-6 border-b border-indigo-800">
-                <a href="{{ route('dashboard') }}" class="text-xl font-bold tracking-tight">
+                <a href="{{ route('dashboard') }}" class="flex items-center gap-2 text-xl font-bold tracking-tight">
+                    <img src="/img/logo.png" alt="{{ config('app.name', 'InvoiceKit') }}" class="h-7 w-auto">
                     InvoiceKit
                 </a>
             </div>
