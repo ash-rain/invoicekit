@@ -52,10 +52,10 @@ class ProjectList extends Component
     {
         $projects = Project::where('user_id', Auth::id())
             ->where('status', $this->tab)
-            ->when($this->search, fn ($q) => $q->where('name', 'like', "%{$this->search}%"))
+            ->when($this->search, fn($q) => $q->where('name', 'like', "%{$this->search}%"))
             ->with('client')
             ->withCount('timeEntries')
-            ->withSum(['timeEntries as total_minutes' => fn ($q) => $q->whereNotNull('duration_minutes')], 'duration_minutes')
+            ->withSum(['timeEntries as total_minutes' => fn($q) => $q->whereNotNull('duration_minutes')], 'duration_minutes')
             ->orderBy('name')
             ->paginate(15);
 

@@ -7,16 +7,18 @@
                 <a href="{{ route('projects.index') }}" class="text-sm text-gray-500 hover:text-gray-700">
                     {{ __('← Projects') }}
                 </a>
-                @if($project->status === 'archived')
-                    <span class="px-2 py-0.5 text-xs font-medium bg-yellow-100 text-yellow-700 rounded-full">{{ __('Archived') }}</span>
+                @if ($project->status === 'archived')
+                    <span
+                        class="px-2 py-0.5 text-xs font-medium bg-yellow-100 text-yellow-700 rounded-full">{{ __('Archived') }}</span>
                 @endif
             </div>
             <h2 class="text-2xl font-bold text-gray-900 mt-1">{{ $project->name }}</h2>
-            @if($project->client)
+            @if ($project->client)
                 <p class="text-sm text-gray-500 mt-0.5">{{ $project->client->name }}</p>
             @endif
         </div>
-        <a href="{{ route('projects.edit', $project) }}" class="px-4 py-2 text-sm border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50">
+        <a href="{{ route('projects.edit', $project) }}"
+            class="px-4 py-2 text-sm border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50">
             {{ __('Edit Project') }}
         </a>
     </div>
@@ -30,7 +32,7 @@
         <div class="bg-white rounded-xl shadow p-5">
             <p class="text-xs text-gray-500 uppercase tracking-wider font-medium">{{ __('Hourly Rate') }}</p>
             <p class="text-3xl font-bold text-gray-900 mt-1">
-                @if($project->hourly_rate)
+                @if ($project->hourly_rate)
                     {{ number_format($project->hourly_rate, 2) }} {{ $project->currency }}
                 @else
                     —
@@ -40,7 +42,7 @@
         <div class="bg-white rounded-xl shadow p-5">
             <p class="text-xs text-gray-500 uppercase tracking-wider font-medium">{{ __('Total Earnings') }}</p>
             <p class="text-3xl font-bold text-indigo-600 mt-1">
-                @if($totalEarnings !== null)
+                @if ($totalEarnings !== null)
                     {{ number_format($totalEarnings, 2) }} {{ $project->currency }}
                 @else
                     —
@@ -52,10 +54,8 @@
     {{-- Time Entries --}}
     <div class="flex items-center justify-between mb-3">
         <h3 class="text-lg font-semibold text-gray-900">{{ __('Time Entries') }}</h3>
-        <a
-            href="{{ route('timer') }}"
-            class="px-3 py-1.5 bg-indigo-600 text-white text-sm font-medium rounded-lg hover:bg-indigo-700"
-        >
+        <a href="{{ route('timer') }}"
+            class="px-3 py-1.5 bg-indigo-600 text-white text-sm font-medium rounded-lg hover:bg-indigo-700">
             {{ __('→ Go to Timer') }}
         </a>
     </div>
@@ -64,10 +64,14 @@
         <table class="min-w-full divide-y divide-gray-200">
             <thead class="bg-gray-50">
                 <tr>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{{ __('Date') }}</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{{ __('Description') }}</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{{ __('Duration') }}</th>
-                    <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">{{ __('Actions') }}</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        {{ __('Date') }}</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        {{ __('Description') }}</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        {{ __('Duration') }}</th>
+                    <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        {{ __('Actions') }}</th>
                 </tr>
             </thead>
             <tbody class="bg-white divide-y divide-gray-200">
@@ -80,7 +84,7 @@
                             {{ $entry->description ?: '—' }}
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
-                            @if($entry->duration_minutes)
+                            @if ($entry->duration_minutes)
                                 @php
                                     $h = intdiv($entry->duration_minutes, 60);
                                     $m = $entry->duration_minutes % 60;
@@ -91,11 +95,9 @@
                             @endif
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                            <button
-                                wire:click="deleteEntry({{ $entry->id }})"
+                            <button wire:click="deleteEntry({{ $entry->id }})"
                                 wire:confirm="{{ __('Delete this time entry?') }}"
-                                class="text-red-600 hover:text-red-900"
-                            >{{ __('Delete') }}</button>
+                                class="text-red-600 hover:text-red-900">{{ __('Delete') }}</button>
                         </td>
                     </tr>
                 @empty
