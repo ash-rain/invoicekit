@@ -38,15 +38,39 @@ class OnboardingWizard extends Component
     public bool $skipInvoice = false;
 
     public const COUNTRIES = [
-        'AT' => 'Austria', 'BE' => 'Belgium', 'BG' => 'Bulgaria', 'HR' => 'Croatia',
-        'CY' => 'Cyprus', 'CZ' => 'Czech Republic', 'DK' => 'Denmark', 'EE' => 'Estonia',
-        'FI' => 'Finland', 'FR' => 'France', 'DE' => 'Germany', 'GR' => 'Greece',
-        'HU' => 'Hungary', 'IE' => 'Ireland', 'IT' => 'Italy', 'LV' => 'Latvia',
-        'LT' => 'Lithuania', 'LU' => 'Luxembourg', 'MT' => 'Malta', 'NL' => 'Netherlands',
-        'PL' => 'Poland', 'PT' => 'Portugal', 'RO' => 'Romania', 'SK' => 'Slovakia',
-        'SI' => 'Slovenia', 'ES' => 'Spain', 'SE' => 'Sweden',
-        'GB' => 'United Kingdom', 'US' => 'United States', 'CH' => 'Switzerland',
-        'NO' => 'Norway', 'AU' => 'Australia', 'CA' => 'Canada',
+        'AT' => 'Austria',
+        'BE' => 'Belgium',
+        'BG' => 'Bulgaria',
+        'HR' => 'Croatia',
+        'CY' => 'Cyprus',
+        'CZ' => 'Czech Republic',
+        'DK' => 'Denmark',
+        'EE' => 'Estonia',
+        'FI' => 'Finland',
+        'FR' => 'France',
+        'DE' => 'Germany',
+        'GR' => 'Greece',
+        'HU' => 'Hungary',
+        'IE' => 'Ireland',
+        'IT' => 'Italy',
+        'LV' => 'Latvia',
+        'LT' => 'Lithuania',
+        'LU' => 'Luxembourg',
+        'MT' => 'Malta',
+        'NL' => 'Netherlands',
+        'PL' => 'Poland',
+        'PT' => 'Portugal',
+        'RO' => 'Romania',
+        'SK' => 'Slovakia',
+        'SI' => 'Slovenia',
+        'ES' => 'Spain',
+        'SE' => 'Sweden',
+        'GB' => 'United Kingdom',
+        'US' => 'United States',
+        'CH' => 'Switzerland',
+        'NO' => 'Norway',
+        'AU' => 'Australia',
+        'CA' => 'Canada',
     ];
 
     public const CURRENCIES = ['EUR', 'USD', 'BGN', 'RON', 'PLN', 'CZK', 'HUF'];
@@ -54,7 +78,7 @@ class OnboardingWizard extends Component
     public function mount(): void
     {
         if (Auth::user()->onboarding_completed) {
-            $this->redirect(route('dashboard'), navigate: true);
+            $this->redirect(route('dashboard'));
         }
 
         $this->companyName = Auth::user()->name;
@@ -133,7 +157,7 @@ class OnboardingWizard extends Component
             }
         });
 
-        $this->redirect(route('dashboard'), navigate: true);
+        $this->redirect(route('dashboard'));
     }
 
     public function render()

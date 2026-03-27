@@ -14,14 +14,24 @@
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+    @if(config('services.google.analytics_id'))
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ config('services.google.analytics_id') }}"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', '{{ config('services.google.analytics_id') }}');
+    </script>
+    @endif
 </head>
 
 <body class="font-sans text-gray-900 antialiased">
     <div class="min-h-screen bg-indigo-950 flex items-center justify-center p-6">
         <div class="w-full max-w-md">
             <!-- Branding -->
-            <div class="flex items-center justify-center gap-3 mb-8">
-                <x-application-logo class="w-9 h-9 fill-current text-indigo-300" />
+            <div class="flex items-center justify-center mb-8">
                 <a href="/" class="text-2xl font-bold tracking-tight text-white">
                     {{ config('app.name', 'InvoiceKit') }}
                 </a>

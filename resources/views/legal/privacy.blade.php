@@ -23,6 +23,17 @@
         a { color: #4f46e5; }
         footer { text-align: center; padding: 2rem; color: #9ca3af; font-size: .875rem; }
     </style>
+
+    @if(config('services.google.analytics_id'))
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ config('services.google.analytics_id') }}"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', '{{ config('services.google.analytics_id') }}');
+    </script>
+    @endif
 </head>
 <body>
     <nav>
