@@ -64,106 +64,33 @@ EU VAT Directive 2006/112/EC Articles 282–292 permit member states to exempt s
 
 > **Note on Spain:** Spain is the only EU country without a general small-business VAT threshold exemption for service providers. Spanish freelancers must register for VAT from the first euro of taxable income. The app should detect this and show a warning rather than offering the exemption toggle to Spanish users.
 
-#### Implementation Plan
-
-**Config: `config/vat_exemptions.php`**
-- [ ] Create `config/vat_exemptions.php` with a top-level array keyed by ISO 2 country code containing all 27 EU countries:
-  ```php
-  // config/vat_exemptions.php
-  return [
-    'BG' => [
-      'available' => true,
-      'threshold_amount' => 100000,
-      'threshold_currency' => 'BGN',
-      'threshold_eur_approx' => 51000,
-      'legal_basis' => 'Art. 96, ал. 1 ЗДДС',
-      'invoice_notice_local' => 'Не е начислен ДДС на основание чл. 96, ал. 1 от ЗДДС',
-      'invoice_notice_en' => 'VAT not charged pursuant to Art. 96(1) of the Bulgarian VAT Act',
-    ],
-    'DE' => [ ... ],
-    'ES' => [
-      'available' => false,
-      'unavailable_reason' => 'Spain has no general small-business VAT exemption.',
-    ],
-    // ... all 27 EU countries
-  ];
-  ```
-
-**Service: `app/Services/VatExemptionService.php`**
-- [ ] `VatExemptionService` reads exclusively from `config('vat_exemptions')` — no hardcoded data in the class
-- [ ] Method `getExemptionForCountry(string $isoCode): ?array`
-- [ ] Method `isExemptionAvailable(string $isoCode): bool`
-- [ ] Method `getInvoiceNotice(string $isoCode, string $language = 'local'): ?string`
-
-**Database**
-- [ ] Add `vat_exempt` boolean to `users` (default `false`) — migration already exists
-- [ ] Add `vat_exempt_reason` string (nullable) — stores the legal basis text, editable by user
-- [ ] Add `vat_exempt_notice_language` enum `local|en` (default `local`) — controls which language the notice prints in on the PDF
+#### Remaining Work
 
 **Settings UI**
-- [ ] Settings page "Business / VAT" section:
-  - Country selector (drives exemption lookup)
-  - Toggle: "I operate under a small business VAT exemption" — hidden/disabled for ES with explanation
-  - When toggled on: show the threshold for the detected country ("Under Bulgarian law, freelancers with annual turnover below 100,000 BGN may apply this exemption")
-  - Legal basis text field: pre-populated from `VatExemptionService`, editable for edge cases
-  - Invoice notice language: "Local language" / "English" radio
-  - Prominent warning box: "Enabling this disables VAT on all invoices. Ensure you meet your country's eligibility criteria."
+- [ ] Legal basis text field in the VAT section: pre-populated from `VatExemptionService`, editable for edge cases
+- [ ] Prominent warning box: "Enabling this disables VAT on all invoices. Ensure you meet your country's eligibility criteria."
 
 **Invoice Behaviour**
-- [ ] When `user.vat_exempt = true`: `EuVatService::calculateVat()` short-circuits to return `['rate' => 0, 'amount' => 0, 'type' => 'vat_exempt']`
-- [ ] Invoice builder: show a yellow banner "VAT exemption active — no VAT will be applied to this invoice" with a link to settings
 - [ ] Per-invoice override (Pro only): checkbox "Override VAT exemption for this invoice" — allows charging VAT on a one-off basis (e.g. cross-border supply that falls outside the exemption)
-- [ ] Store `vat_exempt_applied` boolean on `invoices` table to record the state at invoice creation time (important: settings could change later)
-- [ ] Store snapshot of `vat_exempt_notice` text on `invoices` table at creation time
-
-**PDF Generation**
-- [ ] When `invoice.vat_exempt_applied = true`:
-  - Remove VAT row from the totals block entirely
-  - Show subtotal = total (no tax line)
-  - Print the exemption notice text at the bottom of the invoice, in a visually distinct block (e.g. italics, smaller font, bordered)
-  - Example (BG): *"Не е начислен ДДС на основание чл. 96, ал. 1 от ЗДДС"*
-  - Example (DE): *"Gemäß §19 UStG wird keine Umsatzsteuer berechnet."*
-- [ ] When NOT exempt: no change to current PDF behavior
 
 **Tests**
-- [ ] Unit: `VatExemptionService::getExemptionForCountry()` returns correct data for all 26 available countries
-- [ ] Unit: `VatExemptionService::isExemptionAvailable('ES')` returns `false`
-- [ ] Unit: `EuVatService::calculateVat()` with `vat_exempt=true` returns `exempt` type and 0 amount regardless of country pair
-- [ ] Feature: invoice created by VAT-exempt user has correct zero totals and `vat_exempt_applied = true`
 - [ ] Feature: PDF blade for exempt invoice contains the correct notice text and no VAT row
-- [ ] Feature: invoice created by non-exempt user unaffected
 
 ---
 
 ### v1.3 — Freelancer Profile & Business Settings
 **Goal:** Give freelancers a complete professional profile. This data drives the invoice PDF header, onboarding, and future public-facing features.
 
-**Schema (add to `users` or extract to `profiles` table)**
-- [ ] `display_name` — trading / freelancer name (distinct from auth name)
-- [ ] `business_name` — optional registered entity name
-- [ ] `profile_photo` — avatar stored in `storage/app/public/avatars`
-- [ ] `tagline` — one-liner (e.g. "Full-stack developer · Sofia, Bulgaria")
-- [ ] `website` — personal/business URL
-- [ ] `phone` — contact phone
-- [ ] `address_line1`, `address_line2`, `city`, `postal_code`, `country` — full address
-- [ ] `vat_number` — user's own VAT registration number (shown on invoices as seller VAT)
-- [ ] `registration_number` — company/trade register number
-- [ ] `bank_name`, `bank_iban`, `bank_bic` — bank transfer details printed on invoices
-- [ ] `default_currency` — default for new invoices/clients
-- [ ] `default_payment_terms` — days until due (14 / 30 / 60)
-- [ ] `default_invoice_notes` — boilerplate footer (e.g. "Thank you for your business.")
-- [ ] `invoice_logo` — custom logo image for PDF header
+#### Remaining Work
 
-**Settings UI (tabbed)**
-- [ ] **Profile** tab: name, photo, tagline, website, phone
-- [ ] **Business** tab: business name, full address, VAT number, registration number, bank details, VAT exemption section (from v1.2)
-- [ ] **Invoicing** tab: default currency, payment terms, invoice number prefix/format, default notes, logo upload
+**Settings UI**
+- [ ] **Invoicing** tab: invoice number prefix/format field (currency, terms, notes, logo already done)
 - [ ] **Billing** tab: subscription plan, payment method, billing history (v1.4)
 - [ ] **Notifications** tab: reminder email toggles (before due / on due / overdue intervals)
 
 **Invoice PDF**
-- [ ] Pull seller header from profile: logo, name or business name, address, VAT number, bank details
-- [ ] Onboarding wizard step 1 updated to collect profile fields
+- [ ] Wire up `invoice_logo` in PDF header (currently hardcoded brand name); add `bank_name` and `bank_bic` to payment details block
+- [ ] Onboarding wizard: collect extended profile fields (address, bank details, phone) beyond just company name + country
 
 ---
 
@@ -223,37 +150,6 @@ EU VAT Directive 2006/112/EC Articles 282–292 permit member states to exempt s
 - [ ] Generate UBL 2.1 XML alongside PDF (mandatory in DE, IT, FR for B2G and growing B2B)
 - [ ] Peppol BIS Billing 3.0 compliance
 - [ ] Export as PDF + XML from invoice detail page
-
----
-
-### v1.9 — Full Internationalisation (App UI + Invoice PDFs)
-**Goal:** Make every user-visible string in the app translatable, and ship complete translations for all EU languages. The lang JSON files already exist in `resources/lang/` for all 24 EU languages — they need to be populated and wired up.
-
-**Languages to support** (matching existing `resources/lang/*.json` files):
-`bg` Bulgarian · `cs` Czech · `da` Danish · `de` German · `el` Greek · `en` English · `es` Spanish · `et` Estonian · `fi` Finnish · `fr` French · `ga` Irish · `hr` Croatian · `hu` Hungarian · `it` Italian · `lt` Lithuanian · `lv` Latvian · `mt` Maltese · `nl` Dutch · `pl` Polish · `pt` Portuguese · `ro` Romanian · `sk` Slovak · `sl` Slovenian · `sv` Swedish
-
-**App UI Strings**
-- [ ] Audit all Blade views and Livewire component templates — every hardcoded user-visible string must be wrapped in `__()` (already a convention to enforce consistently)
-- [ ] Audit all Livewire component PHP classes — flash messages, validation messages, and any strings returned to the view must use `__()` or `trans()`
-- [ ] Audit email templates (`resources/views/mail/`) — all subject lines and body text wrapped in `__()`
-- [ ] User locale preference: add `locale` column to `users` table; set `App::setLocale()` from the authenticated user's preference on each request (via middleware)
-- [ ] Language switcher in user settings (dropdown of all supported locales with native language names, e.g. "Български", "Deutsch")
-- [ ] Fall back to `en` for any missing translation key
-
-**Invoice PDF Strings**
-- [ ] All invoice PDF field labels translated (Invoice, Date, Due Date, Description, Quantity, Unit Price, Subtotal, VAT, Total, etc.)
-- [ ] VAT type notices translated: reverse charge, OSS, exempt — per language
-- [ ] VAT exemption legal notice: use the `invoice_notice_local` value from `config/vat_exemptions.php` (already per-country, already in the correct language)
-- [ ] PDF language follows the per-client default language setting (set on the client record)
-- [ ] User can override PDF language per invoice at generation time
-
-**Translation File Conventions**
-- [ ] All app UI keys in `resources/lang/{locale}.json` (flat JSON, Laravel default)
-- [ ] Invoice-specific keys namespaced: `"invoice.subtotal"`, `"invoice.vat_notice.reverse_charge"`, etc.
-- [ ] VAT exemption notices live in `config/vat_exemptions.php`, not in lang files — they are legal text tied to country, not to UI locale
-- [ ] Missing translations CI check: add a test that asserts all keys present in `en.json` exist in every other locale file (allows empty string values, but key must exist)
-
-
 
 ---
 
