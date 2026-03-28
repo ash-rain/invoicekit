@@ -69,16 +69,16 @@ Upravljanje strank
 Shranite stranke z državo, DDV številko in valuto. Zastave držav, takojšnje iskanje in celotna račungotska zgodovina za vsako stranko.
 
 [f5_title]
-Več valut
+Ponavljajoči se računi
 
 [f5_desc]
-Fakturirajte v EUR, USD, BGN, RON, PLN, CZK ali HUF. Valuta se samodejno uporabi za vsako stranko. Zneski oblikovani pravilno za vsako območje.
+Navstavite tedenske, mesečne, četrtletne ali letne račune. InvoiceKit jih samodejno klonira in pošlje — brez ročnega dela, brez zamujenih obračunskih ciklov.
 
 [f6_title]
-Opomniki za plačilo
+Portal za stranke
 
 [f6_desc]
-Avtomatska e-pošta: 3 dni pred rokom, na datum roka, 7 dni zamude. PDF priložen. Vaš denarni tok na avtopilotu.
+Delite varno, tokenized povezavo z vsako stranko. Ogledajo si lahko račun, prenesejo PDF in plačajo online prek Stripe — brez prijave.
 
 [how_tag]
 Kako deluje
@@ -183,7 +183,7 @@ Začni brezplačno
 Starter
 
 [p_starter_price]
-€15
+€9
 
 [p_starter_period]
 na mesec
@@ -231,10 +231,10 @@ Ponavljajoči se računi
 Portal za stranke
 
 [p_pro_l4]
-Prednostna podpora
+Peppol / e-Fakturiranje (UBL 2.1)
 
 [p_pro_l5]
-Dostop do API
+Način oprostitve DDV (vseh 27 držav EU)
 
 [p_pro_l6]
 Vsa pravila DDV EU
@@ -264,10 +264,10 @@ Katere države EU so podprte?
 Vseh 27 držav članic EU. Stopnje DDV so trdo kodirane za BG, DE, FR, RO, PL, CZ, IT, ES, NL, PT, AT, BE, HR, HU, SE in vse ostale. Stopnje se posodabljajo, ko se spremenijo predpisi EU.
 
 [faq3_q]
-Ali lahko uporabljam InvoiceKit izven EU?
+Ali InvoiceKit podpira ponavljajoče se račune?
 
 [faq3_a]
-Seveda. InvoiceKit lahko uporabljate od kjerkoli na svetu. Motor DDV EU je najbolj dragocen za freelancerje s sedežem v EU, toda vsak freelancer koristi od funkcij sledenja časa in fakturiranja.
+Da. Vsak račun lahko spremenite v ponavljajočega z tedenskimi, mesečnimi, četrtletnimi ali letnimi intervali. InvoiceKit ga samodejno klonira in izda na datum zapadlosti — ne potrebujete ničesar storiti.
 
 [faq4_q]
 Kako deluje sledenje časa?
@@ -276,10 +276,10 @@ Kako deluje sledenje časa?
 Ustvarite projekte s strankami in urnimi postavkami. Uporabite vgrajeni časovnik start/stop med delom. Ves sledeni čas se shrani in se z enim klikom pretvori neposredno v vrstice računa.
 
 [faq5_q]
-Ali lahko prekličem kadarkoli?
+Je na voljo brezplačno preizkusno obdobje?
 
 [faq5_a]
-Da. Brez pogodb, brez vezave. Prekliči kadarkoli in ohranite dostop do konca obdobja obračunavanja. Vsi vaši podatki so kadarkoli izvozljivi.
+Da. Vsi novi računi se začnejo s 14-dnevnim preizkusnim obdobjem Pro — kreditna kartica ni potrebna. Od prvega dne imate polni dostop do Pro. Po preizkusnem obdobju ostanete na brezplačnem načrtu, razen če se odločite za nadgradnjo.
 
 [cta_title]
 Pripravljeni fakturirati kot Evropejec?

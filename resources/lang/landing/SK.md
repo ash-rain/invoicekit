@@ -69,16 +69,16 @@ Správa klientov
 Ukladajte klientov s krajinou, IČ DPH a menou. Vlajky krajín, okamžité vyhľadávanie a kompletná fakturačná história na klienta.
 
 [f5_title]
-Viacero mien
+Opakujúce sa faktúry
 
 [f5_desc]
-Fakturujte v EUR, USD, BGN, RON, PLN, CZK alebo HUF. Mena sa automaticky použije na klienta. Sumy naformátované pre každý región.
+Nastavte týždenné, mesačné, štvrťročné alebo ročné faktúry. InvoiceKit ich automaticky klonuje a odosiela — žiadna manuálna práca, žiadne vynechané fakturačné cykly.
 
 [f6_title]
-Upomienky platieb
+Klientský portál
 
 [f6_desc]
-Automatické e-maily: 3 dni pred splatnosťou, v deň splatnosti, 7 dní po splatnosti. PDF v prílohe. Váš cash flow na autopilote.
+Zdieľajte bezpečný, tokenizovaný odkaz s ľubovoľným klientom. Môžu si pozrieť faktúru, stiahnuť PDF a zaplatiť online cez Stripe — bez prihlásenia.
 
 [how_tag]
 Ako to funguje
@@ -183,7 +183,7 @@ Začať zadarmo
 Starter
 
 [p_starter_price]
-€15
+€9
 
 [p_starter_period]
 mesačne
@@ -231,10 +231,10 @@ Opakujúce sa faktúry
 Klientský portál
 
 [p_pro_l4]
-Prioritná podpora
+Peppol / e-Fakturácia (UBL 2.1)
 
 [p_pro_l5]
-Prístup k API
+Režim oslobodenia od DPH (všetkých 27 krajín EÚ)
 
 [p_pro_l6]
 Všetky pravidlá DPH EÚ
@@ -264,10 +264,10 @@ Ktoré krajiny EÚ sú podporované?
 Všetkých 27 členských štátov EÚ. Sadzby DPH sú pevne nastavené pre BG, DE, FR, RO, PL, CZ, IT, ES, NL, PT, AT, BE, HR, HU, SE a všetky ostatné. Sadzby sa aktualizujú pri zmenách legislatívy EÚ.
 
 [faq3_q]
-Môžem InvoiceKit používať mimo EÚ?
+Podporuje InvoiceKit opakujúce sa faktúry?
 
 [faq3_a]
-Absolútne. InvoiceKit môžete používať odkiaľkoľvek na svete. Motor DPH EÚ je najdôležitejší pre freelancerov so sídlom v EÚ, ale každý freelancer ťaží z funkcií sledovania času a fakturácie.
+Áno. Ľubovoľnú faktúru môžete zmeniť na opakujúcu sa s týždenným, mesačným, štvrťročným alebo ročným intervalom. InvoiceKit ju automaticky naklonuje a vystaví v dátum splatnosti — nemusíte nič robiť.
 
 [faq4_q]
 Ako funguje sledovanie času?
@@ -276,10 +276,10 @@ Ako funguje sledovanie času?
 Vytvorte projekty s klientmi a hodinovými sadzbami. Používajte zabudovaný štart/stop časovač pri práci. Všetok sledovaný čas sa uloží a jedným kliknutím ho možno previesť priamo na riadky faktúry.
 
 [faq5_q]
-Môžem kedykoľvek zrušiť?
+Je k dispozícii skúšobné obdobie zadarmo?
 
 [faq5_a]
-Áno. Žiadne zmluvy, žiadna viazanosť. Zrušte kedykoľvek a zachováte prístup do konca svojho fakturačného obdobia. Všetky vaše dáta sú kedykoľvek exportovateľné.
+Áno. Všetky nové účty začínajú s 14-dňovým skúšobným obdobím Pro — kreditná karta nie je potrebná. Od prvého dňa máte plný prístup k Pro. Po skúšobnom období zostanete na bezplatnom pláne, pokiaľ sa nerozhodnete upgradovať.
 
 [cta_title]
 Ste pripravení fakturovať ako Európan?

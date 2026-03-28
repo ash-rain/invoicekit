@@ -35,6 +35,9 @@ No credit card required
 [hero_trust_3]
 Cancel anytime
 
+[hero_trust_4]
+14-day Pro trial
+
 [features_tag]
 Features
 
@@ -69,16 +72,16 @@ Client Management
 Store clients with country, VAT number, currency. Country flags, instant search, and full billing history per client.
 
 [f5_title]
-Multi-currency
+Recurring Invoices
 
 [f5_desc]
-Invoice in EUR, USD, BGN, RON, PLN, CZK, or HUF. Currency auto-applied per client. Amounts formatted for every locale.
+Set up weekly, monthly, quarterly, or yearly invoices. InvoiceKit clones and issues them automatically — no manual work, no missed billing cycles.
 
 [f6_title]
-Payment Reminders
+Client Portal
 
 [f6_desc]
-Automated emails: 3 days before due, on due date, 7 days overdue. PDF attached. Your cash flow on autopilot.
+Share a secure tokenized link with any client. They can view the invoice, download the PDF, and pay online via Stripe — no login required.
 
 [how_tag]
 How It Works
@@ -176,6 +179,9 @@ Time tracking
 [p_free_l4]
 PDF invoice export
 
+[p_free_l5]
+14-day Pro trial included
+
 [p_free_cta]
 Get started free
 
@@ -183,7 +189,7 @@ Get started free
 Starter
 
 [p_starter_price]
-€15
+€9
 
 [p_starter_period]
 per month
@@ -205,6 +211,9 @@ All EU VAT rules
 
 [p_starter_l5]
 Payment reminders
+
+[p_starter_l6]
+Expense tracking
 
 [p_starter_cta]
 Start Starter
@@ -231,10 +240,10 @@ Recurring invoices
 Client portal
 
 [p_pro_l4]
-Priority support
+Peppol / e-Invoicing (UBL 2.1)
 
 [p_pro_l5]
-API access
+VAT Exempt Mode (all 27 EU)
 
 [p_pro_l6]
 All EU VAT rules
@@ -264,10 +273,10 @@ Which EU countries are supported?
 All 27 EU member states. VAT rates are hardcoded for BG, DE, FR, RO, PL, CZ, IT, ES, NL, PT, AT, BE, HR, HU, SE and all others. Rates are updated whenever EU legislation changes.
 
 [faq3_q]
-Can I use InvoiceKit outside the EU?
+Does InvoiceKit support recurring invoices?
 
 [faq3_a]
-Absolutely. You can use InvoiceKit from anywhere in the world. The EU VAT engine is most valuable for EU-based freelancers, but any freelancer benefits from the time tracking and invoicing features.
+Yes. You can turn any invoice into a recurring one with weekly, monthly, quarterly, or yearly intervals. InvoiceKit automatically clones and issues the invoice on the due date — you don't have to touch it.
 
 [faq4_q]
 How does time tracking work?
@@ -276,10 +285,10 @@ How does time tracking work?
 Create projects with clients and hourly rates. Use the built-in start/stop timer while you work. All tracked time is stored and can be converted directly into invoice line items with one click.
 
 [faq5_q]
-Can I cancel anytime?
+Is there a free trial?
 
 [faq5_a]
-Yes. No contracts, no lock-in. Cancel at any time and you keep access until the end of your billing period. All your data is exportable at any time.
+Yes. Every new account starts with a 14-day Pro trial — no credit card required. You get full Pro access from day one. After the trial you stay on the Free plan unless you choose to upgrade.
 
 [cta_title]
 Ready to invoice like a European?

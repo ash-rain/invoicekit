@@ -69,16 +69,16 @@ Bainistíocht cliant
 Sábháil cliant le tír, uimhir CBL agus airgeadra. Bratacha tíortha, cuardach láithreach agus stair iomlán billeála in aghaidh an chliaint.
 
 [f5_title]
-Il-airgeadra
+Sonraisc Aithghníomhacha
 
 [f5_desc]
-Sonraíobh i EUR, USD, BGN, RON, PLN, CZK nó HUF. Airgeadra curtha i bhfeidhm go huathoibríoch in aghaidh gach cliaint. Suimeanna formáidithe i gceart do gach réigiún.
+Socraigh sonraisc sheachtainiúla, mhíosúla, ráithiúla nó bliantúla. Clónálann InvoiceKit iad agus seolann go huathoibríoch iad — gan obair de láimh, gan timthriall billéala caillte.
 
 [f6_title]
-Meabhrúcháin íocaíochta
+Tairseach Cliant
 
 [f6_desc]
-Ríomhphoist uathoibríocha: 3 lá roimh an spriocdháta, ar an spriocdháta, 7 lá thar am. PDF ceangailte. Do shreabhadh airgid ar autopilot.
+Comhroinn nasc slán, tokenized le haon chliant. Is féidir leo an sonrasc a fheiceáil, an PDF a íoslódáil agus íoc ar líne trí Stripe — gan logáil isteach ag teastáil.
 
 [how_tag]
 Conas a oibríonn sé
@@ -183,7 +183,7 @@ Tosaigh saor in aisce
 Starter
 
 [p_starter_price]
-€15
+€9
 
 [p_starter_period]
 in aghaidh na míosa
@@ -231,10 +231,10 @@ Sonraisc athfhillteacha
 Tairseach cliaint
 
 [p_pro_l4]
-Tacaíocht tosaíochta
+Peppol / e-Sonrasc (UBL 2.1)
 
 [p_pro_l5]
-Rochtain API
+Mód Díolúine CBL (na 27 tír AE ar fad)
 
 [p_pro_l6]
 Gach riail CBL AE
@@ -264,10 +264,10 @@ Cé na tíortha AE a dtacaítear leo?
 Na 27 ballstát AE go léir. Tá rátaí CBL códaithe crua do BG, DE, FR, RO, PL, CZ, IT, ES, NL, PT, AT, BE, HR, HU, SE agus gach ceann eile. Déantar rátaí a nuashonrú nuair a athraíonn reachtaíocht AE.
 
 [faq3_q]
-An féidir liom InvoiceKit a úsáid lasmuigh den AE?
+An dtacaíonn InvoiceKit le sonraisc athfhilleacha?
 
 [faq3_a]
-Go deimhin. Is féidir leat InvoiceKit a úsáid ó áit ar bith ar domhan. Tá inneall CBL AE is luachmhaire do shaorfhostaithe atá bunaithe san AE, ach baineann gach saorfhostaí leas as gnéithe rianú ama agus sonraisce.
+Tacaíonn. Is féidir leat aon sonrasc a iompú ina cheann athfhilleach le hidirghabhálacha seachtainiúla, míosúla, ráithiúla nó bliantúla. Clónálann InvoiceKit an sonrasc agus eisíonn go huathoibríoch é ar dháta dlite — ní gá duit baint a bheith agat leis.
 
 [faq4_q]
 Conas a oibríonn rianú ama?
@@ -276,10 +276,10 @@ Conas a oibríonn rianú ama?
 Cruthaigh tionscadail le cliaint agus rátaí uaireanta. Úsáid an t-uaineadóir tosaigh/stop ionsuite agus tú ag oibriú. Stóráiltear gach am rianaithe agus is féidir é a thiontú go díreach ina línte sonraisc le haon chliceáil.
 
 [faq5_q]
-An féidir liom cealaigh am ar bith?
+An bhfuil tréimhse trialach saor in aisce ann?
 
 [faq5_a]
-Is féidir. Gan conarthaí, gan ceangal. Cealaigh am ar bith agus coinneoidh tú rochtain go deireadh do thréimhse billeála. Tá gach sonra is féidir a easpórtáil am ar bith.
+Tá. Tosaíonn gach cuntas nua le triail Pro 14 lá — ní theastaíonn cárta creidmheasa. Faigheann tú rochtain iomlán ar Pro ón gcéad lá. Tar éis na trialach, fanann tú ar an bplean saor in aisce mura roghnáíonn tú uasghrádú.
 
 [cta_title]
 Réidh le sonrasc a eisiúint mar Eorpach?

@@ -69,16 +69,16 @@ Kundestyring
 Gem kunder med land, momsnummer og valuta. Landsflag, øjeblikkelig søgning og komplet faktureringshistorik per kunde.
 
 [f5_title]
-Multiveluta
+Tilbagevendende fakturaer
 
 [f5_desc]
-Fakturér i EUR, USD, BGN, RON, PLN, CZK eller HUF. Valuta anvendes automatisk per kunde. Beløb formateret korrekt for hvert område.
+Opsæt ugentlige, månedlige, kvartalsvise eller årlige fakturaer. InvoiceKit kloner og sender dem automatisk — intet manuelt arbejde, ingen glemte faktureringscyklusser.
 
 [f6_title]
-Betalingspåmindelser
+Klientportal
 
 [f6_desc]
-Automatiske e-mails: 3 dage før forfald, på forfaldsdatoen, 7 dage forsinket. PDF vedhæftet. Din likviditet på autopilot.
+Del et sikkert, tokeniseret link med en klient. De kan se fakturaen, downloade PDF'en og betale online via Stripe — intet login kræves.
 
 [how_tag]
 Sådan fungerer det
@@ -183,7 +183,7 @@ Start gratis
 Starter
 
 [p_starter_price]
-€15
+€9
 
 [p_starter_period]
 om måneden
@@ -231,10 +231,10 @@ Tilbagevendende fakturaer
 Kundeportal
 
 [p_pro_l4]
-Prioriteret support
+Peppol / e-Fakturering (UBL 2.1)
 
 [p_pro_l5]
-API-adgang
+Momsfritage-tilstand (alle 27 EU-lande)
 
 [p_pro_l6]
 Alle EU-momsregler
@@ -264,10 +264,10 @@ Hvilke EU-lande er understøttet?
 Alle 27 EU-medlemsstater. Momssatser er hardkodet for BG, DE, FR, RO, PL, CZ, IT, ES, NL, PT, AT, BE, HR, HU, SE og alle andre. Satser opdateres når EU-lovgivningen ændres.
 
 [faq3_q]
-Kan jeg bruge InvoiceKit uden for EU?
+Understøtter InvoiceKit tilbagevendende fakturaer?
 
 [faq3_a]
-Absolut. Du kan bruge InvoiceKit fra et vilkårligt sted i verden. EU-momsmotoren er mest værdifuld for EU-baserede freelancere, men enhver freelancer drager fordel af tidsregistrerings- og faktureringsfunktionerne.
+Ja. Du kan gøre en hvilken som helst faktura til en tilbagevendende med ugentlige, månedlige, kvartalsvise eller årlige intervaller. InvoiceKit kloner og udsteder automatisk fakturaen på forfaldsdatoen — du behøver ikke gøre noget.
 
 [faq4_q]
 Hvordan fungerer tidsregistrering?
@@ -276,10 +276,10 @@ Hvordan fungerer tidsregistrering?
 Opret projekter med kunder og timesatser. Brug den indbyggede start/stop-timer mens du arbejder. Al registreret tid gemmes og kan med ét klik direkte konverteres til fakturaposter.
 
 [faq5_q]
-Kan jeg annullere når som helst?
+Er der en gratis prøveperiode?
 
 [faq5_a]
-Ja. Ingen kontrakter, ingen binding. Annuller når som helst og behold adgang til slutningen af din faktureringsperiode. Alle dine data kan eksporteres til enhver tid.
+Ja. Alle nye konti starter med en 14-dages Pro-prøveperiode — intet kreditkort kræves. Du får fuld Pro-adgang fra dag ét. Efter prøveperioden forbliver du på den gratis plan, medmindre du vælger at opgradere.
 
 [cta_title]
 Klar til at fakturere som en europæer?

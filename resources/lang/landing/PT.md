@@ -69,16 +69,16 @@ Gestão de clientes
 Armazene clientes com país, número de IVA e moeda. Bandeiras de países, pesquisa instantânea e histórico de faturação completo por cliente.
 
 [f5_title]
-Multi-moeda
+Faturas recorrentes
 
 [f5_desc]
-Fature em EUR, USD, BGN, RON, PLN, CZK ou HUF. Moeda aplicada automaticamente por cliente. Valores formatados para cada região.
+Configure faturas semanais, mensais, trimestrais ou anuais. O InvoiceKit clona-as e envia-as automaticamente — sem trabalho manual, sem ciclos de faturação perdidos.
 
 [f6_title]
-Lembretes de pagamento
+Portal do cliente
 
 [f6_desc]
-Emails automáticos: 3 dias antes do vencimento, na data de vencimento, 7 dias em atraso. PDF anexado. O seu fluxo de caixa em piloto automático.
+Partilhe uma ligação segura e tokenizada com qualquer cliente. Eles podem visualizar a fatura, descarregar o PDF e pagar online via Stripe — sem necessidade de início de sessão.
 
 [how_tag]
 Como funciona
@@ -183,7 +183,7 @@ Começar grátis
 Starter
 
 [p_starter_price]
-€15
+€9
 
 [p_starter_period]
 por mês
@@ -231,10 +231,10 @@ Faturas recorrentes
 Portal do cliente
 
 [p_pro_l4]
-Suporte prioritário
+Peppol / Faturação Eletrónica (UBL 2.1)
 
 [p_pro_l5]
-Acesso API
+Modo de Isenção de IVA (todos os 27 países da UE)
 
 [p_pro_l6]
 Todas as regras de IVA da UE
@@ -264,10 +264,10 @@ Quais os países da UE suportados?
 Todos os 27 estados membros da UE. As taxas de IVA estão definidas para BG, DE, FR, RO, PL, CZ, IT, ES, NL, PT, AT, BE, HR, HU, SE e todos os outros. As taxas são atualizadas quando a legislação da UE é alterada.
 
 [faq3_q]
-Posso usar o InvoiceKit fora da UE?
+O InvoiceKit suporta faturas recorrentes?
 
 [faq3_a]
-Absolutamente. Pode usar o InvoiceKit de qualquer parte do mundo. O motor de IVA da UE é mais valioso para freelancers sediados na UE, mas qualquer freelancer beneficia das funcionalidades de registo de tempo e faturação.
+Sim. Pode transformar qualquer fatura em recorrente com intervalos semanais, mensais, trimestrais ou anuais. O InvoiceKit clona e emite automaticamente a fatura na data de vencimento — não precisa de fazer nada.
 
 [faq4_q]
 Como funciona o registo de tempo?
@@ -276,10 +276,10 @@ Como funciona o registo de tempo?
 Crie projetos com clientes e tarifas horárias. Use o temporizador start/stop integrado enquanto trabalha. Todo o tempo registado é guardado e pode ser convertido diretamente em linhas de fatura com um clique.
 
 [faq5_q]
-Posso cancelar a qualquer momento?
+Existe um período de avaliação gratuita?
 
 [faq5_a]
-Sim. Sem contratos, sem fidelização. Cancele a qualquer momento e mantém o acesso até ao final do seu período de faturação. Todos os seus dados são exportáveis a qualquer momento.
+Sim. Todas as novas contas começam com um período de avaliação gratuita de 14 dias Pro — não é necessário cartão de crédito. Tem acesso completo ao Pro desde o primeiro dia. Após a avaliação, permanece no plano gratuito a menos que opte por fazer upgrade.
 
 [cta_title]
 Pronto para faturar como um europeu?

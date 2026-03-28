@@ -69,16 +69,16 @@ Klientu pārvaldība
 Saglabāt klientus ar valsti, PVN numuru un valūtu. Valstu karodziņi, tūlītēja meklēšana un pilna rēķinu vēsture katram klientam.
 
 [f5_title]
-Vairākas valūtas
+Atkārtoti rēķini
 
 [f5_desc]
-Izraksti rēķinus EUR, USD, BGN, RON, PLN, CZK vai HUF. Valūta tiek piemērota automātiski katram klientam. Summas formatētas atbilstoši katram reģionam.
+Iestatiet iknedēļas, ikmēneša, ceturkšņa vai ikgadējus rēķinus. InvoiceKit tos automātiski klonē un nosūtā — nav manuāla darba, nav nokavētu norēķinu ciklu.
 
 [f6_title]
-Maksājumu atgādinājumi
+Klientu portāls
 
 [f6_desc]
-Automātiski e-pasti: 3 dienas pirms termiņa, termiņa dienā, 7 dienas nokavēts. PDF pielikumā. Jūsu naudas plūsma autopilotā.
+Kopīgojiet drošu, tokenizētu saiti ar jebkuru klientu. Viņi var skatīt rēķinu, lejupielādēt PDF un maksāt tiešsaistē, izmantojot Stripe — bez pierakstīšanās.
 
 [how_tag]
 Kā tas darbojas
@@ -183,7 +183,7 @@ Sākt bez maksas
 Starter
 
 [p_starter_price]
-€15
+€9
 
 [p_starter_period]
 mēnesī
@@ -231,10 +231,10 @@ Atkārtoti rēķini
 Klientu portāls
 
 [p_pro_l4]
-Prioritārs atbalsts
+Peppol / e-Rēķins (UBL 2.1)
 
 [p_pro_l5]
-API piekļuve
+PVN atbrīvojuma režīms (visas 27 ES valstis)
 
 [p_pro_l6]
 Visi ES PVN noteikumi
@@ -264,10 +264,10 @@ Kuras ES valstis tiek atbalstītas?
 Visas 27 ES dalībvalstis. PVN likmes ir iekodētas BG, DE, FR, RO, PL, CZ, IT, ES, NL, PT, AT, BE, HR, HU, SE un visiem pārējiem. Likmes tiek atjauninātas, mainoties ES tiesību aktiem.
 
 [faq3_q]
-Vai varu izmantot InvoiceKit ārpus ES?
+Vai InvoiceKit atbalsta atkārtotus rēķinus?
 
 [faq3_a]
-Absolūti. Varat izmantot InvoiceKit no jebkuras pasaules vietas. ES PVN dzinējs ir vērtīgākais ES bāzētiem ārštata darbiniekiem, bet katrs ārštata darbinieks gūst labumu no laika uzskaites un rēķinu izrakstīšanas funkcijām.
+Jā. Jebkuru rēķinu var pārvērst par atkārtotu ar iknedēļas, ikmēneša, ceturkšņa vai ikgadēja intervāla. InvoiceKit automātiski klonē un izsniedz rēķinu izpildes datumā — jums nekas nav jādara.
 
 [faq4_q]
 Kā darbojas laika uzskaite?
@@ -276,10 +276,10 @@ Kā darbojas laika uzskaite?
 Izveidojiet projektus ar klientiem un stundas tarifiem. Izmantojiet iebūvēto sākt/apturēt taimeri darba laikā. Viss izsekotais laiks tiek saglabāts un ar vienu klikšķi var tikt pārvērsts tieši rēķina rindās.
 
 [faq5_q]
-Vai varu atcelt jebkurā laikā?
+Vai ir pieejama bezmaksas izmēģinājuma versija?
 
 [faq5_a]
-Jā. Nav līgumu, nav saistības. Atcelt jebkurā laikā un paturiet piekļuvi līdz norēķinu perioda beigām. Visi jūsu dati ir eksportējami jebkurā laikā.
+Jā. Visi jaunie konti sāk ar 14 dienu Pro izmēģinājuma versiju — kredītkarte nav nepieciešama. No pirmās dienas jums ir pilna Pro piekļuve. Pēc izmēģinājuma versijas paliekat bezmaksas plānā, ja neizlemsiet veikt jaunināšanu.
 
 [cta_title]
 Gatavs izrakstīt rēķinus kā eiropietis?

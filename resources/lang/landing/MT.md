@@ -69,16 +69,16 @@ VAT awtomatiku għal kull xenarju tal-UE: rata standard, inverżjoni tal-obbligu
 Aħżen il-klijenti bil-pajjiż, in-numru tal-VAT u l-munita. Bnadar tal-pajjiżi, tiftix immedjat u storja sħiħa tal-fatturar għal kull klijent.
 
 [f5_title]
-Multi-munita
+Fatturi Rikorrenti
 
 [f5_desc]
-Faktura f'EUR, USD, BGN, RON, PLN, CZK jew HUF. Il-munita tiġi applikata awtomatikament għal kull klijent. L-ammonti fformattjati b'mod korrett għal kull reġjun.
+Issettja fatturi ta' kull ġimgħa, kull xahar, kull tliet xhur jew kull sena. InvoiceKit jikklonjaħom u jibgħatħom awtomatikament — l-ebda xogħol manwali, l-ebda ċikli ta' fatturar mitlufa.
 
 [f6_title]
-Tfakkir tal-ħlas
+Portal tal-Klijent
 
 [f6_desc]
-Emails awtomatiċi: 3 ijiem qabel l-iskadenza, fid-data tal-iskadenza, 7 ijiem tard. PDF mehmuż. Il-fluss monetarju tiegħek fuq autopilot.
+Aqsam link sigur, tokenized ma' kull klijent. Jistgħu jaraw il-fattura, jniżżlu l-PDF u jħallsu online permezz ta' Stripe — ma hemmx bżonn ta' login.
 
 [how_tag]
 Kif jaħdem
@@ -183,7 +183,7 @@ Ibda b'xejn
 Starter
 
 [p_starter_price]
-€15
+€9
 
 [p_starter_period]
 fix-xahar
@@ -231,10 +231,10 @@ Fatturi rikorrenti
 Portal tal-klijenti
 
 [p_pro_l4]
-Appoġġ ta' prijorità
+Peppol / e-Fatturar (UBL 2.1)
 
 [p_pro_l5]
-Aċċess API
+Modalità Eżenzjoni VAT (it-27 pajjiż tal-UE kollha)
 
 [p_pro_l6]
 Ir-regoli kollha tal-VAT tal-UE
@@ -264,10 +264,10 @@ Liema pajjiżi tal-UE huma appoġġati?
 It-27 stat membru tal-UE kollha. Ir-rati tal-VAT huma bbażati fuq kodiċi b'mod qawwi għal BG, DE, FR, RO, PL, CZ, IT, ES, NL, PT, AT, BE, HR, HU, SE u l-oħrajn kollha. Ir-rati jiġu aġġornati meta tinbidel il-leġislazzjoni tal-UE.
 
 [faq3_q]
-Nista' nuża InvoiceKit barra l-UE?
+InvoiceKit jappoġġja fatturi rikorrenti?
 
 [faq3_a]
-Assolutament. Tista' tuża InvoiceKit minn kwalunkwe parti tad-dinja. Il-magna tal-VAT tal-UE hija l-aktar ta' valur għall-freelancers ibbażati fl-UE, iżda kull freelancer jibbenefikja mill-karatteristiċi ta' traċċar taż-żmien u fatturar.
+Iva. Tista' tibdel kwalunkwe fattura fi waħda rikorrenti b'intervalli ta' kull ġimgħa, kull xahar, kull tliet xhur jew kull sena. InvoiceKit jikklonjaħa u joħroġ il-fattura awtomatikament fid-data tal-iskadenza — ma tridx tagħmel xejn.
 
 [faq4_q]
 Kif jaħdem it-traċċar taż-żmien?
@@ -276,10 +276,10 @@ Kif jaħdem it-traċċar taż-żmien?
 Oħloq proġetti b'klijenti u rati bl-siegħa. Uża t-tatmer tal-bidu/waqfien inkorporat waqt li taħdem. Iż-żmien kollu mtraċċat jiġi maħżun u jistgħu jiġu konvertiti direttament f'linji tal-fattura b'klikk wieħed.
 
 [faq5_q]
-Nista' nikkanċella fi kwalunkwe ħin?
+Hemm prova b'xejn disponibbli?
 
 [faq5_a]
-Iva. L-ebda kuntratti, l-ebda rabta. Ikkanċella fi kwalunkwe ħin u żżomm l-aċċess sal-aħħar tal-perjodu ta' fatturar tiegħek. Id-dejta kollha tiegħek tista' tiġi esportata fi kwalunkwe ħin.
+Iva. Il-kontijiet ġodda kollha jibdew bi prova ta' 14-il jum Pro — ma hemmx bżonn ta' karta ta' kreditu. Ikollok aċċess sħiħ għal Pro mill-ewwel jum. Wara l-prova, tibqa' fuq il-pjan b'xejn sakemm ma tagħżilx li tuġġorra.
 
 [cta_title]
 Lest li tibgħat il-fatturi bħal Ewropew?

@@ -69,16 +69,16 @@ Automatikus ÁFA minden EU-s forgatókönyvhöz: általános kulcs, fordított a
 Tárold az ügyfeleket országgal, adószámmal és pénznemmel. Országzászlók, azonnali keresés és teljes számlázási előzmények ügyfelenként.
 
 [f5_title]
-Több pénznem
+Ismétlődő számlák
 
 [f5_desc]
-Számlázz EUR, USD, BGN, RON, PLN, CZK vagy HUF-ban. A pénznem automatikusan alkalmazva ügyfelenként. Az összegek minden régióhoz megfelelően formázva.
+Állítson be heti, havi, negyedéves vagy éves számlákat. Az InvoiceKit automatikusan klónozza és elküldi azokat — nincs kézi munka, nincsenek elmaradt számlázási ciklusok.
 
 [f6_title]
-Fizetési emlékeztetők
+Ügyfélportál
 
 [f6_desc]
-Automatikus e-mailek: 3 nappal a határidő előtt, a határidő napján, 7 nappal lejárat után. PDF mellékelve. A pénzforgalmad robotpilótán.
+Osszon meg egy biztonságos, tokenizált linket bármelyik ügyfelével. Megtekintheti a számlát, letöltheti a PDF-et, és online fizethet Stripe-on keresztül — bejelentkezés nélkül.
 
 [how_tag]
 Hogyan működik
@@ -183,7 +183,7 @@ Kezdj ingyenesen
 Starter
 
 [p_starter_price]
-€15
+€9
 
 [p_starter_period]
 havonta
@@ -231,10 +231,10 @@ Ismétlődő számlák
 Ügyfélportál
 
 [p_pro_l4]
-Prioritásos támogatás
+Peppol / e-Számlázás (UBL 2.1)
 
 [p_pro_l5]
-API-hozzáférés
+ÁFA-mentesség mód (mind a 27 EU-ország)
 
 [p_pro_l6]
 Összes EU ÁFA-szabály
@@ -264,10 +264,10 @@ Mely EU-tagállamok támogatottak?
 Mind a 27 EU-tagállam. Az ÁFA-kulcsok rögzítve vannak BG, DE, FR, RO, PL, CZ, IT, ES, NL, PT, AT, BE, HR, HU, SE és az összes többi esetén. A kulcsok frissülnek az EU-s jogszabályok változásakor.
 
 [faq3_q]
-Használhatom az InvoiceKitet az EU-n kívülről?
+Támogatja az InvoiceKit az ismétlődő számlákat?
 
 [faq3_a]
-Természetesen. Az InvoiceKitet a világ bármely részéről használhatod. Az EU ÁFA-motor a legértékesebb az EU-ban székhellyel rendelkező szabadúszók számára, de minden szabadúszó profitál az időkövetési és számlázási funkciókból.
+Igen. Bármelyik számlát átállíthatja ismétlődőre heti, havi, negyedéves vagy éves intervallumokkal. Az InvoiceKit automatikusan klónozza és kiállítja a számlát a határnapon — önnek semmit sem kell tennie.
 
 [faq4_q]
 Hogyan működik az időkövetés?
@@ -276,10 +276,10 @@ Hogyan működik az időkövetés?
 Hozz létre projekteket ügyfelekkel és órabérekkel. Használd a beépített start/stop időzítőt munka közben. Az összes követett idő el van mentve és egy kattintással közvetlenül számlasorrá alakítható.
 
 [faq5_q]
-Bármikor lemondhatom?
+Van ingyenes próbaidőszak?
 
 [faq5_a]
-Igen. Nincsenek szerződések, nincs kötöttség. Bármikor mondj le, és megőrződ a hozzáférést a számlázási időszak végéig. Az összes adatod bármikor exportálható.
+Igen. Minden új fiók 14 napos Pro próbaidőszakkal kezd — hitelkártya nem szükséges. Az első naptól teljes Pro hozzáférést kap. A próbaidőszak után az ingyenes csomaggal folytatja, hacsak nem dönt az upgrade mellett.
 
 [cta_title]
 Készen áll számlázni európaian?

@@ -69,16 +69,16 @@ Kundhantering
 Lagra kunder med land, momsnummer och valuta. Landsflaggor, omedelbar sökning och komplett faktureringshistorik per kund.
 
 [f5_title]
-Flera valutor
+Återkommande fakturor
 
 [f5_desc]
-Fakturera i EUR, USD, BGN, RON, PLN, CZK eller HUF. Valuta tillämpas automatiskt per kund. Belopp formaterade korrekt för varje region.
+Ställ in veckovisa, månatliga, kvartalsvisa eller årliga fakturor. InvoiceKit klonar och skickar dem automatiskt — inget manuellt arbete, inga missade faktureringscykler.
 
 [f6_title]
-Betalningspåminnelser
+Kundportal
 
 [f6_desc]
-Automatiska e-postmeddelanden: 3 dagar före förfallodatum, på förfallodagen, 7 dagar försenat. PDF bifogad. Ditt kassaflöde på autopilot.
+Dela en säker, tokenized länk med varje kund. De kan se fakturan, ladda ner PDF och betala online via Stripe — utan inloggning.
 
 [how_tag]
 Hur det fungerar
@@ -183,7 +183,7 @@ Kom igång gratis
 Starter
 
 [p_starter_price]
-€15
+€9
 
 [p_starter_period]
 per månad
@@ -231,10 +231,10 @@ Allt obegränsat
 Kundportal
 
 [p_pro_l4]
-Prioriterat stöd
+Peppol / e-Fakturering (UBL 2.1)
 
 [p_pro_l5]
-API-åtkomst
+Momsbefrielseläge (alla 27 EU-länder)
 
 [p_pro_l6]
 Alla EU-momsregler
@@ -264,10 +264,10 @@ Vilka EU-länder stöds?
 Alla 27 EU-medlemsstater. Momssatser är hårdkodade för BG, DE, FR, RO, PL, CZ, IT, ES, NL, PT, AT, BE, HR, HU, SE och alla andra. Satser uppdateras när EU-lagstiftningen ändras.
 
 [faq3_q]
-Kan jag använda InvoiceKit utanför EU?
+Stöder InvoiceKit återkommande fakturor?
 
 [faq3_a]
-Absolut. Du kan använda InvoiceKit från var som helst i världen. EU-momsmotorn är mest värdefull för EU-baserade frilansare, men alla frilansare drar nytta av tidsspårnings- och faktureringsfunktionerna.
+Ja. Du kan göra om valfri faktura till en återkommande med veckovisa, månatliga, kvartalsvisa eller årliga intervaller. InvoiceKit klonar och utfärdar fakturan automatiskt på förfallodatum — du behöver inte göra något.
 
 [faq4_q]
 Hur fungerar tidsspårning?
@@ -276,10 +276,10 @@ Hur fungerar tidsspårning?
 Skapa projekt med kunder och timtaxor. Använd den inbyggda start/stopp-timern medan du arbetar. All spårad tid sparas och kan med ett klick direkt konverteras till fakturarader.
 
 [faq5_q]
-Kan jag avsluta när som helst?
+Finns det en gratis provperiod?
 
 [faq5_a]
-Ja. Inga kontrakt, ingen bindning. Avsluta när som helst och behåll åtkomst till slutet av din faktureringsperiod. All din data kan exporteras när som helst.
+Ja. Alla nya konton börjar med en 14-dagars Pro-provperiod — inget kreditkort krävs. Du har full tillgång till Pro från första dagen. Efter provperioden stannar du på gratisplanen såvida du inte väljer att uppgradera.
 
 [cta_title]
 Redo att fakturera som en europé?

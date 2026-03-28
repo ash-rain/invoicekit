@@ -69,16 +69,16 @@ Gestion des clients
 Enregistrez les clients avec leur pays, numéro de TVA et devise. Drapeaux de pays, recherche instantanée et historique de facturation complet par client.
 
 [f5_title]
-Multi-devises
+Factures récurrentes
 
 [f5_desc]
-Facturez en EUR, USD, BGN, RON, PLN, CZK ou HUF. Devise appliquée automatiquement par client. Montants formatés pour chaque région.
+Configurez des factures hebdomadaires, mensuelles, trimestrielles ou annuelles. InvoiceKit les clone et les envoie automatiquement — aucun travail manuel, aucun cycle de facturation oublié.
 
 [f6_title]
-Rappels de paiement
+Portail client
 
 [f6_desc]
-E-mails automatiques : 3 jours avant l'échéance, à la date d'échéance, 7 jours de retard. PDF en pièce jointe. Votre flux de trésorerie en pilote automatique.
+Partagez un lien sécurisé et tokenisé avec n'importe quel client. Il peut consulter la facture, télécharger le PDF et payer en ligne via Stripe — sans connexion requise.
 
 [how_tag]
 Comment ça marche
@@ -183,7 +183,7 @@ Commencer gratuitement
 Starter
 
 [p_starter_price]
-€15
+€9
 
 [p_starter_period]
 par mois
@@ -231,10 +231,10 @@ Factures récurrentes
 Portail client
 
 [p_pro_l4]
-Support prioritaire
+Peppol / Facturation électronique (UBL 2.1)
 
 [p_pro_l5]
-Accès API
+Mode exonération TVA (les 27 pays de l'UE)
 
 [p_pro_l6]
 Toutes les règles TVA UE
@@ -264,10 +264,10 @@ Quels pays de l'UE sont pris en charge ?
 Les 27 États membres de l'UE. Les taux de TVA sont codés pour BG, DE, FR, RO, PL, CZ, IT, ES, NL, PT, AT, BE, HR, HU, SE et tous les autres. Les taux sont mis à jour lors de changements législatifs.
 
 [faq3_q]
-Puis-je utiliser InvoiceKit en dehors de l'UE ?
+InvoiceKit prend-il en charge les factures récurrentes ?
 
 [faq3_a]
-Absolument. Vous pouvez utiliser InvoiceKit de n'importe où dans le monde. Le moteur TVA UE est le plus utile pour les freelances basés en UE, mais tout freelance bénéficie des fonctionnalités de suivi du temps et de facturation.
+Oui. Vous pouvez transformer n'importe quelle facture en récurrente avec des intervalles hebdomadaires, mensuels, trimestriels ou annuels. InvoiceKit clone et émet automatiquement la facture à la date d'échéance — vous n'avez rien à faire.
 
 [faq4_q]
 Comment fonctionne le suivi du temps ?
@@ -276,10 +276,10 @@ Comment fonctionne le suivi du temps ?
 Créez des projets avec des clients et des taux horaires. Utilisez le minuteur start/stop intégré pendant votre travail. Tout le temps suivi est stocké et peut être converti directement en lignes de facture en un clic.
 
 [faq5_q]
-Puis-je résilier à tout moment ?
+Y a-t-il une période d'essai gratuite ?
 
 [faq5_a]
-Oui. Pas d'engagement, pas d'enfermement. Résiliez à tout moment et conservez l'accès jusqu'à la fin de votre période de facturation. Toutes vos données sont exportables à tout moment.
+Oui. Tous les nouveaux comptes démarrent avec un essai Pro de 14 jours — sans carte de crédit. Vous bénéficiez d'un accès Pro complet dès le premier jour. Après l'essai, vous restez sur le plan gratuit sauf si vous choisissez de passer à une version supérieure.
 
 [cta_title]
 Prêt à facturer à l'européenne ?

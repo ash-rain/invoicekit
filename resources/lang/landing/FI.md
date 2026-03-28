@@ -69,16 +69,16 @@ Asiakashallinta
 Tallenna asiakkaat maan, ALV-numeron ja valuutan kanssa. Maiden liput, välitön haku ja täydellinen laskutushistoria asiakaskohtaisesti.
 
 [f5_title]
-Monivaluutta
+Toistuvat laskut
 
 [f5_desc]
-Laskuta EUR, USD, BGN, RON, PLN, CZK tai HUF:ssa. Valuutta sovelletaan automaattisesti asiakaskohtaisesti. Summat muotoiltu oikein jokaiselle alueelle.
+Aseta viikoittaiset, kuukausittaiset, neljännesvuosittaiset tai vuosittaiset laskut. InvoiceKit kloonaa ja lähettää ne automaattisesti — ei manuaalista työtä, ei unohdettuja laskutussyklejä.
 
 [f6_title]
-Maksumuistutukset
+Asiakasportaali
 
 [f6_desc]
-Automaattiset sähköpostit: 3 päivää ennen eräpäivää, eräpäivänä, 7 päivää myöhässä. PDF liitettynä. Kassavirtasi autopilotilla.
+Jaa asiakkaalle turvallinen, tokenoitu linkki. Asiakas voi katsella laskua, ladata PDF:n ja maksaa verkossa Stripen kautta — kirjautumista ei tarvita.
 
 [how_tag]
 Näin se toimii
@@ -183,7 +183,7 @@ Aloita ilmaiseksi
 Starter
 
 [p_starter_price]
-€15
+€9
 
 [p_starter_period]
 kuukaudessa
@@ -231,10 +231,10 @@ Toistuvat laskut
 Asiakasportaali
 
 [p_pro_l4]
-Prioriteettituki
+Peppol / e-Laskutus (UBL 2.1)
 
 [p_pro_l5]
-API-pääsy
+ALV-vapautustila (kaikki 27 EU-maata)
 
 [p_pro_l6]
 Kaikki EU ALV -säännöt
@@ -264,10 +264,10 @@ Mitä EU-maita tuetaan?
 Kaikki 27 EU:n jäsenvaltiota. ALV-kannat on kovakoodattu BG, DE, FR, RO, PL, CZ, IT, ES, NL, PT, AT, BE, HR, HU, SE:lle ja kaikille muille. Kannat päivitetään EU-lainsäädännön muuttuessa.
 
 [faq3_q]
-Voinko käyttää InvoiceKitiä EU:n ulkopuolella?
+Tukeeko InvoiceKit toistuvia laskuja?
 
 [faq3_a]
-Ehdottomasti. Voit käyttää InvoiceKitiä missä tahansa maailmassa. EU ALV -moottori on arvokkain EU-pohjaisten freelancereiden joukkoon, mutta kaikki freelancerit hyötyvät ajanseuranta- ja laskutusominaisuuksista.
+Kyllä. Voit muuttaa minkä tahansa laskun toistuvaksi viikoittaisilla, kuukausittaisilla, neljännesvuosittaisilla tai vuosittaisilla väleillä. InvoiceKit kloonaa ja lähettää laskun automaattisesti eräpäivänä — sinun ei tarvitse tehdä mitään.
 
 [faq4_q]
 Miten ajanseuranta toimii?
@@ -276,10 +276,10 @@ Miten ajanseuranta toimii?
 Luo projekteja asiakkailla ja tuntitaksoilla. Käytä sisäänrakennettua käynnistä/pysäytä -ajastinta töitä tehdessäsi. Kaikki seurattu aika tallennetaan ja voidaan yhdellä napsautuksella muuntaa suoraan laskuriveiksi.
 
 [faq5_q]
-Voinko peruuttaa milloin tahansa?
+Onko saatavilla maksuton kokeilujakso?
 
 [faq5_a]
-Kyllä. Ei sopimuksia, ei sitoutumista. Peruuta milloin tahansa ja säilytät pääsyn laskutuskauden loppuun. Kaikki tietosi ovat vietävissä milloin tahansa.
+Kyllä. Kaikki uudet tilit alkavat 14 päivän Pro-kokeilujaksolla — luottokorttia ei tarvita. Saat täyden Pro-pääsyn ensimmäisestä päivästä. Kokeilujakson jälkeen pysyt maksuttomassa suunnitelmassa, ellet valitse päivitystä.
 
 [cta_title]
 Valmis laskuttamaan kuin eurooppalainen?

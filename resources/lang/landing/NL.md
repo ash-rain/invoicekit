@@ -69,16 +69,16 @@ Klantbeheer
 Sla klanten op met land, btw-nummer en valuta. Landvlaggen, directe zoekfunctie en volledige facturatiegeschiedenis per klant.
 
 [f5_title]
-Meerdere valuta's
+Terugkerende facturen
 
 [f5_desc]
-Factureer in EUR, USD, BGN, RON, PLN, CZK of HUF. Valuta automatisch toegepast per klant. Bedragen correct opgemaakt voor elke regio.
+Stel wekelijkse, maandelijkse, driemaandelijkse of jaarlijkse facturen in. InvoiceKit kloont en verzendt ze automatisch — geen handmatig werk, geen gemiste factureringscycli.
 
 [f6_title]
-Betalingsherinneringen
+Klantenportaal
 
 [f6_desc]
-Automatische e-mails: 3 dagen voor vervaldatum, op vervaldatum, 7 dagen te laat. PDF bijgevoegd. Uw cashflow op de automatische piloot.
+Deel een beveiligde, tokenized link met elke klant. Ze kunnen de factuur bekijken, de PDF downloaden en online betalen via Stripe — zonder aanmelding.
 
 [how_tag]
 Hoe het werkt
@@ -183,7 +183,7 @@ Gratis beginnen
 Starter
 
 [p_starter_price]
-€15
+€9
 
 [p_starter_period]
 per maand
@@ -231,10 +231,10 @@ Terugkerende facturen
 Klantenportaal
 
 [p_pro_l4]
-Prioritaire ondersteuning
+Peppol / e-Facturatie (UBL 2.1)
 
 [p_pro_l5]
-API-toegang
+BTW-vrijstellingsmodus (alle 27 EU-landen)
 
 [p_pro_l6]
 Alle EU btw-regels
@@ -264,10 +264,10 @@ Welke EU-landen worden ondersteund?
 Alle 27 EU-lidstaten. Btw-tarieven zijn vastgelegd voor BG, DE, FR, RO, PL, CZ, IT, ES, NL, PT, AT, BE, HR, HU, SE en alle anderen. Tarieven worden bijgewerkt wanneer de EU-wetgeving verandert.
 
 [faq3_q]
-Kan ik InvoiceKit buiten de EU gebruiken?
+Ondersteunt InvoiceKit terugkerende facturen?
 
 [faq3_a]
-Absoluut. U kunt InvoiceKit van overal ter wereld gebruiken. De EU btw-engine is het meest waardevol voor in de EU gevestigde freelancers, maar elke freelancer profiteert van de tijdregistratie- en factureringsfuncties.
+Ja. U kunt elke factuur omzetten in een terugkerende met wekelijkse, maandelijkse, driemaandelijkse of jaarlijkse intervallen. InvoiceKit kloont en verzendt de factuur automatisch op de vervaldatum — u hoeft niets te doen.
 
 [faq4_q]
 Hoe werkt tijdregistratie?
@@ -276,10 +276,10 @@ Hoe werkt tijdregistratie?
 Maak projecten aan met klanten en uurtarieven. Gebruik de ingebouwde start/stop-timer terwijl u werkt. Alle bijgehouden tijd wordt opgeslagen en kan met één klik direct worden omgezet in factuurregels.
 
 [faq5_q]
-Kan ik op elk moment opzeggen?
+Is er een gratis proefperiode beschikbaar?
 
 [faq5_a]
-Ja. Geen contracten, geen binding. Zeg op elk moment op en u behoudt toegang tot het einde van uw factureringsperiode. Al uw gegevens zijn te allen tijde exporteerbaar.
+Ja. Alle nieuwe accounts beginnen met een gratis proefperiode van 14 dagen Pro — geen creditcard vereist. U heeft vanaf dag één volledige toegang tot Pro. Na de proefperiode blijft u op het gratis abonnement tenzij u ervoor kiest te upgraden.
 
 [cta_title]
 Klaar om als een Europeaan te factureren?

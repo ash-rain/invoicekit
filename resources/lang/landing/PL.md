@@ -69,16 +69,16 @@ Zarządzanie klientami
 Przechowuj klientów z krajem, numerem VAT i walutą. Flagi krajów, natychmiastowe wyszukiwanie i pełna historia fakturowania na klienta.
 
 [f5_title]
-Wielowalutowość
+Faktury cykliczne
 
 [f5_desc]
-Fakturuj w EUR, USD, BGN, RON, PLN, CZK lub HUF. Waluta stosowana automatycznie dla każdego klienta. Kwoty sformatowane dla każdego regionu.
+Skonfiguruj tygodniowe, miesięczne, kwartalne lub roczne faktury. InvoiceKit automatycznie klonuje i wysyła je — zero ręcznej pracy, zero pominiętych cykli rozliczeniowych.
 
 [f6_title]
-Przypomnienia o płatnościach
+Portal klienta
 
 [f6_desc]
-Automatyczne e-maile: 3 dni przed terminem, w dniu terminu, 7 dni po terminie. PDF w załączeniu. Twój przepływ gotówki na autopilocie.
+Udostępnij bezpieczny, tokenizowany link dowolnemu klientowi. Może przeglądać fakturę, pobrać PDF i zapłacić online przez Stripe — bez logowania.
 
 [how_tag]
 Jak to działa
@@ -183,7 +183,7 @@ Zacznij za darmo
 Starter
 
 [p_starter_price]
-€15
+€9
 
 [p_starter_period]
 miesięcznie
@@ -231,10 +231,10 @@ Faktury cykliczne
 Portal klienta
 
 [p_pro_l4]
-Wsparcie priorytetowe
+Peppol / e-Fakturowanie (UBL 2.1)
 
 [p_pro_l5]
-Dostęp do API
+Tryb zwolnienia z VAT (wszystkie 27 krajów UE)
 
 [p_pro_l6]
 Wszystkie zasady VAT UE
@@ -264,10 +264,10 @@ Które kraje UE są obsługiwane?
 Wszystkie 27 państw członkowskich UE. Stawki VAT są zakodowane dla BG, DE, FR, RO, PL, CZ, IT, ES, NL, PT, AT, BE, HR, HU, SE i wszystkich pozostałych. Stawki są aktualizowane po zmianach przepisów UE.
 
 [faq3_q]
-Czy mogę używać InvoiceKit poza UE?
+Czy InvoiceKit obsługuje faktury cykliczne?
 
 [faq3_a]
-Oczywiście. Możesz używać InvoiceKit z dowolnego miejsca na świecie. Silnik VAT UE jest najbardziej wartościowy dla freelancerów z siedzibą w UE, ale każdy freelancer korzysta z funkcji śledzenia czasu i fakturowania.
+Tak. Możesz zamienić dowolną fakturę w cykliczną z tygodniowymi, miesięcznymi, kwartalnymi lub rocznymi interwałami. InvoiceKit automatycznie klonuje i wystawia fakturę w terminie płatności — nie musisz nic robić.
 
 [faq4_q]
 Jak działa śledzenie czasu?
@@ -276,10 +276,10 @@ Jak działa śledzenie czasu?
 Twórz projekty z klientami i stawkami godzinowymi. Używaj wbudowanego timera start/stop podczas pracy. Cały śledzony czas jest przechowywany i można go jednym kliknięciem przekonwertować bezpośrednio na pozycje faktury.
 
 [faq5_q]
-Czy mogę anulować w dowolnym momencie?
+Czy dostępny jest bezpłatny okres próbny?
 
 [faq5_a]
-Tak. Bez umów, bez przywiązania. Anuluj w dowolnym momencie, a zachowasz dostęp do końca okresu rozliczeniowego. Wszystkie Twoje dane można eksportować w dowolnym momencie.
+Tak. Wszystkie nowe konta zaczynają z 14-dniowym okresem próbnym Pro — karta kredytowa nie jest wymagana. Od pierwszego dnia masz pełny dostęp do Pro. Po zakończeniu okresu próbnego pozostajesz na planie darmowym, chyba że zdecydujesz się na ulepszenie.
 
 [cta_title]
 Gotowy do fakturowania jak Europejczyk?

@@ -69,16 +69,16 @@ Gestione clienti
 Archivia i clienti con paese, partita IVA e valuta. Bandiere dei paesi, ricerca istantanea e storico fatturazione completo per cliente.
 
 [f5_title]
-Multi-valuta
+Fatture ricorrenti
 
 [f5_desc]
-Fattura in EUR, USD, BGN, RON, PLN, CZK o HUF. Valuta applicata automaticamente per cliente. Importi formattati per ogni area geografica.
+Imposta fatture settimanali, mensili, trimestrali o annuali. InvoiceKit le clona e le invia automaticamente — nessun lavoro manuale, nessun ciclo di fatturazione mancato.
 
 [f6_title]
-Promemoria pagamenti
+Portale clienti
 
 [f6_desc]
-Email automatiche: 3 giorni prima della scadenza, alla data di scadenza, 7 giorni di ritardo. PDF allegato. Il tuo flusso di cassa in pilota automatico.
+Condividi un link sicuro e tokenizzato con qualsiasi cliente. Possono visualizzare la fattura, scaricare il PDF e pagare online tramite Stripe — senza bisogno di accesso.
 
 [how_tag]
 Come funziona
@@ -183,7 +183,7 @@ Inizia gratis
 Starter
 
 [p_starter_price]
-€15
+€9
 
 [p_starter_period]
 al mese
@@ -231,10 +231,10 @@ Fatture ricorrenti
 Portale clienti
 
 [p_pro_l4]
-Supporto prioritario
+Peppol / Fatturazione elettronica (UBL 2.1)
 
 [p_pro_l5]
-Accesso API
+Modalità esenzione IVA (tutti i 27 paesi UE)
 
 [p_pro_l6]
 Tutte le regole IVA UE
@@ -264,10 +264,10 @@ Quali paesi UE sono supportati?
 Tutti i 27 Stati membri dell'UE. Le aliquote IVA sono predefinite per BG, DE, FR, RO, PL, CZ, IT, ES, NL, PT, AT, BE, HR, HU, SE e tutti gli altri. Le aliquote vengono aggiornate quando la legislazione UE cambia.
 
 [faq3_q]
-Posso usare InvoiceKit fuori dall'UE?
+InvoiceKit supporta le fatture ricorrenti?
 
 [faq3_a]
-Assolutamente. Puoi usare InvoiceKit da qualsiasi parte del mondo. Il motore IVA UE è più utile per i freelance con sede nell'UE, ma qualsiasi freelance beneficia delle funzionalità di monitoraggio del tempo e fatturazione.
+Sì. Puoi trasformare qualsiasi fattura in ricorrente con intervalli settimanali, mensili, trimestrali o annuali. InvoiceKit clona e trasmette automaticamente la fattura alla data di scadenza — non devi fare nulla.
 
 [faq4_q]
 Come funziona il monitoraggio del tempo?
@@ -276,10 +276,10 @@ Come funziona il monitoraggio del tempo?
 Crea progetti con clienti e tariffe orarie. Usa il timer start/stop integrato mentre lavori. Tutto il tempo tracciato viene salvato e può essere convertito direttamente in voci di fattura con un clic.
 
 [faq5_q]
-Posso annullare in qualsiasi momento?
+È disponibile una prova gratuita?
 
 [faq5_a]
-Sì. Nessun contratto, nessun vincolo. Annulla in qualsiasi momento e mantieni l'accesso fino alla fine del tuo periodo di fatturazione. Tutti i tuoi dati sono esportabili in qualsiasi momento.
+Sì. Tutti i nuovi account iniziano con una prova Pro di 14 giorni — nessuna carta di credito richiesta. Hai accesso completo a Pro dal primo giorno. Dopo la prova, rimani sul piano gratuito a meno che non scelga di passare a un piano superiore.
 
 [cta_title]
 Pronto a fatturare come un europeo?

@@ -156,8 +156,8 @@
         ['icon' => '📄', 'col' => 'icon-sky', 'tk' => 'f2_title', 'dk' => 'f2_desc'],
         ['icon' => '🇪🇺', 'col' => 'icon-teal', 'tk' => 'f3_title', 'dk' => 'f3_desc'],
         ['icon' => '👥', 'col' => 'icon-violet', 'tk' => 'f4_title', 'dk' => 'f4_desc'],
-        ['icon' => '💱', 'col' => 'icon-amber', 'tk' => 'f5_title', 'dk' => 'f5_desc'],
-        ['icon' => '🔔', 'col' => 'icon-rose', 'tk' => 'f6_title', 'dk' => 'f6_desc'],
+        ['icon' => '�', 'col' => 'icon-amber', 'tk' => 'f5_title', 'dk' => 'f5_desc'],
+        ['icon' => '🔗', 'col' => 'icon-rose', 'tk' => 'f6_title', 'dk' => 'f6_desc'],
     ];
 @endphp
 <!DOCTYPE html>
@@ -1540,6 +1540,8 @@
                     <span class="t-item">✓ {!! $g('hero_trust_2') !!}</span>
                     <span class="t-dot"></span>
                     <span class="t-item">✓ {!! $g('hero_trust_3') !!}</span>
+                    <span class="t-dot"></span>
+                    <span class="t-item">✓ {!! $g('hero_trust_4') !!}</span>
                 </div>
             </div>
             <div class="hero-right">
@@ -1710,6 +1712,7 @@
                     <li>{!! $g('p_free_l2') !!}</li>
                     <li>{!! $g('p_free_l3') !!}</li>
                     <li>{!! $g('p_free_l4') !!}</li>
+                    <li>{!! $g('p_free_l5') !!}</li>
                 </ul>
                 <a href="/register" class="p-cta p-out">{!! $g('p_free_cta') !!}</a>
             </div>
@@ -1725,6 +1728,7 @@
                     <li>{!! $g('p_starter_l3') !!}</li>
                     <li>{!! $g('p_starter_l4') !!}</li>
                     <li>{!! $g('p_starter_l5') !!}</li>
+                    <li>{!! $g('p_starter_l6') !!}</li>
                 </ul>
                 <a href="/register" class="p-cta p-pri">{!! $g('p_starter_cta') !!}</a>
             </div>

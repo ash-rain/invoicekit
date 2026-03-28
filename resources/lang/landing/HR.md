@@ -69,16 +69,16 @@ Upravljanje klijentima
 Pohrani klijente s državom, PDV brojem i valutom. Oznake država, trenutačna pretraga i potpuna povijest fakturiranja po klijentu.
 
 [f5_title]
-Više valuta
+Ponavljajući računi
 
 [f5_desc]
-Fakturiraj u EUR, USD, BGN, RON, PLN, CZK ili HUF. Valuta se automatski primjenjuje po klijentu. Iznosi formatirani za svaku regiju.
+Postavi tjedne, mjesečne, tromjesečne ili godišnje račune. InvoiceKit ih automatski klonira i šalje — bez ručnog rada, bez propuštenih ciklusa naplate.
 
 [f6_title]
-Podsjetnici plaćanja
+Klijentski portal
 
 [f6_desc]
-Automatske e-pošte: 3 dana prije dospijeća, na datum dospijeća, 7 dana zakašnjenja. PDF prilog. Tvoj novčani tijek na autopilotu.
+Podjeli sigurnu, tokeniziranu vezu s bilo kojim klijentom. Mogu pregledati račun, preuzeti PDF i platiti online putem Stripea — bez potrebe za prijavom.
 
 [how_tag]
 Kako funkcionira
@@ -183,7 +183,7 @@ Počni besplatno
 Starter
 
 [p_starter_price]
-€15
+€9
 
 [p_starter_period]
 mjesečno
@@ -231,10 +231,10 @@ Ponavljajuće fakture
 Klijentski portal
 
 [p_pro_l4]
-Prioritetna podrška
+Peppol / e-Fakturiranje (UBL 2.1)
 
 [p_pro_l5]
-API pristup
+Način oslobođenja od PDV-a (svih 27 zemalja EU)
 
 [p_pro_l6]
 Sva EU PDV pravila
@@ -264,10 +264,10 @@ Koje EU države su podržane?
 Svih 27 država članica EU. PDV stope su ugrađene za BG, DE, FR, RO, PL, CZ, IT, ES, NL, PT, AT, BE, HR, HU, SE i sve ostale. Stope se ažuriraju kad se EU zakonodavstvo mijenja.
 
 [faq3_q]
-Mogu li koristiti InvoiceKit izvan EU?
+Podržava li InvoiceKit ponavljajuće račune?
 
 [faq3_a]
-Apsolutno. InvoiceKit možeš koristiti iz bilo kojeg dijela svijeta. EU PDV motor je najvrjedniji za freelancere sa sjedištem u EU, ali svaki freelancer ima korist od funkcija praćenja vremena i fakturiranja.
+Da. Možeš pretvoriti bilo koji račun u ponavljajući s tjednim, mjesečnim, tromjesečnim ili godišnjim intervalima. InvoiceKit automatski klonira i izdaje račun na datum dospijeća — ne moraš ništa dirati.
 
 [faq4_q]
 Kako funkcionira praćenje vremena?
@@ -276,10 +276,10 @@ Kako funkcionira praćenje vremena?
 Kreiraj projekte s klijentima i satnicama. Koristi ugrađeni start/stop tajmer dok radiš. Sve praćeno vrijeme se pohranjuje i jednim klikom može se izravno pretvoriti u stavke fakture.
 
 [faq5_q]
-Mogu li otkazati bilo kada?
+Postoji li besplatno probno razdoblje?
 
 [faq5_a]
-Da. Bez ugovora, bez vezanja. Otkaži bilo kada i zadržavaš pristup do kraja svog razdoblja naplate. Svi tvoji podaci su uvijek izvozivi.
+Da. Svi novi računi počinju s 14-dnevnim Pro probnim razdobljem — nije potrebna kreditna kartica. Imaš puni Pro pristup od prvog dana. Nakon probnog razdoblja ostaneš na besplatnom planu ako ne odabereš nadogradnju.
 
 [cta_title]
 Spreman fakturirati kao Europljanin?

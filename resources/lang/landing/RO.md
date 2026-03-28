@@ -69,16 +69,16 @@ Gestionare clienți
 Stochează clienți cu țara, codul de TVA și moneda. Steaguri de țări, căutare instantanee și istoric complet de facturare per client.
 
 [f5_title]
-Multi-monedă
+Facturi recurente
 
 [f5_desc]
-Facturează în EUR, USD, BGN, RON, PLN, CZK sau HUF. Moneda aplicată automat per client. Sume formatate pentru fiecare regiune.
+Configurează facturi săptămânale, lunare, trimestriale sau anuale. InvoiceKit le clonează și le trimite automat — fără muncă manuală, fără cicluri de facturare ratate.
 
 [f6_title]
-Memento plăți
+Portal client
 
 [f6_desc]
-E-mailuri automate: 3 zile înainte de scadență, la data scadenței, 7 zile restanță. PDF atașat. Fluxul tău de numerar pe pilot automat.
+Partajează un link securizat, tokenized cu orice client. Pot vizualiza factura, descărca PDF-ul și plăti online prin Stripe — fără autentificare.
 
 [how_tag]
 Cum funcționează
@@ -183,7 +183,7 @@ Export facturi PDF
 Starter
 
 [p_starter_price]
-€15
+€9
 
 [p_starter_period]
 pe lună
@@ -231,10 +231,10 @@ Facturi recurente
 Portal client
 
 [p_pro_l4]
-Suport prioritar
+Peppol / e-Facturare (UBL 2.1)
 
 [p_pro_l5]
-Acces API
+Mod Scutire TVA (toate cele 27 de țări UE)
 
 [p_pro_l6]
 Toate regulile TVA UE
@@ -264,10 +264,10 @@ Ce țări din UE sunt suportate?
 Toate cele 27 de state membre ale UE. Cotele TVA sunt hardcodate pentru BG, DE, FR, RO, PL, CZ, IT, ES, NL, PT, AT, BE, HR, HU, SE și toate celelalte. Cotele sunt actualizate când legislația UE se schimbă.
 
 [faq3_q]
-Pot folosi InvoiceKit în afara UE?
+InvoiceKit acceptă facturi recurente?
 
 [faq3_a]
-Absolut. Poți folosi InvoiceKit din orice parte a lumii. Motorul TVA UE este cel mai valoros pentru freelancerii cu sediul în UE, dar orice freelancer beneficiază de funcțiile de urmărire a timpului și facturare.
+Da. Poți transforma orice factură în recurentă cu intervale săptămânale, lunare, trimestriale sau anuale. InvoiceKit clonează și emite automat factura la data scadentă — nu trebuie să faci nimic.
 
 [faq4_q]
 Cum funcționează urmărirea timpului?
@@ -276,10 +276,10 @@ Cum funcționează urmărirea timpului?
 Creează proiecte cu clienți și tarife orare. Folosește cronometrul start/stop integrat în timp ce lucrezi. Tot timpul urmărit este stocat și poate fi convertit direct în linii de factură cu un clic.
 
 [faq5_q]
-Pot anula oricând?
+Există o perioadă de probă gratuită?
 
 [faq5_a]
-Da. Fără contracte, fără blocare. Anulează oricând și păstrezi accesul până la sfârșitul perioadei de facturare. Toate datele tale sunt exportabile oricând.
+Da. Toate conturile noi încep cu o perioadă de probă Pro de 14 zile — nu este necesar cardul de credit. Ai acces complet la Pro din prima zi. După perioada de probă, rămâi pe planul gratuit dacă nu alegi să faci upgrade.
 
 [cta_title]
 Ești gata să facturezi ca un european?

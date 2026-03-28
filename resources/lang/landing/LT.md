@@ -69,16 +69,16 @@ Klientų valdymas
 Saugok klientus su šalimi, PVM kodu ir valiuta. Šalių vėliavos, momentinė paieška ir pilna sąskaitų istorija kiekvienam klientui.
 
 [f5_title]
-Kelios valiutos
+Pasikartojančios sąskaitos
 
 [f5_desc]
-Išrašyk sąskaitas EUR, USD, BGN, RON, PLN, CZK arba HUF. Valiuta pritaikoma automatiškai kiekvienam klientui. Sumos suformatuotos kiekvienam regionui.
+Nustatykite savaitines, mėnesines, ketvirtinės ar metines sąskaitas. InvoiceKit jas automatiškai klonuoja ir siunčia — jokio rankinio darbo, jokių praleistų atsiskaitymo ciklų.
 
 [f6_title]
-Mokėjimų priminimai
+Klientų portalas
 
 [f6_desc]
-Automatiniai el. laiškai: likus 3 dienoms iki termino, termino dieną, 7 dienos vėluojant. PDF pridėtas. Jūsų pinigų srautas autopilotu.
+Pasidalinkite saugiu, tokenizuotu nuoroda su bet kuriuo klientu. Jie gali peržiūrėti sąskaitą, atsisiųsti PDF ir mokėti internetu per Stripe — prisijungimas nereikalingas.
 
 [how_tag]
 Kaip tai veikia
@@ -183,7 +183,7 @@ Pradėti nemokamai
 Starter
 
 [p_starter_price]
-€15
+€9
 
 [p_starter_period]
 per mėnesį
@@ -231,10 +231,10 @@ Pasikartojančios sąskaitos
 Klientų portalas
 
 [p_pro_l4]
-Prioritetinė pagalba
+Peppol / e-Sąskaita (UBL 2.1)
 
 [p_pro_l5]
-API prieiga
+PVM atleidimo režimas (visos 27 ES šalys)
 
 [p_pro_l6]
 Visos ES PVM taisyklės
@@ -264,10 +264,10 @@ Kurios ES šalys palaikomos?
 Visos 27 ES valstybės narės. PVM normos yra fiksuotos BG, DE, FR, RO, PL, CZ, IT, ES, NL, PT, AT, BE, HR, HU, SE ir visiems kitiems. Normos atnaujinamos kintant ES teisės aktams.
 
 [faq3_q]
-Ar galiu naudoti InvoiceKit ne ES?
+Ar InvoiceKit palaiko pasikartojančias sąskaitas?
 
 [faq3_a]
-Absoliučiai. InvoiceKit galite naudoti iš bet kurios pasaulio vietos. ES PVM variklis vertingiausias ES pagrindu veikiantiems laisvadarbiams, tačiau kiekvienas laisvadarbybeištas gauna naudos iš laiko sekimo ir sąskaitų funkcijų.
+Taip. Galite paversti bet kurią sąskaitą pasikartojančia su savaitinėmis, mėnesinėmis, ketvirčio arba metinėmis intervalais. InvoiceKit automatiškai klonuoja ir išrašo sąskaitą termino datą — jums nereikia nieko daryti.
 
 [faq4_q]
 Kaip veikia laiko sekimas?
@@ -276,10 +276,10 @@ Kaip veikia laiko sekimas?
 Sukurkite projektus su klientais ir valandiniais tarifais. Naudokite įtaisytą pradėti/sustabdyti laikrodį dirbdami. Visas sekamas laikas išsaugomas ir gali būti vienu paspaudimu tiesiogiai konvertuotas į sąskaitos eilutes.
 
 [faq5_q]
-Ar galiu atšaukti bet kuriuo metu?
+Ar yra nemokamas bandomasis laikotarpis?
 
 [faq5_a]
-Taip. Jokių sutarčių, jokių įsipareigojimų. Atšaukti bet kuriuo metu ir išlaikote prieigą iki atsiskaitymo laikotarpio pabaigos. Visi jūsų duomenys bet kuriuo metu eksportuojami.
+Taip. Visos naujos paskyros pradeda su 14 dienų Pro bandomuoju laikotarpiu — kredito kortelė nereikalinga. Nuo pirmos dienos turite visą Pro prieigą. Po bandomojo laikotarpio liksite nemokamu planu, nebent pasirinksite atnaujinti.
 
 [cta_title]
 Pasiruošęs išrašyti sąskaitas kaip europietis?

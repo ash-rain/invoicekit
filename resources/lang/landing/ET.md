@@ -69,16 +69,16 @@ Kliendihaldus
 Salvesta kliendid koos riigi, käibemaksunumbri ja valuutaga. Riikide lipud, kohene otsing ja täielik arveajalugu kliendi kohta.
 
 [f5_title]
-Mitme valuuta tugi
+Korduvad arved
 
 [f5_desc]
-Esita arveid EUR, USD, BGN, RON, PLN, CZK või HUF. Valuuta rakendatakse automaatselt kliendi kohta. Summad vormindatakse iga piirkonna jaoks.
+Seadista nädalased, kuised, kvartalised või aastased arved. InvoiceKit kloonib ja saadab neid automaatselt — käsitsi tööd ei ole, arvelduspäevad ei jää vahelejtüks.
 
 [f6_title]
-Maksetuletused
+Kliendirportaal
 
 [f6_desc]
-Automaatsed meilid: 3 päeva enne tähtaega, tähtpäeval, 7 päeva hilinemisega. PDF manustatud. Teie rahavoog autopiloodil.
+Jaga kliendiga turvalist, tokeniseeritud linki. Ta saab arvet vaadata, PDF-i alla laadida ja Stripe'i kaudu võrgus maksta — sisselogimine pole vajalik.
 
 [how_tag]
 Kuidas see toimib
@@ -183,7 +183,7 @@ Alusta tasuta
 Starter
 
 [p_starter_price]
-€15
+€9
 
 [p_starter_period]
 kuus
@@ -231,10 +231,10 @@ Korduvad arved
 Kliendi portaal
 
 [p_pro_l4]
-Prioriteetne tugi
+Peppol / e-Arveldus (UBL 2.1)
 
 [p_pro_l5]
-API juurdepääs
+KM-vabastuse réžiim (kõik 27 EL-i riiki)
 
 [p_pro_l6]
 Kõik EL-i käibemaksureeglid
@@ -264,10 +264,10 @@ Milliseid EL-i riike toetatakse?
 Kõiki 27 EL-i liikmesriiki. Käibemaksumäärad on kodeeritud BG, DE, FR, RO, PL, CZ, IT, ES, NL, PT, AT, BE, HR, HU, SE ja kõigi teiste jaoks. Määrasid uuendatakse EL-i õigusaktide muutumisel.
 
 [faq3_q]
-Kas saan InvoiceKiti kasutada väljaspool EL-i?
+Kas InvoiceKit toetab korduvaid arveid?
 
 [faq3_a]
-Absoluutselt. Saate InvoiceKiti kasutada kõikjalt maailmast. EL-i käibemaksumotor on kõige väärtuslikum EL-i-põhistele vabakutselistele, kuid iga vabakutseline saab kasu ajajälgimise ja arveldamise funktsioonidest.
+Jah. Saate muuta mis tahes arve korduvaks nädalaste, kuiste, kvartaliste või aastaste intervallidega. InvoiceKit kloonib ja väljastab arve tähtpäeval automaatselt — te ei pea midagi tegema.
 
 [faq4_q]
 Kuidas ajajälgimine töötab?
@@ -276,10 +276,10 @@ Kuidas ajajälgimine töötab?
 Loo projektid klientide ja tunnitariifidega. Kasuta töötamise ajal sisseehitatud start/stopp-taimerit. Kogu jälgitud aeg salvestatakse ja seda saab ühe klõpsuga otse arveridideks muuta.
 
 [faq5_q]
-Kas saan igal ajal tühistada?
+Kas on tasuta prooviversioon?
 
 [faq5_a]
-Jah. Lepinguid pole, sidumist pole. Tühista igal ajal ja säilita juurdepääs kuni arveperioodi lõpuni. Kõik teie andmed on igal ajal eksporditavad.
+Jah. Kõik uued kontod algavad 14-päevase Pro prooviversiooniga — krediitkaarti pole vaja. Saate täieliku Pro juurdepääsu esimesest päevast. Pärast prooviversiooni jääte tasuta plaanile, kui te ei otsusta uuendada.
 
 [cta_title]
 Valmis esitama arveid nagu eurooplane?

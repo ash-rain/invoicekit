@@ -69,16 +69,16 @@ Gestión de clientes
 Guarda clientes con país, número de IVA y divisa. Banderas de países, búsqueda instantánea e historial de facturación completo por cliente.
 
 [f5_title]
-Multi-divisa
+Facturas recurrentes
 
 [f5_desc]
-Factura en EUR, USD, BGN, RON, PLN, CZK o HUF. Divisa aplicada automáticamente por cliente. Importes formateados para cada región.
+Configura facturas semanales, mensuales, trimestrales o anuales. InvoiceKit las clona y envía automáticamente — sin trabajo manual, sin ciclos de facturación olvidados.
 
 [f6_title]
-Recordatorios de pago
+Portal del cliente
 
 [f6_desc]
-Emails automáticos: 3 días antes del vencimiento, en la fecha de vencimiento, 7 días de retraso. PDF adjunto. Tu flujo de caja en piloto automático.
+Comparte un enlace seguro y tokenizado con cualquier cliente. Puede ver la factura, descargar el PDF y pagar online vía Stripe — sin necesidad de inicio de sesión.
 
 [how_tag]
 Cómo funciona
@@ -183,7 +183,7 @@ Empezar gratis
 Starter
 
 [p_starter_price]
-€15
+€9
 
 [p_starter_period]
 al mes
@@ -231,10 +231,10 @@ Facturas recurrentes
 Portal de clientes
 
 [p_pro_l4]
-Soporte prioritario
+Peppol / Factura electrónica (UBL 2.1)
 
 [p_pro_l5]
-Acceso a API
+Modo exención de IVA (los 27 países de la UE)
 
 [p_pro_l6]
 Todas las reglas de IVA de la UE
@@ -264,10 +264,10 @@ Sí. InvoiceKit calcula automáticamente el IVA correcto para cada factura segú
 Los 27 estados miembros de la UE. Los tipos de IVA están codificados para BG, DE, FR, RO, PL, CZ, IT, ES, NL, PT, AT, BE, HR, HU, SE y todos los demás. Los tipos se actualizan cuando cambia la legislación de la UE.
 
 [faq3_q]
-¿Puedo usar InvoiceKit fuera de la UE?
+¿Admite InvoiceKit facturas recurrentes?
 
 [faq3_a]
-Por supuesto. Puedes usar InvoiceKit desde cualquier parte del mundo. El motor de IVA de la UE es más valioso para los autónomos con sede en la UE, pero cualquier autónomo se beneficia de las funciones de seguimiento del tiempo y facturación.
+Sí. Puedes convertir cualquier factura en recurrente con intervalos semanales, mensuales, trimestrales o anuales. InvoiceKit clona y emite automáticamente la factura en la fecha de vencimiento — sin que tengas que hacer nada.
 
 [faq4_q]
 ¿Cómo funciona el seguimiento del tiempo?
@@ -276,10 +276,10 @@ Por supuesto. Puedes usar InvoiceKit desde cualquier parte del mundo. El motor d
 Crea proyectos con clientes y tarifas por hora. Usa el temporizador inicio/pausa integrado mientras trabajas. Todo el tiempo registrado se almacena y se puede convertir directamente en líneas de factura con un clic.
 
 [faq5_q]
-¿Puedo cancelar en cualquier momento?
+¿Hay un período de prueba gratuito?
 
 [faq5_a]
-Sí. Sin contratos, sin ataduras. Cancela en cualquier momento y conservarás el acceso hasta el final de tu período de facturación. Todos tus datos son exportables en cualquier momento.
+Sí. Todas las cuentas nuevas comienzan con una prueba Pro de 14 días — sin tarjeta de crédito requerida. Tienes acceso completo a Pro desde el primer día. Tras la prueba, permaneces en el plan gratuito a menos que elijas actualizar.
 
 [cta_title]
 ¿Listo para facturar como un europeo?

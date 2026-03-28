@@ -69,16 +69,16 @@ Kundenverwaltung
 Kunden mit Land, USt-IdNr. und Währung speichern. Länderflaggen, Sofortsuche und vollständige Rechnungshistorie pro Kunde.
 
 [f5_title]
-Mehrwährungen
+Wiederkehrende Rechnungen
 
 [f5_desc]
-Rechnungen in EUR, USD, BGN, RON, PLN, CZK oder HUF. Währung wird automatisch pro Kunde angewendet. Beträge für jede Region korrekt formatiert.
+Richten Sie wöchentliche, monatliche, vierteljährliche oder jährliche Rechnungen ein. InvoiceKit klont und sendet sie automatisch — keine manuelle Arbeit, keine vergessenen Abrechnungszyklen.
 
 [f6_title]
-Zahlungserinnerungen
+Kundenportal
 
 [f6_desc]
-Automatische E-Mails: 3 Tage vor Fälligkeit, am Fälligkeitstag, 7 Tage nach Überfälligkeit. PDF im Anhang. Ihr Cashflow auf Autopilot.
+Teilen Sie einem Kunden einen sicheren, tokenisierten Link. Der Kunde kann die Rechnung ansehen, das PDF herunterladen und online über Stripe bezahlen — ohne Login.
 
 [how_tag]
 So funktioniert's
@@ -183,7 +183,7 @@ Kostenlos starten
 Starter
 
 [p_starter_price]
-€15
+€9
 
 [p_starter_period]
 pro Monat
@@ -231,10 +231,10 @@ Wiederkehrende Rechnungen
 Kundenportal
 
 [p_pro_l4]
-Prioritäts-Support
+Peppol / E-Rechnung (UBL 2.1)
 
 [p_pro_l5]
-API-Zugang
+Mehrwertsteuer-Befreiungsmodus (alle 27 EU-Länder)
 
 [p_pro_l6]
 Alle EU-Mehrwertsteuerregeln
@@ -264,10 +264,10 @@ Welche EU-Länder werden unterstützt?
 Alle 27 EU-Mitgliedsstaaten. Mehrwertsteuersätze sind für BG, DE, FR, RO, PL, CZ, IT, ES, NL, PT, AT, BE, HR, HU, SE und alle anderen hinterlegt. Sätze werden bei Gesetzesänderungen aktualisiert.
 
 [faq3_q]
-Kann ich InvoiceKit außerhalb der EU verwenden?
+Unterstützt InvoiceKit wiederkehrende Rechnungen?
 
 [faq3_a]
-Absolut. Sie können InvoiceKit von überall auf der Welt nutzen. Die EU-Mehrwertsteuer-Engine ist am wertvollsten für EU-ansässige Freiberufler, aber jeder Freiberufler profitiert von den Zeiterfassungs- und Rechnungsfunktionen.
+Ja. Sie können jede Rechnung als wiederkehrende mit wöchentlichen, monatlichen, vierteljährlichen oder jährlichen Intervallen einrichten. InvoiceKit klont und stellt die Rechnung am Fälligkeitstag automatisch aus — Sie müssen nichts tun.
 
 [faq4_q]
 Wie funktioniert die Zeiterfassung?
@@ -276,10 +276,10 @@ Wie funktioniert die Zeiterfassung?
 Erstellen Sie Projekte mit Kunden und Stundensätzen. Verwenden Sie den integrierten Start/Stopp-Timer während der Arbeit. Alle erfasste Zeit wird gespeichert und kann mit einem Klick direkt in Rechnungspositionen umgewandelt werden.
 
 [faq5_q]
-Kann ich jederzeit kündigen?
+Gibt es eine kostenlose Testphase?
 
 [faq5_a]
-Ja. Keine Verträge, keine Bindung. Kündigen Sie jederzeit und behalten Sie den Zugang bis zum Ende Ihres Abrechnungszeitraums. Alle Ihre Daten sind jederzeit exportierbar.
+Ja. Alle neuen Konten starten mit einer 14-tägigen Pro-Testphase — keine Kreditkarte erforderlich. Sie erhalten vom ersten Tag an vollen Pro-Zugang. Nach der Testphase bleiben Sie im kostenlosen Plan, sofern Sie nicht upgraden.
 
 [cta_title]
 Bereit, wie ein Europäer zu fakturieren?
