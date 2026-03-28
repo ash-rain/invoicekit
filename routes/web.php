@@ -31,8 +31,8 @@ Route::get('/', function () {
 });
 
 // ── Legal pages ───────────────────────────────────────────────────────────────
-Route::get('/privacy', fn () => view('legal.privacy'))->name('privacy');
-Route::get('/terms', fn () => view('legal.terms'))->name('terms');
+Route::get('/privacy', fn() => view('legal.privacy'))->name('privacy');
+Route::get('/terms', fn() => view('legal.terms'))->name('terms');
 
 // ── SEO ───────────────────────────────────────────────────────────────────────
 Route::get('/sitemap.xml', function () {
@@ -58,7 +58,7 @@ Route::get('/robots.txt', function () {
     $content .= "Disallow: /timer\n";
     $content .= "Disallow: /billing\n";
     $content .= "Disallow: /onboarding\n";
-    $content .= 'Sitemap: '.route('sitemap')."\n";
+    $content .= 'Sitemap: ' . route('sitemap') . "\n";
 
     return response($content, 200, ['Content-Type' => 'text/plain']);
 })->name('robots');
@@ -82,7 +82,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', Dashboard::class)->name('dashboard');
 
     // Profile (legacy redirect) + Settings
-    Route::get('/profile', fn () => redirect()->route('settings.index'))->name('profile.edit');
+    Route::get('/profile', fn() => redirect()->route('settings.index'))->name('profile.edit');
     Route::get('/settings', Settings::class)->name('settings.index');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -99,7 +99,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/projects/{project}/edit', CreateEditProject::class)->name('projects.edit');
 
     // Timer
-    Route::get('/timer', fn () => view('timer.index'))->name('timer');
+    Route::get('/timer', fn() => view('timer.index'))->name('timer');
 
     // Invoices
     Route::get('/invoices', InvoiceList::class)->name('invoices.index');
@@ -129,10 +129,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
             ->orderByDesc('date')
             ->get();
 
-        $filename = 'expenses-'.now()->format('Y-m').'.csv';
+        $filename = 'expenses-' . now()->format('Y-m') . '.csv';
         $headers = [
             'Content-Type' => 'text/csv',
-            'Content-Disposition' => 'attachment; filename="'.$filename.'"',
+            'Content-Disposition' => 'attachment; filename="' . $filename . '"',
         ];
 
         $callback = function () use ($expenses) {
@@ -241,7 +241,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
         return response($xml, 200, [
             'Content-Type' => 'application/xml',
-            'Content-Disposition' => 'attachment; filename="invoice-'.$invoice->invoice_number.'.xml"',
+            'Content-Disposition' => 'attachment; filename="invoice-' . $invoice->invoice_number . '.xml"',
         ]);
     })->name('invoices.xml');
 
@@ -249,6 +249,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/billing', [BillingController::class, 'index'])->name('billing.index');
     Route::post('/billing/checkout/{plan}', [BillingController::class, 'checkout'])->name('billing.checkout');
     Route::post('/billing/portal', [BillingController::class, 'portal'])->name('billing.portal');
+    Route::post('/billing/cancel', [BillingController::class, 'cancel'])->name('billing.cancel');
+    Route::post('/invoices/{invoice}/payment-link', [BillingController::class, 'createPaymentLink'])->name('invoices.payment-link');
 
     // Push subscriptions
     Route::post('/push-subscriptions', [PushSubscriptionController::class, 'store'])->name('push-subscriptions.store');
@@ -269,4 +271,4 @@ Route::post('/portal/{token}/auth', [InvoicePortalController::class, 'authentica
 // Stripe webhooks (public — no CSRF, no auth)
 Route::post('/billing/webhook', [StripeWebhookController::class, 'handle'])->name('billing.webhook');
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

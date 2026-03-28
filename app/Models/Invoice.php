@@ -29,6 +29,7 @@ class Invoice extends Model
         'language',
         'vat_exempt_applied',
         'vat_exempt_notice',
+        'stripe_payment_link_url',
     ];
 
     protected $casts = [
@@ -97,6 +98,6 @@ class Invoice extends Model
 
         $next = $last ? (int) substr($last, strlen($prefix)) + 1 : 1;
 
-        return $prefix.str_pad($next, 4, '0', STR_PAD_LEFT);
+        return $prefix . str_pad($next, 4, '0', STR_PAD_LEFT);
     }
 }

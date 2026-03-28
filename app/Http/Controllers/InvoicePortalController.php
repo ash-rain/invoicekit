@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\InvoiceAccessToken;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -19,7 +20,7 @@ class InvoicePortalController extends Controller
         }
 
         if ($accessToken->isPasswordProtected()) {
-            $sessionKey = 'portal_auth_'.$token;
+            $sessionKey = 'portal_auth_' . $token;
 
             if (! $request->session()->get($sessionKey)) {
                 return view('invoices.portal-auth', compact('accessToken'));
@@ -30,6 +31,16 @@ class InvoicePortalController extends Controller
 
         $invoice = $accessToken->invoice;
         $company = $invoice->user->currentCompany;
+
+        if ($request->boolean('download')) {
+            $lang = $invoice->language ?? 'en';
+            $previousLocale = app()->getLocale();
+            app()->setLocale($lang);
+            $pdf = Pdf::loadView('invoices.pdf', compact('invoice', 'lang', 'company'));
+            app()->setLocale($previousLocale);
+
+            return $pdf->stream("invoice-{$invoice->invoice_number}.pdf");
+        }
 
         return view('invoices.portal', compact('invoice', 'company', 'accessToken'));
     }
@@ -48,7 +59,7 @@ class InvoicePortalController extends Controller
             return back()->withErrors(['password' => 'Incorrect password.']);
         }
 
-        $request->session()->put('portal_auth_'.$token, true);
+        $request->session()->put('portal_auth_' . $token, true);
 
         return redirect()->route('invoice.portal', $token);
     }

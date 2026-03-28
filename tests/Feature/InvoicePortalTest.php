@@ -55,7 +55,7 @@ class InvoicePortalTest extends TestCase
             ->assertRedirect(route('invoice.portal', $token->token));
 
         // Now the session is set; visiting the portal should render the portal view
-        $this->withSession(['portal_auth_'.$token->token => true])
+        $this->withSession(['portal_auth_' . $token->token => true])
             ->get(route('invoice.portal', $token->token))
             ->assertOk()
             ->assertViewIs('invoices.portal');
@@ -137,5 +137,25 @@ class InvoicePortalTest extends TestCase
         ]);
 
         $this->assertFalse($token->isExpired());
+    }
+
+    public function test_download_query_param_returns_pdf(): void
+    {
+        $invoice = Invoice::factory()->sent()->create();
+        $token = $invoice->generatePortalLink();
+
+        $response = $this->get(route('invoice.portal', $token->token) . '?download=1');
+
+        $response->assertOk();
+        $response->assertHeader('Content-Type', 'application/pdf');
+    }
+
+    public function test_download_not_accessible_with_expired_token(): void
+    {
+        $invoice = Invoice::factory()->sent()->create();
+        $token = $invoice->generatePortalLink(null, now()->subDay());
+
+        $this->get(route('invoice.portal', $token->token) . '?download=1')
+            ->assertStatus(410);
     }
 }

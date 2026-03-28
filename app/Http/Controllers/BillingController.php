@@ -26,6 +26,21 @@ class BillingController extends Controller
 
         $planData = $this->planService->getPlan($user);
 
+        $billingHistory = [];
+        $stripeKey = config('services.stripe.key');
+        if ($stripeKey && $user->stripe_customer_id) {
+            try {
+                $stripe = new StripeClient($stripeKey);
+                $stripeInvoices = $stripe->invoices->all([
+                    'customer' => $user->stripe_customer_id,
+                    'limit' => 24,
+                ]);
+                $billingHistory = $stripeInvoices->data;
+            } catch (\Exception) {
+                $billingHistory = [];
+            }
+        }
+
         return view('billing.index', [
             'plan' => $plan,
             'clientCount' => $clientCount,
@@ -33,6 +48,7 @@ class BillingController extends Controller
             'clientsLimit' => $planData['clients_limit'],
             'invoicesLimit' => $planData['invoices_per_month_limit'],
             'user' => $user,
+            'billingHistory' => $billingHistory,
         ]);
     }
 
@@ -77,8 +93,8 @@ class BillingController extends Controller
                 'price' => $priceId,
                 'quantity' => 1,
             ]],
-            'success_url' => route('billing.index').'?checkout=success',
-            'cancel_url' => route('billing.index').'?checkout=cancelled',
+            'success_url' => route('billing.index') . '?checkout=success',
+            'cancel_url' => route('billing.index') . '?checkout=cancelled',
             'metadata' => ['user_id' => $user->id, 'plan' => $plan],
         ]);
 
@@ -105,5 +121,92 @@ class BillingController extends Controller
         ]);
 
         return redirect($session->url);
+    }
+
+    public function cancel(Request $request): RedirectResponse
+    {
+        $request->validate([
+            'cancel_at_period_end' => ['required', 'in:0,1'],
+            'reason' => ['nullable', 'string', 'max:500'],
+        ]);
+
+        $user = Auth::user();
+
+        if (! $user->stripe_subscription_id) {
+            return back()->with('error', 'No active subscription found.');
+        }
+
+        $stripeKey = config('services.stripe.key');
+        if (! $stripeKey) {
+            return back()->with('error', 'Stripe is not configured. Please contact support.');
+        }
+
+        $stripe = new StripeClient($stripeKey);
+        $cancelAtPeriodEnd = (bool) $request->input('cancel_at_period_end', true);
+
+        if ($cancelAtPeriodEnd) {
+            $stripe->subscriptions->update($user->stripe_subscription_id, [
+                'cancel_at_period_end' => true,
+            ]);
+            $user->update(['subscription_status' => 'canceled']);
+
+            return back()->with('success', __('Your subscription will be cancelled at the end of the current billing period.'));
+        }
+
+        $stripe->subscriptions->cancel($user->stripe_subscription_id);
+        $user->update([
+            'plan' => 'free',
+            'subscription_status' => 'canceled',
+            'stripe_subscription_id' => null,
+            'subscribed_until' => null,
+        ]);
+
+        return back()->with('success', __('Your subscription has been cancelled.'));
+    }
+
+    public function createPaymentLink(Request $request, int $invoice): RedirectResponse
+    {
+        $invoice = \App\Models\Invoice::findOrFail($invoice);
+
+        if ($invoice->user_id !== Auth::id()) {
+            abort(403);
+        }
+
+        $stripeKey = config('services.stripe.key');
+        if (! $stripeKey) {
+            return back()->with('error', 'Stripe is not configured. Please contact support.');
+        }
+
+        $stripe = new StripeClient($stripeKey);
+
+        $amountCents = (int) round((float) $invoice->total * 100);
+        $currency = strtolower($invoice->currency);
+
+        $price = $stripe->prices->create([
+            'unit_amount' => $amountCents,
+            'currency' => $currency,
+            'product_data' => [
+                'name' => __('Invoice') . ' ' . $invoice->invoice_number,
+            ],
+        ]);
+
+        $paymentLink = $stripe->paymentLinks->create([
+            'line_items' => [[
+                'price' => $price->id,
+                'quantity' => 1,
+            ]],
+            'after_completion' => [
+                'type' => 'redirect',
+                'redirect' => ['url' => route('invoices.show', $invoice)],
+            ],
+            'metadata' => [
+                'invoice_id' => $invoice->id,
+                'user_id' => Auth::id(),
+            ],
+        ]);
+
+        $invoice->update(['stripe_payment_link_url' => $paymentLink->url]);
+
+        return back()->with('success', __('Payment link created.'));
     }
 }

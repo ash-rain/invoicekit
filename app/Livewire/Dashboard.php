@@ -7,6 +7,7 @@ use App\Models\Expense;
 use App\Models\Invoice;
 use App\Models\Project;
 use App\Models\TimeEntry;
+use App\Services\PlanService;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
@@ -31,6 +32,10 @@ class Dashboard extends Component
     public float $expensesThisMonth = 0;
 
     public string $defaultCurrency = 'EUR';
+
+    public int $invoicesThisMonth = 0;
+
+    public ?int $invoicesMonthlyLimit = null;
 
     public function mount(): void
     {
@@ -69,6 +74,14 @@ class Dashboard extends Component
             ->whereMonth('date', now()->month)
             ->whereYear('date', now()->year)
             ->sum('amount');
+
+        $this->invoicesThisMonth = Invoice::where('user_id', $userId)
+            ->whereMonth('created_at', now()->month)
+            ->whereYear('created_at', now()->year)
+            ->count();
+
+        $planData = app(PlanService::class)->getPlan($user);
+        $this->invoicesMonthlyLimit = $planData['invoices_per_month_limit'];
     }
 
     public function render()

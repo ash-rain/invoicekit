@@ -26,6 +26,7 @@ Implemented features as of March 2026.
 - **Unpaid Invoices** — count and summed total of `sent` + `overdue` invoices
 - **Overdue** — count with red pulsing indicator when > 0
 - Overdue invoices table (up to 10): invoice number, client, due date, days overdue, total
+- **Invoice usage meter** (Free and Starter plans): progress bar showing "X of Y invoices this month" with colour coding (indigo → amber at 80% → red at 100%) and an "Upgrade" CTA link when approaching the limit
 
 ---
 
@@ -82,6 +83,7 @@ Implemented features as of March 2026.
 - Create, edit (draft only), view, delete
 - Mark Sent, Mark Paid (sets `paid_at`, fires `InvoicePaidNotification`)
 - Download PDF
+- **Create Payment Link** (`POST /invoices/{invoice}/payment-link`): generates a Stripe Payment Link for the invoice amount, stores the URL in `stripe_payment_link_url`, shows a copyable link on the invoice detail page; client can pay directly via the link from the portal
 - Plan gate: creation blocked and redirects to billing when monthly invoice limit is reached
 
 **Per-invoice VAT exempt override**: when the company is VAT-exempt, a Pro-accessible checkbox allows charging VAT on a one-off basis (e.g. for a cross-border supply outside the exemption)
@@ -223,6 +225,7 @@ Generated via DomPDF (DejaVu Sans font for full Unicode / multi-language support
 - `GET /portal/{token}` — view invoice with full line items, totals, VAT notice
 - `GET /portal/{token}/pdf` — download PDF directly
 - **Generate portal link** action on invoice detail page; copies URL to clipboard
+- **Pay Online button**: when a Stripe Payment Link has been created for the invoice, a prominent "Pay Online" CTA links directly to the Stripe-hosted payment page (shown only for non-paid invoices)
 - Expired/invalid tokens return 404
 - Portal view styled identically to the logged-in invoice view
 
@@ -289,5 +292,13 @@ Generated via DomPDF (DejaVu Sans font for full Unicode / multi-language support
 - Renewal date
 - Upgrade/checkout buttons per plan
 - "Manage Billing" button when a Stripe customer exists
+- **Invoice + client usage progress bars** showing current usage against plan limits with colour coding (indigo → amber at 80% → red at 100%)
+- **Compare Plans** button opens a plan comparison modal overlay with Starter and Pro feature lists and an upgrade CTA
+- **Cancel Subscription** button (shown when subscription is active): opens a confirmation modal with an end-of-period vs. immediate cancellation toggle, an optional reason field, and a "Keep Subscription" escape hatch
+- **Billing History** table: date, description, amount, status badge (paid/open), and a PDF receipt link — pulled live from Stripe invoices API
+
+**Subscription cancellation** (`POST /billing/cancel`):
+- `cancel_at_period_end = 1`: schedules cancellation via Stripe, user retains access until period end
+- `cancel_at_period_end = 0`: immediately cancels via Stripe, downgrades user to Free plan locally
 
 **`User` helpers**: `isOnTrial()`, `hasActiveSubscription()`, `isFree()`, `isStarter()`, `isPro()`
