@@ -65,7 +65,8 @@
                     class="w-full border border-gray-300 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
                     @foreach ($supportedLanguages as $code)
                         @php $localeData = $localeNames[$code] ?? ['flag' => '', 'name' => strtoupper($code)]; @endphp
-                        <option value="{{ $code }}">{{ $localeData['flag'] }} {{ $localeData['name'] }}</option>
+                        <option value="{{ $code }}">{{ $localeData['flag'] }} {{ $localeData['name'] }}
+                        </option>
                     @endforeach
                 </select>
             </div>
@@ -187,8 +188,7 @@
                                 @if (count($this->items) > 1)
                                     <button type="button" wire:click="removeItem({{ $i }})"
                                         class="text-red-400 hover:text-red-600">
-                                        <svg class="w-4 h-4" fill="none" stroke="currentColor"
-                                            viewBox="0 0 24 24">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                 d="M6 18L18 6M6 6l12 12" />
                                         </svg>

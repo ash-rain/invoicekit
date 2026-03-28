@@ -124,7 +124,8 @@
                     <option value="">— {{ __('System default') }} —</option>
                     @foreach ($supportedLanguages as $code)
                         @php $localeData = $localeNames[$code] ?? ['flag' => '', 'name' => strtoupper($code)]; @endphp
-                        <option value="{{ $code }}">{{ $localeData['flag'] }} {{ $localeData['name'] }}</option>
+                        <option value="{{ $code }}">{{ $localeData['flag'] }} {{ $localeData['name'] }}
+                        </option>
                     @endforeach
                 </select>
                 @error('locale')

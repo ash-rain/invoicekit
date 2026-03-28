@@ -124,7 +124,7 @@ class Settings extends Component
             'tagline' => ['nullable', 'string', 'max:255'],
             'website' => ['nullable', 'url', 'max:255'],
             'phone' => ['nullable', 'string', 'max:50'],
-            'locale' => ['nullable', 'string', 'in:'.implode(',', config('invoicekit.supported_languages', ['en']))],
+            'locale' => ['nullable', 'string', 'in:' . implode(',', config('invoicekit.supported_languages', ['en']))],
             'profilePhotoUpload' => ['nullable', 'image', 'max:2048'],
         ]);
 

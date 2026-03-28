@@ -126,8 +126,8 @@ class CreateEditClient extends Component
             'address' => ['nullable', 'string', 'max:1000'],
             'country' => ['required', 'string', 'size:2'],
             'vat_number' => ['nullable', 'string', 'max:30'],
-            'currency' => ['required', 'string', 'in:'.implode(',', self::CURRENCIES)],
-            'defaultLanguage' => ['nullable', 'string', 'in:'.implode(',', config('invoicekit.supported_languages', ['en']))],
+            'currency' => ['required', 'string', 'in:' . implode(',', self::CURRENCIES)],
+            'defaultLanguage' => ['nullable', 'string', 'in:' . implode(',', config('invoicekit.supported_languages', ['en']))],
         ];
     }
 

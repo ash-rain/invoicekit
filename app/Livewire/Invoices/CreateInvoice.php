@@ -76,7 +76,7 @@ class CreateInvoice extends Component
             $this->language = $invoice->language ?? 'en';
             $this->vatType = $invoice->vat_type ?? 'standard';
             $this->vatExemptOverride = $this->vatExemptActive && ! $invoice->vat_exempt_applied;
-            $this->items = $invoice->items->map(fn ($item) => [
+            $this->items = $invoice->items->map(fn($item) => [
                 'description' => $item->description,
                 'quantity' => (string) $item->quantity,
                 'unit_price' => (string) $item->unit_price,
@@ -177,10 +177,10 @@ class CreateInvoice extends Component
             'clientId' => ['required', 'integer'],
             'invoiceNumber' => ['required', 'string', 'max:50'],
             'issueDate' => ['required', 'date'],
-            'dueDate' => ['required', 'date', 'after_or_equal:'.($this->issueDate ?: now()->format('Y-m-d'))],
+            'dueDate' => ['required', 'date', 'after_or_equal:' . ($this->issueDate ?: now()->format('Y-m-d'))],
             'currency' => ['required', 'string', 'max:3'],
             'notes' => ['nullable', 'string', 'max:2000'],
-            'language' => ['required', 'string', 'in:'.implode(',', config('invoicekit.supported_languages', ['en']))],
+            'language' => ['required', 'string', 'in:' . implode(',', config('invoicekit.supported_languages', ['en']))],
             'items' => ['required', 'array', 'min:1'],
             'items.*.description' => ['required', 'string', 'max:500'],
             'items.*.quantity' => ['required', 'numeric', 'min:0.01'],

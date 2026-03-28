@@ -12,8 +12,8 @@ class LocaleCompletionTest extends TestCase
         $locales = config('invoicekit.supported_languages', []);
 
         return collect($locales)
-            ->filter(fn ($code) => $code !== 'en')
-            ->mapWithKeys(fn ($code) => [$code => [$code]])
+            ->filter(fn($code) => $code !== 'en')
+            ->mapWithKeys(fn($code) => [$code => [$code]])
             ->all();
     }
 
@@ -44,7 +44,7 @@ class LocaleCompletionTest extends TestCase
 
         $this->assertEmpty(
             $missing,
-            "Locale [{$locale}] is missing ".count($missing).' key(s): '.implode(', ', array_slice($missing, 0, 5))
+            "Locale [{$locale}] is missing " . count($missing) . ' key(s): ' . implode(', ', array_slice($missing, 0, 5))
         );
     }
 }
