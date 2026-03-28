@@ -26,12 +26,11 @@
 
         /* Header */
         .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
+            width: 100%;
             margin-bottom: 32px;
             padding-bottom: 20px;
             border-bottom: 3px solid #4f46e5;
+            border-collapse: collapse;
         }
 
         .brand {
@@ -58,14 +57,22 @@
 
         /* Parties */
         .parties {
-            display: flex;
-            justify-content: space-between;
+            width: 100%;
             margin-bottom: 28px;
-            gap: 24px;
+            border-collapse: collapse;
         }
 
         .party {
-            flex: 1;
+            width: 50%;
+            vertical-align: top;
+        }
+
+        .party-left {
+            padding-right: 16px;
+        }
+
+        .party-right {
+            padding-left: 16px;
         }
 
         .party-label {
@@ -103,9 +110,9 @@
 
         /* Dates */
         .dates-row {
-            display: flex;
-            gap: 24px;
             margin-bottom: 28px;
+            border-collapse: separate;
+            border-spacing: 8px 0;
         }
 
         .date-box {
@@ -280,18 +287,24 @@
     <div class="page">
 
         {{-- Header --}}
-        <div class="header">
-            @if ($company?->logoUrl())
-                <img src="{{ $company->logoUrl() }}" alt="{{ $company->name }}"
-                    style="max-height:48px; max-width:180px; object-fit:contain;">
-            @else
-                <div class="brand">{{ $company?->name ?? $invoice->user->name }}</div>
-            @endif
-            <div class="invoice-title">
-                <h2>{{ __('INVOICE') }}</h2>
-                <div class="number">{{ $invoice->invoice_number }}</div>
-            </div>
-        </div>
+        <table class="header" cellpadding="0" cellspacing="0">
+            <tr>
+                <td style="vertical-align:top;">
+                    @if ($company?->logoUrl())
+                        <img src="{{ $company->logoUrl() }}" alt="{{ $company->name }}"
+                            style="max-height:48px; max-width:180px; object-fit:contain;">
+                    @else
+                        <div class="brand">{{ $company?->name ?? $invoice->user->name }}</div>
+                    @endif
+                </td>
+                <td style="vertical-align:top; text-align:right;">
+                    <div class="invoice-title">
+                        <h2>{{ __('INVOICE') }}</h2>
+                        <div class="number">{{ $invoice->invoice_number }}</div>
+                    </div>
+                </td>
+            </tr>
+        </table>
 
         {{-- Paid stamp --}}
         @if ($invoice->status === 'paid')
@@ -301,80 +314,90 @@
         @endif
 
         {{-- Parties --}}
-        <div class="parties">
-            <div class="party">
-                <div class="party-label">{{ __('From') }}</div>
-                @php $company = $invoice->user->currentCompany; @endphp
-                <div class="party-name">{{ $company?->name ?? $invoice->user->name }}</div>
-                <div class="party-detail">
-                    @if ($company)
-                        @if ($company->address_line1)
-                            {{ $company->address_line1 }}<br>
-                        @endif
-                        @if ($company->address_line2)
-                            {{ $company->address_line2 }}<br>
-                        @endif
-                        @if ($company->postal_code || $company->city)
-                            {{ implode(' ', array_filter([$company->postal_code, $company->city])) }}<br>
-                        @endif
-                        @if ($company->country)
-                            {{ $company->country }}<br>
-                        @endif
-                        @if ($company->vat_number)
-                            <span class="vat-badge">VAT: {{ $company->vat_number }}</span><br>
-                        @endif
-                        @if ($company->registration_number)
-                            Reg: {{ $company->registration_number }}<br>
-                        @endif
-                        @if ($company->bank_iban)
-                            @if ($company->bank_name)
-                                {{ $company->bank_name }}<br>
+        <table class="parties" cellpadding="0" cellspacing="0">
+            <tr>
+                <td class="party party-left">
+                    <div class="party-label">{{ __('From') }}</div>
+                    @php $company = $invoice->user->currentCompany; @endphp
+                    <div class="party-name">{{ $company?->name ?? $invoice->user->name }}</div>
+                    <div class="party-detail">
+                        @if ($company)
+                            @if ($company->address_line1)
+                                {{ $company->address_line1 }}<br>
                             @endif
-                            IBAN: {{ $company->bank_iban }}<br>
-                            @if ($company->bank_bic)
-                                BIC: {{ $company->bank_bic }}<br>
+                            @if ($company->address_line2)
+                                {{ $company->address_line2 }}<br>
                             @endif
+                            @if ($company->postal_code || $company->city)
+                                {{ implode(' ', array_filter([$company->postal_code, $company->city])) }}<br>
+                            @endif
+                            @if ($company->country)
+                                {{ $company->country }}<br>
+                            @endif
+                            @if ($company->vat_number)
+                                <span class="vat-badge">VAT: {{ $company->vat_number }}</span><br>
+                            @endif
+                            @if ($company->registration_number)
+                                Reg: {{ $company->registration_number }}<br>
+                            @endif
+                            @if ($company->bank_iban)
+                                @if ($company->bank_name)
+                                    {{ $company->bank_name }}<br>
+                                @endif
+                                IBAN: {{ $company->bank_iban }}<br>
+                                @if ($company->bank_bic)
+                                    BIC: {{ $company->bank_bic }}<br>
+                                @endif
+                            @endif
+                        @else
+                            {{ $invoice->user->email }}
                         @endif
-                    @else
-                        {{ $invoice->user->email }}
-                    @endif
-                </div>
-            </div>
-            <div class="party">
-                <div class="party-label">{{ __('Bill To') }}</div>
-                <div class="party-name">{{ $invoice->client->name }}</div>
-                <div class="party-detail">
-                    @if ($invoice->client->address)
-                        {!! nl2br(e($invoice->client->address)) !!}<br>
-                    @endif
-                    {{ $invoice->client->country }}
-                    @if ($invoice->client->email)
-                        <br>{{ $invoice->client->email }}
-                    @endif
-                    @if ($invoice->client->vat_number)
-                        <br><span class="vat-badge">VAT: {{ $invoice->client->vat_number }}</span>
-                    @endif
-                </div>
-            </div>
-        </div>
+                    </div>
+                </td>
+                <td class="party party-right">
+                    <div class="party-label">{{ __('Bill To') }}</div>
+                    <div class="party-name">{{ $invoice->client->name }}</div>
+                    <div class="party-detail">
+                        @if ($invoice->client->address)
+                            {!! nl2br(e($invoice->client->address)) !!}<br>
+                        @endif
+                        {{ $invoice->client->country }}
+                        @if ($invoice->client->email)
+                            <br>{{ $invoice->client->email }}
+                        @endif
+                        @if ($invoice->client->vat_number)
+                            <br><span class="vat-badge">VAT: {{ $invoice->client->vat_number }}</span>
+                        @endif
+                    </div>
+                </td>
+            </tr>
+        </table>
 
         {{-- Dates --}}
-        <div class="dates-row">
-            <div class="date-box">
-                <div class="label">{{ __('Issue Date') }}</div>
-                <div class="value">{{ $invoice->issue_date->format('d M Y') }}</div>
-            </div>
-            <div class="date-box">
-                <div class="label">{{ __('Due Date') }}</div>
-                <div class="value">{{ $invoice->due_date->format('d M Y') }}</div>
-            </div>
-            @if ($invoice->paid_at)
-                <div class="date-box">
-                    <div class="label">{{ __('Payment Date') }}</div>
-                    <div class="value">{{ $invoice->paid_at->format('d M Y') }}</div>
-                </div>
-            @endif
-        </div>
+        <table class="dates-row" cellpadding="0" cellspacing="0" style="width:100%">
+            <tr>
+                <td style="padding-right:12px;">
+                    <div class="date-box">
+                        <div class="label">{{ __('Issue Date') }}</div>
+                        <div class="value">{{ $invoice->issue_date->format('d M Y') }}</div>
+                    </div>
+                </td>
+                <td style="padding-right:12px;">
+                    <div class="date-box">
+                        <div class="label">{{ __('Due Date') }}</div>
+                        <div class="value">{{ $invoice->due_date->format('d M Y') }}</div>
+                    </div>
+                </td>
+                @if ($invoice->paid_at)
+                    <td>
+                        <div class="date-box">
+                            <div class="label">{{ __('Payment Date') }}</div>
+                            <div class="value">{{ $invoice->paid_at->format('d M Y') }}</div>
+                        </div>
+                    </td>
+                @endif
+            </tr>
+        </table>
 
         {{-- Line Items Table --}}
         <table class="items">
