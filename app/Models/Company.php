@@ -30,6 +30,7 @@ class Company extends Model
         'default_payment_terms',
         'default_invoice_notes',
         'invoice_logo',
+        'invoice_prefix',
         'vat_exempt',
         'vat_exempt_reason',
         'vat_exempt_notice_language',

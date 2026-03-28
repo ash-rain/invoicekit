@@ -27,6 +27,10 @@ class User extends Authenticatable implements MustVerifyEmail
         'password',
         'plan',
         'stripe_customer_id',
+        'stripe_subscription_id',
+        'subscription_status',
+        'trial_ends_at',
+        'subscribed_until',
         'onboarding_completed',
         'current_company_id',
         'display_name',
@@ -35,6 +39,9 @@ class User extends Authenticatable implements MustVerifyEmail
         'phone',
         'profile_photo',
         'locale',
+        'reminder_before_due_days',
+        'reminder_on_due_day',
+        'reminder_overdue_intervals',
     ];
 
     /**
@@ -58,12 +65,27 @@ class User extends Authenticatable implements MustVerifyEmail
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
             'onboarding_completed' => 'boolean',
+            'reminder_on_due_day' => 'boolean',
+            'reminder_overdue_intervals' => 'array',
+            'trial_ends_at' => 'datetime',
+            'subscribed_until' => 'datetime',
         ];
     }
 
     public function isPro(): bool
     {
         return $this->plan === 'pro';
+    }
+
+    public function isOnTrial(): bool
+    {
+        return $this->trial_ends_at !== null && $this->trial_ends_at->isFuture();
+    }
+
+    public function hasActiveSubscription(): bool
+    {
+        return $this->subscription_status === 'active'
+            || ($this->subscribed_until !== null && $this->subscribed_until->isFuture());
     }
 
     public function isStarter(): bool

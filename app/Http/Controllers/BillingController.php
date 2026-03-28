@@ -7,6 +7,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use Stripe\StripeClient;
 
 class BillingController extends Controller
 {
@@ -31,6 +32,7 @@ class BillingController extends Controller
             'invoicesThisMonth' => $invoicesThisMonth,
             'clientsLimit' => $planData['clients_limit'],
             'invoicesLimit' => $planData['invoices_per_month_limit'],
+            'user' => $user,
         ]);
     }
 
@@ -41,22 +43,67 @@ class BillingController extends Controller
             abort(404);
         }
 
-        // In a real integration this would create a Stripe Checkout session.
-        // For now we redirect back with a message about Stripe configuration.
-        if (! config('cashier.key') && ! config('services.stripe.key')) {
+        $stripeKey = config('services.stripe.key');
+        if (! $stripeKey) {
             return back()->with('error', 'Stripe is not configured. Please contact support.');
         }
 
-        return back()->with('info', 'Redirecting to Stripe Checkout…');
+        $priceId = $plan === 'pro'
+            ? config('services.stripe.pro_price_id')
+            : config('services.stripe.starter_price_id');
+
+        if (! $priceId) {
+            return back()->with('error', 'Stripe price not configured for this plan.');
+        }
+
+        $user = Auth::user();
+
+        $stripe = new StripeClient($stripeKey);
+
+        // Create or retrieve Stripe customer
+        if (! $user->stripe_customer_id) {
+            $customer = $stripe->customers->create([
+                'email' => $user->email,
+                'name' => $user->name,
+                'metadata' => ['user_id' => $user->id],
+            ]);
+            $user->update(['stripe_customer_id' => $customer->id]);
+        }
+
+        $session = $stripe->checkout->sessions->create([
+            'customer' => $user->stripe_customer_id,
+            'mode' => 'subscription',
+            'line_items' => [[
+                'price' => $priceId,
+                'quantity' => 1,
+            ]],
+            'success_url' => route('billing.index').'?checkout=success',
+            'cancel_url' => route('billing.index').'?checkout=cancelled',
+            'metadata' => ['user_id' => $user->id, 'plan' => $plan],
+        ]);
+
+        return redirect($session->url);
     }
 
     public function portal(Request $request): RedirectResponse
     {
-        // In a real integration this would redirect to the Stripe Customer Portal.
-        if (! config('cashier.key') && ! config('services.stripe.key')) {
+        $stripeKey = config('services.stripe.key');
+        if (! $stripeKey) {
             return back()->with('error', 'Stripe is not configured. Please contact support.');
         }
 
-        return back()->with('info', 'Redirecting to Stripe Customer Portal…');
+        $user = Auth::user();
+        if (! $user->stripe_customer_id) {
+            return back()->with('error', 'No billing account found.');
+        }
+
+        $stripe = new StripeClient($stripeKey);
+
+        $session = $stripe->billingPortal->sessions->create([
+            'customer' => $user->stripe_customer_id,
+            'return_url' => route('billing.index'),
+        ]);
+
+        return redirect($session->url);
     }
 }

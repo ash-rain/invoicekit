@@ -12,6 +12,7 @@
         'profile' => __('Profile'),
         'business' => __('Business'),
         'invoicing' => __('Invoicing'),
+        'notifications' => __('Notifications'),
         'account' => __('Account'),
     ] as $key => $label)
             <button type="button" x-on:click="tab = '{{ $key }}'"
@@ -300,6 +301,16 @@
                         class="w-full border border-gray-300 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"></textarea>
                 </div>
 
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">{{ __('Invoice Number Prefix') }}</label>
+                    <p class="text-xs text-gray-400 mb-1.5">{{ __('Optional alphanumeric prefix added before the invoice number (e.g. INV, 2024).') }}</p>
+                    <input wire:model="invoicePrefix" type="text" placeholder="{{ __('e.g. INV') }}" maxlength="20"
+                        class="w-full border border-gray-300 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 @error('invoicePrefix') border-red-400 @enderror" />
+                    @error('invoicePrefix')
+                        <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
+                    @enderror
+                </div>
+
                 {{-- Logo upload --}}
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-2">{{ __('Invoice Logo') }}</label>
@@ -408,6 +419,69 @@
                 <button type="submit"
                     class="px-5 py-2.5 bg-[#0f1117] text-white text-sm font-bold rounded-xl hover:bg-[#1a1f2e]">
                     {{ __('Save Invoicing Settings') }}
+                </button>
+            </div>
+        </form>
+    </div>
+
+    {{-- ── NOTIFICATIONS TAB ────────────────────────────────────────────────── --}}
+    <div x-show="tab === 'notifications'" x-cloak>
+
+        @if (session('notifications_saved'))
+            <div class="mb-4 p-3 bg-green-50 border border-green-200 text-green-700 rounded-xl text-sm">
+                {{ __('Notification preferences saved.') }}
+            </div>
+        @endif
+
+        <form wire:submit="saveNotifications" class="bg-white rounded-2xl border border-[#eaecf0] p-6 space-y-6">
+            <div>
+                <h3 class="text-sm font-bold text-gray-900">{{ __('Invoice Reminder Emails') }}</h3>
+                <p class="text-xs text-gray-500 mt-0.5">{{ __('Control when automated reminder emails are sent to clients about outstanding invoices.') }}</p>
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">{{ __('Reminder Before Due Date') }}</label>
+                <p class="text-xs text-gray-400 mb-1.5">{{ __('Send a reminder this many days before the invoice is due. Set to 0 to disable.') }}</p>
+                <div class="flex items-center gap-3">
+                    <input wire:model="reminderBeforeDueDays" type="number" min="0" max="30"
+                        class="w-24 border border-gray-300 rounded-xl px-3 py-2.5 text-sm text-center focus:outline-none focus:ring-2 focus:ring-indigo-500 @error('reminderBeforeDueDays') border-red-400 @enderror" />
+                    <span class="text-sm text-gray-500">{{ __('days before due') }}</span>
+                </div>
+                @error('reminderBeforeDueDays')
+                    <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
+                @enderror
+            </div>
+
+            <div>
+                <label class="flex items-start gap-3 cursor-pointer select-none">
+                    <input type="checkbox" wire:model="reminderOnDueDay"
+                        class="mt-0.5 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
+                    <span class="text-sm text-gray-700">{{ __('Send a reminder on the due date') }}</span>
+                </label>
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">{{ __('Overdue Reminders') }}</label>
+                <p class="text-xs text-gray-400 mb-2">{{ __('Send follow-up reminders at these intervals after the due date (days overdue).') }}</p>
+                <div class="flex flex-wrap gap-2">
+                    @foreach ([7, 14, 21, 30] as $day)
+                        <label class="flex items-center gap-1.5 cursor-pointer select-none">
+                            <input type="checkbox" value="{{ $day }}"
+                                wire:model="reminderOverdueIntervals"
+                                class="rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
+                            <span class="text-sm text-gray-600">+{{ $day }} {{ __('days') }}</span>
+                        </label>
+                    @endforeach
+                </div>
+                @error('reminderOverdueIntervals')
+                    <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
+                @enderror
+            </div>
+
+            <div class="flex justify-end pt-2">
+                <button type="submit"
+                    class="px-5 py-2.5 bg-[#0f1117] text-white text-sm font-bold rounded-xl hover:bg-[#1a1f2e]">
+                    {{ __('Save Notification Preferences') }}
                 </button>
             </div>
         </form>

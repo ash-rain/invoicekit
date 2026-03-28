@@ -281,7 +281,11 @@
 
         {{-- Header --}}
         <div class="header">
-            <div class="brand">InvoiceKit</div>
+            @if ($company?->logoUrl())
+                <img src="{{ $company->logoUrl() }}" alt="{{ $company->name }}" style="max-height:48px; max-width:180px; object-fit:contain;">
+            @else
+                <div class="brand">{{ $company?->name ?? $invoice->user->name }}</div>
+            @endif
             <div class="invoice-title">
                 <h2>{{ __('INVOICE') }}</h2>
                 <div class="number">{{ $invoice->invoice_number }}</div>
@@ -322,7 +326,13 @@
                             Reg: {{ $company->registration_number }}<br>
                         @endif
                         @if ($company->bank_iban)
+                            @if ($company->bank_name)
+                                {{ $company->bank_name }}<br>
+                            @endif
                             IBAN: {{ $company->bank_iban }}<br>
+                            @if ($company->bank_bic)
+                                BIC: {{ $company->bank_bic }}<br>
+                            @endif
                         @endif
                     @else
                         {{ $invoice->user->email }}

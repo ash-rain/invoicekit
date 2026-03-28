@@ -71,8 +71,10 @@
                 <x-sidebar-link :href="route('clients.index')" :active="request()->routeIs('clients.*')" icon="users">{{ __('Clients') }}</x-sidebar-link>
                 <x-sidebar-link :href="route('projects.index')" :active="request()->routeIs('projects.*')"
                     icon="folder">{{ __('Projects') }}</x-sidebar-link>
-                <x-sidebar-link :href="route('invoices.index')" :active="request()->routeIs('invoices.*')"
+                <x-sidebar-link :href="route('invoices.index')" :active="request()->routeIs('invoices.*') && !request()->routeIs('invoices.portal*')"
                     icon="document">{{ __('Invoices') }}</x-sidebar-link>
+                <x-sidebar-link :href="route('expenses.index')" :active="request()->routeIs('expenses.*')"
+                    icon="receipt">{{ __('Expenses') }}</x-sidebar-link>
                 <x-sidebar-link :href="route('billing.index')" :active="request()->routeIs('billing.*')"
                     icon="credit-card">{{ __('Billing') }}</x-sidebar-link>
             </nav>

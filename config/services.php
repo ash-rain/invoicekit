@@ -45,4 +45,12 @@ return [
         'subscriber_email' => env('VAPID_SUBSCRIBER_EMAIL', env('MAIL_FROM_ADDRESS', 'admin@example.com')),
     ],
 
+    'stripe' => [
+        'key' => env('STRIPE_SECRET_KEY'),
+        'publishable_key' => env('STRIPE_PUBLISHABLE_KEY'),
+        'webhook_secret' => env('STRIPE_WEBHOOK_SECRET'),
+        'pro_price_id' => env('STRIPE_PRO_PRICE_ID'),
+        'starter_price_id' => env('STRIPE_STARTER_PRICE_ID'),
+    ],
+
 ];

@@ -1,13 +1,19 @@
 <?php
 
 use App\Http\Controllers\BillingController;
+use App\Http\Controllers\InvoicePortalController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PushSubscriptionController;
+use App\Http\Controllers\StripeWebhookController;
 use App\Livewire\Clients\ClientList;
 use App\Livewire\Clients\CreateEditClient;
 use App\Livewire\Dashboard;
+use App\Livewire\Expenses\CreateExpense;
+use App\Livewire\Expenses\ExpenseList;
 use App\Livewire\Invoices\CreateInvoice;
+use App\Livewire\Invoices\CreateRecurringInvoice;
 use App\Livewire\Invoices\InvoiceList;
+use App\Livewire\Invoices\RecurringInvoiceList;
 use App\Livewire\OnboardingWizard;
 use App\Livewire\Projects\CreateEditProject;
 use App\Livewire\Projects\ProjectDetail;
@@ -108,20 +114,136 @@ Route::middleware(['auth', 'verified'])->group(function () {
     })->name('invoices.show');
     Route::get('/invoices/{invoice}/edit', CreateInvoice::class)->name('invoices.edit');
 
+    // Recurring Invoices (Pro)
+    Route::get('/recurring-invoices', RecurringInvoiceList::class)->name('recurring-invoices.index');
+    Route::get('/recurring-invoices/create', CreateRecurringInvoice::class)->name('recurring-invoices.create');
+    Route::get('/recurring-invoices/{recurringInvoice}/edit', CreateRecurringInvoice::class)->name('recurring-invoices.edit');
+
+    // Expenses
+    Route::get('/expenses', ExpenseList::class)->name('expenses.index');
+    Route::get('/expenses/create', CreateExpense::class)->name('expenses.create');
+    Route::get('/expenses/{expense}/edit', CreateExpense::class)->name('expenses.edit');
+    Route::get('/expenses/export', function () {
+        $expenses = \App\Models\Expense::where('user_id', auth()->id())
+            ->with(['client', 'project'])
+            ->orderByDesc('date')
+            ->get();
+
+        $filename = 'expenses-'.now()->format('Y-m').'.csv';
+        $headers = [
+            'Content-Type' => 'text/csv',
+            'Content-Disposition' => 'attachment; filename="'.$filename.'"',
+        ];
+
+        $callback = function () use ($expenses) {
+            $handle = fopen('php://output', 'w');
+            fputcsv($handle, ['Date', 'Description', 'Category', 'Client', 'Project', 'Amount', 'Currency', 'Billable']);
+            foreach ($expenses as $expense) {
+                fputcsv($handle, [
+                    $expense->date->format('Y-m-d'),
+                    $expense->description,
+                    $expense->category,
+                    $expense->client?->name ?? '',
+                    $expense->project?->name ?? '',
+                    $expense->amount,
+                    $expense->currency,
+                    $expense->billable ? 'Yes' : 'No',
+                ]);
+            }
+            fclose($handle);
+        };
+
+        return response()->stream($callback, 200, $headers);
+    })->name('expenses.export');
+
+    // Make invoice recurring (Pro)
+    Route::post('/invoices/{invoice}/make-recurring', function ($invoiceId) {
+        $inv = \App\Models\Invoice::with('items')->findOrFail($invoiceId);
+        if ($inv->user_id !== auth()->id()) {
+            abort(403);
+        }
+        if (! auth()->user()->isPro()) {
+            return back()->withErrors(['plan' => 'Recurring invoices are a Pro feature.']);
+        }
+
+        $recurring = \App\Models\RecurringInvoice::create([
+            'user_id' => $inv->user_id,
+            'client_id' => $inv->client_id,
+            'frequency' => 'monthly',
+            'next_send_date' => now()->addMonth()->toDateString(),
+            'currency' => $inv->currency,
+            'subtotal' => $inv->subtotal,
+            'vat_rate' => $inv->vat_rate,
+            'vat_amount' => $inv->vat_amount,
+            'total' => $inv->total,
+            'vat_type' => $inv->vat_type,
+            'language' => $inv->language,
+            'notes' => $inv->notes,
+            'active' => true,
+        ]);
+
+        foreach ($inv->items as $item) {
+            $recurring->items()->create([
+                'description' => $item->description,
+                'quantity' => $item->quantity,
+                'unit_price' => $item->unit_price,
+                'subtotal' => round((float) $item->quantity * (float) $item->unit_price, 2),
+            ]);
+        }
+
+        return redirect()->route('recurring-invoices.edit', $recurring)
+            ->with('success', 'Recurring template created. Review and activate it below.');
+    })->name('invoices.make-recurring');
+
+    // Invoice portal link generation
+    Route::post('/invoices/{invoice}/portal-link', function ($invoiceId) {
+        $inv = \App\Models\Invoice::findOrFail($invoiceId);
+        if ($inv->user_id !== auth()->id()) {
+            abort(403);
+        }
+
+        $password = request('portal_password') ?: null;
+        $expiryDays = request('portal_expiry') ? (int) request('portal_expiry') : null;
+
+        if ($expiryDays !== null && ($expiryDays < 1 || $expiryDays > 365)) {
+            return back()->withErrors(['portal_expiry' => 'Expiry must be between 1 and 365 days.']);
+        }
+
+        $token = $inv->generatePortalLink($password, $expiryDays ? now()->addDays($expiryDays) : null);
+
+        return back()->with('portal_url', route('invoice.portal', $token->token));
+    })->name('invoices.portal-link');
+
     // Invoice PDF
     Route::get('/invoices/{invoice}/pdf', function ($invoice) {
-        $invoice = \App\Models\Invoice::with(['client', 'items', 'user'])->findOrFail($invoice);
+        $invoice = \App\Models\Invoice::with(['client', 'items', 'user', 'user.currentCompany'])->findOrFail($invoice);
         if ($invoice->user_id !== auth()->id()) {
             abort(403);
         }
+        $company = $invoice->user->currentCompany;
         $lang = $invoice->language ?? 'en';
         $previousLocale = app()->getLocale();
         app()->setLocale($lang);
-        $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('invoices.pdf', compact('invoice', 'lang'));
+        $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('invoices.pdf', compact('invoice', 'lang', 'company'));
         app()->setLocale($previousLocale);
 
         return $pdf->stream("invoice-{$invoice->invoice_number}.pdf");
     })->name('invoices.pdf');
+
+    // Invoice UBL 2.1 XML (Peppol BIS Billing 3.0)
+    Route::get('/invoices/{invoice}/xml', function ($invoiceId) {
+        $invoice = \App\Models\Invoice::with(['client', 'items', 'user', 'user.currentCompany'])->findOrFail($invoiceId);
+        if ($invoice->user_id !== auth()->id()) {
+            abort(403);
+        }
+
+        $xml = app(\App\Services\UblXmlService::class)->generate($invoice);
+
+        return response($xml, 200, [
+            'Content-Type' => 'application/xml',
+            'Content-Disposition' => 'attachment; filename="invoice-'.$invoice->invoice_number.'.xml"',
+        ]);
+    })->name('invoices.xml');
 
     // Billing
     Route::get('/billing', [BillingController::class, 'index'])->name('billing.index');
@@ -139,5 +261,12 @@ Route::get('/pay/{invoice}', function ($invoice) {
 
     return view('invoices.pay', compact('invoice'));
 })->name('invoices.pay');
+
+// Client invoice portal (public, token-based)
+Route::get('/portal/{token}', [InvoicePortalController::class, 'show'])->name('invoice.portal');
+Route::post('/portal/{token}/auth', [InvoicePortalController::class, 'authenticate'])->name('invoice.portal.auth');
+
+// Stripe webhooks (public — no CSRF, no auth)
+Route::post('/billing/webhook', [StripeWebhookController::class, 'handle'])->name('billing.webhook');
 
 require __DIR__.'/auth.php';

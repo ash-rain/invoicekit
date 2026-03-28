@@ -21,6 +21,12 @@ class OnboardingWizard extends Component
 
     public string $companyCountry = 'BG';
 
+    public string $companyAddress = '';
+
+    public string $companyPhone = '';
+
+    public string $companyBankIban = '';
+
     // Step 2 — First client
     public string $clientName = '';
 
@@ -140,9 +146,14 @@ class OnboardingWizard extends Component
                     'user_id' => $user->id,
                     'name' => $this->companyName,
                     'country' => $this->companyCountry,
+                    'address_line1' => $this->companyAddress ?: null,
+                    'bank_iban' => $this->companyBankIban ?: null,
                     'default_currency' => $this->clientCurrency,
                 ]);
-                $user->update(['current_company_id' => $company->id]);
+                $user->update([
+                    'current_company_id' => $company->id,
+                    'phone' => $this->companyPhone ?: null,
+                ]);
             }
 
             // Create first client

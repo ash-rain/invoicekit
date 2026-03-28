@@ -199,3 +199,95 @@ Generated via DomPDF (DejaVu Sans font for full Unicode / multi-language support
 - Default currency per company, per client, per project, per invoice
 - Auto-applied: selecting a client on invoice create fills the invoice currency from the client's preference
 - `formatCurrency()` helper renders correct symbol/suffix (€, $, лв., RON, zł, Kč, Ft)
+
+---
+
+## Recurring Invoices
+
+**Fields**: recurrence interval (`weekly`, `monthly`, `quarterly`, `yearly`), `next_issue_date`, `recurring_ends_at` (optional)
+
+- **Make Recurring** button on any draft or sent invoice
+- Configure interval, start date, and optional end date via modal dialog
+- `GenerateRecurringInvoices` Artisan command: clones due recurring invoices, advances `next_issue_date`, copies all line items and VAT settings
+- Scheduled daily via `routes/console.php`
+- Cancel recurrence resets `is_recurring` and clears schedule fields
+- Invoice list badges indicate recurring invoices
+
+---
+
+## Client Portal
+
+**Tokenised public URLs** — no login required for clients:
+
+- `InvoiceAccessToken` model: UUID token, `expires_at` (30 days), belongs to an invoice
+- `GET /portal/{token}` — view invoice with full line items, totals, VAT notice
+- `GET /portal/{token}/pdf` — download PDF directly
+- **Generate portal link** action on invoice detail page; copies URL to clipboard
+- Expired/invalid tokens return 404
+- Portal view styled identically to the logged-in invoice view
+
+---
+
+## Expense Tracking
+
+**Fields**: date, description, amount, currency, category (10 categories), vendor, receipt (file upload), project (optional link)
+
+**Categories**: `office_supplies`, `software`, `travel`, `meals`, `utilities`, `marketing`, `equipment`, `professional_services`, `rent`, `other`
+
+- List with date-range filter, category filter, search, pagination (15/page)
+- Create, edit, delete
+- Receipt upload (PDF or image, max 10 MB) stored in S3/MinIO
+- **CSV export** with active filters applied — downloads as `expenses-{date}.csv`
+- Monthly total summary card
+- Plan gate: expense tracking requires Starter or Pro
+
+---
+
+## Peppol / e-Invoicing (UBL 2.1)
+
+**Standard**: UBL 2.1 / Peppol BIS Billing 3.0 (`urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0`)
+
+- `UblXmlService`: generates fully valid UBL 2.1 XML using PHP `DOMDocument`
+- **BT/BG coverage**: BT-1 ID, BT-2 IssueDate, BT-3 InvoiceTypeCode (380), BT-5 CurrencyCode, BT-9 DueDate, BT-23 ProfileID, BT-24 CustomizationID
+- **BG-4 Seller** (AccountingSupplierParty): company name, VAT number (`PartyTaxScheme`), postal address with country code, contact email
+- **BG-7 Buyer** (AccountingCustomerParty): client name, VAT number, address, email
+- **BG-22** Document totals: `LineExtensionAmount`, `TaxExclusiveAmount`, `TaxInclusiveAmount`, `PayableAmount`
+- **BG-23** Tax total + subtotal with `TaxCategory`: ID `S` (standard) or `E` (exempt for VAT-exempt invoices), percent
+- **BG-25** Invoice lines: ID, quantity (`unitCode="EA"`), `LineExtensionAmount`, Item description + `ClassifiedTaxCategory`, unit price
+- `GET /invoices/{invoice}/xml` — downloads as `invoice-{number}.xml` (auth-gated, policy-checked)
+- **"Download XML"** button on invoice detail page alongside "Download PDF"
+
+---
+
+## Billing & Subscriptions (Stripe)
+
+**SDK**: `stripe/stripe-php` v19 (raw SDK — not Cashier)
+
+**Plans**: Free, Starter (€9/mo), Pro (€29/mo)
+
+**Stripe Checkout**:
+- `POST /billing/checkout/{plan}` — creates Stripe Customer if none exists, creates a hosted Checkout Session for the selected price
+- Redirects to Stripe-hosted payment page; returns to billing page with success banner on completion
+
+**Stripe Customer Portal**:
+- `POST /billing/portal` — creates a Billing Portal session for subscription management (payment method, cancellation)
+- Requires an existing Stripe customer (`stripe_customer_id`)
+
+**Webhooks** (`POST /billing/webhook`, CSRF-exempt, signature-verified):
+| Event | Effect |
+|---|---|
+| `checkout.session.completed` | Sets `stripe_customer_id`, `stripe_subscription_id`, `subscription_status = active`, `plan`, `subscribed_until` |
+| `customer.subscription.updated` | Updates `subscription_status`, `plan`, `subscribed_until` |
+| `customer.subscription.deleted` | Sets `subscription_status = canceled`, clears `subscribed_until` |
+| `invoice.payment_failed` | Sets `subscription_status = past_due`, sends `InvoiceReminderNotification` |
+
+**Trial**: new registrations receive a 14-day Pro trial (`plan = pro`, `trial_ends_at = now() + 14 days`)
+
+**Billing page** (`/billing`):
+- Current plan badge (Active / Trial / Payment overdue / Canceled)
+- Trial countdown banner (amber, shows days remaining)
+- Renewal date
+- Upgrade/checkout buttons per plan
+- "Manage Billing" button when a Stripe customer exists
+
+**`User` helpers**: `isOnTrial()`, `hasActiveSubscription()`, `isFree()`, `isStarter()`, `isPro()`

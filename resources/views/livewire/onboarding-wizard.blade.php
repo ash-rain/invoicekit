@@ -71,6 +71,26 @@
                             <p class="text-red-600 text-xs mt-1">{{ $message }}</p>
                         @enderror
                     </div>
+                    <div class="grid grid-cols-2 gap-3">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">{{ __('Address') }} <span class="text-gray-400 font-normal text-xs">({{ __('optional') }})</span></label>
+                            <input wire:model="companyAddress" type="text"
+                                class="w-full border border-gray-300 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                                placeholder="{{ __('Street address') }}" />
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">{{ __('Phone') }} <span class="text-gray-400 font-normal text-xs">({{ __('optional') }})</span></label>
+                            <input wire:model="companyPhone" type="text"
+                                class="w-full border border-gray-300 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                                placeholder="+49 123 456789" />
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">{{ __('Bank IBAN') }} <span class="text-gray-400 font-normal text-xs">({{ __('optional, shown on invoices') }})</span></label>
+                        <input wire:model="companyBankIban" type="text"
+                            class="w-full border border-gray-300 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                            placeholder="DE89 3704 0044 0532 0130 00" />
+                    </div>
                 </div>
                 <div class="mt-6 flex justify-end">
                     <button wire:click="nextStep"

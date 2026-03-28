@@ -62,6 +62,8 @@ class Settings extends Component
 
     public string $defaultInvoiceNotes = '';
 
+    public string $invoicePrefix = '';
+
     public $invoiceLogoUpload = null;
 
     public bool $vatExempt = false;
@@ -69,6 +71,14 @@ class Settings extends Component
     public string $vatExemptReason = '';
 
     public string $vatExemptNoticeLanguage = 'local';
+
+    // ----- Notifications tab -----
+    public int $reminderBeforeDueDays = 3;
+
+    public bool $reminderOnDueDay = true;
+
+    /** @var int[] */
+    public array $reminderOverdueIntervals = [7, 14];
 
     public function mount(): void
     {
@@ -98,10 +108,15 @@ class Settings extends Component
             $this->defaultCurrency = $company->default_currency ?? 'EUR';
             $this->defaultPaymentTerms = $company->default_payment_terms ?? 30;
             $this->defaultInvoiceNotes = $company->default_invoice_notes ?? '';
+            $this->invoicePrefix = $company->invoice_prefix ?? '';
             $this->vatExempt = (bool) ($company->vat_exempt ?? false);
             $this->vatExemptReason = $company->vat_exempt_reason ?? '';
             $this->vatExemptNoticeLanguage = $company->vat_exempt_notice_language ?? 'local';
         }
+
+        $this->reminderBeforeDueDays = $user->reminder_before_due_days ?? 3;
+        $this->reminderOnDueDay = (bool) ($user->reminder_on_due_day ?? true);
+        $this->reminderOverdueIntervals = $user->reminder_overdue_intervals ?? [7, 14];
     }
 
     public function updatedProfilePhotoUpload(): void
@@ -124,7 +139,7 @@ class Settings extends Component
             'tagline' => ['nullable', 'string', 'max:255'],
             'website' => ['nullable', 'url', 'max:255'],
             'phone' => ['nullable', 'string', 'max:50'],
-            'locale' => ['nullable', 'string', 'in:' . implode(',', config('invoicekit.supported_languages', ['en']))],
+            'locale' => ['nullable', 'string', 'in:'.implode(',', config('invoicekit.supported_languages', ['en']))],
             'profilePhotoUpload' => ['nullable', 'image', 'max:2048'],
         ]);
 
@@ -201,6 +216,7 @@ class Settings extends Component
             'defaultCurrency' => ['required', 'string', 'max:3'],
             'defaultPaymentTerms' => ['required', 'integer', 'min:0', 'max:365'],
             'defaultInvoiceNotes' => ['nullable', 'string', 'max:2000'],
+            'invoicePrefix' => ['nullable', 'string', 'max:20', 'alpha_num'],
             'invoiceLogoUpload' => ['nullable', 'image', 'max:2048'],
             'vatExempt' => ['boolean'],
             'vatExemptReason' => ['nullable', 'string', 'max:500'],
@@ -220,6 +236,7 @@ class Settings extends Component
             'default_currency' => $this->defaultCurrency,
             'default_payment_terms' => $this->defaultPaymentTerms,
             'default_invoice_notes' => $this->defaultInvoiceNotes ?: null,
+            'invoice_prefix' => $this->invoicePrefix ?: null,
             'vat_exempt' => $this->vatExempt,
             'vat_exempt_reason' => $this->vatExemptReason ?: null,
             'vat_exempt_notice_language' => $this->vatExemptNoticeLanguage,
@@ -238,6 +255,24 @@ class Settings extends Component
         $company->update($data);
 
         session()->flash('invoicing_saved', true);
+    }
+
+    public function saveNotifications(): void
+    {
+        $this->validate([
+            'reminderBeforeDueDays' => ['required', 'integer', 'min:0', 'max:30'],
+            'reminderOnDueDay' => ['boolean'],
+            'reminderOverdueIntervals' => ['nullable', 'array', 'max:5'],
+            'reminderOverdueIntervals.*' => ['integer', 'min:1', 'max:90'],
+        ]);
+
+        Auth::user()->update([
+            'reminder_before_due_days' => $this->reminderBeforeDueDays,
+            'reminder_on_due_day' => $this->reminderOnDueDay,
+            'reminder_overdue_intervals' => $this->reminderOverdueIntervals ?: null,
+        ]);
+
+        session()->flash('notifications_saved', true);
     }
 
     public function getVatExemptionInfoProperty(): ?array

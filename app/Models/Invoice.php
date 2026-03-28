@@ -57,6 +57,16 @@ class Invoice extends Model
         return $this->hasMany(InvoiceItem::class);
     }
 
+    public function accessTokens(): HasMany
+    {
+        return $this->hasMany(InvoiceAccessToken::class);
+    }
+
+    public function generatePortalLink(?string $password = null, ?\DateTimeInterface $expiresAt = null): InvoiceAccessToken
+    {
+        return InvoiceAccessToken::generateFor($this, $password, $expiresAt);
+    }
+
     public function isOverdue(): bool
     {
         return $this->status !== 'paid' && $this->due_date->isPast();

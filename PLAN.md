@@ -67,14 +67,14 @@ EU VAT Directive 2006/112/EC Articles 282–292 permit member states to exempt s
 #### Remaining Work
 
 **Settings UI**
-- [ ] Legal basis text field in the VAT section: pre-populated from `VatExemptionService`, editable for edge cases
-- [ ] Prominent warning box: "Enabling this disables VAT on all invoices. Ensure you meet your country's eligibility criteria."
+- [x] Legal basis text field in the VAT section: pre-populated from `VatExemptionService`, editable for edge cases
+- [x] Prominent warning box: "Enabling this disables VAT on all invoices. Ensure you meet your country's eligibility criteria."
 
 **Invoice Behaviour**
-- [ ] Per-invoice override (Pro only): checkbox "Override VAT exemption for this invoice" — allows charging VAT on a one-off basis (e.g. cross-border supply that falls outside the exemption)
+- [x] Per-invoice override (Pro only): checkbox "Override VAT exemption for this invoice" — allows charging VAT on a one-off basis (e.g. cross-border supply that falls outside the exemption)
 
 **Tests**
-- [ ] Feature: PDF blade for exempt invoice contains the correct notice text and no VAT row
+- [x] Feature: PDF blade for exempt invoice contains the correct notice text and no VAT row
 
 ---
 
@@ -84,62 +84,62 @@ EU VAT Directive 2006/112/EC Articles 282–292 permit member states to exempt s
 #### Remaining Work
 
 **Settings UI**
-- [ ] **Invoicing** tab: invoice number prefix/format field (currency, terms, notes, logo already done)
-- [ ] **Billing** tab: subscription plan, payment method, billing history (v1.4)
-- [ ] **Notifications** tab: reminder email toggles (before due / on due / overdue intervals)
+- [x] **Invoicing** tab: invoice number prefix/format field (currency, terms, notes, logo already done)
+- [ ] **Billing** tab: subscription plan, payment method, billing history (v1.8)
+- [x] **Notifications** tab: reminder email toggles (before due / on due / overdue intervals)
 
 **Invoice PDF**
-- [ ] Wire up `invoice_logo` in PDF header (currently hardcoded brand name); add `bank_name` and `bank_bic` to payment details block
-- [ ] Onboarding wizard: collect extended profile fields (address, bank details, phone) beyond just company name + country
+- [x] Wire up `invoice_logo` in PDF header (currently hardcoded brand name); add `bank_name` and `bank_bic` to payment details block
+- [x] Onboarding wizard: collect extended profile fields (address, bank details, phone) beyond just company name + country
 
 ---
 
 ### v1.4 — Recurring Invoices
-- [ ] `recurring_invoices` table: template invoice + schedule (monthly / quarterly / annually)
-- [ ] Scheduled job auto-generates + emails invoices from templates
-- [ ] UI: mark any existing invoice as a recurring template, set next send date and frequency
-- [ ] Pro plan only
+- [x] `recurring_invoices` table: template invoice + schedule (monthly / quarterly / annually)
+- [x] Scheduled job auto-generates + emails invoices from templates
+- [x] UI: mark any existing invoice as a recurring template, set next send date and frequency
+- [x] Pro plan only
 
 ---
 
 ### v1.5 — Client Portal
-- [ ] Signed tokenized URLs for clients to view/download invoices without an account
-- [ ] Portal page: invoice list, PDF download, payment status
-- [ ] "Pay online" button (Stripe Payment Link per invoice)
-- [ ] Optional password protection per client
+- [x] Signed tokenized URLs for clients to view/download invoices without an account
+- [x] Portal page: invoice list, PDF download, payment status
+- [ ] "Pay online" button (Stripe Payment Link per invoice) — wired in v1.8
+- [x] Optional password protection per client
 
 ---
 
 ### v1.6 — Expense Tracking
-- [ ] `expenses` table: user_id, client_id (nullable), project_id (nullable), description, amount, currency, category, receipt_file, date
-- [ ] Categories: software, hardware, travel, hosting, marketing, other
-- [ ] Receipt image/PDF upload (S3-compatible storage)
-- [ ] Include expenses as invoice line items (optional toggle per expense)
-- [ ] Monthly reports by category, CSV export
-- [ ] Dashboard widget: monthly expense summary
+- [x] `expenses` table: user_id, client_id (nullable), project_id (nullable), description, amount, currency, category, receipt_file, date
+- [x] Categories: software, hardware, travel, hosting, marketing, other
+- [x] Receipt image/PDF upload (S3-compatible storage)
+- [x] Include expenses as invoice line items (optional toggle per expense)
+- [x] Monthly reports by category, CSV export
+- [x] Dashboard widget: monthly expense summary
 
 ---
 
 ### v1.7 — Peppol / e-Invoicing
-- [ ] Generate UBL 2.1 XML alongside PDF (mandatory in DE, IT, FR for B2G and growing B2B)
-- [ ] Peppol BIS Billing 3.0 compliance
-- [ ] Export as PDF + XML from invoice detail page
+- [x] Generate UBL 2.1 XML alongside PDF (mandatory in DE, IT, FR for B2G and growing B2B)
+- [x] Peppol BIS Billing 3.0 compliance
+- [x] Export as PDF + XML from invoice detail page
 
 ---
 
 ### v1.8 — Full Billing Support (Stripe)
 **Goal:** Replace placeholder Stripe integration with a working billing system.
 
-**Stripe (via `laravel/cashier`)**
-- [ ] Stripe Checkout for plan upgrades
-- [ ] Webhooks: `checkout.session.completed`, `customer.subscription.updated`, `customer.subscription.deleted`, `invoice.payment_failed`
-- [ ] Stripe Customer Portal: update card, download receipts, cancel plan
-- [ ] Schema: `stripe_customer_id`, `stripe_subscription_id`, `subscription_status`, `trial_ends_at`, `subscribed_until` on `users`
-- [ ] Dunning: on `invoice.payment_failed` — email user, 3-day grace before downgrade to Free
-- [ ] 14-day Pro trial on signup (no card required)
+**Stripe (via raw `stripe/stripe-php` SDK — cashier incompatible with stripe-php ^19.4)**
+- [x] Stripe Checkout for plan upgrades
+- [x] Webhooks: `checkout.session.completed`, `customer.subscription.updated`, `customer.subscription.deleted`, `invoice.payment_failed`
+- [x] Stripe Customer Portal: update card, download receipts, cancel plan
+- [x] Schema: `stripe_customer_id`, `stripe_subscription_id`, `subscription_status`, `trial_ends_at`, `subscribed_until` on `users`
+- [x] Dunning: on `invoice.payment_failed` — email user, 3-day grace before downgrade to Free
+- [x] 14-day Pro trial on signup (no card required)
 
 **Billing UI**
-- [ ] Billing tab: current plan badge, next renewal date, payment method indicator, Change Plan / Cancel buttons
+- [x] Billing tab: current plan badge, next renewal date, payment method indicator, Change Plan / Cancel buttons
 - [ ] Billing history table: date, amount, status, PDF receipt link
 - [ ] Plan comparison modal with upgrade CTA
 - [ ] Cancellation flow: confirm modal, optional reason, end-of-period vs. immediate toggle

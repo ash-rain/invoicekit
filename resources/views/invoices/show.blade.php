@@ -23,15 +23,76 @@
                         {{ __('Edit') }}
                     </a>
                 @endif
+                @if(auth()->user()->isPro())
+                    <form method="POST" action="{{ route('invoices.make-recurring', $invoice) }}" class="inline">
+                        @csrf
+                        <button type="submit"
+                            class="px-4 py-2.5 text-sm font-semibold border border-indigo-300 text-indigo-700 rounded-xl hover:bg-indigo-50">
+                            {{ __('Make Recurring') }}
+                        </button>
+                    </form>
+                @endif
+                <div x-data="{ open: false }" class="relative">
+                    <button @click="open = !open"
+                        class="px-4 py-2.5 text-sm font-semibold border border-gray-300 text-gray-700 rounded-xl hover:bg-gray-50 flex items-center gap-1.5">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/>
+                        </svg>
+                        {{ __('Share') }}
+                    </button>
+                    <div x-show="open" @click.outside="open = false" x-transition
+                        class="absolute right-0 mt-2 w-80 bg-white rounded-2xl border border-[#eaecf0] shadow-xl p-5 z-10">
+                        <p class="text-sm font-semibold text-[#0f1117] mb-1">{{ __('Share Portal Link') }}</p>
+                        <p class="text-xs text-gray-500 mb-4">{{ __('Generate a shareable link so your client can view this invoice online.') }}</p>
+                        <form method="POST" action="{{ route('invoices.portal-link', $invoice) }}" class="space-y-3">
+                            @csrf
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-600 mb-1">{{ __('Password (optional)') }}</label>
+                                <input type="password" name="portal_password"
+                                    class="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none"
+                                    placeholder="{{ __('Leave blank for no password') }}">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-600 mb-1">{{ __('Expires in (days, optional)') }}</label>
+                                <input type="number" name="portal_expiry" min="1" max="365"
+                                    class="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none"
+                                    placeholder="{{ __('Never') }}">
+                            </div>
+                            <button type="submit"
+                                class="w-full px-4 py-2 text-sm font-bold bg-[#0f1117] text-white rounded-xl hover:bg-[#1a1f2e] transition">
+                                {{ __('Generate Link') }}
+                            </button>
+                        </form>
+                    </div>
+                </div>
                 <a href="{{ route('invoices.pdf', $invoice) }}"
                    target="_blank"
                    class="px-4 py-2.5 text-sm font-bold bg-[#0f1117] text-white rounded-xl hover:bg-[#1a1f2e]">
                     {{ __('Download PDF') }}
                 </a>
+                <a href="{{ route('invoices.xml', $invoice) }}"
+                   class="px-4 py-2.5 text-sm font-semibold border border-gray-300 text-gray-700 rounded-xl hover:bg-gray-50">
+                    {{ __('Download XML') }}
+                </a>
             </div>
         </div>
 
-        {{-- Status bar --}}
+        {{-- Portal link flash --}}
+        @if (session('portal_url'))
+            <div x-data="{ copied: false }" class="mb-6 p-4 bg-indigo-50 border border-indigo-200 rounded-2xl">
+                <p class="text-xs font-bold text-indigo-700 uppercase tracking-wider mb-2">{{ __('Portal Link Generated') }}</p>
+                <div class="flex items-center gap-2">
+                    <input type="text" readonly value="{{ session('portal_url') }}"
+                        class="flex-1 text-xs text-indigo-900 bg-white border border-indigo-200 rounded-lg px-3 py-2 font-mono"
+                        @focus="$event.target.select()">
+                    <button @click="navigator.clipboard.writeText('{{ session('portal_url') }}'); copied = true; setTimeout(() => copied = false, 2000)"
+                        class="px-3 py-2 text-xs font-semibold border border-indigo-300 text-indigo-700 rounded-lg hover:bg-indigo-100 whitespace-nowrap">
+                        <span x-show="!copied">{{ __('Copy') }}</span>
+                        <span x-show="copied">{{ __('Copied!') }}</span>
+                    </button>
+                </div>
+            </div>
+        @endif
         @php
             $badgeColor = match($invoice->status) {
                 'paid'    => 'bg-green-100 text-green-800',

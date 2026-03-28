@@ -186,4 +186,63 @@ class SettingsTest extends TestCase
             ->call('saveBusiness')
             ->assertHasErrors(['companyName', 'companyCountry']);
     }
+
+    public function test_invoicing_tab_saves_invoice_prefix(): void
+    {
+        $user = User::factory()->create();
+        $company = Company::factory()->create(['user_id' => $user->id]);
+        $user->update(['current_company_id' => $company->id]);
+
+        Livewire::actingAs($user)
+            ->test(\App\Livewire\Settings::class)
+            ->set('invoicePrefix', 'INV')
+            ->call('saveInvoicing');
+
+        $this->assertDatabaseHas('companies', [
+            'id' => $company->id,
+            'invoice_prefix' => 'INV',
+        ]);
+    }
+
+    public function test_invoicing_tab_rejects_non_alphanumeric_prefix(): void
+    {
+        $user = User::factory()->create();
+        $company = Company::factory()->create(['user_id' => $user->id]);
+        $user->update(['current_company_id' => $company->id]);
+
+        Livewire::actingAs($user)
+            ->test(\App\Livewire\Settings::class)
+            ->set('invoicePrefix', 'INV-2024')
+            ->call('saveInvoicing')
+            ->assertHasErrors(['invoicePrefix']);
+    }
+
+    public function test_notifications_tab_saves_preferences(): void
+    {
+        $user = User::factory()->create();
+
+        Livewire::actingAs($user)
+            ->test(\App\Livewire\Settings::class)
+            ->set('reminderBeforeDueDays', 5)
+            ->set('reminderOnDueDay', false)
+            ->set('reminderOverdueIntervals', [7, 14])
+            ->call('saveNotifications');
+
+        $user->refresh();
+
+        $this->assertSame(5, $user->reminder_before_due_days);
+        $this->assertFalse($user->reminder_on_due_day);
+        $this->assertSame([7, 14], $user->reminder_overdue_intervals);
+    }
+
+    public function test_notifications_tab_validates_before_due_days_range(): void
+    {
+        $user = User::factory()->create();
+
+        Livewire::actingAs($user)
+            ->test(\App\Livewire\Settings::class)
+            ->set('reminderBeforeDueDays', 99)
+            ->call('saveNotifications')
+            ->assertHasErrors(['reminderBeforeDueDays']);
+    }
 }
