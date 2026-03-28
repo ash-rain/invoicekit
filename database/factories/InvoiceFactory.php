@@ -20,7 +20,7 @@ class InvoiceFactory extends Factory
         return [
             'user_id' => User::factory(),
             'client_id' => Client::factory(),
-            'invoice_number' => 'INV-' . now()->year . '-' . fake()->unique()->numerify('####'),
+            'invoice_number' => 'INV-'.now()->year.'-'.fake()->unique()->numerify('####'),
             'status' => 'draft',
             'issue_date' => now()->toDateString(),
             'due_date' => now()->addDays(30)->toDateString(),

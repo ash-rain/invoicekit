@@ -20,7 +20,7 @@ class InvoicePortalController extends Controller
         }
 
         if ($accessToken->isPasswordProtected()) {
-            $sessionKey = 'portal_auth_' . $token;
+            $sessionKey = 'portal_auth_'.$token;
 
             if (! $request->session()->get($sessionKey)) {
                 return view('invoices.portal-auth', compact('accessToken'));
@@ -59,7 +59,7 @@ class InvoicePortalController extends Controller
             return back()->withErrors(['password' => 'Incorrect password.']);
         }
 
-        $request->session()->put('portal_auth_' . $token, true);
+        $request->session()->put('portal_auth_'.$token, true);
 
         return redirect()->route('invoice.portal', $token);
     }

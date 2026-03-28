@@ -271,7 +271,7 @@ class BillingTest extends TestCase
 
         $user->refresh();
         $this->assertEquals('past_due', $user->subscription_status);
-        Mail::assertSent(PaymentFailedNotification::class, fn($mail) => $mail->hasTo($user->email));
+        Mail::assertSent(PaymentFailedNotification::class, fn ($mail) => $mail->hasTo($user->email));
     }
 
     public function test_webhook_with_unknown_customer_does_not_error(): void

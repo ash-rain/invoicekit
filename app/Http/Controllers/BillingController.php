@@ -93,8 +93,8 @@ class BillingController extends Controller
                 'price' => $priceId,
                 'quantity' => 1,
             ]],
-            'success_url' => route('billing.index') . '?checkout=success',
-            'cancel_url' => route('billing.index') . '?checkout=cancelled',
+            'success_url' => route('billing.index').'?checkout=success',
+            'cancel_url' => route('billing.index').'?checkout=cancelled',
             'metadata' => ['user_id' => $user->id, 'plan' => $plan],
         ]);
 
@@ -186,7 +186,7 @@ class BillingController extends Controller
             'unit_amount' => $amountCents,
             'currency' => $currency,
             'product_data' => [
-                'name' => __('Invoice') . ' ' . $invoice->invoice_number,
+                'name' => __('Invoice').' '.$invoice->invoice_number,
             ],
         ]);
 

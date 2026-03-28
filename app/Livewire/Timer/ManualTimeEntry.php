@@ -30,7 +30,7 @@ class ManualTimeEntry extends Component
             'projectId' => 'required|integer',
             'date' => 'required|date',
             'startTime' => 'required|date_format:H:i',
-            'endTime' => ['required', 'date_format:H:i', 'after:' . ($this->startTime ?: '00:00')],
+            'endTime' => ['required', 'date_format:H:i', 'after:'.($this->startTime ?: '00:00')],
             'description' => 'nullable|string|max:255',
         ]);
 

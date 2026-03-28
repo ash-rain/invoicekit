@@ -28,7 +28,7 @@ class ClientFactory extends Factory
     public function withVatNumber(): static
     {
         return $this->state(fn (array $attributes) => [
-            'vat_number' => 'DE' . fake()->numerify('#########'),
+            'vat_number' => 'DE'.fake()->numerify('#########'),
             'country' => 'DE',
         ]);
     }

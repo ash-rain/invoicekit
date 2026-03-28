@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class TimeEntry extends Model
 {
     use HasFactory;
+
     protected $fillable = [
         'user_id',
         'project_id',

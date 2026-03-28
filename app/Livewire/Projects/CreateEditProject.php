@@ -54,7 +54,7 @@ class CreateEditProject extends Component
             'name' => ['required', 'string', 'max:255'],
             'client_id' => ['nullable', 'integer', 'exists:clients,id'],
             'hourly_rate' => ['nullable', 'numeric', 'min:0', 'max:99999'],
-            'currency' => ['required', 'string', 'in:' . implode(',', self::CURRENCIES)],
+            'currency' => ['required', 'string', 'in:'.implode(',', self::CURRENCIES)],
             'status' => ['required', 'in:active,archived'],
         ];
     }

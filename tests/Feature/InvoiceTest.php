@@ -4,7 +4,6 @@ namespace Tests\Feature;
 
 use App\Models\Client;
 use App\Models\Invoice;
-use App\Models\InvoiceItem;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Livewire;
@@ -74,7 +73,7 @@ class InvoiceTest extends TestCase
 
         Livewire::actingAs($user)
             ->test(\App\Livewire\Invoices\CreateInvoice::class)
-            ->assertSet('invoiceNumber', 'INV-' . now()->year . '-0001');
+            ->assertSet('invoiceNumber', 'INV-'.now()->year.'-0001');
     }
 
     public function test_invoice_requires_a_client(): void

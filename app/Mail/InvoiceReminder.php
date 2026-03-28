@@ -58,7 +58,7 @@ class InvoiceReminder extends Mailable
 
         return [
             Attachment::fromData(
-                fn() => $pdfContent,
+                fn () => $pdfContent,
                 "invoice-{$this->invoice->invoice_number}.pdf"
             )->withMime('application/pdf'),
         ];

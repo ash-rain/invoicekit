@@ -14,7 +14,7 @@ class TimeEntryFactory extends Factory
     public function definition(): array
     {
         $startedAt = fake()->dateTimeBetween('-30 days', 'now');
-        $stoppedAt = (clone $startedAt)->modify('+' . fake()->numberBetween(30, 480) . ' minutes');
+        $stoppedAt = (clone $startedAt)->modify('+'.fake()->numberBetween(30, 480).' minutes');
 
         return [
             'user_id' => User::factory(),
@@ -38,7 +38,7 @@ class TimeEntryFactory extends Factory
     public function thisMonth(): static
     {
         $startedAt = fake()->dateTimeBetween(now()->startOfMonth(), now());
-        $stoppedAt = (clone $startedAt)->modify('+' . fake()->numberBetween(30, 480) . ' minutes');
+        $stoppedAt = (clone $startedAt)->modify('+'.fake()->numberBetween(30, 480).' minutes');
 
         return $this->state(fn (array $attributes) => [
             'started_at' => $startedAt,
