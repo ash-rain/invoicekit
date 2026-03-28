@@ -30,8 +30,6 @@ class Settings extends Component
 
     public string $locale = '';
 
-    public $profilePhotoUpload = null;
-
     // ----- Business tab -----
     public string $companyName = '';
 
@@ -119,11 +117,6 @@ class Settings extends Component
         $this->reminderOverdueIntervals = $user->reminder_overdue_intervals ?? [7, 14];
     }
 
-    public function updatedProfilePhotoUpload(): void
-    {
-        $this->validateOnly('profilePhotoUpload');
-    }
-
     public function updatedInvoiceLogoUpload(): void
     {
         $this->validateOnly('invoiceLogoUpload');
@@ -140,7 +133,7 @@ class Settings extends Component
             'website' => ['nullable', 'url', 'max:255'],
             'phone' => ['nullable', 'string', 'max:50'],
             'locale' => ['nullable', 'string', 'in:'.implode(',', config('invoicekit.supported_languages', ['en']))],
-            'profilePhotoUpload' => ['nullable', 'image', 'max:2048'],
+
         ]);
 
         $data = [
@@ -151,16 +144,6 @@ class Settings extends Component
             'phone' => $this->phone ?: null,
             'locale' => $this->locale ?: null,
         ];
-
-        if ($this->profilePhotoUpload) {
-            if ($user->profile_photo) {
-                Storage::disk('minio')->delete($user->profile_photo);
-            }
-
-            $path = $this->profilePhotoUpload->store('profile-photos', 'minio');
-            $data['profile_photo'] = $path;
-            $this->profilePhotoUpload = null;
-        }
 
         $user->update($data);
 

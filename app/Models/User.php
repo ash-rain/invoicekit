@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Support\Facades\Storage;
 use NotificationChannels\WebPush\HasPushSubscriptions;
 
 class User extends Authenticatable implements MustVerifyEmail
@@ -37,7 +36,6 @@ class User extends Authenticatable implements MustVerifyEmail
         'tagline',
         'website',
         'phone',
-        'profile_photo',
         'locale',
         'reminder_before_due_days',
         'reminder_on_due_day',
@@ -121,14 +119,5 @@ class User extends Authenticatable implements MustVerifyEmail
     public function currentCompany(): BelongsTo
     {
         return $this->belongsTo(Company::class, 'current_company_id');
-    }
-
-    public function profilePhotoUrl(): ?string
-    {
-        if (! $this->profile_photo) {
-            return null;
-        }
-
-        return Storage::disk('minio')->url($this->profile_photo);
     }
 }

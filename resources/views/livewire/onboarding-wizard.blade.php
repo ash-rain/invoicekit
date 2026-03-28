@@ -8,13 +8,17 @@
                         <div class="w-9 h-9 rounded-full flex items-center justify-center text-sm font-bold shrink-0
                             {{ $step >= $n ? 'text-[#0f1117]' : 'bg-gray-200 text-gray-500' }}"
                             style="{{ $step >= $n ? 'background:#f59e0b;' : '' }}">
-                            @if($step > $n)
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                            @if ($step > $n)
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                        d="M5 13l4 4L19 7" />
+                                </svg>
                             @else
                                 {{ $n }}
                             @endif
                         </div>
-                        <span class="ml-2 text-xs font-semibold hidden sm:inline {{ $step >= $n ? 'text-[#0f1117]' : 'text-gray-400' }}">
+                        <span
+                            class="ml-2 text-xs font-semibold hidden sm:inline {{ $step >= $n ? 'text-[#0f1117]' : 'text-gray-400' }}">
                             {{ $label }}
                         </span>
                         @if (!$loop->last)
@@ -51,7 +55,8 @@
             @if ($step === 1)
                 <div class="space-y-4">
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">{{ __('Your Name / Company Name') }}</label>
+                        <label
+                            class="block text-sm font-medium text-gray-700 mb-1">{{ __('Your Name / Company Name') }}</label>
                         <input wire:model="companyName" type="text"
                             class="w-full border border-gray-300 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
                             placeholder="ACME Freelance Ltd.">
@@ -73,20 +78,23 @@
                     </div>
                     <div class="grid grid-cols-2 gap-3">
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">{{ __('Address') }} <span class="text-gray-400 font-normal text-xs">({{ __('optional') }})</span></label>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">{{ __('Address') }} <span
+                                    class="text-gray-400 font-normal text-xs">({{ __('optional') }})</span></label>
                             <input wire:model="companyAddress" type="text"
                                 class="w-full border border-gray-300 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
                                 placeholder="{{ __('Street address') }}" />
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">{{ __('Phone') }} <span class="text-gray-400 font-normal text-xs">({{ __('optional') }})</span></label>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">{{ __('Phone') }} <span
+                                    class="text-gray-400 font-normal text-xs">({{ __('optional') }})</span></label>
                             <input wire:model="companyPhone" type="text"
                                 class="w-full border border-gray-300 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
                                 placeholder="+49 123 456789" />
                         </div>
                     </div>
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">{{ __('Bank IBAN') }} <span class="text-gray-400 font-normal text-xs">({{ __('optional, shown on invoices') }})</span></label>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">{{ __('Bank IBAN') }} <span
+                                class="text-gray-400 font-normal text-xs">({{ __('optional, shown on invoices') }})</span></label>
                         <input wire:model="companyBankIban" type="text"
                             class="w-full border border-gray-300 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
                             placeholder="DE89 3704 0044 0532 0130 00" />
@@ -113,7 +121,8 @@
                         @enderror
                     </div>
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">{{ __('Client Email') }} <span class="text-gray-400">{{ __('(optional)') }}</span></label>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">{{ __('Client Email') }} <span
+                                class="text-gray-400">{{ __('(optional)') }}</span></label>
                         <input wire:model="clientEmail" type="email"
                             class="w-full border border-gray-300 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
                             placeholder="billing@techcorp.de">
@@ -167,7 +176,8 @@
 
                     @if (!$skipInvoice)
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">{{ __('Project Name') }}</label>
+                            <label
+                                class="block text-sm font-medium text-gray-700 mb-1">{{ __('Project Name') }}</label>
                             <input wire:model="projectName" type="text"
                                 class="w-full border border-gray-300 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
                                 placeholder="Website Redesign">
@@ -176,7 +186,8 @@
                             @enderror
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">{{ __('Hourly Rate (:currency)', ['currency' => $clientCurrency]) }}</label>
+                            <label
+                                class="block text-sm font-medium text-gray-700 mb-1">{{ __('Hourly Rate (:currency)', ['currency' => $clientCurrency]) }}</label>
                             <input wire:model="hourlyRate" type="number" step="0.01" min="0"
                                 class="w-full border border-gray-300 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
                                 placeholder="75.00">

@@ -62,6 +62,9 @@ STRIPE_PUBLISHABLE_KEY=pk_test_...
 STRIPE_WEBHOOK_SECRET=whsec_...
 STRIPE_PRO_PRICE_ID=price_...
 STRIPE_STARTER_PRICE_ID=price_...
+
+# Web push — subscriber contact email (keys are generated in Step 4)
+VAPID_SUBSCRIBER_EMAIL=hello@yourdomain.com
 ```
 
 All other defaults work out of the box with Docker.
@@ -82,7 +85,17 @@ docker compose exec app php artisan key:generate
 docker compose exec app php artisan migrate --seed
 ```
 
-### 4 — Create the MinIO bucket
+### 4 — Generate VAPID keys for web push notifications
+
+```bash
+docker compose exec app php artisan webpush:vapid
+```
+
+This auto-writes `VAPID_PUBLIC_KEY` and `VAPID_PRIVATE_KEY` into your `.env` file.
+
+> **Tip:** Notification reminder emails are sent to the queue and written to `storage/logs/laravel.log` by default (`MAIL_MAILER=log`). Run `docker compose logs -f worker` to watch job processing.
+
+### 5 — Create the MinIO bucket
 
 ```bash
 docker compose exec app php artisan storage:minio-init
@@ -90,7 +103,7 @@ docker compose exec app php artisan storage:minio-init
 
 Or manually: open the MinIO console at **http://localhost:9003** (user `invoicekit` / password `secret123456`), create a bucket named `invoicekit`, and set its policy to public.
 
-### 5 — Build frontend assets
+### 6 — Build frontend assets
 
 ```bash
 npm install
@@ -99,7 +112,7 @@ npm run build
 
 For hot-reload during development, run `npm run dev` in a separate terminal (or use `composer run dev` to start all processes together).
 
-### 6 — Open the app
+### 7 — Open the app
 
 Visit **http://localhost:8008** and register an account. The onboarding wizard runs on first login.
 

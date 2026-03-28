@@ -282,7 +282,8 @@
         {{-- Header --}}
         <div class="header">
             @if ($company?->logoUrl())
-                <img src="{{ $company->logoUrl() }}" alt="{{ $company->name }}" style="max-height:48px; max-width:180px; object-fit:contain;">
+                <img src="{{ $company->logoUrl() }}" alt="{{ $company->name }}"
+                    style="max-height:48px; max-width:180px; object-fit:contain;">
             @else
                 <div class="brand">{{ $company?->name ?? $invoice->user->name }}</div>
             @endif

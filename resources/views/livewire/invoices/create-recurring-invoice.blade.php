@@ -4,7 +4,8 @@
             <h1 class="font-bold text-[26px] text-[#0f1117] tracking-tight" style="font-family:'Syne',sans-serif;">
                 {{ $this->recurringInvoice && $this->recurringInvoice->exists ? __('Edit Recurring Template') : __('New Recurring Template') }}
             </h1>
-            <p class="text-sm text-gray-500 mt-0.5">{{ __('Invoices will be auto-generated on the selected schedule.') }}</p>
+            <p class="text-sm text-gray-500 mt-0.5">{{ __('Invoices will be auto-generated on the selected schedule.') }}
+            </p>
         </div>
         <a href="{{ route('recurring-invoices.index') }}"
             class="text-sm text-gray-500 hover:text-gray-700 flex items-center gap-1.5">
@@ -39,7 +40,8 @@
 
             {{-- Frequency --}}
             <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">{{ __('Frequency') }} <span class="text-red-500">*</span></label>
+                <label class="block text-sm font-medium text-gray-700 mb-1">{{ __('Frequency') }} <span
+                        class="text-red-500">*</span></label>
                 <select wire:model="frequency"
                     class="w-full border border-gray-300 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
                     <option value="monthly">{{ __('Monthly') }}</option>
@@ -50,7 +52,8 @@
 
             {{-- Next Send Date --}}
             <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">{{ __('Next Send Date') }} <span class="text-red-500">*</span></label>
+                <label class="block text-sm font-medium text-gray-700 mb-1">{{ __('Next Send Date') }} <span
+                        class="text-red-500">*</span></label>
                 <input wire:model="nextSendDate" type="date"
                     class="w-full border border-gray-300 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 @error('nextSendDate') border-red-400 @enderror" />
                 @error('nextSendDate')
@@ -101,24 +104,29 @@
                     <div class="grid grid-cols-12 gap-3 items-start" wire:key="item-{{ $index }}">
                         <div class="col-span-6">
                             @if ($loop->first)
-                                <label class="block text-xs font-semibold text-gray-500 mb-1">{{ __('Description') }}</label>
+                                <label
+                                    class="block text-xs font-semibold text-gray-500 mb-1">{{ __('Description') }}</label>
                             @endif
                             <input wire:model.live="items.{{ $index }}.description" type="text"
-                                class="w-full border border-gray-300 rounded-xl px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 @error('items.'.$index.'.description') border-red-400 @enderror"
+                                class="w-full border border-gray-300 rounded-xl px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 @error('items.' . $index . '.description') border-red-400 @enderror"
                                 placeholder="{{ __('Description') }}" />
                         </div>
                         <div class="col-span-2">
                             @if ($loop->first)
-                                <label class="block text-xs font-semibold text-gray-500 mb-1">{{ __('Qty') }}</label>
+                                <label
+                                    class="block text-xs font-semibold text-gray-500 mb-1">{{ __('Qty') }}</label>
                             @endif
-                            <input wire:model.live="items.{{ $index }}.quantity" type="number" step="0.01" min="0.01"
+                            <input wire:model.live="items.{{ $index }}.quantity" type="number" step="0.01"
+                                min="0.01"
                                 class="w-full border border-gray-300 rounded-xl px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500" />
                         </div>
                         <div class="col-span-3">
                             @if ($loop->first)
-                                <label class="block text-xs font-semibold text-gray-500 mb-1">{{ __('Unit Price') }}</label>
+                                <label
+                                    class="block text-xs font-semibold text-gray-500 mb-1">{{ __('Unit Price') }}</label>
                             @endif
-                            <input wire:model.live="items.{{ $index }}.unit_price" type="number" step="0.01" min="0"
+                            <input wire:model.live="items.{{ $index }}.unit_price" type="number" step="0.01"
+                                min="0"
                                 class="w-full border border-gray-300 rounded-xl px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500" />
                         </div>
                         <div class="col-span-1 {{ $loop->first ? 'pt-6' : '' }} flex items-center">
@@ -126,7 +134,8 @@
                                 <button type="button" wire:click="removeItem({{ $index }})"
                                     class="text-gray-400 hover:text-red-500 transition">
                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M6 18L18 6M6 6l12 12" />
                                     </svg>
                                 </button>
                             @endif
@@ -138,7 +147,7 @@
             <button type="button" wire:click="addItem"
                 class="mt-4 text-sm text-indigo-600 font-medium hover:text-indigo-800 flex items-center gap-1">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
                 </svg>
                 {{ __('Add Line Item') }}
             </button>

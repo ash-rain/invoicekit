@@ -122,4 +122,72 @@ class DashboardTest extends TestCase
             ->assertSet('overdueInvoicesCount', 0)
             ->assertSet('unpaidInvoicesCount', 0);
     }
+
+    public function test_dashboard_shows_revenue_this_month(): void
+    {
+        $user = User::factory()->create();
+        $client = Client::factory()->create(['user_id' => $user->id]);
+
+        Invoice::factory()->paid()->create([
+            'user_id' => $user->id,
+            'client_id' => $client->id,
+            'total' => 750.00,
+            'paid_at' => now()->startOfMonth()->addDays(2),
+        ]);
+        // Paid last month — should not be counted
+        Invoice::factory()->paid()->create([
+            'user_id' => $user->id,
+            'client_id' => $client->id,
+            'total' => 200.00,
+            'paid_at' => now()->subMonth(),
+        ]);
+
+        Livewire::actingAs($user)
+            ->test(\App\Livewire\Dashboard::class)
+            ->assertSet('revenueThisMonth', 750.0);
+    }
+
+    public function test_dashboard_shows_active_projects_count(): void
+    {
+        $user = User::factory()->create();
+        $client = Client::factory()->create(['user_id' => $user->id]);
+
+        Project::factory()->count(2)->create(['user_id' => $user->id, 'client_id' => $client->id, 'status' => 'active']);
+        Project::factory()->create(['user_id' => $user->id, 'client_id' => $client->id, 'status' => 'inactive']);
+
+        Livewire::actingAs($user)
+            ->test(\App\Livewire\Dashboard::class)
+            ->assertSet('activeProjects', 2);
+    }
+
+    public function test_dashboard_shows_total_clients_count(): void
+    {
+        $user = User::factory()->create();
+        Client::factory()->count(4)->create(['user_id' => $user->id]);
+
+        Livewire::actingAs($user)
+            ->test(\App\Livewire\Dashboard::class)
+            ->assertSet('totalClients', 4);
+    }
+
+    public function test_dashboard_shows_expenses_this_month(): void
+    {
+        $user = User::factory()->create();
+
+        \App\Models\Expense::factory()->create([
+            'user_id' => $user->id,
+            'amount' => 120.00,
+            'date' => now()->startOfMonth()->addDays(1),
+        ]);
+        // Last month — should not be counted
+        \App\Models\Expense::factory()->create([
+            'user_id' => $user->id,
+            'amount' => 50.00,
+            'date' => now()->subMonth(),
+        ]);
+
+        Livewire::actingAs($user)
+            ->test(\App\Livewire\Dashboard::class)
+            ->assertSet('expensesThisMonth', 120.0);
+    }
 }

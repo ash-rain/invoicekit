@@ -131,7 +131,8 @@
                 @if ($this->expense?->receipt_file)
                     <p class="mt-1 text-xs text-gray-500">
                         {{ __('Current receipt:') }}
-                        <a href="{{ $this->expense->receiptUrl() }}" target="_blank" class="text-indigo-600 hover:text-indigo-800">{{ __('View') }}</a>
+                        <a href="{{ $this->expense->receiptUrl() }}" target="_blank"
+                            class="text-indigo-600 hover:text-indigo-800">{{ __('View') }}</a>
                     </p>
                 @endif
             </div>
@@ -144,10 +145,9 @@
                 class="px-4 py-2.5 text-sm font-semibold border border-gray-300 text-gray-700 rounded-xl hover:bg-gray-50">
                 {{ __('Cancel') }}
             </a>
-            <button type="submit"
-                class="px-5 py-2.5 text-sm font-bold text-white rounded-xl transition"
-                style="background:#0f1117;"
-                onmouseover="this.style.background='#1e2130'" onmouseout="this.style.background='#0f1117'">
+            <button type="submit" class="px-5 py-2.5 text-sm font-bold text-white rounded-xl transition"
+                style="background:#0f1117;" onmouseover="this.style.background='#1e2130'"
+                onmouseout="this.style.background='#0f1117'">
                 {{ $this->expense && $this->expense->exists ? __('Update Expense') : __('Create Expense') }}
             </button>
         </div>

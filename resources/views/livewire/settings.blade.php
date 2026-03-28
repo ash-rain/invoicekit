@@ -37,43 +37,6 @@
 
         <form wire:submit="saveProfile" class="bg-white rounded-2xl border border-[#eaecf0] p-6 space-y-5">
 
-            {{-- Photo --}}
-            <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">{{ __('Profile Photo') }}</label>
-                <div class="flex items-center gap-4">
-                    @if ($user->profilePhotoUrl())
-                        <img src="{{ $user->profilePhotoUrl() }}" alt="Profile"
-                            class="w-14 h-14 rounded-full object-cover border border-gray-200">
-                    @else
-                        <div
-                            class="w-14 h-14 rounded-full bg-[#0f1117] flex items-center justify-center text-white text-xl font-bold">
-                            {{ strtoupper(substr($user->name, 0, 1)) }}
-                        </div>
-                    @endif
-                    <div>
-                        @if ($profilePhotoUpload && !$errors->has('profilePhotoUpload'))
-                            <img src="{{ $profilePhotoUpload->temporaryUrl() }}" alt="Preview"
-                                class="w-14 h-14 rounded-full object-cover border border-gray-200 mb-2">
-                        @endif
-                        <label
-                            class="cursor-pointer inline-flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-xl hover:bg-gray-50 transition-colors">
-                            <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
-                            </svg>
-                            <span wire:loading.remove wire:target="profilePhotoUpload">{{ __('Choose photo') }}</span>
-                            <span wire:loading wire:target="profilePhotoUpload"
-                                class="text-gray-500">{{ __('Uploading…') }}</span>
-                            <input wire:model="profilePhotoUpload" type="file" accept="image/*" class="sr-only" />
-                        </label>
-                        <p class="text-xs text-gray-400 mt-1">{{ __('JPG, PNG or GIF — max 2MB') }}</p>
-                    </div>
-                </div>
-                @error('profilePhotoUpload')
-                    <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
-                @enderror
-            </div>
-
             {{-- Name --}}
             <div>
                 <label class="block text-sm font-medium text-gray-700 mb-1">{{ __('Full Name') }} <span
@@ -213,8 +176,7 @@
                         class="w-full border border-gray-300 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500" />
                 </div>
                 <div>
-                    <label
-                        class="block text-sm font-medium text-gray-700 mb-1">{{ __('Registration Number') }}</label>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">{{ __('Registration Number') }}</label>
                     <input wire:model="registrationNumber" type="text"
                         class="w-full border border-gray-300 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500" />
                 </div>
@@ -302,9 +264,12 @@
                 </div>
 
                 <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">{{ __('Invoice Number Prefix') }}</label>
-                    <p class="text-xs text-gray-400 mb-1.5">{{ __('Optional alphanumeric prefix added before the invoice number (e.g. INV, 2024).') }}</p>
-                    <input wire:model="invoicePrefix" type="text" placeholder="{{ __('e.g. INV') }}" maxlength="20"
+                    <label
+                        class="block text-sm font-medium text-gray-700 mb-1">{{ __('Invoice Number Prefix') }}</label>
+                    <p class="text-xs text-gray-400 mb-1.5">
+                        {{ __('Optional alphanumeric prefix added before the invoice number (e.g. INV, 2024).') }}</p>
+                    <input wire:model="invoicePrefix" type="text" placeholder="{{ __('e.g. INV') }}"
+                        maxlength="20"
                         class="w-full border border-gray-300 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 @error('invoicePrefix') border-red-400 @enderror" />
                     @error('invoicePrefix')
                         <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
@@ -436,12 +401,16 @@
         <form wire:submit="saveNotifications" class="bg-white rounded-2xl border border-[#eaecf0] p-6 space-y-6">
             <div>
                 <h3 class="text-sm font-bold text-gray-900">{{ __('Invoice Reminder Emails') }}</h3>
-                <p class="text-xs text-gray-500 mt-0.5">{{ __('Control when automated reminder emails are sent to clients about outstanding invoices.') }}</p>
+                <p class="text-xs text-gray-500 mt-0.5">
+                    {{ __('Control when automated reminder emails are sent to clients about outstanding invoices.') }}
+                </p>
             </div>
 
             <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">{{ __('Reminder Before Due Date') }}</label>
-                <p class="text-xs text-gray-400 mb-1.5">{{ __('Send a reminder this many days before the invoice is due. Set to 0 to disable.') }}</p>
+                <label
+                    class="block text-sm font-medium text-gray-700 mb-1">{{ __('Reminder Before Due Date') }}</label>
+                <p class="text-xs text-gray-400 mb-1.5">
+                    {{ __('Send a reminder this many days before the invoice is due. Set to 0 to disable.') }}</p>
                 <div class="flex items-center gap-3">
                     <input wire:model="reminderBeforeDueDays" type="number" min="0" max="30"
                         class="w-24 border border-gray-300 rounded-xl px-3 py-2.5 text-sm text-center focus:outline-none focus:ring-2 focus:ring-indigo-500 @error('reminderBeforeDueDays') border-red-400 @enderror" />
@@ -462,12 +431,12 @@
 
             <div>
                 <label class="block text-sm font-medium text-gray-700 mb-1">{{ __('Overdue Reminders') }}</label>
-                <p class="text-xs text-gray-400 mb-2">{{ __('Send follow-up reminders at these intervals after the due date (days overdue).') }}</p>
+                <p class="text-xs text-gray-400 mb-2">
+                    {{ __('Send follow-up reminders at these intervals after the due date (days overdue).') }}</p>
                 <div class="flex flex-wrap gap-2">
                     @foreach ([7, 14, 21, 30] as $day)
                         <label class="flex items-center gap-1.5 cursor-pointer select-none">
-                            <input type="checkbox" value="{{ $day }}"
-                                wire:model="reminderOverdueIntervals"
+                            <input type="checkbox" value="{{ $day }}" wire:model="reminderOverdueIntervals"
                                 class="rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
                             <span class="text-sm text-gray-600">+{{ $day }} {{ __('days') }}</span>
                         </label>
