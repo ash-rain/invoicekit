@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Client extends Model
 {
     use HasFactory;
+
     protected $fillable = [
         'user_id',
         'name',
@@ -18,6 +19,7 @@ class Client extends Model
         'country',
         'vat_number',
         'currency',
+        'default_language',
     ];
 
     public function user(): BelongsTo

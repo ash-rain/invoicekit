@@ -174,5 +174,18 @@
     "🚀 Launch InvoiceKit": "🚀 Εκκίνηση InvoiceKit",
     "By continuing you agree to our :terms and :privacy.": "Συνεχίζοντας, αποδέχεστε τους :terms και την :privacy μας.",
     "Terms": "Όρους Χρήσης",
-    "Privacy Policy": "Πολιτική Απορρήτου"
+    "Privacy Policy": "Πολιτική Απορρήτου",
+    "Language Preference": "Προτίμηση γλώσσας",
+    "Select your preferred app language": "Επιλέξτε την προτιμώμενη γλώσσα της εφαρμογής",
+    "System default": "Προεπιλογή συστήματος",
+    "Default Invoice Language": "Προεπιλεγμένη γλώσσα τιμολογίου",
+    "PDF invoices to this client will use this language by default": "Τα PDF τιμολόγια για αυτόν τον πελάτη θα χρησιμοποιούν αυτή τη γλώσσα από προεπιλογή",
+    "Use my language preference": "Χρήση της προτίμησης γλώσσάς μου",
+    "You have reached the client limit for your plan. Please upgrade to add more clients.": "Έχετε φτάσει το όριο πελατών για το πλάνο σας. Αναβαθμίστε για να προσθέσετε περισσότερους πελάτες.",
+    "Invalid VAT number format for :country.": "Μη έγκυρη μορφή αριθμού ΦΠΑ για :country.",
+    "Client updated successfully.": "Ο πελάτης ενημερώθηκε επιτυχώς.",
+    "Client created successfully.": "Ο πελάτης δημιουργήθηκε επιτυχώς.",
+    "Please select a project.": "Παρακαλώ επιλέξτε ένα έργο.",
+    "You have reached the invoice limit for your plan this month. Please upgrade to create more invoices.": "Έχετε φτάσει το όριο τιμολογίων για το πλάνο σας αυτόν τον μήνα. Αναβαθμίστε για να δημιουργήσετε περισσότερα τιμολόγια.",
+    "Invoice saved successfully.": "Το τιμολόγιο αποθηκεύτηκε επιτυχώς."
 }

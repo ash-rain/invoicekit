@@ -174,5 +174,18 @@
     "🚀 Launch InvoiceKit": "🚀 Zaženi InvoiceKit",
     "By continuing you agree to our :terms and :privacy.": "Z nadaljevanjem se strinjate z našimi :terms in :privacy.",
     "Terms": "Pogoji",
-    "Privacy Policy": "Pravilnik o zasebnosti"
+    "Privacy Policy": "Pravilnik o zasebnosti",
+    "Language Preference": "Jezikovna nastavitev",
+    "Select your preferred app language": "Izberite želeni jezik aplikacije",
+    "System default": "Privzeto sistemsko",
+    "Default Invoice Language": "Privzeti jezik računa",
+    "PDF invoices to this client will use this language by default": "PDF računi za tega stranko bodo privzeto uporabljali ta jezik",
+    "Use my language preference": "Uporabi mojo jezikovne nastavitve",
+    "You have reached the client limit for your plan. Please upgrade to add more clients.": "Dosegli ste omejitev strank za vaš načrt. Nadgradite, da dodate več strank.",
+    "Invalid VAT number format for :country.": "Neveljavna oblika DDV številke za :country.",
+    "Client updated successfully.": "Stranka je bila uspešno posodobljena.",
+    "Client created successfully.": "Stranka je bila uspešno ustvarjena.",
+    "Please select a project.": "Izberite projekt.",
+    "You have reached the invoice limit for your plan this month. Please upgrade to create more invoices.": "Ta mesec ste dosegli omejitev računov za vaš načrt. Nadgradite, da ustvarite več računov.",
+    "Invoice saved successfully.": "Račun je bil uspešno shranjen."
 }

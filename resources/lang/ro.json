@@ -174,5 +174,18 @@
     "🚀 Launch InvoiceKit": "🚀 Lansați InvoiceKit",
     "By continuing you agree to our :terms and :privacy.": "Continuând, sunteți de acord cu :terms și :privacy noastre.",
     "Terms": "Termenii",
-    "Privacy Policy": "Politica de confidențialitate"
+    "Privacy Policy": "Politica de confidențialitate",
+    "Language Preference": "Preferința de limbă",
+    "Select your preferred app language": "Selectați limba preferată a aplicației",
+    "System default": "Implicit sistem",
+    "Default Invoice Language": "Limba implicită a facturii",
+    "PDF invoices to this client will use this language by default": "Facturile PDF pentru acest client vor folosi implicit această limbă",
+    "Use my language preference": "Folosește preferința mea de limbă",
+    "You have reached the client limit for your plan. Please upgrade to add more clients.": "Ați atins limita de clienți pentru planul dvs. Faceți upgrade pentru a adăuga mai mulți clienți.",
+    "Invalid VAT number format for :country.": "Format de număr TVA invalid pentru :country.",
+    "Client updated successfully.": "Clientul a fost actualizat cu succes.",
+    "Client created successfully.": "Clientul a fost creat cu succes.",
+    "Please select a project.": "Vă rugăm să selectați un proiect.",
+    "You have reached the invoice limit for your plan this month. Please upgrade to create more invoices.": "Ați atins limita de facturi pentru planul dvs. în această lună. Faceți upgrade pentru a crea mai multe facturi.",
+    "Invoice saved successfully.": "Factura a fost salvată cu succes."
 }

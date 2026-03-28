@@ -174,5 +174,18 @@
     "🚀 Launch InvoiceKit": "🚀 Seol InvoiceKit",
     "By continuing you agree to our :terms and :privacy.": "Trí leanúint ar aghaidh, aontaíonn tú lenár :terms agus :privacy.",
     "Terms": "Téarmaí",
-    "Privacy Policy": "Polasaí Príobháideachais"
+    "Privacy Policy": "Polasaí Príobháideachais",
+    "Language Preference": "Rogha Teanga",
+    "Select your preferred app language": "Roghnaigh do theanga app is fearr leat",
+    "System default": "Réamhshocrú córais",
+    "Default Invoice Language": "Teanga réamhshocraithe sonrasc",
+    "PDF invoices to this client will use this language by default": "Úsáidfidh sonraisc PDF don chliant seo an teanga seo de réir réamhshocraithe",
+    "Use my language preference": "Úsáid mo rogha teanga",
+    "You have reached the client limit for your plan. Please upgrade to add more clients.": "Tá teorainn cliant do phlean bainte amach agat. Uasghrádaigh le tuilleadh cliant a chur leis.",
+    "Invalid VAT number format for :country.": "Formáid uimhir CBL neamhbhailí do :country.",
+    "Client updated successfully.": "Cliant nuashonraithe go rathúil.",
+    "Client created successfully.": "Cliant cruthaithe go rathúil.",
+    "Please select a project.": "Roghnaigh tionscadal le do thoil.",
+    "You have reached the invoice limit for your plan this month. Please upgrade to create more invoices.": "Tá teorainn sonrasc do phlean an mhí seo bainte amach agat. Uasghrádaigh le tuilleadh sonraisc a chruthú.",
+    "Invoice saved successfully.": "Sonrasc sábháilte go rathúil."
 }

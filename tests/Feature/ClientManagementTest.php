@@ -63,6 +63,39 @@ class ClientManagementTest extends TestCase
         ]);
     }
 
+    public function test_client_default_language_is_saved(): void
+    {
+        $user = User::factory()->create();
+
+        Livewire::actingAs($user)
+            ->test(\App\Livewire\Clients\CreateEditClient::class)
+            ->set('name', 'Acme Corp')
+            ->set('country', 'DE')
+            ->set('currency', 'EUR')
+            ->set('defaultLanguage', 'de')
+            ->call('save');
+
+        $this->assertDatabaseHas('clients', [
+            'user_id' => $user->id,
+            'name' => 'Acme Corp',
+            'default_language' => 'de',
+        ]);
+    }
+
+    public function test_client_default_language_is_validated(): void
+    {
+        $user = User::factory()->create();
+
+        Livewire::actingAs($user)
+            ->test(\App\Livewire\Clients\CreateEditClient::class)
+            ->set('name', 'Acme Corp')
+            ->set('country', 'DE')
+            ->set('currency', 'EUR')
+            ->set('defaultLanguage', 'xx')
+            ->call('save')
+            ->assertHasErrors(['defaultLanguage']);
+    }
+
     public function test_client_name_is_required(): void
     {
         $user = User::factory()->create();

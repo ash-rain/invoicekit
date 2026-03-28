@@ -174,5 +174,18 @@
     "🚀 Launch InvoiceKit": "🚀 Uruchom InvoiceKit",
     "By continuing you agree to our :terms and :privacy.": "Kontynuując, akceptujesz nasze :terms i :privacy.",
     "Terms": "Warunki korzystania",
-    "Privacy Policy": "Politykę prywatności"
+    "Privacy Policy": "Politykę prywatności",
+    "Language Preference": "Preferencja języka",
+    "Select your preferred app language": "Wybierz preferowany język aplikacji",
+    "System default": "Domyślny system",
+    "Default Invoice Language": "Domyślny język faktury",
+    "PDF invoices to this client will use this language by default": "Faktury PDF dla tego klienta będą domyślnie używać tego języka",
+    "Use my language preference": "Użyj mojej preferencji językowej",
+    "You have reached the client limit for your plan. Please upgrade to add more clients.": "Osiągnięto limit klientów dla Twojego planu. Wykonaj uaktualnienie, aby dodać więcej klientów.",
+    "Invalid VAT number format for :country.": "Nieprawidłowy format numeru VAT dla :country.",
+    "Client updated successfully.": "Klient zaktualizowany pomyślnie.",
+    "Client created successfully.": "Klient utworzony pomyślnie.",
+    "Please select a project.": "Wybierz projekt.",
+    "You have reached the invoice limit for your plan this month. Please upgrade to create more invoices.": "W tym miesiącu osiągnięto limit faktur dla Twojego planu. Wykonaj uaktualnienie, aby tworzyć więcej faktur.",
+    "Invoice saved successfully.": "Faktura zapisana pomyślnie."
 }

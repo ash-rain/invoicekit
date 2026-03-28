@@ -174,5 +174,18 @@
     "🚀 Launch InvoiceKit": "🚀 Avvia InvoiceKit",
     "By continuing you agree to our :terms and :privacy.": "Continuando, accetti i nostri :terms e la :privacy.",
     "Terms": "Termini",
-    "Privacy Policy": "Informativa sulla privacy"
+    "Privacy Policy": "Informativa sulla privacy",
+    "Language Preference": "Preferenza lingua",
+    "Select your preferred app language": "Seleziona la tua lingua preferita per l'app",
+    "System default": "Predefinito di sistema",
+    "Default Invoice Language": "Lingua predefinita della fattura",
+    "PDF invoices to this client will use this language by default": "Le fatture PDF per questo cliente utilizzeranno questa lingua per impostazione predefinita",
+    "Use my language preference": "Usa la mia preferenza lingua",
+    "You have reached the client limit for your plan. Please upgrade to add more clients.": "Hai raggiunto il limite di clienti per il tuo piano. Esegui l'upgrade per aggiungere altri clienti.",
+    "Invalid VAT number format for :country.": "Formato di partita IVA non valido per :country.",
+    "Client updated successfully.": "Cliente aggiornato con successo.",
+    "Client created successfully.": "Cliente creato con successo.",
+    "Please select a project.": "Seleziona un progetto.",
+    "You have reached the invoice limit for your plan this month. Please upgrade to create more invoices.": "Hai raggiunto il limite di fatture per il tuo piano questo mese. Esegui l'upgrade per creare altre fatture.",
+    "Invoice saved successfully.": "Fattura salvata con successo."
 }

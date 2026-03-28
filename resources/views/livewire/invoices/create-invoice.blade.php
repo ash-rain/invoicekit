@@ -63,30 +63,10 @@
                 <label class="block text-sm font-medium text-gray-700 mb-1">{{ __('PDF Language') }}</label>
                 <select wire:model="language"
                     class="w-full border border-gray-300 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
-                    <option value="en">{{ __('English') }}</option>
-                    <option value="bg">{{ __('Bulgarian (Български)') }}</option>
-                    <option value="de">Deutsch</option>
-                    <option value="fr">Français</option>
-                    <option value="es">Español</option>
-                    <option value="it">Italiano</option>
-                    <option value="nl">Nederlands</option>
-                    <option value="pl">Polski</option>
-                    <option value="pt">Português</option>
-                    <option value="ro">Română</option>
-                    <option value="cs">Čeština</option>
-                    <option value="hu">Magyar</option>
-                    <option value="sv">Svenska</option>
-                    <option value="da">Dansk</option>
-                    <option value="fi">Suomi</option>
-                    <option value="el">Ελληνικά</option>
-                    <option value="sk">Slovenčina</option>
-                    <option value="hr">Hrvatski</option>
-                    <option value="lt">Lietuvių</option>
-                    <option value="lv">Latviešu</option>
-                    <option value="et">Eesti</option>
-                    <option value="sl">Slovenščina</option>
-                    <option value="mt">Malti</option>
-                    <option value="ga">Gaeilge</option>
+                    @foreach ($supportedLanguages as $code)
+                        @php $localeData = $localeNames[$code] ?? ['flag' => '', 'name' => strtoupper($code)]; @endphp
+                        <option value="{{ $code }}">{{ $localeData['flag'] }} {{ $localeData['name'] }}</option>
+                    @endforeach
                 </select>
             </div>
 

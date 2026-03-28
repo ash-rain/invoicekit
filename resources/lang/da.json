@@ -174,5 +174,18 @@
     "🚀 Launch InvoiceKit": "🚀 Start InvoiceKit",
     "By continuing you agree to our :terms and :privacy.": "Ved at fortsætte accepterer du vores :terms og :privacy.",
     "Terms": "Vilkår",
-    "Privacy Policy": "Privatlivspolitik"
+    "Privacy Policy": "Privatlivspolitik",
+    "Language Preference": "Sprogpræference",
+    "Select your preferred app language": "Vælg dit foretrukne appsprog",
+    "System default": "Systemstandard",
+    "Default Invoice Language": "Standardfakturesprog",
+    "PDF invoices to this client will use this language by default": "PDF-fakturaer til denne klient vil som standard bruge dette sprog",
+    "Use my language preference": "Brug min sprogpræference",
+    "You have reached the client limit for your plan. Please upgrade to add more clients.": "Du har nået klientgrænsen for din plan. Opgrader venligst for at tilføje flere klienter.",
+    "Invalid VAT number format for :country.": "Ugyldigt momsregistreringsnummerformat for :country.",
+    "Client updated successfully.": "Klienten er blevet opdateret.",
+    "Client created successfully.": "Klienten er blevet oprettet.",
+    "Please select a project.": "Vælg venligst et projekt.",
+    "You have reached the invoice limit for your plan this month. Please upgrade to create more invoices.": "Du har nået fakturagrænsen for din plan denne måned. Opgrader venligst for at oprette flere fakturaer.",
+    "Invoice saved successfully.": "Fakturaen er gemt."
 }

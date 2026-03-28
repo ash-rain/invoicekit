@@ -115,6 +115,23 @@
                     class="w-full border border-gray-300 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500" />
             </div>
 
+            {{-- Language Preference --}}
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">{{ __('Language Preference') }}</label>
+                <p class="text-xs text-gray-400 mb-1.5">{{ __('Select your preferred app language') }}</p>
+                <select wire:model="locale"
+                    class="w-full border border-gray-300 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 @error('locale') border-red-400 @enderror">
+                    <option value="">— {{ __('System default') }} —</option>
+                    @foreach ($supportedLanguages as $code)
+                        @php $localeData = $localeNames[$code] ?? ['flag' => '', 'name' => strtoupper($code)]; @endphp
+                        <option value="{{ $code }}">{{ $localeData['flag'] }} {{ $localeData['name'] }}</option>
+                    @endforeach
+                </select>
+                @error('locale')
+                    <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
+                @enderror
+            </div>
+
             <div class="flex justify-end pt-2">
                 <button type="submit"
                     class="px-5 py-2.5 bg-[#0f1117] text-white text-sm font-bold rounded-xl hover:bg-[#1a1f2e]">

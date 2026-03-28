@@ -25,6 +25,8 @@ class CreateEditClient extends Component
 
     public string $currency = 'EUR';
 
+    public string $defaultLanguage = '';
+
     public const CURRENCIES = ['EUR', 'USD', 'BGN', 'RON', 'PLN', 'CZK', 'HUF'];
 
     public const COUNTRIES = [
@@ -112,6 +114,7 @@ class CreateEditClient extends Component
             $this->country = $client->country;
             $this->vat_number = $client->vat_number ?? '';
             $this->currency = $client->currency;
+            $this->defaultLanguage = $client->default_language ?? '';
         }
     }
 
@@ -124,6 +127,7 @@ class CreateEditClient extends Component
             'country' => ['required', 'string', 'size:2'],
             'vat_number' => ['nullable', 'string', 'max:30'],
             'currency' => ['required', 'string', 'in:'.implode(',', self::CURRENCIES)],
+            'defaultLanguage' => ['nullable', 'string', 'in:'.implode(',', config('invoicekit.supported_languages', ['en']))],
         ];
     }
 
@@ -135,7 +139,7 @@ class CreateEditClient extends Component
         if (! $this->client || ! $this->client->exists) {
             $planService = app(PlanService::class);
             if (! $planService->canAddClient(Auth::user())) {
-                $this->addError('name', 'You have reached the client limit for your plan. Please upgrade to add more clients.');
+                $this->addError('name', __('You have reached the client limit for your plan. Please upgrade to add more clients.'));
 
                 return;
             }
@@ -146,21 +150,24 @@ class CreateEditClient extends Component
             $vatNumber = strtoupper(trim($validated['vat_number']));
             $pattern = self::VAT_PATTERNS[$validated['country']] ?? null;
             if ($pattern && ! preg_match($pattern, $vatNumber)) {
-                $this->addError('vat_number', 'Invalid VAT number format for '.($this::COUNTRIES[$validated['country']] ?? $validated['country']).'.');
+                $this->addError('vat_number', __('Invalid VAT number format for :country.', ['country' => $this::COUNTRIES[$validated['country']] ?? $validated['country']]));
 
                 return;
             }
             $validated['vat_number'] = $vatNumber;
         }
 
-        $data = array_merge($validated, ['user_id' => Auth::id()]);
+        $data = array_merge($validated, [
+            'user_id' => Auth::id(),
+            'default_language' => $this->defaultLanguage ?: null,
+        ]);
 
         if ($this->client && $this->client->exists) {
             $this->client->update($data);
-            session()->flash('success', 'Client updated successfully.');
+            session()->flash('success', __('Client updated successfully.'));
         } else {
             Client::create($data);
-            session()->flash('success', 'Client created successfully.');
+            session()->flash('success', __('Client created successfully.'));
         }
 
         $this->redirect(route('clients.index'), navigate: true);
@@ -171,6 +178,8 @@ class CreateEditClient extends Component
         return view('livewire.clients.create-edit-client', [
             'countries' => self::COUNTRIES,
             'currencies' => self::CURRENCIES,
+            'localeNames' => config('invoicekit.locale_names', []),
+            'supportedLanguages' => config('invoicekit.supported_languages', ['en']),
         ]);
     }
 }

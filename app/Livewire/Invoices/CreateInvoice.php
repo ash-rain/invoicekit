@@ -85,6 +85,8 @@ class CreateInvoice extends Component
             $this->issueDate = now()->format('Y-m-d');
             $this->dueDate = now()->addDays(30)->format('Y-m-d');
             $this->invoiceNumber = Invoice::generateNumber($userId);
+            // Pre-select language from user locale preference
+            $this->language = Auth::user()->locale ?: 'en';
             $this->addItem();
         }
 
@@ -109,6 +111,13 @@ class CreateInvoice extends Component
         $client = $this->selectedClient();
         if ($client) {
             $this->currency = $client->currency;
+            if ($client->default_language) {
+                $this->language = $client->default_language;
+            } else {
+                $this->language = Auth::user()->locale ?: 'en';
+            }
+        } else {
+            $this->language = Auth::user()->locale ?: 'en';
         }
     }
 
@@ -171,7 +180,7 @@ class CreateInvoice extends Component
             'dueDate' => ['required', 'date', 'after_or_equal:'.($this->issueDate ?: now()->format('Y-m-d'))],
             'currency' => ['required', 'string', 'max:3'],
             'notes' => ['nullable', 'string', 'max:2000'],
-            'language' => ['required', 'string', 'in:en,bg'],
+            'language' => ['required', 'string', 'in:'.implode(',', config('invoicekit.supported_languages', ['en']))],
             'items' => ['required', 'array', 'min:1'],
             'items.*.description' => ['required', 'string', 'max:500'],
             'items.*.quantity' => ['required', 'numeric', 'min:0.01'],
@@ -188,7 +197,7 @@ class CreateInvoice extends Component
         if (! $this->invoice || ! $this->invoice->exists) {
             $planService = app(PlanService::class);
             if (! $planService->canCreateInvoice(Auth::user())) {
-                session()->flash('error', 'You have reached the invoice limit for your plan this month. Please upgrade to create more invoices.');
+                session()->flash('error', __('You have reached the invoice limit for your plan this month. Please upgrade to create more invoices.'));
                 $this->redirect(route('billing.index'), navigate: true);
 
                 return;
@@ -248,7 +257,7 @@ class CreateInvoice extends Component
             }
         });
 
-        session()->flash('success', 'Invoice saved successfully.');
+        session()->flash('success', __('Invoice saved successfully.'));
         $this->redirect(route('invoices.index'), navigate: true);
     }
 
@@ -259,6 +268,8 @@ class CreateInvoice extends Component
         return view('livewire.invoices.create-invoice', [
             'clients' => $clients,
             'selected' => $this->selectedClient(),
+            'localeNames' => config('invoicekit.locale_names', []),
+            'supportedLanguages' => config('invoicekit.supported_languages', ['en']),
         ]);
     }
 }

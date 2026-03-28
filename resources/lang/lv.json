@@ -174,5 +174,18 @@
     "🚀 Launch InvoiceKit": "🚀 Palaist InvoiceKit",
     "By continuing you agree to our :terms and :privacy.": "Turpinot, jūs piekrītat mūsu :terms un :privacy.",
     "Terms": "Lietošanas noteikumi",
-    "Privacy Policy": "Privātuma politika"
+    "Privacy Policy": "Privātuma politika",
+    "Language Preference": "Valodas preference",
+    "Select your preferred app language": "Atlasiet vēlamo lietotnes valodu",
+    "System default": "Sistēmas noklusējums",
+    "Default Invoice Language": "Noklusējuma rēķina valoda",
+    "PDF invoices to this client will use this language by default": "PDF rēķini šim klientam pēc noklusējuma izmantos šo valodu",
+    "Use my language preference": "Izmantot manu valodas preferenci",
+    "You have reached the client limit for your plan. Please upgrade to add more clients.": "Jūs esat sasniedzis klientu limitu savā plānā. Lūdzu, veiciet jaunināšanu, lai pievienotu vairāk klientu.",
+    "Invalid VAT number format for :country.": "Nederīgs PVN numura formāts valstij :country.",
+    "Client updated successfully.": "Klients veiksmīgi atjaunināts.",
+    "Client created successfully.": "Klients veiksmīgi izveidots.",
+    "Please select a project.": "Lūdzu, atlasiet projektu.",
+    "You have reached the invoice limit for your plan this month. Please upgrade to create more invoices.": "Šomēnes esat sasniedzis rēķinu limitu savā plānā. Lūdzu, veiciet jaunināšanu, lai izveidotu vairāk rēķinu.",
+    "Invoice saved successfully.": "Rēķins veiksmīgi saglabāts."
 }

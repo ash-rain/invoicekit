@@ -174,5 +174,18 @@
     "🚀 Launch InvoiceKit": "🚀 Spustit InvoiceKit",
     "By continuing you agree to our :terms and :privacy.": "Pokračováním souhlasíte s našimi :terms a :privacy.",
     "Terms": "Podmínky",
-    "Privacy Policy": "Zásady ochrany osobních údajů"
+    "Privacy Policy": "Zásady ochrany osobních údajů",
+    "Language Preference": "Jazykové předvolby",
+    "Select your preferred app language": "Vyberte preferovaný jazyk aplikace",
+    "System default": "Výchozí nastavení systému",
+    "Default Invoice Language": "Výchozí jazyk faktury",
+    "PDF invoices to this client will use this language by default": "PDF faktury pro tohoto klienta budou ve výchozím nastavení používat tento jazyk",
+    "Use my language preference": "Použít mé jazykové preference",
+    "You have reached the client limit for your plan. Please upgrade to add more clients.": "Dosáhli jste limitu klientů pro váš plán. Proveďte upgrade, abyste mohli přidat další klienty.",
+    "Invalid VAT number format for :country.": "Neplatný formát DIČ pro :country.",
+    "Client updated successfully.": "Klient byl úspěšně aktualizován.",
+    "Client created successfully.": "Klient byl úspěšně vytvořen.",
+    "Please select a project.": "Vyberte prosím projekt.",
+    "You have reached the invoice limit for your plan this month. Please upgrade to create more invoices.": "Tento měsíc jste dosáhli limitu faktur pro váš plán. Proveďte upgrade, abyste mohli vytvářet další faktury.",
+    "Invoice saved successfully.": "Faktura byla úspěšně uložena."
 }

@@ -174,5 +174,18 @@
     "🚀 Launch InvoiceKit": "🚀 Ibda InvoiceKit",
     "By continuing you agree to our :terms and :privacy.": "Billi tkompli, taqbel mat-:terms u l-:privacy tagħna.",
     "Terms": "Termini",
-    "Privacy Policy": "Politika tal-Privatezza"
+    "Privacy Policy": "Politika tal-Privatezza",
+    "Language Preference": "Preferenza tal-Lingwa",
+    "Select your preferred app language": "Agħżel il-lingwa preferuta tal-app tiegħek",
+    "System default": "Awtomatiku tas-sistema",
+    "Default Invoice Language": "Lingwa awtomatika tal-fattura",
+    "PDF invoices to this client will use this language by default": "Il-fatturi PDF għal dan il-klijent se jużaw din il-lingwa awtomatikament",
+    "Use my language preference": "Uża l-preferenza tal-lingwa tiegħi",
+    "You have reached the client limit for your plan. Please upgrade to add more clients.": "Laħaqt il-limitu tal-klijenti għall-pjan tiegħek. Jekk jogħġbok aġġorna biex iżżid aktar klijenti.",
+    "Invalid VAT number format for :country.": "Format tan-numru tal-VAT invalidu għal :country.",
+    "Client updated successfully.": "Il-klijent ġie aġġornat b'suċċess.",
+    "Client created successfully.": "Il-klijent inħoloq b'suċċess.",
+    "Please select a project.": "Jekk jogħġbok agħżel proġett.",
+    "You have reached the invoice limit for your plan this month. Please upgrade to create more invoices.": "Dan ix-xahar laħaqt il-limitu tal-fatturi għall-pjan tiegħek. Jekk jogħġbok aġġorna biex toħloq aktar fatturi.",
+    "Invoice saved successfully.": "Il-fattura nżammet b'suċċess."
 }

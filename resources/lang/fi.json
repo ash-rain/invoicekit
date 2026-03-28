@@ -174,5 +174,18 @@
     "🚀 Launch InvoiceKit": "🚀 Käynnistä InvoiceKit",
     "By continuing you agree to our :terms and :privacy.": "Jatkamalla hyväksyt :terms ja :privacy.",
     "Terms": "käyttöehdot",
-    "Privacy Policy": "tietosuojakäytäntö"
+    "Privacy Policy": "tietosuojakäytäntö",
+    "Language Preference": "Kieliasetus",
+    "Select your preferred app language": "Valitse haluamasi sovelluksen kieli",
+    "System default": "Järjestelmän oletus",
+    "Default Invoice Language": "Laskun oletuskieli",
+    "PDF invoices to this client will use this language by default": "Tämän asiakkaan PDF-laskut käyttävät oletusarvoisesti tätä kieltä",
+    "Use my language preference": "Käytä kieliasetustani",
+    "You have reached the client limit for your plan. Please upgrade to add more clients.": "Olet saavuttanut asiakasmäärän rajan suunnitelmassasi. Päivitä lisätäksesi asiakkaita.",
+    "Invalid VAT number format for :country.": "Virheellinen ALV-numeron muoto maalle :country.",
+    "Client updated successfully.": "Asiakas päivitetty onnistuneesti.",
+    "Client created successfully.": "Asiakas luotu onnistuneesti.",
+    "Please select a project.": "Valitse projekti.",
+    "You have reached the invoice limit for your plan this month. Please upgrade to create more invoices.": "Olet saavuttanut laskujen rajan suunnitelmassasi tässä kuussa. Päivitä luodaksesi lisää laskuja.",
+    "Invoice saved successfully.": "Lasku tallennettu onnistuneesti."
 }

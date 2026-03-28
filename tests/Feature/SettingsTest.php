@@ -125,6 +125,45 @@ class SettingsTest extends TestCase
         ]);
     }
 
+    public function test_profile_tab_saves_locale_to_user(): void
+    {
+        $user = User::factory()->create();
+
+        Livewire::actingAs($user)
+            ->test(\App\Livewire\Settings::class)
+            ->set('locale', 'de')
+            ->call('saveProfile');
+
+        $this->assertDatabaseHas('users', [
+            'id' => $user->id,
+            'locale' => 'de',
+        ]);
+    }
+
+    public function test_profile_tab_clears_locale_when_set_to_system_default(): void
+    {
+        $user = User::factory()->create(['locale' => 'de']);
+
+        Livewire::actingAs($user)
+            ->test(\App\Livewire\Settings::class)
+            ->set('locale', '')
+            ->call('saveProfile');
+
+        $user->refresh();
+        $this->assertNull($user->locale);
+    }
+
+    public function test_profile_validation_rejects_unsupported_locale(): void
+    {
+        $user = User::factory()->create();
+
+        Livewire::actingAs($user)
+            ->test(\App\Livewire\Settings::class)
+            ->set('locale', 'xx')
+            ->call('saveProfile')
+            ->assertHasErrors(['locale']);
+    }
+
     public function test_profile_validation_requires_name(): void
     {
         $user = User::factory()->create();

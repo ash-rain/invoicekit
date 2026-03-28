@@ -174,5 +174,18 @@
     "🚀 Launch InvoiceKit": "🚀 Paleisti InvoiceKit",
     "By continuing you agree to our :terms and :privacy.": "Tęsdami sutinkate su mūsų :terms ir :privacy.",
     "Terms": "Naudojimo sąlygomis",
-    "Privacy Policy": "Privatumo politika"
+    "Privacy Policy": "Privatumo politika",
+    "Language Preference": "Kalbos nuostata",
+    "Select your preferred app language": "Pasirinkite pageidaujamą programėlės kalbą",
+    "System default": "Sistemos numatytasis",
+    "Default Invoice Language": "Numatytoji sąskaitos kalba",
+    "PDF invoices to this client will use this language by default": "PDF sąskaitos šiam klientui pagal numatytuosius nustatymus naudos šią kalbą",
+    "Use my language preference": "Naudoti mano kalbos nuostatą",
+    "You have reached the client limit for your plan. Please upgrade to add more clients.": "Pasiekėte klientų limitą savo plane. Atnaujinkite planą, kad galėtumėte pridėti daugiau klientų.",
+    "Invalid VAT number format for :country.": "Neteisingas PVM numerio formatas :country.",
+    "Client updated successfully.": "Klientas sėkmingai atnaujintas.",
+    "Client created successfully.": "Klientas sėkmingai sukurtas.",
+    "Please select a project.": "Pasirinkite projektą.",
+    "You have reached the invoice limit for your plan this month. Please upgrade to create more invoices.": "Šį mėnesį pasiekėte sąskaitų limitą savo plane. Atnaujinkite planą, kad galėtumėte kurti daugiau sąskaitų.",
+    "Invoice saved successfully.": "Sąskaita sėkmingai išsaugota."
 }

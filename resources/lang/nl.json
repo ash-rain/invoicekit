@@ -174,5 +174,18 @@
     "🚀 Launch InvoiceKit": "🚀 InvoiceKit starten",
     "By continuing you agree to our :terms and :privacy.": "Door verder te gaan gaat u akkoord met onze :terms en :privacy.",
     "Terms": "Gebruiksvoorwaarden",
-    "Privacy Policy": "Privacybeleid"
+    "Privacy Policy": "Privacybeleid",
+    "Language Preference": "Taalvoorkeur",
+    "Select your preferred app language": "Selecteer uw voorkeurstaal voor de app",
+    "System default": "Systeemstandaard",
+    "Default Invoice Language": "Standaard factuurtaal",
+    "PDF invoices to this client will use this language by default": "PDF-facturen voor deze klant gebruiken standaard deze taal",
+    "Use my language preference": "Gebruik mijn taalvoorkeur",
+    "You have reached the client limit for your plan. Please upgrade to add more clients.": "U heeft de klantlimiet voor uw abonnement bereikt. Upgrade om meer klanten toe te voegen.",
+    "Invalid VAT number format for :country.": "Ongeldig btw-nummerformaat voor :country.",
+    "Client updated successfully.": "Klant succesvol bijgewerkt.",
+    "Client created successfully.": "Klant succesvol aangemaakt.",
+    "Please select a project.": "Selecteer een project.",
+    "You have reached the invoice limit for your plan this month. Please upgrade to create more invoices.": "U heeft deze maand de factuumlimiet voor uw abonnement bereikt. Upgrade om meer facturen te maken.",
+    "Invoice saved successfully.": "Factuur succesvol opgeslagen."
 }

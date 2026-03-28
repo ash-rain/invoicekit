@@ -43,7 +43,7 @@ class ActiveTimer extends Component
     public function startTimer(): void
     {
         if (! $this->projectId) {
-            $this->addError('projectId', 'Please select a project.');
+            $this->addError('projectId', __('Please select a project.'));
 
             return;
         }

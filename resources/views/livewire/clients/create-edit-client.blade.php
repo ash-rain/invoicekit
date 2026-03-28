@@ -108,6 +108,20 @@
                 @error('vat_number') <p class="mt-1 text-xs text-red-500">{{ $message }}</p> @enderror
             </div>
 
+            {{-- Default Invoice Language --}}
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">{{ __('Default Invoice Language') }}</label>
+                <p class="text-xs text-gray-400 mb-1.5">{{ __('PDF invoices to this client will use this language by default') }}</p>
+                <select wire:model="defaultLanguage"
+                    class="w-full border border-gray-300 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    <option value="">— {{ __('Use my language preference') }} —</option>
+                    @foreach ($supportedLanguages as $code)
+                        @php $localeData = $localeNames[$code] ?? ['flag' => '', 'name' => strtoupper($code)]; @endphp
+                        <option value="{{ $code }}">{{ $localeData['flag'] }} {{ $localeData['name'] }}</option>
+                    @endforeach
+                </select>
+            </div>
+
             {{-- Actions --}}
             <div class="flex items-center justify-end gap-3 pt-2">
                 <a href="{{ route('clients.index') }}"

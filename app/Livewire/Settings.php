@@ -28,6 +28,8 @@ class Settings extends Component
 
     public string $phone = '';
 
+    public string $locale = '';
+
     public $profilePhotoUpload = null;
 
     // ----- Business tab -----
@@ -77,6 +79,7 @@ class Settings extends Component
         $this->tagline = $user->tagline ?? '';
         $this->website = $user->website ?? '';
         $this->phone = $user->phone ?? '';
+        $this->locale = $user->locale ?? '';
 
         $company = $user->currentCompany;
 
@@ -121,6 +124,7 @@ class Settings extends Component
             'tagline' => ['nullable', 'string', 'max:255'],
             'website' => ['nullable', 'url', 'max:255'],
             'phone' => ['nullable', 'string', 'max:50'],
+            'locale' => ['nullable', 'string', 'in:'.implode(',', config('invoicekit.supported_languages', ['en']))],
             'profilePhotoUpload' => ['nullable', 'image', 'max:2048'],
         ]);
 
@@ -130,6 +134,7 @@ class Settings extends Component
             'tagline' => $this->tagline ?: null,
             'website' => $this->website ?: null,
             'phone' => $this->phone ?: null,
+            'locale' => $this->locale ?: null,
         ];
 
         if ($this->profilePhotoUpload) {
@@ -252,6 +257,8 @@ class Settings extends Component
             'user' => $user,
             'company' => $user->currentCompany,
             'vatExemptionInfo' => $this->vatExemptionInfo,
+            'localeNames' => config('invoicekit.locale_names', []),
+            'supportedLanguages' => config('invoicekit.supported_languages', ['en']),
         ]);
     }
 }

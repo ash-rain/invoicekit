@@ -174,5 +174,18 @@
     "🚀 Launch InvoiceKit": "🚀 Стартирайте InvoiceKit",
     "By continuing you agree to our :terms and :privacy.": "Продължавайки, се съгласявате с нашите :terms и :privacy.",
     "Terms": "Условия",
-    "Privacy Policy": "Политика за поверителност"
+    "Privacy Policy": "Политика за поверителност",
+    "Language Preference": "Езикови предпочитания",
+    "Select your preferred app language": "Изберете предпочитания от вас език",
+    "System default": "Системно по подразбиране",
+    "Default Invoice Language": "Език на фактурата по подразбиране",
+    "PDF invoices to this client will use this language by default": "PDF фактурите за този клиент ще използват този език по подразбиране",
+    "Use my language preference": "Използвай моето езиково предпочитание",
+    "You have reached the client limit for your plan. Please upgrade to add more clients.": "Достигнахте лимита за клиенти по вашия план. Моля, надградете, за да добавите повече клиенти.",
+    "Invalid VAT number format for :country.": "Невалиден формат на ДДС номер за :country.",
+    "Client updated successfully.": "Клиентът е актуализиран успешно.",
+    "Client created successfully.": "Клиентът е създаден успешно.",
+    "Please select a project.": "Моля, изберете проект.",
+    "You have reached the invoice limit for your plan this month. Please upgrade to create more invoices.": "Достигнахте лимита за фактури по вашия план за този месец. Моля, надградете, за да създадете повече фактури.",
+    "Invoice saved successfully.": "Фактурата е запазена успешно."
 }

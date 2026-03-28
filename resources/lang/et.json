@@ -174,5 +174,18 @@
     "🚀 Launch InvoiceKit": "🚀 Käivita InvoiceKit",
     "By continuing you agree to our :terms and :privacy.": "Jätkates nõustute meie :terms ja :privacy.",
     "Terms": "Kasutustingimused",
-    "Privacy Policy": "Privaatsuspoliitika"
+    "Privacy Policy": "Privaatsuspoliitika",
+    "Language Preference": "Keeleeelistus",
+    "Select your preferred app language": "Valige eelistatud rakenduskeel",
+    "System default": "Süsteemi vaikeväärtus",
+    "Default Invoice Language": "Arve vaikekeel",
+    "PDF invoices to this client will use this language by default": "PDF-arved sellele kliendile kasutavad vaikimisi seda keelt",
+    "Use my language preference": "Kasuta minu keeleeelistust",
+    "You have reached the client limit for your plan. Please upgrade to add more clients.": "Olete jõudnud oma plaani kliendilimiidini. Lisage rohkem kliente, uuendades oma plaani.",
+    "Invalid VAT number format for :country.": "Vigane käibemaksunumbri formaat riigi :country jaoks.",
+    "Client updated successfully.": "Klient edukalt uuendatud.",
+    "Client created successfully.": "Klient edukalt loodud.",
+    "Please select a project.": "Palun valige projekt.",
+    "You have reached the invoice limit for your plan this month. Please upgrade to create more invoices.": "Olete jõudnud sel kuul oma plaani arvelimiidini. Looge rohkem arveid, uuendades oma plaani.",
+    "Invoice saved successfully.": "Arve edukalt salvestatud."
 }

@@ -174,5 +174,18 @@
     "🚀 Launch InvoiceKit": "🚀 InvoiceKit indítása",
     "By continuing you agree to our :terms and :privacy.": "A folytatással elfogadja az :terms és :privacy szabályzatot.",
     "Terms": "Felhasználási feltételek",
-    "Privacy Policy": "Adatvédelmi irányelvek"
+    "Privacy Policy": "Adatvédelmi irányelvek",
+    "Language Preference": "Nyelvi beállítás",
+    "Select your preferred app language": "Válassza ki a preferált alkalmazásnyelvet",
+    "System default": "Rendszer alapértelmezett",
+    "Default Invoice Language": "Számla alapértelmezett nyelve",
+    "PDF invoices to this client will use this language by default": "Az ügyfélhez tartozó PDF számlák alapértelmezetten ezt a nyelvet fogják használni",
+    "Use my language preference": "Saját nyelvi beállítás használata",
+    "You have reached the client limit for your plan. Please upgrade to add more clients.": "Elérte a tervéhez tartozó ügyfélkorlátot. Frissítsen, hogy több ügyfelet adhasson hozzá.",
+    "Invalid VAT number format for :country.": "Érvénytelen ÁFA-szám formátum :country esetén.",
+    "Client updated successfully.": "Az ügyfél sikeresen frissítve.",
+    "Client created successfully.": "Az ügyfél sikeresen létrehozva.",
+    "Please select a project.": "Kérjük, válasszon projektet.",
+    "You have reached the invoice limit for your plan this month. Please upgrade to create more invoices.": "Ebben a hónapban elérte a tervéhez tartozó számlakorlátot. Frissítsen, hogy több számlát hozhasson létre.",
+    "Invoice saved successfully.": "A számla sikeresen mentve."
 }

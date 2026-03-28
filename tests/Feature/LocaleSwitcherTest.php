@@ -45,4 +45,28 @@ class LocaleSwitcherTest extends TestCase
             ->assertOk()
             ->assertSee(route('locale.switch'));
     }
+
+    public function test_user_db_locale_takes_priority_over_session(): void
+    {
+        $user = User::factory()->create(['locale' => 'fr']);
+
+        $this->actingAs($user)
+            ->withSession(['locale' => 'bg'])
+            ->get(route('dashboard'))
+            ->assertOk();
+
+        $this->assertEquals('fr', app()->getLocale());
+    }
+
+    public function test_session_locale_is_used_when_user_has_no_db_locale(): void
+    {
+        $user = User::factory()->create(['locale' => null]);
+
+        $this->actingAs($user)
+            ->withSession(['locale' => 'de'])
+            ->get(route('dashboard'))
+            ->assertOk();
+
+        $this->assertEquals('de', app()->getLocale());
+    }
 }
