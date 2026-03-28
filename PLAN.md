@@ -8,7 +8,7 @@ One tool: track time → generate legally compliant VAT invoice → get paid.
 - Laravel 12 + Livewire 4 + Tailwind CSS
 - PostgreSQL (single-tenant, one DB for all users)
 - DomPDF for invoice PDF generation
-- Stripe + PayPal for subscriptions and payments
+- Stripe for subscriptions and payments
 - Hetzner EU hosting
 
 ## Pricing
@@ -94,33 +94,7 @@ EU VAT Directive 2006/112/EC Articles 282–292 permit member states to exempt s
 
 ---
 
-### v1.4 — Full Billing Support (Stripe + PayPal)
-**Goal:** Replace placeholder Stripe integration with a working billing system supporting both Stripe and PayPal.
-
-**Stripe (via `laravel/cashier`)**
-- [ ] Stripe Checkout for plan upgrades
-- [ ] Webhooks: `checkout.session.completed`, `customer.subscription.updated`, `customer.subscription.deleted`, `invoice.payment_failed`
-- [ ] Stripe Customer Portal: update card, download receipts, cancel plan
-- [ ] Schema: `stripe_customer_id`, `stripe_subscription_id`, `subscription_status`, `trial_ends_at`, `subscribed_until` on `users`
-- [ ] Dunning: on `invoice.payment_failed` — email user, 3-day grace before downgrade to Free
-- [ ] 14-day Pro trial on signup (no card required)
-
-**PayPal**
-- [ ] PayPal Subscriptions API v2 — alternative to Stripe on the upgrade page
-- [ ] Schema: `paypal_subscription_id`, `payment_provider` (`stripe|paypal`) on `users`
-- [ ] Webhooks: `BILLING.SUBSCRIPTION.ACTIVATED`, `BILLING.SUBSCRIPTION.CANCELLED`, `PAYMENT.SALE.COMPLETED`, `BILLING.SUBSCRIPTION.PAYMENT.FAILED`
-- [ ] `PlanService` abstracted over provider: `isSubscribed()`, `currentPlan()`, `cancelSubscription()` work regardless of payment method
-
-**Billing UI**
-- [ ] Billing tab: current plan badge, next renewal date, payment method indicator, Change Plan / Cancel buttons
-- [ ] Billing history table: date, amount, status, PDF receipt link
-- [ ] Plan comparison modal with upgrade CTA
-- [ ] Cancellation flow: confirm modal, optional reason, end-of-period vs. immediate toggle
-- [ ] Dashboard usage meter: "X of Y invoices this month" with progress bar
-
----
-
-### v1.5 — Recurring Invoices
+### v1.4 — Recurring Invoices
 - [ ] `recurring_invoices` table: template invoice + schedule (monthly / quarterly / annually)
 - [ ] Scheduled job auto-generates + emails invoices from templates
 - [ ] UI: mark any existing invoice as a recurring template, set next send date and frequency
@@ -128,7 +102,7 @@ EU VAT Directive 2006/112/EC Articles 282–292 permit member states to exempt s
 
 ---
 
-### v1.6 — Client Portal
+### v1.5 — Client Portal
 - [ ] Signed tokenized URLs for clients to view/download invoices without an account
 - [ ] Portal page: invoice list, PDF download, payment status
 - [ ] "Pay online" button (Stripe Payment Link per invoice)
@@ -136,7 +110,7 @@ EU VAT Directive 2006/112/EC Articles 282–292 permit member states to exempt s
 
 ---
 
-### v1.7 — Expense Tracking
+### v1.6 — Expense Tracking
 - [ ] `expenses` table: user_id, client_id (nullable), project_id (nullable), description, amount, currency, category, receipt_file, date
 - [ ] Categories: software, hardware, travel, hosting, marketing, other
 - [ ] Receipt image/PDF upload (S3-compatible storage)
@@ -146,10 +120,30 @@ EU VAT Directive 2006/112/EC Articles 282–292 permit member states to exempt s
 
 ---
 
-### v1.8 — Peppol / e-Invoicing
+### v1.7 — Peppol / e-Invoicing
 - [ ] Generate UBL 2.1 XML alongside PDF (mandatory in DE, IT, FR for B2G and growing B2B)
 - [ ] Peppol BIS Billing 3.0 compliance
 - [ ] Export as PDF + XML from invoice detail page
+
+---
+
+### v1.8 — Full Billing Support (Stripe)
+**Goal:** Replace placeholder Stripe integration with a working billing system.
+
+**Stripe (via `laravel/cashier`)**
+- [ ] Stripe Checkout for plan upgrades
+- [ ] Webhooks: `checkout.session.completed`, `customer.subscription.updated`, `customer.subscription.deleted`, `invoice.payment_failed`
+- [ ] Stripe Customer Portal: update card, download receipts, cancel plan
+- [ ] Schema: `stripe_customer_id`, `stripe_subscription_id`, `subscription_status`, `trial_ends_at`, `subscribed_until` on `users`
+- [ ] Dunning: on `invoice.payment_failed` — email user, 3-day grace before downgrade to Free
+- [ ] 14-day Pro trial on signup (no card required)
+
+**Billing UI**
+- [ ] Billing tab: current plan badge, next renewal date, payment method indicator, Change Plan / Cancel buttons
+- [ ] Billing history table: date, amount, status, PDF receipt link
+- [ ] Plan comparison modal with upgrade CTA
+- [ ] Cancellation flow: confirm modal, optional reason, end-of-period vs. immediate toggle
+- [ ] Dashboard usage meter: "X of Y invoices this month" with progress bar
 
 ---
 
