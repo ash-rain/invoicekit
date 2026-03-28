@@ -64,7 +64,7 @@
             {{-- Navigation --}}
             <nav class="flex-1 px-3 py-5 space-y-0.5 overflow-y-auto">
                 <p class="px-3 mb-2 text-[10px] font-semibold uppercase tracking-[0.13em] select-none"
-                    style="color:rgba(255,255,255,0.18);">Navigation</p>
+                    style="color:rgba(255,255,255,0.18);">{{ __('Navigation') }}</p>
                 <x-sidebar-link :href="route('dashboard')" :active="request()->routeIs('dashboard')"
                     icon="grid">{{ __('Dashboard') }}</x-sidebar-link>
                 <x-sidebar-link :href="route('timer')" :active="request()->routeIs('timer')" icon="clock">{{ __('Timer') }}</x-sidebar-link>
@@ -202,12 +202,12 @@
                         style="background:linear-gradient(135deg,#f59e0b,#ef4444);">
                         {{ strtoupper(substr(Auth::user()->name, 0, 1)) }}
                     </div>
-                    <div class="flex-1 min-w-0">
-                        <p class="text-xs font-semibold truncate" style="color:rgba(255,255,255,0.85);">
+                    <a href="{{ route('settings.index') }}" wire:navigate class="flex-1 min-w-0 group">
+                        <p class="text-xs font-semibold truncate group-hover:underline" style="color:rgba(255,255,255,0.85);">
                             {{ Auth::user()->name }}</p>
                         <p class="text-[10px] truncate mt-0.5" style="color:rgba(255,255,255,0.3);">
                             {{ Auth::user()->email }}</p>
-                    </div>
+                    </a>
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
                         <button type="submit" class="p-1.5 rounded-lg transition-all shrink-0"
@@ -263,16 +263,14 @@
         class="fixed bottom-0 inset-x-0 z-50 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 px-6 py-4 sm:px-8"
         style="display:none!important;background:rgba(15,17,23,0.96);backdrop-filter:blur(16px);border-top:1px solid rgba(255,255,255,0.08);box-shadow:0 -8px 40px rgba(0,0,0,0.5);">
         <p class="text-sm leading-relaxed max-w-2xl" style="color:rgba(255,255,255,0.5);">
-            We use only essential first-party session cookies required for authentication. No tracking or advertising
-            cookies are used.
-            <a href="{{ url('/privacy') }}" class="ml-1 underline" style="color:rgba(255,255,255,0.7);">Privacy
-                Policy</a>
+            {{ __('We use only essential first-party session cookies required for authentication. No tracking or advertising cookies are used.') }}
+            <a href="{{ url('/privacy') }}" class="ml-1 underline" style="color:rgba(255,255,255,0.7);">{{ __('Privacy Policy') }}</a>
         </p>
         <button
             onclick="document.getElementById('ik-cookie').style.setProperty('display','none','important');localStorage.setItem('ik_cookie_consent','1')"
             class="shrink-0 px-5 py-2 rounded-xl text-sm font-bold" style="background:#f59e0b;color:#0f1117;"
             onmouseover="this.style.background='#fbbf24'" onmouseout="this.style.background='#f59e0b'">
-            Got it
+            {{ __('Got it') }}
         </button>
     </div>
     <script>
@@ -293,7 +291,7 @@
                         d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.437L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
                 </svg>
                 <p class="text-sm leading-relaxed" style="color:rgba(255,255,255,0.7);">
-                    Enable push notifications to get alerted about invoice due dates and payments.
+                    {{ __('Enable push notifications to get alerted about invoice due dates and payments.') }}
                 </p>
             </div>
             <div class="flex items-center gap-3 shrink-0">
@@ -301,12 +299,12 @@
                     style="color:rgba(255,255,255,0.4);border:1px solid rgba(255,255,255,0.1);"
                     onmouseover="this.style.color='rgba(255,255,255,0.7)'"
                     onmouseout="this.style.color='rgba(255,255,255,0.4)'">
-                    Not now
+                    {{ __('Not now') }}
                 </button>
                 <button id="ik-push-enable" class="px-5 py-2 rounded-xl text-sm font-bold"
                     style="background:#f59e0b;color:#0f1117;" onmouseover="this.style.background='#fbbf24'"
                     onmouseout="this.style.background='#f59e0b'">
-                    Enable
+                    {{ __('Enable') }}
                 </button>
             </div>
         </div>

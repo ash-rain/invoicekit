@@ -32,14 +32,25 @@ class EuVatService
      * @param  string  $buyerCountry  ISO 2-letter code of the buyer's country
      * @param  bool  $buyerHasVat  Whether the buyer has a valid EU VAT number
      * @param  float  $amount  Net amount (before VAT)
+     * @param  bool  $sellerIsVatExempt  Whether the seller operates under a small-business VAT exemption
      * @return array{rate: float, amount: float, type: string}
      */
     public function calculateVat(
         string $sellerCountry,
         string $buyerCountry,
         bool $buyerHasVat,
-        float $amount
+        float $amount,
+        bool $sellerIsVatExempt = false
     ): array {
+        // Small-business VAT exemption — seller is not registered for VAT
+        if ($sellerIsVatExempt) {
+            return [
+                'rate' => 0.0,
+                'amount' => 0.0,
+                'type' => 'vat_exempt',
+            ];
+        }
+
         $sellerCountry = strtoupper($sellerCountry);
         $buyerCountry = strtoupper($buyerCountry);
 

@@ -288,4 +288,30 @@ class EuVatServiceTest extends TestCase
             $this->assertContains($result['type'], $validTypes, "Unexpected type: {$result['type']}");
         }
     }
+
+    public function test_seller_vat_exempt_overrides_all_to_zero(): void
+    {
+        $result = $this->vat->calculateVat('DE', 'DE', false, 100.00, true);
+
+        $this->assertSame('vat_exempt', $result['type']);
+        $this->assertSame(0.0, $result['rate']);
+        $this->assertSame(0.0, $result['amount']);
+    }
+
+    public function test_seller_vat_exempt_works_for_cross_border(): void
+    {
+        $result = $this->vat->calculateVat('DE', 'FR', true, 500.00, true);
+
+        $this->assertSame('vat_exempt', $result['type']);
+        $this->assertSame(0.0, $result['rate']);
+        $this->assertSame(0.0, $result['amount']);
+    }
+
+    public function test_seller_not_exempt_by_default(): void
+    {
+        $result = $this->vat->calculateVat('DE', 'DE', false, 100.00);
+
+        $this->assertNotSame('vat_exempt', $result['type']);
+        $this->assertGreaterThan(0.0, $result['rate']);
+    }
 }

@@ -3,8 +3,8 @@
 namespace App\Livewire;
 
 use App\Models\Client;
+use App\Models\Company;
 use App\Models\Invoice;
-use App\Models\InvoiceItem;
 use App\Models\Project;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -116,7 +116,7 @@ class OnboardingWizard extends Component
             'clientName' => ['required', 'string', 'max:255'],
             'clientEmail' => ['nullable', 'email', 'max:255'],
             'clientCountry' => ['required', 'string', 'size:2'],
-            'clientCurrency' => ['required', 'string', 'in:' . implode(',', self::CURRENCIES)],
+            'clientCurrency' => ['required', 'string', 'in:'.implode(',', self::CURRENCIES)],
         ]);
     }
 
@@ -133,6 +133,17 @@ class OnboardingWizard extends Component
         DB::transaction(function () {
             $user = Auth::user();
             $user->update(['name' => $this->companyName, 'onboarding_completed' => true]);
+
+            // Create the first company for this user
+            if (! $user->currentCompany) {
+                $company = Company::create([
+                    'user_id' => $user->id,
+                    'name' => $this->companyName,
+                    'country' => $this->companyCountry,
+                    'default_currency' => $this->clientCurrency,
+                ]);
+                $user->update(['current_company_id' => $company->id]);
+            }
 
             // Create first client
             $client = Client::create([

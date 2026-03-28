@@ -85,12 +85,12 @@
                         <div class="rounded-2xl border-2 border-blue-200 p-6 relative">
                             <div class="flex items-start justify-between mb-4">
                                 <div>
-                                    <h4 class="text-lg font-bold text-[#0f1117]" style="font-family:'Syne',sans-serif;">Starter</h4>
+                                    <h4 class="text-lg font-bold text-[#0f1117]" style="font-family:'Syne',sans-serif;">{{ __('Starter') }}</h4>
                                     <p class="text-xs text-gray-500 mt-0.5">{{ __('For growing freelancers') }}</p>
                                 </div>
                                 <div class="text-right">
                                     <span class="text-2xl font-bold text-blue-600">€9</span>
-                                    <span class="text-sm font-normal text-gray-400">/mo</span>
+                                    <span class="text-sm font-normal text-gray-400">{{ __('/mo') }}</span>
                                 </div>
                             </div>
                             <ul class="text-sm text-gray-600 space-y-2 mb-6">
@@ -116,12 +116,12 @@
                         </div>
                         <div class="flex items-start justify-between mb-4">
                             <div>
-                                <h4 class="text-lg font-bold text-[#0f1117]" style="font-family:'Syne',sans-serif;">Pro</h4>
+                                <h4 class="text-lg font-bold text-[#0f1117]" style="font-family:'Syne',sans-serif;">{{ __('Pro') }}</h4>
                                 <p class="text-xs text-gray-500 mt-0.5">{{ __('For serious freelancers') }}</p>
                             </div>
                             <div class="text-right">
                                 <span class="text-2xl font-bold text-[#0f1117]">€29</span>
-                                <span class="text-sm font-normal text-gray-400">/mo</span>
+                                <span class="text-sm font-normal text-gray-400">{{ __('/mo') }}</span>
                             </div>
                         </div>
                         <ul class="text-sm text-gray-600 space-y-2 mb-6">

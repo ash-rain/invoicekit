@@ -26,9 +26,12 @@ class InvoicePaidNotification extends Notification implements ShouldQueue
     public function toWebPush(object $notifiable, mixed $notification): WebPushMessage
     {
         return (new WebPushMessage)
-            ->title('Invoice Paid')
-            ->body("Invoice {$this->invoice->invoice_number} for {$this->invoice->client->name} has been marked as paid.")
-            ->action('View Invoice', route('invoices.show', $this->invoice));
+            ->title(__('Invoice Paid'))
+            ->body(__('Invoice :number for :client has been marked as paid.', [
+                'number' => $this->invoice->invoice_number,
+                'client' => $this->invoice->client->name,
+            ]))
+            ->action(__('View Invoice'), route('invoices.show', $this->invoice));
     }
 
     /** @return array<string, mixed> */
@@ -39,7 +42,10 @@ class InvoicePaidNotification extends Notification implements ShouldQueue
             'invoice_id' => $this->invoice->id,
             'invoice_number' => $this->invoice->invoice_number,
             'client_name' => $this->invoice->client->name,
-            'message' => "Invoice {$this->invoice->invoice_number} for {$this->invoice->client->name} has been marked as paid.",
+            'message' => __('Invoice :number for :client has been marked as paid.', [
+                'number' => $this->invoice->invoice_number,
+                'client' => $this->invoice->client->name,
+            ]),
             'url' => route('invoices.show', $this->invoice),
         ];
     }

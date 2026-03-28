@@ -7,6 +7,7 @@ use App\Models\Invoice;
 use App\Models\InvoiceItem;
 use App\Services\EuVatService;
 use App\Services\PlanService;
+use App\Services\VatExemptionService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\Computed;
@@ -36,7 +37,11 @@ class CreateInvoice extends Component
     // Line items: array of ['description', 'quantity', 'unit_price']
     public array $items = [];
 
-    // Seller VAT country (from user profile — defaulted to BG for now)
+    public bool $vatExemptActive = false;
+
+    public bool $vatExemptOverride = false;
+
+    // Seller VAT country (from user's current company or fallback)
     public string $sellerCountry = 'BG';
 
     // Computed totals (updated reactively)
@@ -53,6 +58,11 @@ class CreateInvoice extends Component
     public function mount(?Invoice $invoice = null): void
     {
         $userId = Auth::id();
+        $user = Auth::user();
+        $company = $user->currentCompany;
+
+        $this->sellerCountry = $company?->country ?? 'BG';
+        $this->vatExemptActive = (bool) ($company?->vat_exempt ?? false);
 
         if ($invoice && $invoice->exists) {
             $this->authorize('update', $invoice);
@@ -65,6 +75,7 @@ class CreateInvoice extends Component
             $this->invoiceNumber = $invoice->invoice_number;
             $this->language = $invoice->language ?? 'en';
             $this->vatType = $invoice->vat_type ?? 'standard';
+            $this->vatExemptOverride = $this->vatExemptActive && ! $invoice->vat_exempt_applied;
             $this->items = $invoice->items->map(fn ($item) => [
                 'description' => $item->description,
                 'quantity' => (string) $item->quantity,
@@ -106,6 +117,11 @@ class CreateInvoice extends Component
         $this->recalculate();
     }
 
+    public function updatedVatExemptOverride(): void
+    {
+        $this->recalculate();
+    }
+
     private function selectedClient(): ?Client
     {
         if (! $this->clientId) {
@@ -134,7 +150,8 @@ class CreateInvoice extends Component
                 $this->sellerCountry,
                 $client->country,
                 ! empty($client->vat_number),
-                $subtotal
+                $subtotal,
+                $this->vatExemptActive && ! $this->vatExemptOverride
             );
         }
 
@@ -151,7 +168,7 @@ class CreateInvoice extends Component
             'clientId' => ['required', 'integer'],
             'invoiceNumber' => ['required', 'string', 'max:50'],
             'issueDate' => ['required', 'date'],
-            'dueDate' => ['required', 'date', 'after_or_equal:' . ($this->issueDate ?: now()->format('Y-m-d'))],
+            'dueDate' => ['required', 'date', 'after_or_equal:'.($this->issueDate ?: now()->format('Y-m-d'))],
             'currency' => ['required', 'string', 'max:3'],
             'notes' => ['nullable', 'string', 'max:2000'],
             'language' => ['required', 'string', 'in:en,bg'],
@@ -179,6 +196,16 @@ class CreateInvoice extends Component
         }
 
         DB::transaction(function () {
+            $isExempt = $this->vatExemptActive && ! $this->vatExemptOverride;
+            $exemptNotice = null;
+            if ($isExempt) {
+                $company = Auth::user()->currentCompany;
+                $exemptNotice = app(VatExemptionService::class)->getInvoiceNotice(
+                    $this->sellerCountry,
+                    $company?->vat_exempt_notice_language ?? 'local'
+                );
+            }
+
             $data = [
                 'user_id' => Auth::id(),
                 'client_id' => $this->clientId,
@@ -194,6 +221,8 @@ class CreateInvoice extends Component
                 'vat_type' => $this->vatType,
                 'total' => $this->total,
                 'notes' => $this->notes ?: null,
+                'vat_exempt_applied' => $isExempt,
+                'vat_exempt_notice' => $exemptNotice,
             ];
 
             if ($this->invoice && $this->invoice->exists) {

@@ -31,41 +31,41 @@ class InvoiceReminderNotification extends Notification implements ShouldQueue
     public function toMail(object $notifiable): MailMessage
     {
         $subject = match ($this->reminderType) {
-            'due_today' => "Payment Due Today — Invoice {$this->invoice->invoice_number}",
-            'overdue' => "Overdue Invoice — {$this->invoice->invoice_number}",
-            default => "Payment Reminder — Invoice {$this->invoice->invoice_number}",
+            'due_today' => __('Payment Due Today — Invoice :number', ['number' => $this->invoice->invoice_number]),
+            'overdue' => __('Overdue Invoice — :number', ['number' => $this->invoice->invoice_number]),
+            default => __('Payment Reminder — Invoice :number', ['number' => $this->invoice->invoice_number]),
         };
 
         $body = match ($this->reminderType) {
-            'due_today' => "Invoice {$this->invoice->invoice_number} for {$this->invoice->client->name} is due today.",
-            'overdue' => "Invoice {$this->invoice->invoice_number} for {$this->invoice->client->name} is overdue.",
-            default => "Invoice {$this->invoice->invoice_number} for {$this->invoice->client->name} is due soon.",
+            'due_today' => __('Invoice :number for :client is due today.', ['number' => $this->invoice->invoice_number, 'client' => $this->invoice->client->name]),
+            'overdue' => __('Invoice :number for :client is overdue.', ['number' => $this->invoice->invoice_number, 'client' => $this->invoice->client->name]),
+            default => __('Invoice :number for :client is due soon.', ['number' => $this->invoice->invoice_number, 'client' => $this->invoice->client->name]),
         };
 
         return (new MailMessage)
             ->subject($subject)
             ->line($body)
-            ->action('View Invoice', route('invoices.show', $this->invoice));
+            ->action(__('View Invoice'), route('invoices.show', $this->invoice));
     }
 
     public function toWebPush(object $notifiable, mixed $notification): WebPushMessage
     {
         $title = match ($this->reminderType) {
-            'due_today' => 'Invoice Due Today',
-            'overdue' => 'Invoice Overdue',
-            default => 'Invoice Reminder',
+            'due_today' => __('Invoice Due Today'),
+            'overdue' => __('Invoice Overdue'),
+            default => __('Invoice Reminder'),
         };
 
         $body = match ($this->reminderType) {
-            'due_today' => "Invoice {$this->invoice->invoice_number} for {$this->invoice->client->name} is due today.",
-            'overdue' => "Invoice {$this->invoice->invoice_number} for {$this->invoice->client->name} is now overdue.",
-            default => "Invoice {$this->invoice->invoice_number} for {$this->invoice->client->name} is due soon.",
+            'due_today' => __('Invoice :number for :client is due today.', ['number' => $this->invoice->invoice_number, 'client' => $this->invoice->client->name]),
+            'overdue' => __('Invoice :number for :client is now overdue.', ['number' => $this->invoice->invoice_number, 'client' => $this->invoice->client->name]),
+            default => __('Invoice :number for :client is due soon.', ['number' => $this->invoice->invoice_number, 'client' => $this->invoice->client->name]),
         };
 
         return (new WebPushMessage)
             ->title($title)
             ->body($body)
-            ->action('View Invoice', route('invoices.show', $this->invoice));
+            ->action(__('View Invoice'), route('invoices.show', $this->invoice));
     }
 
     /** @return array<string, mixed> */
@@ -78,9 +78,9 @@ class InvoiceReminderNotification extends Notification implements ShouldQueue
             'invoice_number' => $this->invoice->invoice_number,
             'client_name' => $this->invoice->client->name,
             'message' => match ($this->reminderType) {
-                'due_today' => "Invoice {$this->invoice->invoice_number} for {$this->invoice->client->name} is due today.",
-                'overdue' => "Invoice {$this->invoice->invoice_number} for {$this->invoice->client->name} is now overdue.",
-                default => "Invoice {$this->invoice->invoice_number} for {$this->invoice->client->name} is due soon.",
+                'due_today' => __('Invoice :number for :client is due today.', ['number' => $this->invoice->invoice_number, 'client' => $this->invoice->client->name]),
+                'overdue' => __('Invoice :number for :client is now overdue.', ['number' => $this->invoice->invoice_number, 'client' => $this->invoice->client->name]),
+                default => __('Invoice :number for :client is due soon.', ['number' => $this->invoice->invoice_number, 'client' => $this->invoice->client->name]),
             },
             'url' => route('invoices.show', $this->invoice),
         ];

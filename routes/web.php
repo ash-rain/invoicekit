@@ -12,6 +12,7 @@ use App\Livewire\OnboardingWizard;
 use App\Livewire\Projects\CreateEditProject;
 use App\Livewire\Projects\ProjectDetail;
 use App\Livewire\Projects\ProjectList;
+use App\Livewire\Settings;
 use Illuminate\Support\Facades\Route;
 
 // ── Landing page ─────────────────────────────────────────────────────────────
@@ -44,7 +45,7 @@ Route::get('/sitemap.xml', function () {
 Route::get('/robots.txt', function () {
     $content = "User-agent: *\n";
     $content .= "Disallow: /dashboard\n";
-    $content .= "Disallow: /profile\n";
+    $content .= "Disallow: /settings\n";
     $content .= "Disallow: /clients\n";
     $content .= "Disallow: /projects\n";
     $content .= "Disallow: /invoices\n";
@@ -74,8 +75,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // Dashboard
     Route::get('/dashboard', Dashboard::class)->name('dashboard');
 
-    // Profile
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    // Profile (legacy redirect) + Settings
+    Route::get('/profile', fn () => redirect()->route('settings.index'))->name('profile.edit');
+    Route::get('/settings', Settings::class)->name('settings.index');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
@@ -96,8 +98,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // Invoices
     Route::get('/invoices', InvoiceList::class)->name('invoices.index');
     Route::get('/invoices/create', CreateInvoice::class)->name('invoices.create');
-    Route::get('/invoices/{invoice}', function (\App\Models\Invoice $invoice) {
-        if ($invoice->user_id !== auth()->id()) {
+    Route::get('/invoices/{invoice}', function ($invoice) {
+        $inv = \App\Models\Invoice::findOrFail($invoice);
+        if ($inv->user_id !== auth()->id()) {
             abort(403);
         }
 

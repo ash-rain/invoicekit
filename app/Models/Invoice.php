@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Invoice extends Model
 {
     use HasFactory;
+
     protected $fillable = [
         'user_id',
         'client_id',
@@ -26,6 +27,8 @@ class Invoice extends Model
         'paid_at',
         'vat_type',
         'language',
+        'vat_exempt_applied',
+        'vat_exempt_notice',
     ];
 
     protected $casts = [
@@ -36,6 +39,7 @@ class Invoice extends Model
         'vat_rate' => 'decimal:2',
         'vat_amount' => 'decimal:2',
         'total' => 'decimal:2',
+        'vat_exempt_applied' => 'boolean',
     ];
 
     public function user(): BelongsTo

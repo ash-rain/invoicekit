@@ -4,9 +4,11 @@ namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Storage;
 use NotificationChannels\WebPush\HasPushSubscriptions;
 
 class User extends Authenticatable implements MustVerifyEmail
@@ -26,6 +28,12 @@ class User extends Authenticatable implements MustVerifyEmail
         'plan',
         'stripe_customer_id',
         'onboarding_completed',
+        'current_company_id',
+        'display_name',
+        'tagline',
+        'website',
+        'phone',
+        'profile_photo',
     ];
 
     /**
@@ -80,5 +88,24 @@ class User extends Authenticatable implements MustVerifyEmail
     public function invoices(): HasMany
     {
         return $this->hasMany(Invoice::class);
+    }
+
+    public function companies(): HasMany
+    {
+        return $this->hasMany(Company::class);
+    }
+
+    public function currentCompany(): BelongsTo
+    {
+        return $this->belongsTo(Company::class, 'current_company_id');
+    }
+
+    public function profilePhotoUrl(): ?string
+    {
+        if (! $this->profile_photo) {
+            return null;
+        }
+
+        return Storage::disk('minio')->url($this->profile_photo);
     }
 }

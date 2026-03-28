@@ -26,9 +26,9 @@ class InvoiceReminder extends Mailable
     public function envelope(): Envelope
     {
         $subject = match ($this->reminderType) {
-            'due_today' => "Payment Due Today — Invoice {$this->invoice->invoice_number}",
-            'overdue' => "Overdue Invoice — {$this->invoice->invoice_number}",
-            default => "Payment Reminder — Invoice {$this->invoice->invoice_number}",
+            'due_today' => __('Payment Due Today — Invoice :number', ['number' => $this->invoice->invoice_number]),
+            'overdue' => __('Overdue Invoice — :number', ['number' => $this->invoice->invoice_number]),
+            default => __('Payment Reminder — Invoice :number', ['number' => $this->invoice->invoice_number]),
         };
 
         return new Envelope(

@@ -70,6 +70,22 @@ services:
     networks:
       - invoicekit
 
+  minio:
+    image: minio/minio:latest
+    container_name: invoicekit_minio
+    restart: unless-stopped
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER:-invoicekit}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD:-secret123456}
+    volumes:
+      - minio_data:/data
+    ports:
+      - "${MINIO_PORT:-9002}:9000"
+      - "${MINIO_CONSOLE_PORT:-9003}:9001"
+    networks:
+      - invoicekit
+
 networks:
   invoicekit:
     driver: bridge
@@ -77,3 +93,4 @@ networks:
 volumes:
   postgres_data:
   redis_data:
+  minio_data:
