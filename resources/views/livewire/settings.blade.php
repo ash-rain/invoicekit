@@ -50,7 +50,7 @@
                         </div>
                     @endif
                     <div>
-                        @if ($profilePhotoUpload && ! $errors->has('profilePhotoUpload'))
+                        @if ($profilePhotoUpload && !$errors->has('profilePhotoUpload'))
                             <img src="{{ $profilePhotoUpload->temporaryUrl() }}" alt="Preview"
                                 class="w-14 h-14 rounded-full object-cover border border-gray-200 mb-2">
                         @endif
@@ -194,7 +194,8 @@
                         class="w-full border border-gray-300 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500" />
                 </div>
                 <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">{{ __('Registration Number') }}</label>
+                    <label
+                        class="block text-sm font-medium text-gray-700 mb-1">{{ __('Registration Number') }}</label>
                     <input wire:model="registrationNumber" type="text"
                         class="w-full border border-gray-300 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500" />
                 </div>
@@ -290,7 +291,7 @@
                                 class="h-12 object-contain border border-gray-200 rounded-lg p-1">
                         </div>
                     @endif
-                    @if ($invoiceLogoUpload && ! $errors->has('invoiceLogoUpload'))
+                    @if ($invoiceLogoUpload && !$errors->has('invoiceLogoUpload'))
                         <div class="mb-2">
                             <img src="{{ $invoiceLogoUpload->temporaryUrl() }}" alt="Preview"
                                 class="h-12 object-contain border border-gray-200 rounded-lg p-1">

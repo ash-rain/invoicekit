@@ -203,7 +203,8 @@
                         {{ strtoupper(substr(Auth::user()->name, 0, 1)) }}
                     </div>
                     <a href="{{ route('settings.index') }}" wire:navigate class="flex-1 min-w-0 group">
-                        <p class="text-xs font-semibold truncate group-hover:underline" style="color:rgba(255,255,255,0.85);">
+                        <p class="text-xs font-semibold truncate group-hover:underline"
+                            style="color:rgba(255,255,255,0.85);">
                             {{ Auth::user()->name }}</p>
                         <p class="text-[10px] truncate mt-0.5" style="color:rgba(255,255,255,0.3);">
                             {{ Auth::user()->email }}</p>
@@ -264,7 +265,8 @@
         style="display:none!important;background:rgba(15,17,23,0.96);backdrop-filter:blur(16px);border-top:1px solid rgba(255,255,255,0.08);box-shadow:0 -8px 40px rgba(0,0,0,0.5);">
         <p class="text-sm leading-relaxed max-w-2xl" style="color:rgba(255,255,255,0.5);">
             {{ __('We use only essential first-party session cookies required for authentication. No tracking or advertising cookies are used.') }}
-            <a href="{{ url('/privacy') }}" class="ml-1 underline" style="color:rgba(255,255,255,0.7);">{{ __('Privacy Policy') }}</a>
+            <a href="{{ url('/privacy') }}" class="ml-1 underline"
+                style="color:rgba(255,255,255,0.7);">{{ __('Privacy Policy') }}</a>
         </p>
         <button
             onclick="document.getElementById('ik-cookie').style.setProperty('display','none','important');localStorage.setItem('ik_cookie_consent','1')"

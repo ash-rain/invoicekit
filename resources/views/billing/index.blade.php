@@ -1,7 +1,8 @@
 <x-app-layout>
     <div class="p-6 max-w-4xl mx-auto">
         <div class="mb-8">
-            <h1 class="font-bold text-[26px] text-[#0f1117] tracking-tight" style="font-family:'Syne',sans-serif;">{{ __('Billing & Subscription') }}</h1>
+            <h1 class="font-bold text-[26px] text-[#0f1117] tracking-tight" style="font-family:'Syne',sans-serif;">
+                {{ __('Billing & Subscription') }}</h1>
             <p class="text-sm text-gray-500 mt-0.5">{{ __('Manage your plan and usage') }}</p>
         </div>
 
@@ -85,7 +86,8 @@
                         <div class="rounded-2xl border-2 border-blue-200 p-6 relative">
                             <div class="flex items-start justify-between mb-4">
                                 <div>
-                                    <h4 class="text-lg font-bold text-[#0f1117]" style="font-family:'Syne',sans-serif;">{{ __('Starter') }}</h4>
+                                    <h4 class="text-lg font-bold text-[#0f1117]" style="font-family:'Syne',sans-serif;">
+                                        {{ __('Starter') }}</h4>
                                     <p class="text-xs text-gray-500 mt-0.5">{{ __('For growing freelancers') }}</p>
                                 </div>
                                 <div class="text-right">
@@ -94,10 +96,26 @@
                                 </div>
                             </div>
                             <ul class="text-sm text-gray-600 space-y-2 mb-6">
-                                <li class="flex items-center gap-2"><svg class="w-4 h-4 text-blue-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>{{ __('Unlimited clients') }}</li>
-                                <li class="flex items-center gap-2"><svg class="w-4 h-4 text-blue-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>{{ __('20 invoices per month') }}</li>
-                                <li class="flex items-center gap-2"><svg class="w-4 h-4 text-blue-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>{{ __('PDF invoice generation') }}</li>
-                                <li class="flex items-center gap-2"><svg class="w-4 h-4 text-blue-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>{{ __('EU VAT automation') }}</li>
+                                <li class="flex items-center gap-2"><svg class="w-4 h-4 text-blue-500 shrink-0"
+                                        fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                            d="M5 13l4 4L19 7" />
+                                    </svg>{{ __('Unlimited clients') }}</li>
+                                <li class="flex items-center gap-2"><svg class="w-4 h-4 text-blue-500 shrink-0"
+                                        fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                            d="M5 13l4 4L19 7" />
+                                    </svg>{{ __('20 invoices per month') }}</li>
+                                <li class="flex items-center gap-2"><svg class="w-4 h-4 text-blue-500 shrink-0"
+                                        fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                            d="M5 13l4 4L19 7" />
+                                    </svg>{{ __('PDF invoice generation') }}</li>
+                                <li class="flex items-center gap-2"><svg class="w-4 h-4 text-blue-500 shrink-0"
+                                        fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                            d="M5 13l4 4L19 7" />
+                                    </svg>{{ __('EU VAT automation') }}</li>
                             </ul>
                             <form method="POST" action="{{ route('billing.checkout', 'starter') }}">
                                 @csrf
@@ -112,11 +130,13 @@
                     {{-- Pro Plan --}}
                     <div class="rounded-2xl border-2 border-[#0f1117] p-6 relative">
                         <div class="absolute -top-3 left-6">
-                            <span class="bg-[#f59e0b] text-[#0f1117] text-[10px] font-bold uppercase px-3 py-0.5 rounded-full tracking-wider">{{ __('Best Value') }}</span>
+                            <span
+                                class="bg-[#f59e0b] text-[#0f1117] text-[10px] font-bold uppercase px-3 py-0.5 rounded-full tracking-wider">{{ __('Best Value') }}</span>
                         </div>
                         <div class="flex items-start justify-between mb-4">
                             <div>
-                                <h4 class="text-lg font-bold text-[#0f1117]" style="font-family:'Syne',sans-serif;">{{ __('Pro') }}</h4>
+                                <h4 class="text-lg font-bold text-[#0f1117]" style="font-family:'Syne',sans-serif;">
+                                    {{ __('Pro') }}</h4>
                                 <p class="text-xs text-gray-500 mt-0.5">{{ __('For serious freelancers') }}</p>
                             </div>
                             <div class="text-right">
@@ -125,11 +145,31 @@
                             </div>
                         </div>
                         <ul class="text-sm text-gray-600 space-y-2 mb-6">
-                            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-emerald-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>{{ __('Everything in Starter') }}</li>
-                            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-emerald-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>{{ __('Unlimited invoices') }}</li>
-                            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-emerald-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>{{ __('Recurring invoices') }}</li>
-                            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-emerald-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>{{ __('Client portal') }}</li>
-                            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-emerald-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>{{ __('Priority support') }}</li>
+                            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-emerald-500 shrink-0"
+                                    fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                        d="M5 13l4 4L19 7" />
+                                </svg>{{ __('Everything in Starter') }}</li>
+                            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-emerald-500 shrink-0"
+                                    fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                        d="M5 13l4 4L19 7" />
+                                </svg>{{ __('Unlimited invoices') }}</li>
+                            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-emerald-500 shrink-0"
+                                    fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                        d="M5 13l4 4L19 7" />
+                                </svg>{{ __('Recurring invoices') }}</li>
+                            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-emerald-500 shrink-0"
+                                    fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                        d="M5 13l4 4L19 7" />
+                                </svg>{{ __('Client portal') }}</li>
+                            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-emerald-500 shrink-0"
+                                    fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                        d="M5 13l4 4L19 7" />
+                                </svg>{{ __('Priority support') }}</li>
                         </ul>
                         <form method="POST" action="{{ route('billing.checkout', 'pro') }}">
                             @csrf

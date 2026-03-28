@@ -175,19 +175,16 @@
     "By continuing you agree to our :terms and :privacy.": "By continuing you agree to our :terms and :privacy.",
     "Terms": "Terms",
     "Privacy Policy": "Privacy Policy",
-
     "Navigation": "Navigation",
     "Settings": "Settings",
     "Billing": "Billing",
     "Manage your profile, business, and invoicing preferences": "Manage your profile, business, and invoicing preferences",
     "Business": "Business",
     "Account": "Account",
-
     "Profile saved.": "Profile saved.",
     "Business details saved.": "Business details saved.",
     "Invoicing settings saved.": "Invoicing settings saved.",
     "Please save your business details first.": "Please save your business details first.",
-
     "Profile Photo": "Profile Photo",
     "Choose photo": "Choose photo",
     "Uploading\u2026": "Uploading\u2026",
@@ -198,7 +195,6 @@
     "e.g. Freelance Web Developer": "e.g. Freelance Web Developer",
     "Tagline": "Tagline",
     "Save Profile": "Save Profile",
-
     "Company / Business Name": "Company / Business Name",
     "Address Line 1": "Address Line 1",
     "Address Line 2": "Address Line 2",
@@ -210,7 +206,6 @@
     "IBAN": "IBAN",
     "BIC / SWIFT": "BIC / SWIFT",
     "Save Business Details": "Save Business Details",
-
     "Invoice Defaults": "Invoice Defaults",
     "Default Currency": "Default Currency",
     "Payment Terms (days)": "Payment Terms (days)",
@@ -219,7 +214,6 @@
     "Invoice Logo": "Invoice Logo",
     "Choose logo": "Choose logo",
     "PNG or SVG recommended \u2014 max 2MB": "PNG or SVG recommended \u2014 max 2MB",
-
     "Small-Business VAT Exemption": "Small-Business VAT Exemption",
     "Enable if your business qualifies for a national small-business VAT exemption (e.g. Kleinunternehmerregelung in Germany or similar schemes in other EU countries).": "Enable if your business qualifies for a national small-business VAT exemption (e.g. Kleinunternehmerregelung in Germany or similar schemes in other EU countries).",
     "VAT exemption is not available for your country.": "VAT exemption is not available for your country.",
@@ -233,7 +227,6 @@
     "Local language (per country config)": "Local language (per country config)",
     "This text will appear at the bottom of your invoices.": "This text will appear at the bottom of your invoices.",
     "Save Invoicing Settings": "Save Invoicing Settings",
-
     "Back to Invoices": "Back to Invoices",
     "Fill in the details below": "Fill in the details below",
     "Update invoice details": "Update invoice details",
@@ -244,10 +237,8 @@
     "Manage in Settings": "Manage in Settings",
     "Small-business VAT exemption applied": "Small-business VAT exemption applied",
     "Override: apply VAT for this invoice": "Override: apply VAT for this invoice",
-
     "Website": "Website",
     "Phone": "Phone",
-
     "Billing & Subscription": "Billing & Subscription",
     "Manage your plan and usage": "Manage your plan and usage",
     "Current Plan": "Current Plan",
@@ -277,30 +268,24 @@
     "Client portal": "Client portal",
     "Priority support": "Priority support",
     "Upgrade to Pro": "Upgrade to Pro",
-
     "We use only essential first-party session cookies required for authentication. No tracking or advertising cookies are used.": "We use only essential first-party session cookies required for authentication. No tracking or advertising cookies are used.",
     "Got it": "Got it",
     "Enable push notifications to get alerted about invoice due dates and payments.": "Enable push notifications to get alerted about invoice due dates and payments.",
     "Not now": "Not now",
     "Enable": "Enable",
-
     "Notifications": "Notifications",
     "Mark all read": "Mark all read",
     "Push notifications off": "Push notifications off",
     "No notifications yet": "No notifications yet",
-
     "Invoice Paid": "Invoice Paid",
     "Invoice :number for :client has been marked as paid.": "Invoice :number for :client has been marked as paid.",
     "View Invoice": "View Invoice",
-
     "Payment Due Today \u2014 Invoice :number": "Payment Due Today \u2014 Invoice :number",
     "Overdue Invoice \u2014 :number": "Overdue Invoice \u2014 :number",
     "Payment Reminder \u2014 Invoice :number": "Payment Reminder \u2014 Invoice :number",
-
     "Invoice Due Today": "Invoice Due Today",
     "Invoice Overdue": "Invoice Overdue",
     "Invoice Reminder": "Invoice Reminder",
-
     "Invoice :number for :client is due today.": "Invoice :number for :client is due today.",
     "Invoice :number for :client is overdue.": "Invoice :number for :client is overdue.",
     "Invoice :number for :client is now overdue.": "Invoice :number for :client is now overdue.",
