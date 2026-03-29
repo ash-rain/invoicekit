@@ -25,6 +25,16 @@ done
 echo "[entrypoint] PostgreSQL is ready."
 
 # ---------------------------------------------------------------------------
+# Clear and rebuild all caches — ensures fresh routes/config/views on every
+# deploy without needing manual artisan calls on the server
+# ---------------------------------------------------------------------------
+echo "[entrypoint] Clearing caches..."
+php artisan config:cache
+php artisan route:cache
+php artisan view:cache
+echo "[entrypoint] Caches rebuilt."
+
+# ---------------------------------------------------------------------------
 # Migrations — always run (idempotent, picks up new migrations on redeploy)
 # ---------------------------------------------------------------------------
 php artisan migrate --force
