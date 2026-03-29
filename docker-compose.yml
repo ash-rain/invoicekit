@@ -6,6 +6,7 @@ services:
     container_name: invoicekit_app
     restart: unless-stopped
     working_dir: /var/www
+    env_file: .env
     volumes:
       - .:/var/www
     environment:
@@ -50,6 +51,7 @@ services:
     container_name: invoicekit_worker
     restart: unless-stopped
     working_dir: /var/www
+    env_file: .env
     command: php artisan queue:work --sleep=3 --tries=3 --max-time=3600
     volumes:
       - .:/var/www
