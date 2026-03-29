@@ -80,6 +80,24 @@ Klijentski portal
 [f6_desc]
 Podjeli sigurnu, tokeniziranu vezu s bilo kojim klijentom. Mogu pregledati račun, preuzeti PDF i platiti online putem Stripea — bez potrebe za prijavom.
 
+[f7_title]
+Radi na svakom uređaju
+
+[f7_desc]
+Dodajte InvoiceKit na početni zaslon telefona, tableta ili računala. Instalira se kao nativna aplikacija, pokreće bez preglednika i radi offline kako biste mogli bilježiti vrijeme ili provjeravati fakture s bilo kojeg mjesta.
+
+[f8_title]
+Praćenje troškova
+
+[f8_desc]
+Zabilježite poslovne troškove s računima, kategorijama i podacima o dobavljaču. Filtrirajte po datumu ili kategoriji, izvezite u CSV i pratite mjesečni pregled troškova uz prihode.
+
+[f9_title]
+Više valuta
+
+[f9_desc]
+Fakturirajte u EUR, USD, BGN, RON, PLN, CZK ili HUF. Svaki klijent pohranjuje željenu valutu — automatski se popunjava na svakom novom računu.
+
 [how_tag]
 Kako funkcionira
 

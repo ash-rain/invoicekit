@@ -80,6 +80,24 @@ Tairseach Cliant
 [f6_desc]
 Comhroinn nasc slán, tokenized le haon chliant. Is féidir leo an sonrasc a fheiceáil, an PDF a íoslódáil agus íoc ar líne trí Stripe — gan logáil isteach ag teastáil.
 
+[f7_title]
+Oibríonn ar aon ghliús
+
+[f7_desc]
+Cuir InvoiceKit le scaileán baile do ghutháin, táibléad nó ríomhaire. Suitear é cosmúil le haip dúchúsach, oscíleánn sé gan bhrabsálaí agus oibríonn sé as líne, ionas gur féidir leat am a logadh nó seiceáil a dhéanamh ar shonraisc áit ar bith.
+
+[f8_title]
+Rianú Caiteachais
+
+[f8_desc]
+Logáil caiteachas gnó le hadmhálacha, catagóirí agus sonraí soláthraí. Scagadh de réir dáta nó catagóire, easpórtáil go CSV agus coinnigh achoimre mhíosúil caiteachais.
+
+[f9_title]
+Il-Airgeadra
+
+[f9_desc]
+Cuir sonraisc i ngach airgeadra: EUR, USD, BGN, RON, PLN, CZK nó HUF. Stórálann gach cliant a n-airgeadra is fearr leo — líontar go huathoibríoch ar gach sonrasc nua é.
+
 [how_tag]
 Conas a oibríonn sé
 

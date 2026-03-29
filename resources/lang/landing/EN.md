@@ -83,6 +83,24 @@ Client Portal
 [f6_desc]
 Share a secure tokenized link with any client. They can view the invoice, download the PDF, and pay online via Stripe — no login required.
 
+[f7_title]
+Works on Any Device
+
+[f7_desc]
+Add InvoiceKit to your home screen on phone, tablet, or desktop. Installs like a native app, opens without a browser, and works offline so you can log time or check invoices anywhere.
+
+[f8_title]
+Expense Tracking
+
+[f8_desc]
+Log business expenses with receipts, categories, and vendor details. Filter by date or category, export to CSV, and keep a monthly spending overview right alongside your revenue.
+
+[f9_title]
+Multi-Currency
+
+[f9_desc]
+Invoice in EUR, USD, BGN, RON, PLN, CZK, or HUF. Each client stores their preferred currency — it auto-fills on every new invoice so you never charge in the wrong currency.
+
 [how_tag]
 How It Works
 

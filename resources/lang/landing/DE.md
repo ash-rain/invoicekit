@@ -80,6 +80,24 @@ Kundenportal
 [f6_desc]
 Teilen Sie einem Kunden einen sicheren, tokenisierten Link. Der Kunde kann die Rechnung ansehen, das PDF herunterladen und online über Stripe bezahlen — ohne Login.
 
+[f7_title]
+Auf jedem Gerät verfügbar
+
+[f7_desc]
+Fügen Sie InvoiceKit zum Startbildschirm von Telefon, Tablet oder Computer hinzu. Installiert sich wie eine native App, startet ohne Browser und funktioniert offline — so können Sie Zeit erfassen oder Rechnungen überall prüfen.
+
+[f8_title]
+Ausgabenverfolgung
+
+[f8_desc]
+Erfassen Sie Geschäftsausgaben mit Belegen, Kategorien und Lieferantendetails. Filtern Sie nach Datum oder Kategorie, exportieren Sie als CSV und behalten Sie eine monatliche Ausgabenübersicht neben Ihren Einnahmen.
+
+[f9_title]
+Mehrwährungsunterstützung
+
+[f9_desc]
+Stellen Sie Rechnungen in EUR, USD, BGN, RON, PLN, CZK oder HUF aus. Jeder Kunde speichert seine bevorzugte Währung — sie wird automatisch auf jeder neuen Rechnung eingetragen.
+
 [how_tag]
 So funktioniert's
 

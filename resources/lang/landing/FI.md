@@ -80,6 +80,24 @@ Asiakasportaali
 [f6_desc]
 Jaa asiakkaalle turvallinen, tokenoitu linkki. Asiakas voi katsella laskua, ladata PDF:n ja maksaa verkossa Stripen kautta — kirjautumista ei tarvita.
 
+[f7_title]
+Toimii kaikissa laitteissa
+
+[f7_desc]
+Lisää InvoiceKit puhelimesi, tabletisi tai tietokoneesi aloitusnäytölle. Asentuu kuten natiivisovellus, avautuu ilman selainta ja toimii offline-tilassa, jotta voit kirjata aikaa tai tarkistaa laskuja missä tahansa.
+
+[f8_title]
+Kulujen seuranta
+
+[f8_desc]
+Kirjaa liiketoiminnan kulut kuiteilla, kategorioilla ja toimittajatiedoilla. Suodata päivämäärän tai kategorian mukaan, vie CSV:ksi ja seuraa kuukausittaista kulukatsausta tulojen rinnalla.
+
+[f9_title]
+Useita valuuttoja
+
+[f9_desc]
+Laskuta EUR, USD, BGN, RON, PLN, CZK tai HUF-valuutoissa. Jokainen asiakas tallentaa haluamansa valuutan — se täytetään automaattisesti jokaiselle uudelle laskulle.
+
 [how_tag]
 Näin se toimii
 

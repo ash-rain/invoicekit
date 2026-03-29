@@ -80,6 +80,24 @@ Ismétlődő számlák
 [f6_desc]
 Osszon meg egy biztonságos, tokenizált linket bármelyik ügyfelével. Megtekintheti a számlát, letöltheti a PDF-et, és online fizethet Stripe-on keresztül — bejelentkezés nélkül.
 
+[f7_title]
+Bármilyen eszközön működik
+
+[f7_desc]
+Adja hozzá az InvoiceKitet telefonja, táblagépe vagy számítógépe kezdőképernőjéhez. Natív alkalmazásként telepít, böngésző nélkül indul és offline is működik — így akárhol rögzíthet időt vagy ellenőrizhet számlákat.
+
+[f8_title]
+Kiadáskövetés
+
+[f8_desc]
+Rögzítse az üzleti kiadásokat bizonylatokkal, kategóriákkal és szállítói adatokkal. Szűrjön dátum vagy kategória szerint, exportálja CSV-be, és kövesse havi kiadásait bevételei mellett.
+
+[f9_title]
+Több pénznem
+
+[f9_desc]
+Számlázzon EUR, USD, BGN, RON, PLN, CZK vagy HUF-ban. Minden ügyfél tárolja a preferált pénznemét — automatikusan kitöltődik minden új számláján.
+
 [how_tag]
 Hogyan működik
 

@@ -79,6 +79,22 @@ Klientský portál
 
 [f6_desc]
 Zdieľajte bezpečný, tokenizovaný odkaz s ľubovoľným klientom. Môžu si pozrieť faktúru, stiahnuť PDF a zaplatiť online cez Stripe — bez prihlásenia.
+[f7_title]
+Funguje na akomkoľek zariadení
+
+[f7_desc]
+Pridajte InvoiceKit na domovskú obrazovku telefónu, tabletu alebo počítača. Nainštaluje sa ako natívna aplikácia, spustí sa bez prehliadčača a funguje offline, aby ste mohli sledovať čas alebo kontrolovať faktúry kdeokoľek.
+[f8_title]
+Sledovanie výdavkov
+
+[f8_desc]
+Evidujte firemné výdavky s potvrdenkami, kategóriami a údajmi o dodávateľoch. Filtrujte podľa dátumu alebo kategórie, exportujte do CSV a sledujte mesačný prehľad výdavkov.
+
+[f9_title]
+Viac mien
+
+[f9_desc]
+Fakturujte v EUR, USD, BGN, RON, PLN, CZK alebo HUF. Každý klient uloží preferovanú menu — automaticky sa vyplní na každej novej faktúre.
 
 [how_tag]
 Ako to funguje

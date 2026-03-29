@@ -78,7 +78,25 @@ Iestatiet iknedēļas, ikmēneša, ceturkšņa vai ikgadējus rēķinus. Invoice
 Klientu portāls
 
 [f6_desc]
-Kopīgojiet drošu, tokenizētu saiti ar jebkuru klientu. Viņi var skatīt rēķinu, lejupielādēt PDF un maksāt tiešsaistē, izmantojot Stripe — bez pierakstīšanās.
+Kopīgojiet drošu, tokenizētu saiti ar jebkuru klientu. Viņi var skatīt rēķinu, lejupielādēt PDF un maksāt tiešsaisitē, izmantojot Stripe — bez pierakštanās.
+
+[f7_title]
+Darbojas jebkurā ierīcē
+
+[f7_desc]
+Pievienojiet InvoiceKit tālrųņa, planšetdatōra vai galddatora sākuma ekrānam. Instalējas kā vietējā lietotne, palaiž bez pārlūkprogrammas un darbojas bezsaistē — lai varētu reģistrēt laiku vai pārbaudīt rēķinus jebkur.
+
+[f8_title]
+Izdevumu izsekošana
+
+[f8_desc]
+Reģistrējiet biznesa izdevumus ar čekiem, kategorijām un piegādātāja datiem. Filtrējiet pēc datuma vai kategorijas, eksportējiet uz CSV un sekojiet ikmēneša izdevumiem blakus ienākumiem.
+
+[f9_title]
+Vairākas valūtas
+
+[f9_desc]
+Izrakstiet rēķinus EUR, USD, BGN, RON, PLN, CZK vai HUF. Katrs klients saglabā vēlamo valūtu — tā automātiski aizpildās katrā jaunā rēķinā.
 
 [how_tag]
 Kā tas darbojas

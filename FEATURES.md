@@ -302,3 +302,31 @@ Generated via DomPDF (DejaVu Sans font for full Unicode / multi-language support
 - `cancel_at_period_end = 0`: immediately cancels via Stripe, downgrades user to Free plan locally
 
 **`User` helpers**: `isOnTrial()`, `hasActiveSubscription()`, `isFree()`, `isStarter()`, `isPro()`
+
+---
+
+## Progressive Web App (PWA)
+
+InvoiceKit ships as a fully installable Progressive Web App available to all users with no extra setup.
+
+**Manifest** (`/manifest.json`):
+- `display: standalone` — runs full-screen with no browser chrome
+- `start_url: /dashboard` — lands on dashboard on launch
+- Icons at 192 × 192 and 512 × 512 (maskable) for home screen and splash
+- App shortcuts: "New Invoice" → `/invoices/create`
+
+**Service Worker** (`/public/sw.js`):
+- Pre-caches static assets (manifest, icons) on install
+- Cache-first strategy for all Vite build assets (`/build/`)
+- Cache-first for icons and manifest; network-first for page navigations
+- Stale-while-revalidate for API responses to keep data fresh
+- Old caches purged on activation
+
+**Registration** (`resources/js/app.js`): service worker registered on `window.load`; failures are silent so the app works without SW support.
+
+**Install experience**:
+- Browser displays the native "Add to Home Screen" install prompt on iOS, Android, Chrome desktop, and Edge
+- Once installed: launches from home screen / taskbar, runs standalone (no address bar), and behaves identically to the web version
+- Works offline for previously cached views; deferred sync resumes when connectivity is restored
+
+**Push notifications** are delivered through the same service worker registration (see Notifications & Emails section).

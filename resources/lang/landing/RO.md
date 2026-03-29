@@ -78,7 +78,25 @@ Configurează facturi săptămânale, lunare, trimestriale sau anuale. InvoiceKi
 Portal client
 
 [f6_desc]
-Partajează un link securizat, tokenized cu orice client. Pot vizualiza factura, descărca PDF-ul și plăti online prin Stripe — fără autentificare.
+Partajeaзă un link securizat, tokenized cu orice client. Pot vizualiza factura, descărca PDF-ul și plăti online prin Stripe — fără autentificare.
+
+[f7_title]
+Funcționează pe orice dispozitiv
+
+[f7_desc]
+Adaugă InvoiceKit pe ecranul de start al telefonului, tabletei sau computerului. Se instalează ca o aplicație nativă, se lansează fără browser și funcționează offline, ca să poți înregistra timp sau verifica facturi oriunde.
+
+[f8_title]
+Urmărire cheltuieli
+
+[f8_desc]
+Înregistrează cheltuieli de afaceri cu chitanțe, categorii și date furnizor. Filtrează după dată sau categorie, exportă în CSV și urmărește un rezumat lunar al cheltuielilor.
+
+[f9_title]
+Multi-monedă
+
+[f9_desc]
+Facturează în EUR, USD, BGN, RON, PLN, CZK sau HUF. Fiecare client stochează moneda preferată — se completează automat pe fiecare factură nouă.
 
 [how_tag]
 Cum funcționează

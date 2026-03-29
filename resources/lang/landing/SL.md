@@ -80,6 +80,24 @@ Portal za stranke
 [f6_desc]
 Delite varno, tokenized povezavo z vsako stranko. Ogledajo si lahko račun, prenesejo PDF in plačajo online prek Stripe — brez prijave.
 
+[f7_title]
+Deluje na vsaki napravi
+
+[f7_desc]
+Dodajte InvoiceKit na začetni zaslon telefona, tablice ali namiznega računalnika. Namesti se kot izvorna aplikacija, se zažene brez brskalnika in deluje brez povezave, da lahko beležite čas ali preverjate račune kjerkoli.
+
+[f8_title]
+Sledenje stroškov
+
+[f8_desc]
+Beležite poslovne stroške s potrdili, kategorijami in podatki dobavitelja. Filtrirajte po datumu ali kategoriji, izvozite v CSV in spremljajte mesečni pregled stroškov.
+
+[f9_title]
+Več valut
+
+[f9_desc]
+Račune izdajajte v EUR, USD, BGN, RON, PLN, CZK ali HUF. Vsaka stranka shrani svojo prednostno valuto — samodejno se izpolni na vsakem novem računu.
+
 [how_tag]
 Kako deluje
 

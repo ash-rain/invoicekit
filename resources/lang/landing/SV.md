@@ -80,6 +80,24 @@ Kundportal
 [f6_desc]
 Dela en säker, tokenized länk med varje kund. De kan se fakturan, ladda ner PDF och betala online via Stripe — utan inloggning.
 
+[f7_title]
+Fungerar på alla enheter
+
+[f7_desc]
+Lägg till InvoiceKit på startskärmen på din telefon, surfplatta eller dator. Installeras som en native-app, startar utan webbläsare och fungerar offline, så att du kan logga tid eller kontrollera fakturor var som helst.
+
+[f8_title]
+Utgiftsspårning
+
+[f8_desc]
+Logga affärsutgifter med kvitton, kategorier och leverantörsuppgifter. Filtrera efter datum eller kategori, exportera till CSV och håll koll på månatliga utgifter bredvid dina intäkter.
+
+[f9_title]
+Flera valutor
+
+[f9_desc]
+Fakturera i EUR, USD, BGN, RON, PLN, CZK eller HUF. Varje kund lagrar sin föredragna valuta — den fylls automatiskt i på varje ny faktura.
+
 [how_tag]
 Hur det fungerar
 

@@ -80,6 +80,24 @@ Kliendirportaal
 [f6_desc]
 Jaga kliendiga turvalist, tokeniseeritud linki. Ta saab arvet vaadata, PDF-i alla laadida ja Stripe'i kaudu võrgus maksta — sisselogimine pole vajalik.
 
+[f7_title]
+Töötab igas seadmes
+
+[f7_desc]
+Lisa InvoiceKit oma telefoni, tahvelarvuti või arvuti avakuvale. Installitakse nagu natiivrakendus, käivitub brauserita ja töötab võrguühenduseta, et saaksite aega logida või arveid kontrollida kus tahes.
+
+[f8_title]
+Kulude jälgimine
+
+[f8_desc]
+Logige ärikulud kviitungite, kategooriate ja tarnija andmetega. Filtreerige kuupäeva või kategooria järgi, eksportige CSV-na ja jälgige kuukulusid kõrvuti tuludega.
+
+[f9_title]
+Mitu valuutat
+
+[f9_desc]
+Esitage arveid EUR, USD, BGN, RON, PLN, CZK või HUF-is. Iga klient salvestab eelistatud valuuta — see täidetakse automaatselt igal uuel arvel.
+
 [how_tag]
 Kuidas see toimib
 

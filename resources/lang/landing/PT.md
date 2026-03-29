@@ -80,6 +80,24 @@ Portal do cliente
 [f6_desc]
 Partilhe uma ligação segura e tokenizada com qualquer cliente. Eles podem visualizar a fatura, descarregar o PDF e pagar online via Stripe — sem necessidade de início de sessão.
 
+[f7_title]
+Funciona em qualquer dispositivo
+
+[f7_desc]
+Adicione o InvoiceKit ao ecrã inicial do seu televóvel, tablet ou computador. Instala-se como uma aplicação nativa, abre sem browser e funciona offline para poder registar tempo ou consultar faturas em qualquer lugar.
+
+[f8_title]
+Controlo de despesas
+
+[f8_desc]
+Registe despesas empresariais com recibos, categorias e dados do fornecedor. Filtre por data ou categoria, exporte para CSV e acompanhe um resumo mensal de despesas.
+
+[f9_title]
+Multi-moeda
+
+[f9_desc]
+Fature em EUR, USD, BGN, RON, PLN, CZK ou HUF. Cada cliente guarda a moeda preferida — é preenchida automaticamente em cada nova fatura.
+
 [how_tag]
 Como funciona
 

@@ -80,6 +80,24 @@ Klientų portalas
 [f6_desc]
 Pasidalinkite saugiu, tokenizuotu nuoroda su bet kuriuo klientu. Jie gali peržiūrėti sąskaitą, atsisiųsti PDF ir mokėti internetu per Stripe — prisijungimas nereikalingas.
 
+[f7_title]
+Veikia bet kuriame įrenginyje
+
+[f7_desc]
+Pridėkite InvoiceKit prie telefono, planšetinio kompiuterio ar darbalaukio pradžios ekrano. Diegiamas kaip vietinė programa, paleidžiamas be naršiklės ir veikia neprisijungus, kad galėtumėte sekti laiką ar tikrinti sąskaitas bet kur.
+
+[f8_title]
+Išlaidų stebėjimas
+
+[f8_desc]
+Fiksuokite verslo išlaidas su kvitais, kategorijomis ir tiekėjų duomenimis. Filtruokite pagal datą ar kategoriją, eksportuokite į CSV ir sekite mėnesines išlaidas greta pajamų.
+
+[f9_title]
+Kelios valiutos
+
+[f9_desc]
+Išrašykite sąskaitas EUR, USD, BGN, RON, PLN, CZK ar HUF. Kiekvienas klientas išsaugo pageidaujamą valiutą — ji automatiškai užpildoma kiekvienoje naujoje sąskaitoje.
+
 [how_tag]
 Kaip tai veikia
 

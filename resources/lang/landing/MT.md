@@ -79,6 +79,22 @@ Portal tal-Klijent
 
 [f6_desc]
 Aqsam link sigur, tokenized ma' kull klijent. Jistgħu jaraw il-fattura, jniżżlu l-PDF u jħallsu online permezz ta' Stripe — ma hemmx bżonn ta' login.
+[f7_title]
+Jaħdem fuq kull apparat
+
+[f7_desc]
+Żid InvoiceKit fuq l-iskrin ewlieni tal-mowbajl, tablet jew desktop tiegħek. Jinstalla bħal app nattiva, jinfetaħ mingħajr browser u jaħdem offline — biex tkun tista' tirreġistra ħin jew tiċċekkja fatturi minn kullimkien.
+[f8_title]
+Traċċar tan-Nefqa
+
+[f8_desc]
+Irreġistra n-nefqa tal-negozju b'irċevuti, kategoriji u dettalji tal-fornitur. Filtra skont id-data jew il-kategorija, esporta għal CSV u żomm sommarju mensili ta' nefqa.
+
+[f9_title]
+Muniti Multipli
+
+[f9_desc]
+Fattura f'EUR, USD, BGN, RON, PLN, CZK jew HUF. Kull klijent jaħżen il-munita preferita tiegħu — timtela awtomatikament fuq kull fattura ġdida.
 
 [how_tag]
 Kif jaħdem

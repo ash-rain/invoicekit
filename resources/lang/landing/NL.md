@@ -80,6 +80,24 @@ Klantenportaal
 [f6_desc]
 Deel een beveiligde, tokenized link met elke klant. Ze kunnen de factuur bekijken, de PDF downloaden en online betalen via Stripe — zonder aanmelding.
 
+[f7_title]
+Werkt op elk apparaat
+
+[f7_desc]
+Voeg InvoiceKit toe aan het startscherm van uw telefoon, tablet of computer. Installeert als een native app, start zonder browser en werkt offline — zodat u overal tijd kunt registreren of facturen kunt controleren.
+
+[f8_title]
+Uitgavenbeheer
+
+[f8_desc]
+Registreer zakelijke uitgaven met bonnen, categorieën en leveranciersgegevens. Filter op datum of categorie, exporteer naar CSV en houd een maandelijks overzicht bij naast uw inkomsten.
+
+[f9_title]
+Meerdere valuta's
+
+[f9_desc]
+Factureer in EUR, USD, BGN, RON, PLN, CZK of HUF. Elke klant slaat de voorkeurvaluta op — die wordt automatisch ingevuld op elke nieuwe factuur.
+
 [how_tag]
 Hoe het werkt
 
