@@ -17,12 +17,19 @@ class DatabaseSeeder extends Seeder
 
     public function run(): void
     {
-        $user = User::factory()->create([
-            'name' => 'Demo User',
-            'email' => 'demo@invoicekit.test',
-            'password' => Hash::make('password'),
-            'email_verified_at' => now(),
-        ]);
+        $user = User::firstOrCreate(
+            ['email' => 'demo@invoicekit.test'],
+            [
+                'name' => 'Demo User',
+                'password' => Hash::make('password'),
+                'email_verified_at' => now(),
+            ]
+        );
+
+        // Skip demo data if already seeded for this user
+        if ($user->clients()->exists()) {
+            return;
+        }
 
         $clients = [
             [
