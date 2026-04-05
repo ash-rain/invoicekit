@@ -4,6 +4,7 @@ use App\Http\Controllers\BillingController;
 use App\Http\Controllers\InvoicePortalController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PushSubscriptionController;
+use App\Http\Controllers\StripeConnectController;
 use App\Http\Controllers\StripeWebhookController;
 use App\Livewire\Clients\ClientList;
 use App\Livewire\Clients\CreateEditClient;
@@ -253,6 +254,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/billing/portal', [BillingController::class, 'portal'])->name('billing.portal');
     Route::post('/billing/cancel', [BillingController::class, 'cancel'])->name('billing.cancel');
     Route::post('/invoices/{invoice}/payment-link', [BillingController::class, 'createPaymentLink'])->name('invoices.payment-link');
+
+    // Stripe Connect (Express onboarding for receiving invoice payments)
+    Route::post('/stripe-connect/onboard', [StripeConnectController::class, 'onboard'])->name('stripe-connect.onboard');
+    Route::get('/stripe-connect/callback', [StripeConnectController::class, 'callback'])->name('stripe-connect.callback');
+    Route::get('/stripe-connect/refresh', [StripeConnectController::class, 'refresh'])->name('stripe-connect.refresh');
+    Route::get('/stripe-connect/dashboard', [StripeConnectController::class, 'dashboard'])->name('stripe-connect.dashboard');
+    Route::post('/stripe-connect/disconnect', [StripeConnectController::class, 'disconnect'])->name('stripe-connect.disconnect');
 
     // Push subscriptions
     Route::post('/push-subscriptions', [PushSubscriptionController::class, 'store'])->name('push-subscriptions.store');

@@ -26,6 +26,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'password',
         'plan',
         'stripe_customer_id',
+        'stripe_connect_id',
+        'stripe_connect_onboarded',
         'stripe_subscription_id',
         'subscription_status',
         'trial_ends_at',
@@ -63,11 +65,17 @@ class User extends Authenticatable implements MustVerifyEmail
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
             'onboarding_completed' => 'boolean',
+            'stripe_connect_onboarded' => 'boolean',
             'reminder_on_due_day' => 'boolean',
             'reminder_overdue_intervals' => 'array',
             'trial_ends_at' => 'datetime',
             'subscribed_until' => 'datetime',
         ];
+    }
+
+    public function hasStripeConnect(): bool
+    {
+        return $this->stripe_connect_onboarded === true && $this->stripe_connect_id !== null;
     }
 
     public function isPro(): bool

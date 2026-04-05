@@ -84,6 +84,10 @@ class Settings extends Component
 
     public function mount(): void
     {
+        if (request()->query('tab')) {
+            $this->activeTab = request()->query('tab');
+        }
+
         $user = Auth::user();
 
         $this->name = $user->name;

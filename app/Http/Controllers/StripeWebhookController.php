@@ -40,6 +40,7 @@ class StripeWebhookController extends Controller
             'customer.subscription.updated' => $this->handleSubscriptionUpdated($data),
             'customer.subscription.deleted' => $this->handleSubscriptionDeleted($data),
             'invoice.payment_failed' => $this->handlePaymentFailed($data),
+            'account.updated' => $this->handleAccountUpdated($data),
             default => null,
         };
 
@@ -48,6 +49,32 @@ class StripeWebhookController extends Controller
 
     private function handleCheckoutCompleted(mixed $session): void
     {
+        $type = is_array($session) ? ($session['metadata']['type'] ?? null) : ($session->metadata->type ?? null);
+
+        // Invoice payment: mark invoice as paid
+        if ($type === 'invoice_payment') {
+            $invoiceId = is_array($session) ? ($session['metadata']['invoice_id'] ?? null) : ($session->metadata->invoice_id ?? null);
+
+            if (! $invoiceId) {
+                return;
+            }
+
+            $invoice = \App\Models\Invoice::find($invoiceId);
+            if (! $invoice || $invoice->status === 'paid') {
+                return;
+            }
+
+            $invoice->update([
+                'status' => 'paid',
+                'paid_at' => now(),
+            ]);
+
+            Log::info('Invoice marked as paid via Stripe checkout.', ['invoice_id' => $invoice->id]);
+
+            return;
+        }
+
+        // Subscription checkout
         $customerId = is_array($session) ? ($session['customer'] ?? null) : ($session->customer ?? null);
         $subscriptionId = is_array($session) ? ($session['subscription'] ?? null) : ($session->subscription ?? null);
         $plan = is_array($session) ? ($session['metadata']['plan'] ?? 'pro') : ($session->metadata->plan ?? 'pro');
@@ -162,5 +189,35 @@ class StripeWebhookController extends Controller
         }
 
         Log::warning('Stripe payment failed for user.', ['user_id' => $user->id]);
+    }
+
+    /**
+     * Handle account.updated from Stripe Connect.
+     * Marks the user's connected account as onboarded when Stripe enables charges.
+     */
+    private function handleAccountUpdated(mixed $account): void
+    {
+        $accountId = is_array($account) ? ($account['id'] ?? null) : ($account->id ?? null);
+        $chargesEnabled = is_array($account) ? ($account['charges_enabled'] ?? false) : ($account->charges_enabled ?? false);
+        $detailsSubmitted = is_array($account) ? ($account['details_submitted'] ?? false) : ($account->details_submitted ?? false);
+
+        if (! $accountId) {
+            return;
+        }
+
+        $user = User::where('stripe_connect_id', $accountId)->first();
+
+        if (! $user) {
+            return;
+        }
+
+        if ($chargesEnabled && $detailsSubmitted && ! $user->stripe_connect_onboarded) {
+            $user->update(['stripe_connect_onboarded' => true]);
+            Log::info('Stripe Connect account onboarding completed for user.', ['user_id' => $user->id]);
+        } elseif (! $chargesEnabled && $user->stripe_connect_onboarded) {
+            // Account was restricted or disabled
+            $user->update(['stripe_connect_onboarded' => false]);
+            Log::warning('Stripe Connect account disabled for user.', ['user_id' => $user->id]);
+        }
     }
 }

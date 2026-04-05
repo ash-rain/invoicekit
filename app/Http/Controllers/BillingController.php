@@ -175,6 +175,16 @@ class BillingController extends Controller
             abort(403);
         }
 
+        if ($invoice->status === 'paid') {
+            return back()->with('error', __('This invoice is already paid.'));
+        }
+
+        $user = Auth::user();
+
+        if (! $user->hasStripeConnect()) {
+            return back()->with('error', __('Connect your Stripe account in Settings → Payments before generating payment links.'));
+        }
+
         $stripeKey = config('services.stripe.key');
         if (! $stripeKey) {
             return back()->with('error', 'Stripe is not configured. Please contact support.');
@@ -184,31 +194,37 @@ class BillingController extends Controller
 
         $amountCents = (int) round((float) $invoice->total * 100);
         $currency = strtolower($invoice->currency);
+        $feePercent = (float) config('services.stripe.application_fee_percent', 2);
+        $feeAmount = (int) round($amountCents * $feePercent / 100);
 
-        $price = $stripe->prices->create([
-            'unit_amount' => $amountCents,
-            'currency' => $currency,
-            'product_data' => [
-                'name' => __('Invoice').' '.$invoice->invoice_number,
-            ],
-        ]);
-
-        $paymentLink = $stripe->paymentLinks->create([
+        $session = $stripe->checkout->sessions->create([
+            'mode' => 'payment',
             'line_items' => [[
-                'price' => $price->id,
+                'price_data' => [
+                    'currency' => $currency,
+                    'unit_amount' => $amountCents,
+                    'product_data' => [
+                        'name' => __('Invoice').' '.$invoice->invoice_number,
+                    ],
+                ],
                 'quantity' => 1,
             ]],
-            'after_completion' => [
-                'type' => 'redirect',
-                'redirect' => ['url' => route('invoices.show', $invoice)],
+            'payment_intent_data' => [
+                'application_fee_amount' => $feeAmount,
+                'transfer_data' => [
+                    'destination' => $user->stripe_connect_id,
+                ],
             ],
+            'success_url' => route('invoices.show', $invoice->id).'?payment=success',
+            'cancel_url' => route('invoices.show', $invoice->id).'?payment=cancelled',
             'metadata' => [
                 'invoice_id' => $invoice->id,
                 'user_id' => Auth::id(),
+                'type' => 'invoice_payment',
             ],
         ]);
 
-        $invoice->update(['stripe_payment_link_url' => $paymentLink->url]);
+        $invoice->update(['stripe_payment_link_url' => $session->url]);
 
         return back()->with('success', __('Payment link created.'));
     }

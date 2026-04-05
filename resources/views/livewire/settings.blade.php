@@ -12,6 +12,7 @@
         'profile' => __('Profile'),
         'business' => __('Business'),
         'invoicing' => __('Invoicing'),
+        'payments' => __('Payments'),
         'notifications' => __('Notifications'),
         'account' => __('Account'),
     ] as $key => $label)
@@ -432,6 +433,164 @@
                 </button>
             </div>
         </form>
+    </div>
+
+    {{-- ── PAYMENTS TAB ─────────────────────────────────────────────────────── --}}
+    <div x-show="tab === 'payments'" x-cloak>
+
+        @if (session('success'))
+            <div class="mb-4 p-3 bg-green-50 border border-green-200 text-green-700 rounded-xl text-sm">
+                {{ session('success') }}
+            </div>
+        @endif
+        @if (session('warning'))
+            <div class="mb-4 p-3 bg-yellow-50 border border-yellow-200 text-yellow-700 rounded-xl text-sm">
+                {{ session('warning') }}
+            </div>
+        @endif
+        @if (session('error'))
+            <div class="mb-4 p-3 bg-red-50 border border-red-200 text-red-700 rounded-xl text-sm">
+                {{ session('error') }}
+            </div>
+        @endif
+
+        {{-- Stripe Connect --}}
+        <div class="bg-white rounded-2xl border border-[#eaecf0] p-6 space-y-5">
+            <div>
+                <h2 class="text-base font-semibold text-[#0f1117]" style="font-family:'Syne',sans-serif;">
+                    {{ __('Online Payments via Stripe') }}
+                </h2>
+                <p class="text-sm text-gray-500 mt-1">
+                    {{ __('Connect your Stripe account so your clients can pay invoices online. Payments go directly to your bank account.') }}
+                </p>
+            </div>
+
+            @if (auth()->user()->hasStripeConnect())
+                {{-- Connected state --}}
+                <div class="flex items-center justify-between rounded-xl border border-green-200 bg-green-50 px-4 py-3">
+                    <div class="flex items-center gap-3">
+                        <span class="flex h-7 w-7 items-center justify-center rounded-full bg-green-100">
+                            <svg class="h-4 w-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7" />
+                            </svg>
+                        </span>
+                        <div>
+                            <p class="text-sm font-semibold text-green-800">{{ __('Stripe Connected') }}</p>
+                            <p class="text-xs text-green-600">{{ __('Your account is active and ready to accept payments.') }}</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <a href="{{ route('stripe-connect.dashboard') }}"
+                            class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-50 transition">
+                            <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                            </svg>
+                            {{ __('Stripe Dashboard') }}
+                        </a>
+                        <form method="POST" action="{{ route('stripe-connect.disconnect') }}"
+                            onsubmit="return confirm('{{ __('Disconnect Stripe? Existing payment links will stop working.') }}')">
+                            @csrf
+                            <button type="submit"
+                                class="inline-flex items-center px-3 py-1.5 text-xs font-semibold text-red-600 border border-red-200 rounded-lg hover:bg-red-50 transition">
+                                {{ __('Disconnect') }}
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            @elseif (auth()->user()->stripe_connect_id)
+                {{-- Account created but onboarding incomplete --}}
+                <div class="flex items-center justify-between rounded-xl border border-yellow-200 bg-yellow-50 px-4 py-3">
+                    <div class="flex items-center gap-3">
+                        <span class="flex h-7 w-7 items-center justify-center rounded-full bg-yellow-100">
+                            <svg class="h-4 w-4 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 9v2m0 4h.01M12 3C6.477 3 2 7.477 2 12s4.477 9 10 9 10-4.477 10-9S17.523 3 12 3z" />
+                            </svg>
+                        </span>
+                        <div>
+                            <p class="text-sm font-semibold text-yellow-800">{{ __('Setup Incomplete') }}</p>
+                            <p class="text-xs text-yellow-600">{{ __('Finish your Stripe setup to start accepting payments.') }}</p>
+                        </div>
+                    </div>
+                    <form method="POST" action="{{ route('stripe-connect.onboard') }}">
+                        @csrf
+                        <button type="submit"
+                            class="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold bg-[#0f1117] text-white rounded-xl hover:bg-[#1a1f2e] transition">
+                            {{ __('Continue Setup') }}
+                        </button>
+                    </form>
+                </div>
+            @else
+                {{-- Not connected state --}}
+                <div class="flex items-center justify-between rounded-xl border border-[#eaecf0] bg-[#fafafa] px-4 py-4">
+                    <div class="flex items-center gap-3">
+                        <span class="flex h-9 w-9 items-center justify-center rounded-full bg-indigo-50">
+                            <svg class="h-5 w-5 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+                            </svg>
+                        </span>
+                        <div>
+                            <p class="text-sm font-semibold text-gray-900">{{ __('Not Connected') }}</p>
+                            <p class="text-xs text-gray-500">{{ __('Connect Stripe to let clients pay invoices online.') }}</p>
+                        </div>
+                    </div>
+                    <form method="POST" action="{{ route('stripe-connect.onboard') }}">
+                        @csrf
+                        <button type="submit"
+                            class="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold bg-indigo-600 text-white rounded-xl hover:bg-indigo-700 transition">
+                            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z" />
+                            </svg>
+                            {{ __('Connect with Stripe') }}
+                        </button>
+                    </form>
+                </div>
+            @endif
+
+            {{-- Platform fee note --}}
+            @if (config('services.stripe.application_fee_percent') > 0)
+                <p class="text-xs text-gray-400">
+                    {{ __('A :percent% platform fee applies to online payments. Bank transfers are always free.', ['percent' => config('services.stripe.application_fee_percent')]) }}
+                </p>
+            @endif
+        </div>
+
+        {{-- Bank Transfer --}}
+        <div class="mt-6 bg-white rounded-2xl border border-[#eaecf0] p-6">
+            <h2 class="text-base font-semibold text-[#0f1117] mb-1" style="font-family:'Syne',sans-serif;">
+                {{ __('Bank Transfer Details') }}
+            </h2>
+            <p class="text-sm text-gray-500 mb-4">
+                {{ __('Your IBAN and BIC are shown on invoices and the client portal as a payment option. Manage them in the Business tab.') }}
+            </p>
+            @php $company = auth()->user()->currentCompany; @endphp
+            @if ($company?->bank_iban || $company?->bank_bic)
+                <div class="space-y-2">
+                    @if ($company->bank_iban)
+                        <div class="flex items-center gap-2 text-sm">
+                            <span class="text-gray-500 min-w-[40px]">IBAN</span>
+                            <span class="font-mono text-gray-900">{{ $company->bank_iban }}</span>
+                        </div>
+                    @endif
+                    @if ($company->bank_bic)
+                        <div class="flex items-center gap-2 text-sm">
+                            <span class="text-gray-500 min-w-[40px]">BIC</span>
+                            <span class="font-mono text-gray-900">{{ $company->bank_bic }}</span>
+                        </div>
+                    @endif
+                </div>
+            @else
+                <p class="text-sm text-gray-400 italic">
+                    {{ __('No bank details on file. Add them in the') }}
+                    <button type="button" wire:click="$set('activeTab', 'business')"
+                        class="text-indigo-600 hover:underline">{{ __('Business tab') }}</button>.
+                </p>
+            @endif
+        </div>
+
     </div>
 
     {{-- ── NOTIFICATIONS TAB ────────────────────────────────────────────────── --}}

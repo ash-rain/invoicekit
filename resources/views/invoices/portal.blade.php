@@ -199,6 +199,80 @@
 
         </div>
 
+        {{-- Payment options (only when invoice is unpaid) --}}
+        @if ($invoice->status !== 'paid')
+            <div class="mt-6 bg-white rounded-2xl border border-[#eaecf0] p-6">
+                <h2 class="text-sm font-bold text-gray-500 uppercase tracking-wider mb-4">{{ __('Payment Options') }}</h2>
+
+                <div class="space-y-3">
+                    {{-- Online payment via Stripe --}}
+                    @if ($invoice->stripe_payment_link_url)
+                        <div class="flex items-center justify-between rounded-xl border border-indigo-100 bg-indigo-50 px-4 py-3">
+                            <div class="flex items-center gap-3">
+                                <span class="flex h-8 w-8 items-center justify-center rounded-full bg-indigo-100">
+                                    <svg class="h-4 w-4 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+                                    </svg>
+                                </span>
+                                <div>
+                                    <p class="text-sm font-semibold text-gray-900">{{ __('Pay by Card') }}</p>
+                                    <p class="text-xs text-gray-500">{{ __('Visa, Mastercard, and more') }}</p>
+                                </div>
+                            </div>
+                            <a href="{{ $invoice->stripe_payment_link_url }}" target="_blank" rel="noopener noreferrer"
+                                class="inline-flex items-center gap-1.5 px-4 py-2 text-sm font-semibold bg-indigo-600 text-white rounded-xl hover:bg-indigo-700 transition">
+                                {{ __('Pay Now') }}
+                                <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                                </svg>
+                            </a>
+                        </div>
+                    @endif
+
+                    {{-- Bank transfer --}}
+                    @if ($company?->bank_iban || $company?->bank_bic)
+                        <div class="rounded-xl border border-[#eaecf0] bg-[#fafafa] px-4 py-3">
+                            <div class="flex items-center gap-3 mb-3">
+                                <span class="flex h-8 w-8 items-center justify-center rounded-full bg-gray-100">
+                                    <svg class="h-4 w-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z" />
+                                    </svg>
+                                </span>
+                                <p class="text-sm font-semibold text-gray-900">{{ __('Bank Transfer') }}</p>
+                            </div>
+                            <div class="space-y-1.5 text-sm pl-11">
+                                @if ($company->bank_name)
+                                    <div class="flex gap-2">
+                                        <span class="text-gray-500 min-w-[80px]">{{ __('Bank') }}</span>
+                                        <span class="text-gray-900">{{ $company->bank_name }}</span>
+                                    </div>
+                                @endif
+                                @if ($company->bank_iban)
+                                    <div class="flex gap-2">
+                                        <span class="text-gray-500 min-w-[80px]">IBAN</span>
+                                        <span class="font-mono text-gray-900">{{ $company->bank_iban }}</span>
+                                    </div>
+                                @endif
+                                @if ($company->bank_bic)
+                                    <div class="flex gap-2">
+                                        <span class="text-gray-500 min-w-[80px]">BIC / SWIFT</span>
+                                        <span class="font-mono text-gray-900">{{ $company->bank_bic }}</span>
+                                    </div>
+                                @endif
+                                <div class="flex gap-2">
+                                    <span class="text-gray-500 min-w-[80px]">{{ __('Reference') }}</span>
+                                    <span class="font-mono text-gray-900">{{ $invoice->invoice_number }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
+                </div>
+            </div>
+        @endif
+
         {{-- Powered by --}}
         <p class="text-center text-xs text-gray-400 mt-8">
             Powered by <a href="{{ url('/') }}"
