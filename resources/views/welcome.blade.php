@@ -195,6 +195,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>InvoiceKit — {!! strip_tags($gnl('hero_headline', 'EU Invoicing for Freelancers')) !!}</title>
     <meta name="description" content="{!! $g('hero_subheadline') !!}">
+    <link rel="canonical" href="{{ url('/') }}">
+
+    {{-- Open Graph --}}
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ url('/') }}">
+    <meta property="og:title" content="InvoiceKit — {!! strip_tags($gnl('hero_headline', 'EU Invoicing for Freelancers')) !!}">
+    <meta property="og:description" content="{!! $g('hero_subheadline') !!}">
+    <meta property="og:image" content="{{ url('/images/og-thumb.png') }}">
+    <meta property="og:locale" content="{{ config('invoicekit.og_locales.'.$lang, 'en_GB') }}">
+    @foreach ($availableLangs as $altLang)
+        @if ($altLang !== $lang)
+            <meta property="og:locale:alternate" content="{{ config('invoicekit.og_locales.'.$altLang, 'en_GB') }}">
+        @endif
+    @endforeach
+
+    {{-- Twitter Card --}}
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="InvoiceKit — {!! strip_tags($gnl('hero_headline', 'EU Invoicing for Freelancers')) !!}">
+    <meta name="twitter:description" content="{!! $g('hero_subheadline') !!}">
+    <meta name="twitter:image" content="{{ url('/images/og-thumb.png') }}">
+
+    {{-- RSS Feed --}}
+    <link rel="alternate" type="application/rss+xml" title="InvoiceKit Blog" href="{{ route('blog.feed') }}">
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=inter:400,500,600,700,800,900&display=swap" rel="stylesheet">
     @vite('resources/css/landing.css')
@@ -225,6 +248,7 @@
         <div class="nav-links">
             <a href="#features">{!! $g('nav_features') !!}</a>
             <a href="#pricing">{!! $g('nav_pricing') !!}</a>
+            <a href="{{ route('blog.index') }}">Blog</a>
         </div>
         <div class="nav-right">
             <div class="lang-wrap">

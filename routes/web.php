@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BillingController;
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\InvoicePortalController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PushSubscriptionController;
@@ -35,15 +36,29 @@ Route::get('/', function () {
 Route::get('/privacy', fn () => view('legal.privacy'))->name('privacy');
 Route::get('/terms', fn () => view('legal.terms'))->name('terms');
 
+// ── Blog ─────────────────────────────────────────────────────────────────────
+Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
+Route::get('/blog/feed', [BlogController::class, 'feed'])->name('blog.feed');
+Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('blog.show');
+
 // ── SEO ───────────────────────────────────────────────────────────────────────
 Route::get('/sitemap.xml', function () {
     $urls = [
         ['loc' => url('/'), 'priority' => '1.0'],
         ['loc' => url('/register'), 'priority' => '0.9'],
         ['loc' => url('/login'), 'priority' => '0.8'],
+        ['loc' => url('/blog'), 'priority' => '0.8'],
         ['loc' => url('/privacy'), 'priority' => '0.4'],
         ['loc' => url('/terms'), 'priority' => '0.4'],
     ];
+
+    \App\Models\BlogPost::published()->latest('published_at')->each(function ($post) use (&$urls) {
+        $urls[] = [
+            'loc' => route('blog.show', $post->slug),
+            'priority' => '0.7',
+            'lastmod' => $post->updated_at->toAtomString(),
+        ];
+    });
 
     return response()->view('sitemap', compact('urls'))
         ->header('Content-Type', 'application/xml');
@@ -59,6 +74,7 @@ Route::get('/robots.txt', function () {
     $content .= "Disallow: /timer\n";
     $content .= "Disallow: /billing\n";
     $content .= "Disallow: /onboarding\n";
+    $content .= "Disallow: /admin\n";
     $content .= 'Sitemap: '.route('sitemap')."\n";
 
     return response($content, 200, ['Content-Type' => 'text/plain']);
