@@ -203,10 +203,10 @@
     <meta property="og:title" content="InvoiceKit — {!! strip_tags($gnl('hero_headline', 'EU Invoicing for Freelancers')) !!}">
     <meta property="og:description" content="{!! $g('hero_subheadline') !!}">
     <meta property="og:image" content="{{ url('/images/og-thumb.png') }}">
-    <meta property="og:locale" content="{{ config('invoicekit.og_locales.'.$lang, 'en_GB') }}">
+    <meta property="og:locale" content="{{ config('invoicekit.og_locales.' . $lang, 'en_GB') }}">
     @foreach ($availableLangs as $altLang)
         @if ($altLang !== $lang)
-            <meta property="og:locale:alternate" content="{{ config('invoicekit.og_locales.'.$altLang, 'en_GB') }}">
+            <meta property="og:locale:alternate" content="{{ config('invoicekit.og_locales.' . $altLang, 'en_GB') }}">
         @endif
     @endforeach
 

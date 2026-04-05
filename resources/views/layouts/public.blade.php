@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -15,7 +16,7 @@
     <meta property="og:image" content="@yield('og_image', url('/images/og-thumb.png'))">
     <meta property="og:locale" content="en_GB">
     @foreach (config('invoicekit.supported_languages', []) as $altLang)
-        <meta property="og:locale:alternate" content="{{ config('invoicekit.og_locales.'.$altLang, 'en_GB') }}">
+        <meta property="og:locale:alternate" content="{{ config('invoicekit.og_locales.' . $altLang, 'en_GB') }}">
     @endforeach
 
     {{-- Twitter Card --}}
@@ -33,6 +34,7 @@
     <link href="https://fonts.bunny.net/css?family=inter:400,500,600,700,800&display=swap" rel="stylesheet">
     @vite(['resources/css/app.css'])
 </head>
+
 <body class="bg-white text-gray-900 font-sans antialiased">
 
     <nav class="border-b border-gray-100 bg-white sticky top-0 z-50">
@@ -44,9 +46,11 @@
             <div class="flex items-center gap-6 text-sm font-medium text-gray-600">
                 <a href="/#features" class="hover:text-gray-900 transition-colors">Features</a>
                 <a href="/#pricing" class="hover:text-gray-900 transition-colors">Pricing</a>
-                <a href="{{ route('blog.index') }}" class="hover:text-gray-900 transition-colors {{ request()->routeIs('blog.*') ? 'text-indigo-600 font-semibold' : '' }}">Blog</a>
+                <a href="{{ route('blog.index') }}"
+                    class="hover:text-gray-900 transition-colors {{ request()->routeIs('blog.*') ? 'text-indigo-600 font-semibold' : '' }}">Blog</a>
                 <a href="/login" class="hover:text-gray-900 transition-colors">Login</a>
-                <a href="/register" class="inline-flex items-center px-4 py-2 bg-indigo-600 text-white rounded-lg text-sm font-medium hover:bg-indigo-700 transition-colors">
+                <a href="/register"
+                    class="inline-flex items-center px-4 py-2 bg-indigo-600 text-white rounded-lg text-sm font-medium hover:bg-indigo-700 transition-colors">
                     Get Started →
                 </a>
             </div>
@@ -58,7 +62,8 @@
     </main>
 
     <footer class="border-t border-gray-100 mt-24 py-12">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-gray-500">
+        <div
+            class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-gray-500">
             <p>© {{ date('Y') }} InvoiceKit. All rights reserved.</p>
             <div class="flex items-center gap-6">
                 <a href="{{ route('blog.index') }}" class="hover:text-gray-900 transition-colors">Blog</a>
@@ -69,4 +74,5 @@
         </div>
     </footer>
 </body>
+
 </html>
