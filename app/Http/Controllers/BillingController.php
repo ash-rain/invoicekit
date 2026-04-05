@@ -145,10 +145,13 @@ class BillingController extends Controller
         $cancelAtPeriodEnd = (bool) $request->input('cancel_at_period_end', true);
 
         if ($cancelAtPeriodEnd) {
-            $stripe->subscriptions->update($user->stripe_subscription_id, [
+            $subscription = $stripe->subscriptions->update($user->stripe_subscription_id, [
                 'cancel_at_period_end' => true,
             ]);
-            $user->update(['subscription_status' => 'canceled']);
+            $user->update([
+                'subscription_status' => 'canceled',
+                'subscribed_until' => \Carbon\Carbon::createFromTimestamp($subscription->current_period_end),
+            ]);
 
             return back()->with('success', __('Your subscription will be cancelled at the end of the current billing period.'));
         }

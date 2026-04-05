@@ -85,7 +85,11 @@
                     </p>
                     @if ($user->subscribed_until)
                         <p class="mt-1 text-xs text-gray-400">
-                            {{ __('Renews') }} {{ $user->subscribed_until->format('M j, Y') }}
+                            @if ($user->subscription_status === 'canceled')
+                                {{ __('Expires') }} {{ $user->subscribed_until->format('M j, Y') }}
+                            @else
+                                {{ __('Renews') }} {{ $user->subscribed_until->format('M j, Y') }}
+                            @endif
                         </p>
                     @endif
                 </div>

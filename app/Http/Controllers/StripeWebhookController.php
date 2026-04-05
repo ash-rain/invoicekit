@@ -76,6 +76,7 @@ class StripeWebhookController extends Controller
         $customerId = is_array($subscription) ? ($subscription['customer'] ?? null) : ($subscription->customer ?? null);
         $status = is_array($subscription) ? ($subscription['status'] ?? null) : ($subscription->status ?? null);
         $currentPeriodEnd = is_array($subscription) ? ($subscription['current_period_end'] ?? null) : ($subscription->current_period_end ?? null);
+        $cancelAtPeriodEnd = is_array($subscription) ? ($subscription['cancel_at_period_end'] ?? false) : ($subscription->cancel_at_period_end ?? false);
 
         if (! $customerId) {
             return;
@@ -87,9 +88,12 @@ class StripeWebhookController extends Controller
             return;
         }
 
-        $updates = [
-            'subscription_status' => $status,
-        ];
+        $updates = [];
+
+        // If Stripe reports cancel_at_period_end, keep local 'canceled' status; otherwise sync Stripe status
+        if (! $cancelAtPeriodEnd) {
+            $updates['subscription_status'] = $status;
+        }
 
         if ($currentPeriodEnd) {
             $updates['subscribed_until'] = Carbon::createFromTimestamp($currentPeriodEnd);
