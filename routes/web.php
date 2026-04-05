@@ -224,7 +224,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
         $lang = $invoice->language ?? 'en';
         $previousLocale = app()->getLocale();
         app()->setLocale($lang);
-        $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('invoices.pdf', compact('invoice', 'lang', 'company'));
+        $templateService = app(\App\Services\InvoiceTemplateService::class);
+        $view = $templateService->getTemplatePath($templateService->resolveForInvoice($invoice, $company));
+        $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView($view, compact('invoice', 'lang', 'company'));
         app()->setLocale($previousLocale);
 
         return $pdf->stream("invoice-{$invoice->invoice_number}.pdf");

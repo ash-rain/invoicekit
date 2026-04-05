@@ -3,6 +3,7 @@
 namespace Tests\Unit;
 
 use App\Models\Client;
+use App\Models\Company;
 use App\Models\Invoice;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -107,5 +108,47 @@ class InvoiceModelTest extends TestCase
 
         $this->assertCount(2, $overdue);
         $this->assertEquals(['overdue', 'overdue'], $overdue->pluck('status')->toArray());
+    }
+
+    public function test_generate_number_uses_company_invoice_prefix(): void
+    {
+        $user = User::factory()->create();
+        $company = Company::factory()->create(['user_id' => $user->id, 'invoice_prefix' => 'ACME']);
+        $year = now()->year;
+
+        $this->assertEquals("ACME-{$year}-0001", Invoice::generateNumber($user->id, $company));
+    }
+
+    public function test_generate_number_uses_company_starting_number(): void
+    {
+        $user = User::factory()->create();
+        $company = Company::factory()->create(['user_id' => $user->id, 'invoice_starting_number' => 100]);
+        $year = now()->year;
+
+        $this->assertEquals("INV-{$year}-0100", Invoice::generateNumber($user->id, $company));
+    }
+
+    public function test_generate_number_starting_number_only_applies_when_no_invoices_exist(): void
+    {
+        $user = User::factory()->create();
+        $client = Client::factory()->create(['user_id' => $user->id]);
+        $company = Company::factory()->create(['user_id' => $user->id, 'invoice_starting_number' => 50]);
+        $year = now()->year;
+
+        Invoice::factory()->create([
+            'user_id' => $user->id,
+            'client_id' => $client->id,
+            'invoice_number' => "INV-{$year}-0051",
+        ]);
+
+        $this->assertEquals("INV-{$year}-0052", Invoice::generateNumber($user->id, $company));
+    }
+
+    public function test_generate_number_falls_back_to_inv_prefix_when_company_is_null(): void
+    {
+        $user = User::factory()->create();
+        $year = now()->year;
+
+        $this->assertEquals("INV-{$year}-0001", Invoice::generateNumber($user->id, null));
     }
 }

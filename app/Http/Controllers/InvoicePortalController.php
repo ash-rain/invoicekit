@@ -36,7 +36,9 @@ class InvoicePortalController extends Controller
             $lang = $invoice->language ?? 'en';
             $previousLocale = app()->getLocale();
             app()->setLocale($lang);
-            $pdf = Pdf::loadView('invoices.pdf', compact('invoice', 'lang', 'company'));
+            $templateService = app(\App\Services\InvoiceTemplateService::class);
+            $view = $templateService->getTemplatePath($templateService->resolveForInvoice($invoice, $company));
+            $pdf = Pdf::loadView($view, compact('invoice', 'lang', 'company'));
             app()->setLocale($previousLocale);
 
             return $pdf->stream("invoice-{$invoice->invoice_number}.pdf");

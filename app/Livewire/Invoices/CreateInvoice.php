@@ -34,6 +34,8 @@ class CreateInvoice extends Component
 
     public string $language = 'en';
 
+    public string $invoiceTemplate = 'classic';
+
     // Line items: array of ['description', 'quantity', 'unit_price']
     public array $items = [];
 
@@ -74,6 +76,7 @@ class CreateInvoice extends Component
             $this->currency = $invoice->currency;
             $this->invoiceNumber = $invoice->invoice_number;
             $this->language = $invoice->language ?? 'en';
+            $this->invoiceTemplate = $invoice->template ?? $company?->invoice_template ?? 'classic';
             $this->vatType = $invoice->vat_type ?? 'standard';
             $this->vatExemptOverride = $this->vatExemptActive && ! $invoice->vat_exempt_applied;
             $this->items = $invoice->items->map(fn ($item) => [
@@ -84,9 +87,10 @@ class CreateInvoice extends Component
         } else {
             $this->issueDate = now()->format('Y-m-d');
             $this->dueDate = now()->addDays(30)->format('Y-m-d');
-            $this->invoiceNumber = Invoice::generateNumber($userId);
+            $this->invoiceNumber = Invoice::generateNumber($userId, $company);
             // Pre-select language from user locale preference
             $this->language = Auth::user()->locale ?: 'en';
+            $this->invoiceTemplate = $company?->invoice_template ?? 'classic';
             $this->addItem();
         }
 
@@ -181,6 +185,7 @@ class CreateInvoice extends Component
             'currency' => ['required', 'string', 'max:3'],
             'notes' => ['nullable', 'string', 'max:2000'],
             'language' => ['required', 'string', 'in:'.implode(',', config('invoicekit.supported_languages', ['en']))],
+            'invoiceTemplate' => ['required', 'string', 'in:'.implode(',', array_keys(app(\App\Services\InvoiceTemplateService::class)->getAvailableTemplates()))],
             'items' => ['required', 'array', 'min:1'],
             'items.*.description' => ['required', 'string', 'max:500'],
             'items.*.quantity' => ['required', 'numeric', 'min:0.01'],
@@ -224,6 +229,7 @@ class CreateInvoice extends Component
                 'due_date' => $this->dueDate,
                 'currency' => $this->currency,
                 'language' => $this->language,
+                'template' => $this->invoiceTemplate,
                 'subtotal' => $this->subtotal,
                 'vat_rate' => $this->vatRate,
                 'vat_amount' => $this->vatAmount,
@@ -270,6 +276,7 @@ class CreateInvoice extends Component
             'selected' => $this->selectedClient(),
             'localeNames' => config('invoicekit.locale_names', []),
             'supportedLanguages' => config('invoicekit.supported_languages', ['en']),
+            'templates' => app(\App\Services\InvoiceTemplateService::class)->getAvailableTemplates(),
         ]);
     }
 }

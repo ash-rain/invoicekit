@@ -51,9 +51,13 @@ class InvoiceReminder extends Mailable
     public function attachments(): array
     {
         $lang = $this->invoice->language ?? 'en';
-        $pdfContent = Pdf::loadView('invoices.pdf', [
+        $company = $this->invoice->user->currentCompany;
+        $templateService = app(\App\Services\InvoiceTemplateService::class);
+        $view = $templateService->getTemplatePath($templateService->resolveForInvoice($this->invoice, $company));
+        $pdfContent = Pdf::loadView($view, [
             'invoice' => $this->invoice,
             'lang' => $lang,
+            'company' => $company,
         ])->output();
 
         return [

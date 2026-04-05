@@ -30,6 +30,7 @@ class Invoice extends Model
         'vat_exempt_applied',
         'vat_exempt_notice',
         'stripe_payment_link_url',
+        'template',
     ];
 
     protected $casts = [
@@ -84,19 +85,21 @@ class Invoice extends Model
     }
 
     /**
-     * Generate the next invoice number in the format INV-YYYY-NNNN.
+     * Generate the next invoice number in the format {PREFIX}-YYYY-NNNN.
      */
-    public static function generateNumber(int $userId): string
+    public static function generateNumber(int $userId, ?Company $company = null): string
     {
         $year = now()->year;
-        $prefix = "INV-{$year}-";
+        $rawPrefix = $company?->invoice_prefix ?: 'INV';
+        $prefix = "{$rawPrefix}-{$year}-";
+        $startingNumber = $company?->invoice_starting_number ?? 1;
 
         $last = static::where('user_id', $userId)
             ->where('invoice_number', 'like', "{$prefix}%")
             ->orderByDesc('invoice_number')
             ->value('invoice_number');
 
-        $next = $last ? (int) substr($last, strlen($prefix)) + 1 : 1;
+        $next = $last ? (int) substr($last, strlen($prefix)) + 1 : $startingNumber;
 
         return $prefix.str_pad($next, 4, '0', STR_PAD_LEFT);
     }

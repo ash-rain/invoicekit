@@ -31,6 +31,8 @@ class Company extends Model
         'default_invoice_notes',
         'invoice_logo',
         'invoice_prefix',
+        'invoice_template',
+        'invoice_starting_number',
         'vat_exempt',
         'vat_exempt_reason',
         'vat_exempt_notice_language',

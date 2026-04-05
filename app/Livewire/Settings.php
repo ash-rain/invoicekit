@@ -62,6 +62,10 @@ class Settings extends Component
 
     public string $invoicePrefix = '';
 
+    public string $invoiceTemplate = 'classic';
+
+    public int $invoiceStartingNumber = 1;
+
     public $invoiceLogoUpload = null;
 
     public bool $vatExempt = false;
@@ -107,6 +111,8 @@ class Settings extends Component
             $this->defaultPaymentTerms = $company->default_payment_terms ?? 30;
             $this->defaultInvoiceNotes = $company->default_invoice_notes ?? '';
             $this->invoicePrefix = $company->invoice_prefix ?? '';
+            $this->invoiceTemplate = $company->invoice_template ?? 'classic';
+            $this->invoiceStartingNumber = $company->invoice_starting_number ?? 1;
             $this->vatExempt = (bool) ($company->vat_exempt ?? false);
             $this->vatExemptReason = $company->vat_exempt_reason ?? '';
             $this->vatExemptNoticeLanguage = $company->vat_exempt_notice_language ?? 'local';
@@ -200,6 +206,8 @@ class Settings extends Component
             'defaultPaymentTerms' => ['required', 'integer', 'min:0', 'max:365'],
             'defaultInvoiceNotes' => ['nullable', 'string', 'max:2000'],
             'invoicePrefix' => ['nullable', 'string', 'max:20', 'alpha_num'],
+            'invoiceTemplate' => ['required', 'string', 'in:'.implode(',', array_keys(app(\App\Services\InvoiceTemplateService::class)->getAvailableTemplates()))],
+            'invoiceStartingNumber' => ['required', 'integer', 'min:1', 'max:99999'],
             'invoiceLogoUpload' => ['nullable', 'image', 'max:2048'],
             'vatExempt' => ['boolean'],
             'vatExemptReason' => ['nullable', 'string', 'max:500'],
@@ -220,6 +228,8 @@ class Settings extends Component
             'default_payment_terms' => $this->defaultPaymentTerms,
             'default_invoice_notes' => $this->defaultInvoiceNotes ?: null,
             'invoice_prefix' => $this->invoicePrefix ?: null,
+            'invoice_template' => $this->invoiceTemplate,
+            'invoice_starting_number' => $this->invoiceStartingNumber,
             'vat_exempt' => $this->vatExempt,
             'vat_exempt_reason' => $this->vatExemptReason ?: null,
             'vat_exempt_notice_language' => $this->vatExemptNoticeLanguage,

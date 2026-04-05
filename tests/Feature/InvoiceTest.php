@@ -388,4 +388,64 @@ class InvoiceTest extends TestCase
 
         $this->assertEquals(5, Invoice::where('user_id', $user->id)->count());
     }
+
+    public function test_invoice_template_can_be_overridden_on_create(): void
+    {
+        $user = User::factory()->create();
+        $client = Client::factory()->create(['user_id' => $user->id, 'country' => 'DE']);
+
+        Livewire::actingAs($user)
+            ->test(\App\Livewire\Invoices\CreateInvoice::class)
+            ->set('clientId', $client->id)
+            ->set('issueDate', now()->format('Y-m-d'))
+            ->set('dueDate', now()->addDays(30)->format('Y-m-d'))
+            ->set('currency', 'EUR')
+            ->set('invoiceTemplate', 'bold')
+            ->set('items', [
+                ['description' => 'Web Development', 'quantity' => '1', 'unit_price' => '500'],
+            ])
+            ->call('save');
+
+        $this->assertDatabaseHas('invoices', [
+            'user_id' => $user->id,
+            'template' => 'bold',
+        ]);
+    }
+
+    public function test_invoice_defaults_to_company_template_on_create(): void
+    {
+        $user = User::factory()->create();
+        $company = \App\Models\Company::factory()->create(['user_id' => $user->id, 'invoice_template' => 'elegant']);
+        $user->update(['current_company_id' => $company->id]);
+
+        Livewire::actingAs($user)
+            ->test(\App\Livewire\Invoices\CreateInvoice::class)
+            ->assertSet('invoiceTemplate', 'elegant');
+    }
+
+    public function test_invoice_template_override_is_loaded_on_edit(): void
+    {
+        $user = User::factory()->create();
+        $client = Client::factory()->create(['user_id' => $user->id, 'country' => 'DE']);
+        $invoice = Invoice::factory()->create([
+            'user_id' => $user->id,
+            'client_id' => $client->id,
+            'template' => 'stripe',
+        ]);
+
+        Livewire::actingAs($user)
+            ->test(\App\Livewire\Invoices\CreateInvoice::class, ['invoice' => $invoice])
+            ->assertSet('invoiceTemplate', 'stripe');
+    }
+
+    public function test_invoice_rejects_invalid_template(): void
+    {
+        $user = User::factory()->create();
+
+        Livewire::actingAs($user)
+            ->test(\App\Livewire\Invoices\CreateInvoice::class)
+            ->set('invoiceTemplate', 'fake-template')
+            ->call('save')
+            ->assertHasErrors(['invoiceTemplate']);
+    }
 }

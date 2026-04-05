@@ -62,7 +62,7 @@ class RecurringInvoice extends Model
         $invoice = Invoice::create([
             'user_id' => $this->user_id,
             'client_id' => $this->client_id,
-            'invoice_number' => Invoice::generateNumber($this->user_id),
+            'invoice_number' => Invoice::generateNumber($this->user_id, $this->user?->currentCompany),
             'status' => 'draft',
             'issue_date' => now()->toDateString(),
             'due_date' => now()->addDays(30)->toDateString(),

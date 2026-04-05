@@ -217,6 +217,88 @@ class SettingsTest extends TestCase
             ->assertHasErrors(['invoicePrefix']);
     }
 
+    public function test_invoicing_tab_saves_invoice_template(): void
+    {
+        $user = User::factory()->create();
+        $company = Company::factory()->create(['user_id' => $user->id]);
+        $user->update(['current_company_id' => $company->id]);
+
+        Livewire::actingAs($user)
+            ->test(\App\Livewire\Settings::class)
+            ->set('invoiceTemplate', 'modern')
+            ->call('saveInvoicing');
+
+        $this->assertDatabaseHas('companies', [
+            'id' => $company->id,
+            'invoice_template' => 'modern',
+        ]);
+    }
+
+    public function test_invoicing_tab_rejects_invalid_invoice_template(): void
+    {
+        $user = User::factory()->create();
+        $company = Company::factory()->create(['user_id' => $user->id]);
+        $user->update(['current_company_id' => $company->id]);
+
+        Livewire::actingAs($user)
+            ->test(\App\Livewire\Settings::class)
+            ->set('invoiceTemplate', 'nonexistent-template')
+            ->call('saveInvoicing')
+            ->assertHasErrors(['invoiceTemplate']);
+    }
+
+    public function test_invoicing_tab_saves_invoice_starting_number(): void
+    {
+        $user = User::factory()->create();
+        $company = Company::factory()->create(['user_id' => $user->id]);
+        $user->update(['current_company_id' => $company->id]);
+
+        Livewire::actingAs($user)
+            ->test(\App\Livewire\Settings::class)
+            ->set('invoiceStartingNumber', 50)
+            ->call('saveInvoicing');
+
+        $this->assertDatabaseHas('companies', [
+            'id' => $company->id,
+            'invoice_starting_number' => 50,
+        ]);
+    }
+
+    public function test_invoicing_tab_rejects_starting_number_below_one(): void
+    {
+        $user = User::factory()->create();
+        $company = Company::factory()->create(['user_id' => $user->id]);
+        $user->update(['current_company_id' => $company->id]);
+
+        Livewire::actingAs($user)
+            ->test(\App\Livewire\Settings::class)
+            ->set('invoiceStartingNumber', 0)
+            ->call('saveInvoicing')
+            ->assertHasErrors(['invoiceStartingNumber']);
+    }
+
+    public function test_settings_mounts_with_company_invoice_template(): void
+    {
+        $user = User::factory()->create();
+        $company = Company::factory()->create(['user_id' => $user->id, 'invoice_template' => 'bold']);
+        $user->update(['current_company_id' => $company->id]);
+
+        Livewire::actingAs($user)
+            ->test(\App\Livewire\Settings::class)
+            ->assertSet('invoiceTemplate', 'bold');
+    }
+
+    public function test_settings_mounts_with_company_invoice_starting_number(): void
+    {
+        $user = User::factory()->create();
+        $company = Company::factory()->create(['user_id' => $user->id, 'invoice_starting_number' => 25]);
+        $user->update(['current_company_id' => $company->id]);
+
+        Livewire::actingAs($user)
+            ->test(\App\Livewire\Settings::class)
+            ->assertSet('invoiceStartingNumber', 25);
+    }
+
     public function test_notifications_tab_saves_preferences(): void
     {
         $user = User::factory()->create();

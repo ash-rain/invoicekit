@@ -53,8 +53,9 @@ RUN composer install --no-interaction --prefer-dist --optimize-autoloader --no-d
 # Install Node dependencies and build assets
 RUN npm ci && npm run build && rm -rf node_modules
 
-# Set permissions
-RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache \
+# Create directories needed at runtime and set permissions
+RUN mkdir -p /var/www/storage/fonts \
+    && chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache \
     && chmod -R 775 /var/www/storage /var/www/bootstrap/cache
 
 # Copy and register the bootstrap entrypoint
