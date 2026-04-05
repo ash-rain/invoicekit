@@ -50,6 +50,7 @@ class StripeWebhookController extends Controller
     {
         $customerId = is_array($session) ? ($session['customer'] ?? null) : ($session->customer ?? null);
         $subscriptionId = is_array($session) ? ($session['subscription'] ?? null) : ($session->subscription ?? null);
+        $plan = is_array($session) ? ($session['metadata']['plan'] ?? 'pro') : ($session->metadata->plan ?? 'pro');
 
         if (! $customerId) {
             return;
@@ -64,10 +65,10 @@ class StripeWebhookController extends Controller
         $user->update([
             'stripe_subscription_id' => $subscriptionId,
             'subscription_status' => 'active',
-            'plan' => 'pro',
+            'plan' => in_array($plan, ['starter', 'pro']) ? $plan : 'pro',
         ]);
 
-        Log::info('Stripe checkout completed for user.', ['user_id' => $user->id]);
+        Log::info('Stripe checkout completed for user.', ['user_id' => $user->id, 'plan' => $plan]);
     }
 
     private function handleSubscriptionUpdated(mixed $subscription): void
@@ -95,7 +96,12 @@ class StripeWebhookController extends Controller
         }
 
         if ($status === 'active') {
-            $updates['plan'] = 'pro';
+            $priceId = is_array($subscription)
+                ? ($subscription['items']['data'][0]['price']['id'] ?? null)
+                : ($subscription->items->data[0]->price->id ?? null);
+
+            $starterPriceId = config('services.stripe.starter_price_id');
+            $updates['plan'] = ($priceId && $priceId === $starterPriceId) ? 'starter' : 'pro';
         }
 
         $user->update($updates);
