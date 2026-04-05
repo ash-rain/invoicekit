@@ -272,13 +272,19 @@
                                                 d="M5 13l4 4L19 7" />
                                         </svg>{{ __('EU VAT automation') }}</li>
                                 </ul>
-                                <form method="POST" action="{{ route('billing.checkout', 'starter') }}">
-                                    @csrf
-                                    <button type="submit"
-                                        class="w-full py-2.5 bg-blue-600 text-white rounded-xl font-bold text-sm hover:bg-blue-700">
-                                        {{ __('Upgrade to Starter') }}
-                                    </button>
-                                </form>
+                                @if ($plan === 'starter' && !$user->isOnTrial())
+                                    <div class="w-full py-2.5 bg-blue-50 text-blue-700 rounded-xl font-bold text-sm text-center border border-blue-200">
+                                        {{ __('Current Plan') }}
+                                    </div>
+                                @else
+                                    <form method="POST" action="{{ route('billing.checkout', 'starter') }}">
+                                        @csrf
+                                        <button type="submit"
+                                            class="w-full py-2.5 bg-blue-600 text-white rounded-xl font-bold text-sm hover:bg-blue-700">
+                                            {{ __('Upgrade to Starter') }}
+                                        </button>
+                                    </form>
+                                @endif
                             </div>
                         @endif
 
@@ -385,13 +391,19 @@
                                             </li>
                                         @endforeach
                                     </ul>
-                                    <form method="POST" action="{{ route('billing.checkout', 'starter') }}">
-                                        @csrf
-                                        <button type="submit"
-                                            class="w-full py-2.5 bg-blue-600 text-white rounded-xl font-bold text-sm hover:bg-blue-700">
-                                            {{ __('Upgrade to Starter') }}
-                                        </button>
-                                    </form>
+                                    @if ($plan === 'starter' && !$user->isOnTrial())
+                                        <div class="w-full py-2.5 bg-blue-50 text-blue-700 rounded-xl font-bold text-sm text-center border border-blue-200">
+                                            {{ __('Current Plan') }}
+                                        </div>
+                                    @else
+                                        <form method="POST" action="{{ route('billing.checkout', 'starter') }}">
+                                            @csrf
+                                            <button type="submit"
+                                                class="w-full py-2.5 bg-blue-600 text-white rounded-xl font-bold text-sm hover:bg-blue-700">
+                                                {{ __('Upgrade to Starter') }}
+                                            </button>
+                                        </form>
+                                    @endif
                                 </div>
                             @endif
                             <div class="rounded-2xl border-2 border-[#0f1117] p-5 relative">
