@@ -24,7 +24,7 @@ class BlogPostForm
                             ->required()
                             ->maxLength(255)
                             ->live(onBlur: true)
-                            ->afterStateUpdated(fn(string $operation, $state, callable $set) => $operation === 'create'
+                            ->afterStateUpdated(fn (string $operation, $state, callable $set) => $operation === 'create'
                                 ? $set('slug', Str::slug($state))
                                 : null)
                             ->columnSpanFull(),

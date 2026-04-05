@@ -78,6 +78,8 @@
                     icon="receipt">{{ __('Expenses') }}</x-sidebar-link>
                 <x-sidebar-link :href="route('billing.index')" :active="request()->routeIs('billing.*')"
                     icon="credit-card">{{ __('Billing') }}</x-sidebar-link>
+                <x-sidebar-link :href="route('settings.index')" :active="request()->routeIs('settings.*')"
+                    icon="cog">{{ __('Settings') }}</x-sidebar-link>
             </nav>
 
             {{-- Notification bell --}}

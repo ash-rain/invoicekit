@@ -279,55 +279,57 @@
                 </div>
 
                 @if ($invoiceNumberingFormat === 'standard')
-                <div>
-                    <label
-                        class="block text-sm font-medium text-gray-700 mb-1">{{ __('Invoice Number Prefix') }}</label>
-                    <p class="text-xs text-gray-400 mb-1.5">
-                        {{ __('Optional alphanumeric prefix added before the invoice number (e.g. INV, 2024).') }}</p>
-                    <input wire:model="invoicePrefix" type="text" placeholder="{{ __('e.g. INV') }}"
-                        maxlength="20"
-                        class="w-full border border-gray-300 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 @error('invoicePrefix') border-red-400 @enderror" />
-                    @error('invoicePrefix')
-                        <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
-                    @enderror
-                </div>
+                    <div>
+                        <label
+                            class="block text-sm font-medium text-gray-700 mb-1">{{ __('Invoice Number Prefix') }}</label>
+                        <p class="text-xs text-gray-400 mb-1.5">
+                            {{ __('Optional alphanumeric prefix added before the invoice number (e.g. INV, 2024).') }}
+                        </p>
+                        <input wire:model="invoicePrefix" type="text" placeholder="{{ __('e.g. INV') }}"
+                            maxlength="20"
+                            class="w-full border border-gray-300 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 @error('invoicePrefix') border-red-400 @enderror" />
+                        @error('invoicePrefix')
+                            <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
+                        @enderror
+                    </div>
 
-                <div>
-                    <label
-                        class="block text-sm font-medium text-gray-700 mb-1">{{ __('Invoice Starting Number') }}</label>
-                    <p class="text-xs text-gray-400 mb-1.5">
-                        {{ __('The first invoice sequence number for this company. Existing invoices are not renumbered.') }}
-                    </p>
-                    <input wire:model="invoiceStartingNumber" type="number" min="1" max="99999"
-                        class="w-full border border-gray-300 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 @error('invoiceStartingNumber') border-red-400 @enderror" />
-                    @error('invoiceStartingNumber')
-                        <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
-                    @enderror
-                </div>
+                    <div>
+                        <label
+                            class="block text-sm font-medium text-gray-700 mb-1">{{ __('Invoice Starting Number') }}</label>
+                        <p class="text-xs text-gray-400 mb-1.5">
+                            {{ __('The first invoice sequence number for this company. Existing invoices are not renumbered.') }}
+                        </p>
+                        <input wire:model="invoiceStartingNumber" type="number" min="1" max="99999"
+                            class="w-full border border-gray-300 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 @error('invoiceStartingNumber') border-red-400 @enderror" />
+                        @error('invoiceStartingNumber')
+                            <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
+                        @enderror
+                    </div>
                 @endif
 
                 @if ($invoiceNumberingFormat === 'bg_sequential')
-                <div>
-                    <label
-                        class="block text-sm font-medium text-gray-700 mb-1">{{ __('Invoice Starting Number') }}</label>
-                    <p class="text-xs text-gray-400 mb-1.5">
-                        {{ __('The first 10-digit sequential number for Bulgarian compliance (ЗДДС Art. 114).') }}
-                    </p>
-                    <input wire:model="bgInvoiceSequenceStart" type="number" min="1"
-                        class="w-full border border-gray-300 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 @error('bgInvoiceSequenceStart') border-red-400 @enderror" />
-                    @error('bgInvoiceSequenceStart')
-                        <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
-                    @enderror
-                </div>
+                    <div>
+                        <label
+                            class="block text-sm font-medium text-gray-700 mb-1">{{ __('Invoice Starting Number') }}</label>
+                        <p class="text-xs text-gray-400 mb-1.5">
+                            {{ __('The first 10-digit sequential number for Bulgarian compliance (ЗДДС Art. 114).') }}
+                        </p>
+                        <input wire:model="bgInvoiceSequenceStart" type="number" min="1"
+                            class="w-full border border-gray-300 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 @error('bgInvoiceSequenceStart') border-red-400 @enderror" />
+                        @error('bgInvoiceSequenceStart')
+                            <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
+                        @enderror
+                    </div>
                 @endif
 
                 <div>
                     <label
                         class="block text-sm font-medium text-gray-700 mb-1">{{ __('Issued By Default Name') }}</label>
                     <p class="text-xs text-gray-400 mb-1.5">
-                        {{ __('Pre-fill the "Issued by" field on new invoices (required for Bulgarian compliance).') }}</p>
-                    <input wire:model="issuedByDefaultName" type="text" placeholder="{{ __('Your name or position') }}"
-                        maxlength="255"
+                        {{ __('Pre-fill the "Issued by" field on new invoices (required for Bulgarian compliance).') }}
+                    </p>
+                    <input wire:model="issuedByDefaultName" type="text"
+                        placeholder="{{ __('Your name or position') }}" maxlength="255"
                         class="w-full border border-gray-300 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 @error('issuedByDefaultName') border-red-400 @enderror" />
                     @error('issuedByDefaultName')
                         <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
@@ -383,12 +385,18 @@
                         <label wire:key="tpl-{{ $slug }}"
                             class="relative flex flex-col gap-1 cursor-pointer rounded-xl border-2 p-3 transition-colors
                                 {{ $invoiceTemplate === $slug ? 'border-indigo-500 bg-indigo-50' : 'border-gray-200 hover:border-gray-300' }}">
-                            <input type="radio" wire:model.live="invoiceTemplate" value="{{ $slug }}" class="sr-only">
+                            <input type="radio" wire:model.live="invoiceTemplate" value="{{ $slug }}"
+                                class="sr-only">
                             <span class="text-sm font-semibold text-gray-900">{{ $meta['name'] }}</span>
                             <span class="text-xs text-gray-500 leading-snug">{{ $meta['description'] }}</span>
                             @if ($invoiceTemplate === $slug)
-                                <span class="absolute top-2 right-2 w-4 h-4 bg-indigo-500 rounded-full flex items-center justify-center">
-                                    <svg class="w-2.5 h-2.5 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                                <span
+                                    class="absolute top-2 right-2 w-4 h-4 bg-indigo-500 rounded-full flex items-center justify-center">
+                                    <svg class="w-2.5 h-2.5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd"
+                                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                            clip-rule="evenodd" />
+                                    </svg>
                                 </span>
                             @endif
                         </label>
@@ -511,17 +519,20 @@
 
             @if (auth()->user()->hasStripeConnect())
                 {{-- Connected state --}}
-                <div class="flex items-center justify-between rounded-xl border border-green-200 bg-green-50 px-4 py-3">
+                <div
+                    class="flex items-center justify-between rounded-xl border border-green-200 bg-green-50 px-4 py-3">
                     <div class="flex items-center gap-3">
                         <span class="flex h-7 w-7 items-center justify-center rounded-full bg-green-100">
-                            <svg class="h-4 w-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg class="h-4 w-4 text-green-600" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M5 13l4 4L19 7" />
                             </svg>
                         </span>
                         <div>
                             <p class="text-sm font-semibold text-green-800">{{ __('Stripe Connected') }}</p>
-                            <p class="text-xs text-green-600">{{ __('Your account is active and ready to accept payments.') }}</p>
+                            <p class="text-xs text-green-600">
+                                {{ __('Your account is active and ready to accept payments.') }}</p>
                         </div>
                     </div>
                     <div class="flex items-center gap-2">
@@ -545,17 +556,20 @@
                 </div>
             @elseif (auth()->user()->stripe_connect_id)
                 {{-- Account created but onboarding incomplete --}}
-                <div class="flex items-center justify-between rounded-xl border border-yellow-200 bg-yellow-50 px-4 py-3">
+                <div
+                    class="flex items-center justify-between rounded-xl border border-yellow-200 bg-yellow-50 px-4 py-3">
                     <div class="flex items-center gap-3">
                         <span class="flex h-7 w-7 items-center justify-center rounded-full bg-yellow-100">
-                            <svg class="h-4 w-4 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg class="h-4 w-4 text-yellow-600" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M12 9v2m0 4h.01M12 3C6.477 3 2 7.477 2 12s4.477 9 10 9 10-4.477 10-9S17.523 3 12 3z" />
                             </svg>
                         </span>
                         <div>
                             <p class="text-sm font-semibold text-yellow-800">{{ __('Setup Incomplete') }}</p>
-                            <p class="text-xs text-yellow-600">{{ __('Finish your Stripe setup to start accepting payments.') }}</p>
+                            <p class="text-xs text-yellow-600">
+                                {{ __('Finish your Stripe setup to start accepting payments.') }}</p>
                         </div>
                     </div>
                     <form method="POST" action="{{ route('stripe-connect.onboard') }}">
@@ -568,17 +582,20 @@
                 </div>
             @else
                 {{-- Not connected state --}}
-                <div class="flex items-center justify-between rounded-xl border border-[#eaecf0] bg-[#fafafa] px-4 py-4">
+                <div
+                    class="flex items-center justify-between rounded-xl border border-[#eaecf0] bg-[#fafafa] px-4 py-4">
                     <div class="flex items-center gap-3">
                         <span class="flex h-9 w-9 items-center justify-center rounded-full bg-indigo-50">
-                            <svg class="h-5 w-5 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg class="h-5 w-5 text-indigo-600" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
                             </svg>
                         </span>
                         <div>
                             <p class="text-sm font-semibold text-gray-900">{{ __('Not Connected') }}</p>
-                            <p class="text-xs text-gray-500">{{ __('Connect Stripe to let clients pay invoices online.') }}</p>
+                            <p class="text-xs text-gray-500">
+                                {{ __('Connect Stripe to let clients pay invoices online.') }}</p>
                         </div>
                     </div>
                     <form method="POST" action="{{ route('stripe-connect.onboard') }}">
@@ -586,7 +603,8 @@
                         <button type="submit"
                             class="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold bg-indigo-600 text-white rounded-xl hover:bg-indigo-700 transition">
                             <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z" />
+                                <path
+                                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z" />
                             </svg>
                             {{ __('Connect with Stripe') }}
                         </button>
@@ -684,7 +702,8 @@
                 <div class="flex flex-wrap gap-2">
                     @foreach ([7, 14, 21, 30] as $day)
                         <label class="flex items-center gap-1.5 cursor-pointer select-none">
-                            <input type="checkbox" value="{{ $day }}" wire:model="reminderOverdueIntervals"
+                            <input type="checkbox" value="{{ $day }}"
+                                wire:model="reminderOverdueIntervals"
                                 class="rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
                             <span class="text-sm text-gray-600">+{{ $day }} {{ __('days') }}</span>
                         </label>

@@ -5,7 +5,11 @@
     <meta charset="UTF-8" />
     <title>{{ $invoice->invoice_number }}</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
         body {
             font-family: DejaVu Sans, Arial, sans-serif;
@@ -20,85 +24,271 @@
             background: #111827;
             padding: 28px 48px;
         }
-        .header-band table { width: 100%; border-collapse: collapse; }
-        .header-band td { vertical-align: middle; }
 
-        .brand { font-size: 20pt; font-weight: bold; color: #fff; }
+        .header-band table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .header-band td {
+            vertical-align: middle;
+        }
+
+        .brand {
+            font-size: 20pt;
+            font-weight: bold;
+            color: #fff;
+        }
 
         .invoice-label {
-            font-size: 9pt; text-transform: uppercase; letter-spacing: 0.12em;
-            color: #6b7280; font-weight: bold;
+            font-size: 9pt;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: #6b7280;
+            font-weight: bold;
         }
-        .invoice-number { font-size: 15pt; font-weight: bold; color: #fff; margin-top: 3px; }
-        .paid-band { display: inline-block; background: #10b981; color: #fff; border-radius: 3px; padding: 2px 10px; font-size: 8.5pt; font-weight: bold; margin-top: 5px; }
-        .cancelled-band { display: inline-block; background: #dc2626; color: #fff; border-radius: 3px; padding: 2px 10px; font-size: 8.5pt; font-weight: bold; margin-top: 5px; }
+
+        .invoice-number {
+            font-size: 15pt;
+            font-weight: bold;
+            color: #fff;
+            margin-top: 3px;
+        }
+
+        .paid-band {
+            display: inline-block;
+            background: #10b981;
+            color: #fff;
+            border-radius: 3px;
+            padding: 2px 10px;
+            font-size: 8.5pt;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+
+        .cancelled-band {
+            display: inline-block;
+            background: #dc2626;
+            color: #fff;
+            border-radius: 3px;
+            padding: 2px 10px;
+            font-size: 8.5pt;
+            font-weight: bold;
+            margin-top: 5px;
+        }
 
         /* Body */
-        .page { padding: 36px 48px; }
+        .page {
+            padding: 36px 48px;
+        }
 
         /* Parties */
-        .parties { width: 100%; margin-bottom: 32px; border-collapse: collapse; }
-        .party { width: 50%; vertical-align: top; }
-        .party-left { padding-right: 24px; }
-        .party-right { padding-left: 24px; }
+        .parties {
+            width: 100%;
+            margin-bottom: 32px;
+            border-collapse: collapse;
+        }
+
+        .party {
+            width: 50%;
+            vertical-align: top;
+        }
+
+        .party-left {
+            padding-right: 24px;
+        }
+
+        .party-right {
+            padding-left: 24px;
+        }
 
         .party-label {
-            font-size: 7.5pt; text-transform: uppercase; letter-spacing: 0.1em;
-            color: #6b7280; font-weight: bold; margin-bottom: 7px;
-            padding-bottom: 4px; border-bottom: 2px solid #111827;
+            font-size: 7.5pt;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #6b7280;
+            font-weight: bold;
+            margin-bottom: 7px;
+            padding-bottom: 4px;
+            border-bottom: 2px solid #111827;
         }
-        .party-name { font-size: 12pt; font-weight: bold; color: #111827; margin-bottom: 5px; }
-        .party-detail { font-size: 9pt; color: #4b5563; line-height: 1.65; }
+
+        .party-name {
+            font-size: 12pt;
+            font-weight: bold;
+            color: #111827;
+            margin-bottom: 5px;
+        }
+
+        .party-detail {
+            font-size: 9pt;
+            color: #4b5563;
+            line-height: 1.65;
+        }
 
         .vat-badge {
-            display: inline-block; background: #f3f4f6; color: #374151;
-            border-radius: 3px; padding: 1px 6px; font-size: 8pt; font-weight: bold; margin-top: 3px;
+            display: inline-block;
+            background: #f3f4f6;
+            color: #374151;
+            border-radius: 3px;
+            padding: 1px 6px;
+            font-size: 8pt;
+            font-weight: bold;
+            margin-top: 3px;
         }
 
         /* Dates */
-        .dates-row { width: 100%; margin-bottom: 32px; border-collapse: collapse; }
-        .date-box { padding: 10px 14px; background: #f9fafb; border-bottom: 3px solid #111827; }
-        .date-box .label {
-            font-size: 7.5pt; text-transform: uppercase; letter-spacing: 0.08em; color: #6b7280; font-weight: bold;
+        .dates-row {
+            width: 100%;
+            margin-bottom: 32px;
+            border-collapse: collapse;
         }
-        .date-box .value { font-size: 11pt; font-weight: bold; color: #111827; margin-top: 2px; }
+
+        .date-box {
+            padding: 10px 14px;
+            background: #f9fafb;
+            border-bottom: 3px solid #111827;
+        }
+
+        .date-box .label {
+            font-size: 7.5pt;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: #6b7280;
+            font-weight: bold;
+        }
+
+        .date-box .value {
+            font-size: 11pt;
+            font-weight: bold;
+            color: #111827;
+            margin-top: 2px;
+        }
 
         /* Items */
-        table.items { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
-        table.items thead tr { background: #111827; color: #fff; }
+        table.items {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        table.items thead tr {
+            background: #111827;
+            color: #fff;
+        }
+
         table.items thead th {
-            padding: 9px 12px; font-size: 8.5pt; text-transform: uppercase;
-            letter-spacing: 0.06em; text-align: left;
+            padding: 9px 12px;
+            font-size: 8.5pt;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            text-align: left;
         }
-        table.items thead th.right { text-align: right; }
-        table.items tbody tr:nth-child(even) { background: #f9fafb; }
+
+        table.items thead th.right {
+            text-align: right;
+        }
+
+        table.items tbody tr:nth-child(even) {
+            background: #f9fafb;
+        }
+
         table.items tbody td {
-            padding: 9px 12px; font-size: 9.5pt; border-bottom: 1px solid #f3f4f6; vertical-align: top;
+            padding: 9px 12px;
+            font-size: 9.5pt;
+            border-bottom: 1px solid #f3f4f6;
+            vertical-align: top;
         }
-        table.items tbody td.right { text-align: right; }
+
+        table.items tbody td.right {
+            text-align: right;
+        }
 
         /* Totals */
-        .totals { width: 260px; margin-left: auto; margin-bottom: 28px; }
-        .totals table { width: 100%; border-collapse: collapse; }
-        .totals table td { padding: 5px 0; font-size: 9.5pt; color: #4b5563; }
-        .totals table td.right { text-align: right; }
+        .totals {
+            width: 260px;
+            margin-left: auto;
+            margin-bottom: 28px;
+        }
+
+        .totals table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .totals table td {
+            padding: 5px 0;
+            font-size: 9.5pt;
+            color: #4b5563;
+        }
+
+        .totals table td.right {
+            text-align: right;
+        }
+
         .totals .grand-total td {
-            font-size: 13pt; font-weight: bold; color: #111827;
-            border-top: 3px solid #111827; padding-top: 9px;
+            font-size: 13pt;
+            font-weight: bold;
+            color: #111827;
+            border-top: 3px solid #111827;
+            padding-top: 9px;
         }
 
         /* VAT notice */
-        .vat-notice { margin-bottom: 20px; padding: 10px 14px; border-radius: 4px; font-size: 9pt; line-height: 1.5; }
-        .vat-notice.reverse-charge { background: #fffbeb; border-left: 4px solid #f59e0b; color: #92400e; }
-        .vat-notice.oss { background: #eff6ff; border-left: 4px solid #3b82f6; color: #1e3a8a; }
-        .vat-notice.exempt { background: #f0fdf4; border-left: 4px solid #22c55e; color: #14532d; }
+        .vat-notice {
+            margin-bottom: 20px;
+            padding: 10px 14px;
+            border-radius: 4px;
+            font-size: 9pt;
+            line-height: 1.5;
+        }
+
+        .vat-notice.reverse-charge {
+            background: #fffbeb;
+            border-left: 4px solid #f59e0b;
+            color: #92400e;
+        }
+
+        .vat-notice.oss {
+            background: #eff6ff;
+            border-left: 4px solid #3b82f6;
+            color: #1e3a8a;
+        }
+
+        .vat-notice.exempt {
+            background: #f0fdf4;
+            border-left: 4px solid #22c55e;
+            color: #14532d;
+        }
 
         /* Notes */
-        .notes-section { background: #f9fafb; border-left: 4px solid #111827; padding: 12px 14px; font-size: 9pt; color: #4b5563; margin-bottom: 24px; }
-        .notes-label { font-weight: bold; color: #111827; font-size: 8pt; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 5px; }
+        .notes-section {
+            background: #f9fafb;
+            border-left: 4px solid #111827;
+            padding: 12px 14px;
+            font-size: 9pt;
+            color: #4b5563;
+            margin-bottom: 24px;
+        }
+
+        .notes-label {
+            font-weight: bold;
+            color: #111827;
+            font-size: 8pt;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-bottom: 5px;
+        }
 
         /* Footer */
-        .footer { margin-top: 32px; padding-top: 14px; border-top: 2px solid #111827; font-size: 8pt; color: #9ca3af; text-align: center; }
+        .footer {
+            margin-top: 32px;
+            padding-top: 14px;
+            border-top: 2px solid #111827;
+            font-size: 8pt;
+            color: #9ca3af;
+            text-align: center;
+        }
     </style>
 </head>
 
@@ -109,26 +299,29 @@
             <tr>
                 <td>
                     @if ($company?->logoUrl())
-                        <img src="{{ $company->logoUrl() }}" alt="{{ $company->name }}" style="max-height:44px; max-width:160px;">
+                        <img src="{{ $company->logoUrl() }}" alt="{{ $company->name }}"
+                            style="max-height:44px; max-width:160px;">
                     @else
                         <div class="brand">{{ $company?->name ?? $invoice->user->name }}</div>
                     @endif
                 </td>
                 <td style="text-align:right;">
                     @php
-                        $docLabel = match($invoice->document_type ?? 'invoice') {
+                        $docLabel = match ($invoice->document_type ?? 'invoice') {
                             'credit_note' => __('Credit Note'),
-                            'debit_note'  => __('Debit Note'),
-                            'proforma'    => __('Proforma Invoice'),
-                            default       => __('Invoice'),
+                            'debit_note' => __('Debit Note'),
+                            'proforma' => __('Proforma Invoice'),
+                            default => __('Invoice'),
                         };
                     @endphp
                     <div class="invoice-label">{{ $docLabel }}</div>
                     <div class="invoice-number">{{ $invoice->invoice_number }}</div>
                     @if ($invoice->status === 'paid')
-                        <div style="margin-top:5px;text-align:right;"><span class="paid-band">&#10003; {{ __('PAID') }}</span></div>
+                        <div style="margin-top:5px;text-align:right;"><span class="paid-band">&#10003;
+                                {{ __('PAID') }}</span></div>
                     @elseif ($invoice->status === 'cancelled')
-                        <div style="margin-top:5px;text-align:right;"><span class="cancelled-band">&#10007; {{ __('CANCELLED') }}</span></div>
+                        <div style="margin-top:5px;text-align:right;"><span class="cancelled-band">&#10007;
+                                {{ __('CANCELLED') }}</span></div>
                     @endif
                 </td>
             </tr>
@@ -146,16 +339,32 @@
                     <div class="party-name">{{ $company?->name ?? $invoice->user->name }}</div>
                     <div class="party-detail">
                         @if ($company)
-                            @if ($company->address_line1){{ $company->address_line1 }}<br>@endif
-                            @if ($company->address_line2){{ $company->address_line2 }}<br>@endif
-                            @if ($company->postal_code || $company->city){{ implode(' ', array_filter([$company->postal_code, $company->city])) }}<br>@endif
-                            @if ($company->country){{ $company->country }}<br>@endif
-                            @if ($company->vat_number)<span class="vat-badge">VAT: {{ $company->vat_number }}</span><br>@endif
-                            @if ($company->registration_number)Reg: {{ $company->registration_number }}<br>@endif
+                            @if ($company->address_line1)
+                                {{ $company->address_line1 }}<br>
+                            @endif
+                            @if ($company->address_line2)
+                                {{ $company->address_line2 }}<br>
+                            @endif
+                            @if ($company->postal_code || $company->city)
+                                {{ implode(' ', array_filter([$company->postal_code, $company->city])) }}<br>
+                            @endif
+                            @if ($company->country)
+                                {{ $company->country }}<br>
+                            @endif
+                            @if ($company->vat_number)
+                                <span class="vat-badge">VAT: {{ $company->vat_number }}</span><br>
+                            @endif
+                            @if ($company->registration_number)
+                                Reg: {{ $company->registration_number }}<br>
+                            @endif
                             @if ($company->bank_iban)
-                                @if ($company->bank_name){{ $company->bank_name }}<br>@endif
+                                @if ($company->bank_name)
+                                    {{ $company->bank_name }}<br>
+                                @endif
                                 IBAN: {{ $company->bank_iban }}<br>
-                                @if ($company->bank_bic)BIC: {{ $company->bank_bic }}<br>@endif
+                                @if ($company->bank_bic)
+                                    BIC: {{ $company->bank_bic }}<br>
+                                @endif
                             @endif
                         @else
                             {{ $invoice->user->email }}
@@ -166,10 +375,16 @@
                     <div class="party-label">{{ __('Bill To') }}</div>
                     <div class="party-name">{{ $invoice->client->name }}</div>
                     <div class="party-detail">
-                        @if ($invoice->client->address){!! nl2br(e($invoice->client->address)) !!}<br>@endif
+                        @if ($invoice->client->address)
+                            {!! nl2br(e($invoice->client->address)) !!}<br>
+                        @endif
                         {{ $invoice->client->country }}
-                        @if ($invoice->client->email)<br>{{ $invoice->client->email }}@endif
-                        @if ($invoice->client->vat_number)<br><span class="vat-badge">VAT: {{ $invoice->client->vat_number }}</span>@endif
+                        @if ($invoice->client->email)
+                            <br>{{ $invoice->client->email }}
+                        @endif
+                        @if ($invoice->client->vat_number)
+                            <br><span class="vat-badge">VAT: {{ $invoice->client->vat_number }}</span>
+                        @endif
                     </div>
                 </td>
             </tr>
@@ -191,12 +406,12 @@
                     </div>
                 </td>
                 @if ($invoice->paid_at)
-                <td>
-                    <div class="date-box">
-                        <div class="label">{{ __('Payment Date') }}</div>
-                        <div class="value">{{ $invoice->paid_at->format('d M Y') }}</div>
-                    </div>
-                </td>
+                    <td>
+                        <div class="date-box">
+                            <div class="label">{{ __('Payment Date') }}</div>
+                            <div class="value">{{ $invoice->paid_at->format('d M Y') }}</div>
+                        </div>
+                    </td>
                 @endif
             </tr>
         </table>
@@ -213,12 +428,13 @@
             </thead>
             <tbody>
                 @foreach ($invoice->items as $item)
-                <tr>
-                    <td>{{ $item->description }}</td>
-                    <td class="right">{{ rtrim(rtrim(number_format((float) $item->quantity, 2, '.', ''), '0'), '.') }}</td>
-                    <td class="right">{{ formatCurrency($invoice->currency, (float) $item->unit_price) }}</td>
-                    <td class="right">{{ formatCurrency($invoice->currency, $item->subtotal()) }}</td>
-                </tr>
+                    <tr>
+                        <td>{{ $item->description }}</td>
+                        <td class="right">
+                            {{ rtrim(rtrim(number_format((float) $item->quantity, 2, '.', ''), '0'), '.') }}</td>
+                        <td class="right">{{ formatCurrency($invoice->currency, (float) $item->unit_price) }}</td>
+                        <td class="right">{{ formatCurrency($invoice->currency, $item->subtotal()) }}</td>
+                    </tr>
                 @endforeach
             </tbody>
         </table>
@@ -228,7 +444,9 @@
         @if ($invoice->vat_exempt_applied && $invoice->vat_exempt_notice)
             <div class="vat-notice exempt">{!! nl2br(e($invoice->vat_exempt_notice)) !!}</div>
         @elseif($vatType === 'reverse_charge')
-            <div class="vat-notice reverse-charge">{!! __('VAT Reverse Charge — VAT is to be accounted for by the recipient pursuant to Art. 196 of Council Directive 2006/112/EC.') !!}</div>
+            <div class="vat-notice reverse-charge">{!! __(
+                'VAT Reverse Charge — VAT is to be accounted for by the recipient pursuant to Art. 196 of Council Directive 2006/112/EC.',
+            ) !!}</div>
         @elseif($vatType === 'oss')
             <div class="vat-notice oss">{!! __('OSS Scheme — VAT applied at the seller\'s country rate under the EU One-Stop-Shop scheme.') !!}</div>
         @elseif($vatType === 'exempt')
@@ -243,10 +461,13 @@
                     <td class="right">{{ formatCurrency($invoice->currency, (float) $invoice->subtotal) }}</td>
                 </tr>
                 @if (!$invoice->vat_exempt_applied)
-                <tr>
-                    <td>{{ __('VAT') }}@if ($invoice->vat_rate > 0) ({{ $invoice->vat_rate }}%)@endif</td>
-                    <td class="right">{{ formatCurrency($invoice->currency, (float) $invoice->vat_amount) }}</td>
-                </tr>
+                    <tr>
+                        <td>{{ __('VAT') }}@if ($invoice->vat_rate > 0)
+                                ({{ $invoice->vat_rate }}%)
+                            @endif
+                        </td>
+                        <td class="right">{{ formatCurrency($invoice->currency, (float) $invoice->vat_amount) }}</td>
+                    </tr>
                 @endif
                 <tr class="grand-total">
                     <td>{{ __('Total Due') }}</td>
@@ -257,17 +478,19 @@
 
         {{-- Notes --}}
         @if ($invoice->notes)
-        <div class="notes-section">
-            <div class="notes-label">{{ __('Notes') }}</div>
-            {!! nl2br(e($invoice->notes)) !!}
-        </div>
+            <div class="notes-section">
+                <div class="notes-label">{{ __('Notes') }}</div>
+                {!! nl2br(e($invoice->notes)) !!}
+            </div>
         @endif
 
         {{-- Footer --}}
         <div class="footer">
-            {{ $invoice->invoice_number }} &middot; {{ __('Generated by') }} InvoiceKit &middot; {{ now()->format('d M Y') }}
+            {{ $invoice->invoice_number }} &middot; {{ __('Generated by') }} InvoiceKit &middot;
+            {{ now()->format('d M Y') }}
         </div>
 
     </div>
 </body>
+
 </html>

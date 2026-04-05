@@ -308,11 +308,11 @@
                 <td style="vertical-align:top; text-align:right;">
                     <div class="invoice-title">
                         @php
-                            $docTitle = match($invoice->document_type ?? 'invoice') {
+                            $docTitle = match ($invoice->document_type ?? 'invoice') {
                                 'credit_note' => __('CREDIT NOTE'),
-                                'debit_note'  => __('DEBIT NOTE'),
-                                'proforma'    => __('PROFORMA INVOICE'),
-                                default       => __('INVOICE'),
+                                'debit_note' => __('DEBIT NOTE'),
+                                'proforma' => __('PROFORMA INVOICE'),
+                                default => __('INVOICE'),
                             };
                         @endphp
                         <h2>{{ $docTitle }}</h2>

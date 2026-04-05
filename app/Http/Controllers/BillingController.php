@@ -13,9 +13,40 @@ class BillingController extends Controller
 {
     public function __construct(private readonly PlanService $planService) {}
 
-    public function index(): View
+    public function index(Request $request): View
     {
         $user = Auth::user();
+
+        // When returning from Stripe Checkout, verify the session and sync plan immediately.
+        // This handles the case where webhooks are delayed or not yet configured.
+        $stripeKey = config('services.stripe.key');
+        if ($request->query('checkout') === 'success' && $request->query('session_id') && $stripeKey) {
+            try {
+                $stripe = new StripeClient($stripeKey);
+                $session = $stripe->checkout->sessions->retrieve($request->query('session_id'), [
+                    'expand' => ['subscription'],
+                ]);
+
+                if ($session->status === 'complete' && $session->customer === $user->stripe_customer_id) {
+                    $plan = $session->metadata->plan ?? 'pro';
+                    $subscriptionId = $session->subscription->id ?? $session->subscription ?? null;
+                    $status = $session->subscription->status ?? 'active';
+                    $periodEnd = $session->subscription->current_period_end ?? null;
+
+                    $user->update([
+                        'plan' => in_array($plan, ['starter', 'pro']) ? $plan : 'pro',
+                        'subscription_status' => $status,
+                        'stripe_subscription_id' => $subscriptionId,
+                        'subscribed_until' => $periodEnd ? \Carbon\Carbon::createFromTimestamp($periodEnd) : null,
+                    ]);
+
+                    $user->refresh();
+                }
+            } catch (\Exception) {
+                // Silently ignore — the success banner still shows, webhook will sync later.
+            }
+        }
+
         $plan = $user->plan;
 
         $clientCount = $user->clients()->count();
@@ -27,7 +58,6 @@ class BillingController extends Controller
         $planData = $this->planService->getPlan($user);
 
         $billingHistory = [];
-        $stripeKey = config('services.stripe.key');
         if ($stripeKey && $user->stripe_customer_id) {
             try {
                 $stripe = new StripeClient($stripeKey);
@@ -93,7 +123,7 @@ class BillingController extends Controller
                 'price' => $priceId,
                 'quantity' => 1,
             ]],
-            'success_url' => route('billing.index').'?checkout=success',
+            'success_url' => route('billing.index').'?checkout=success&session_id={CHECKOUT_SESSION_ID}',
             'cancel_url' => route('billing.index').'?checkout=cancelled',
             'metadata' => ['user_id' => $user->id, 'plan' => $plan],
         ]);
