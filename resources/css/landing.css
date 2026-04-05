@@ -94,9 +94,10 @@ a {
     gap: .35rem
 }
 
-.nav-logo-icon {
-    -webkit-text-fill-color: initial;
-    font-size: 1.1rem
+.nav-logo-img {
+    height: 24px;
+    width: auto;
+    filter: brightness(0) invert(1)
 }
 
 .nav-links {
@@ -687,6 +688,71 @@ a {
     grid-template-columns: repeat(3, 1fr);
     gap: 1.15rem;
     margin-top: 3.25rem
+}
+
+/* Showcase rows */
+.feat-showcase {
+    display: flex;
+    flex-direction: column;
+    gap: 4.5rem;
+    margin-top: 4rem
+}
+
+.fshow {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3.5rem;
+    align-items: center
+}
+
+.fshow--right .fshow-img {
+    order: -1
+}
+
+.fshow-title {
+    font-size: 1.45rem;
+    font-weight: 700;
+    margin: .85rem 0 .65rem;
+    letter-spacing: -.02em;
+    line-height: 1.25
+}
+
+.fshow-desc {
+    font-size: .92rem;
+    color: var(--muted);
+    line-height: 1.78;
+    max-width: 440px
+}
+
+.app-frame {
+    margin: 0;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    box-shadow: 0 28px 72px rgba(0, 0, 0, .55);
+    position: relative
+}
+
+.app-frame::before {
+    content: '';
+    display: block;
+    height: 26px;
+    background: var(--card-h);
+    border-bottom: 1px solid var(--border)
+}
+
+.app-frame img {
+    display: block;
+    width: 100%;
+    height: auto
+}
+
+/* Secondary mini grid */
+.feat-mini {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.15rem;
+    margin-top: 4rem
 }
 
 .fc {
@@ -1422,6 +1488,19 @@ details[open] summary.fq-q::after {
         grid-template-columns: repeat(2, 1fr)
     }
 
+    .fshow {
+        grid-template-columns: 1fr;
+        gap: 2rem
+    }
+
+    .fshow--right .fshow-img {
+        order: 0
+    }
+
+    .feat-mini {
+        grid-template-columns: repeat(2, 1fr)
+    }
+
     .steps {
         grid-template-columns: 1fr;
         gap: 1.5rem
@@ -1452,6 +1531,10 @@ details[open] summary.fq-q::after {
     }
 
     .feat-grid {
+        grid-template-columns: 1fr
+    }
+
+    .feat-mini {
         grid-template-columns: 1fr
     }
 

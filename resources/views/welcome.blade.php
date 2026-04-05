@@ -151,13 +151,16 @@
         ['🇸🇪', 'Sweden'],
     ];
 
-    $features = [
-        ['icon' => '⏱', 'col' => 'icon-indigo', 'tk' => 'f1_title', 'dk' => 'f1_desc'],
-        ['icon' => '📄', 'col' => 'icon-sky', 'tk' => 'f2_title', 'dk' => 'f2_desc'],
+    $featShowcase = [
+        ['icon' => '⏱', 'col' => 'icon-indigo', 'img' => 'app-timer.png', 'side' => 'left', 'tk' => 'f1_title', 'dk' => 'f1_desc'],
+        ['icon' => '📄', 'col' => 'icon-sky', 'img' => 'app-invoice-view.png', 'side' => 'right', 'tk' => 'f2_title', 'dk' => 'f2_desc'],
+        ['icon' => '🔗', 'col' => 'icon-rose', 'img' => 'app-portal.png', 'side' => 'left', 'tk' => 'f6_title', 'dk' => 'f6_desc'],
+    ];
+
+    $featGrid = [
         ['icon' => '🇪🇺', 'col' => 'icon-teal', 'tk' => 'f3_title', 'dk' => 'f3_desc'],
         ['icon' => '👥', 'col' => 'icon-violet', 'tk' => 'f4_title', 'dk' => 'f4_desc'],
-        ['icon' => '�', 'col' => 'icon-amber', 'tk' => 'f5_title', 'dk' => 'f5_desc'],
-        ['icon' => '🔗', 'col' => 'icon-rose', 'tk' => 'f6_title', 'dk' => 'f6_desc'],
+        ['icon' => '🔁', 'col' => 'icon-amber', 'tk' => 'f5_title', 'dk' => 'f5_desc'],
         ['icon' => '📲', 'col' => 'icon-emerald', 'tk' => 'f7_title', 'dk' => 'f7_desc'],
         ['icon' => '🧾', 'col' => 'icon-orange', 'tk' => 'f8_title', 'dk' => 'f8_desc'],
         ['icon' => '💱', 'col' => 'icon-cyan', 'tk' => 'f9_title', 'dk' => 'f9_desc'],
@@ -194,7 +197,10 @@
 
     <!-- ====== NAVBAR ====== -->
     <nav class="nav" id="topnav">
-        <a href="/" class="nav-logo"><span class="nav-logo-icon">⚡</span>InvoiceKit</a>
+        <a href="/" class="nav-logo">
+            <img src="/img/logo.png" alt="InvoiceKit" class="nav-logo-img">
+            InvoiceKit
+        </a>
         <div class="nav-links">
             <a href="#features">{!! $g('nav_features') !!}</a>
             <a href="#pricing">{!! $g('nav_pricing') !!}</a>
@@ -307,8 +313,28 @@
             <h2 class="s-title grad">{!! $g('features_title') !!}</h2>
             <p class="s-sub center">{!! $g('features_subtitle') !!}</p>
         </div>
-        <div class="feat-grid">
-            @foreach ($features as $i => $f)
+
+        {{-- Showcase rows with real app screenshots --}}
+        <div class="feat-showcase">
+            @foreach ($featShowcase as $fs)
+                <div class="fshow {{ $fs['side'] === 'right' ? 'fshow--right' : '' }} fade-up">
+                    <div class="fshow-text">
+                        <div class="fc-icon {{ $fs['col'] }}">{{ $fs['icon'] }}</div>
+                        <h3 class="fshow-title">{!! $g($fs['tk']) !!}</h3>
+                        <p class="fshow-desc">{!! $g($fs['dk']) !!}</p>
+                    </div>
+                    <div class="fshow-img">
+                        <figure class="app-frame">
+                            <img src="{{ asset('images/app/' . $fs['img']) }}" alt="{!! strip_tags($g($fs['tk'])) !!}" loading="lazy">
+                        </figure>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+
+        {{-- Secondary features grid --}}
+        <div class="feat-mini">
+            @foreach ($featGrid as $i => $f)
                 <div class="fc fade-up fd{{ $i + 1 }}">
                     <div class="fc-icon {{ $f['col'] }}">{{ $f['icon'] }}</div>
                     <div class="fc-title">{!! $g($f['tk']) !!}</div>
