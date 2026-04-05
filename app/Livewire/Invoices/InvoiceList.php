@@ -16,9 +16,16 @@ class InvoiceList extends Component
 
     public string $statusFilter = '';
 
+    public string $documentTypeFilter = '';
+
     public string $search = '';
 
     public function updatingStatusFilter(): void
+    {
+        $this->resetPage();
+    }
+
+    public function updatingDocumentTypeFilter(): void
     {
         $this->resetPage();
     }
@@ -45,11 +52,22 @@ class InvoiceList extends Component
         }
     }
 
+    public function cancelInvoice(int $invoiceId, string $reason = ''): void
+    {
+        $invoice = Invoice::where('user_id', Auth::id())->findOrFail($invoiceId);
+        $invoice->update([
+            'status' => 'cancelled',
+            'cancelled_at' => now(),
+            'cancellation_reason' => $reason ?: null,
+        ]);
+    }
+
     public function render()
     {
         $invoices = Invoice::where('user_id', Auth::id())
             ->with('client')
             ->when($this->statusFilter, fn ($q) => $q->where('status', $this->statusFilter))
+            ->when($this->documentTypeFilter, fn ($q) => $q->where('document_type', $this->documentTypeFilter))
             ->when($this->search, fn ($q) => $q->where('invoice_number', 'like', "%{$this->search}%"))
             ->orderByDesc('issue_date')
             ->paginate(15);

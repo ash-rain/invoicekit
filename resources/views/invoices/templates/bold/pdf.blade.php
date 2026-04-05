@@ -31,6 +31,7 @@
         }
         .invoice-number { font-size: 15pt; font-weight: bold; color: #fff; margin-top: 3px; }
         .paid-band { display: inline-block; background: #10b981; color: #fff; border-radius: 3px; padding: 2px 10px; font-size: 8.5pt; font-weight: bold; margin-top: 5px; }
+        .cancelled-band { display: inline-block; background: #dc2626; color: #fff; border-radius: 3px; padding: 2px 10px; font-size: 8.5pt; font-weight: bold; margin-top: 5px; }
 
         /* Body */
         .page { padding: 36px 48px; }
@@ -114,10 +115,20 @@
                     @endif
                 </td>
                 <td style="text-align:right;">
-                    <div class="invoice-label">{{ __('Invoice') }}</div>
+                    @php
+                        $docLabel = match($invoice->document_type ?? 'invoice') {
+                            'credit_note' => __('Credit Note'),
+                            'debit_note'  => __('Debit Note'),
+                            'proforma'    => __('Proforma Invoice'),
+                            default       => __('Invoice'),
+                        };
+                    @endphp
+                    <div class="invoice-label">{{ $docLabel }}</div>
                     <div class="invoice-number">{{ $invoice->invoice_number }}</div>
                     @if ($invoice->status === 'paid')
                         <div style="margin-top:5px;text-align:right;"><span class="paid-band">&#10003; {{ __('PAID') }}</span></div>
+                    @elseif ($invoice->status === 'cancelled')
+                        <div style="margin-top:5px;text-align:right;"><span class="cancelled-band">&#10007; {{ __('CANCELLED') }}</span></div>
                     @endif
                 </td>
             </tr>

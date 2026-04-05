@@ -68,6 +68,12 @@ class Settings extends Component
 
     public $invoiceLogoUpload = null;
 
+    public string $invoiceNumberingFormat = 'standard';
+
+    public int $bgInvoiceSequenceStart = 1;
+
+    public string $issuedByDefaultName = '';
+
     public bool $vatExempt = false;
 
     public string $vatExemptReason = '';
@@ -120,6 +126,9 @@ class Settings extends Component
             $this->vatExempt = (bool) ($company->vat_exempt ?? false);
             $this->vatExemptReason = $company->vat_exempt_reason ?? '';
             $this->vatExemptNoticeLanguage = $company->vat_exempt_notice_language ?? 'local';
+            $this->invoiceNumberingFormat = $company->invoice_numbering_format ?? 'standard';
+            $this->bgInvoiceSequenceStart = $company->bg_invoice_sequence_start ?? 1;
+            $this->issuedByDefaultName = $company->issued_by_default_name ?? '';
         }
 
         $this->reminderBeforeDueDays = $user->reminder_before_due_days ?? 3;
@@ -216,6 +225,9 @@ class Settings extends Component
             'vatExempt' => ['boolean'],
             'vatExemptReason' => ['nullable', 'string', 'max:500'],
             'vatExemptNoticeLanguage' => ['required', 'string', 'in:local,en'],
+            'invoiceNumberingFormat' => ['required', 'string', 'in:standard,bg_sequential'],
+            'bgInvoiceSequenceStart' => ['required', 'integer', 'min:1'],
+            'issuedByDefaultName' => ['nullable', 'string', 'max:255'],
         ]);
 
         $user = Auth::user();
@@ -237,6 +249,9 @@ class Settings extends Component
             'vat_exempt' => $this->vatExempt,
             'vat_exempt_reason' => $this->vatExemptReason ?: null,
             'vat_exempt_notice_language' => $this->vatExemptNoticeLanguage,
+            'invoice_numbering_format' => $this->invoiceNumberingFormat,
+            'bg_invoice_sequence_start' => $this->bgInvoiceSequenceStart,
+            'issued_by_default_name' => $this->issuedByDefaultName ?: null,
         ];
 
         if ($this->invoiceLogoUpload) {

@@ -2,7 +2,17 @@
     <div class="flex items-center justify-between mb-8">
         <div>
             <h1 class="font-bold text-[26px] text-[#0f1117] tracking-tight" style="font-family:'Syne',sans-serif;">
-                {{ $this->invoice && $this->invoice->exists ? __('Edit Invoice') : __('New Invoice') }}
+                @if ($this->invoice && $this->invoice->exists)
+                    {{ __('Edit Invoice') }}
+                @elseif($documentType === 'credit_note')
+                    {{ __('New Credit Note') }}
+                @elseif($documentType === 'debit_note')
+                    {{ __('New Debit Note') }}
+                @elseif($documentType === 'proforma')
+                    {{ __('New Proforma Invoice') }}
+                @else
+                    {{ __('New Invoice') }}
+                @endif
             </h1>
             <p class="text-sm text-gray-500 mt-0.5">
                 {{ $this->invoice && $this->invoice->exists ? __('Update invoice details') : __('Fill in the details below') }}
@@ -56,6 +66,18 @@
                 @error('invoiceNumber')
                     <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
                 @enderror
+            </div>
+
+            {{-- Document Type --}}
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">{{ __('Document Type') }}</label>
+                <select wire:model.live="documentType"
+                    class="w-full border border-gray-300 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    <option value="invoice">{{ __('Invoice') }}</option>
+                    <option value="credit_note">{{ __('Credit Note') }}</option>
+                    <option value="debit_note">{{ __('Debit Note') }}</option>
+                    <option value="proforma">{{ __('Proforma Invoice') }}</option>
+                </select>
             </div>
 
             {{-- Language --}}
@@ -149,6 +171,50 @@
                 </select>
             </div>
 
+            {{-- Tax Event Date (BG compliance: Дата на данъчното събитие) --}}
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">{{ __('Tax Event Date') }}</label>
+                <input wire:model="taxEventDate" type="date"
+                    class="w-full border border-gray-300 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 @error('taxEventDate') border-red-400 @enderror" />
+                @error('taxEventDate')
+                    <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
+                @enderror
+            </div>
+
+            {{-- Original invoice reference (credit/debit notes) --}}
+            @if (in_array($documentType, ['credit_note', 'debit_note']))
+                <div class="md:col-span-2">
+                    <label class="block text-sm font-medium text-gray-700 mb-1">
+                        {{ __('To Invoice No.') }} <span class="text-red-500">*</span>
+                    </label>
+                    <input wire:model="originalInvoiceId" type="number"
+                        placeholder="{{ __('Original invoice ID') }}"
+                        class="w-full border border-gray-300 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 @error('originalInvoiceId') border-red-400 @enderror" />
+                    @error('originalInvoiceId')
+                        <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
+                    @enderror
+                </div>
+            @endif
+
+            {{-- Issued By / Received By (Съставил / Получил) --}}
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">{{ __('Issued By') }}</label>
+                <input wire:model="issuedByName" type="text"
+                    class="w-full border border-gray-300 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">{{ __('Received By') }}</label>
+                <input wire:model="receivedByName" type="text"
+                    class="w-full border border-gray-300 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+            </div>
+
+            {{-- Proforma notice --}}
+            @if ($documentType === 'proforma')
+                <div class="md:col-span-2 p-3 bg-blue-50 border border-blue-200 rounded-xl text-xs text-blue-700">
+                    {{ __('PROFORMA — Not a tax document') }}
+                </div>
+            @endif
+
         </div>
 
         {{-- Line items --}}
@@ -162,6 +228,9 @@
                     <tr>
                         <th class="px-4 py-3 text-left text-[10px] font-bold uppercase tracking-wider text-gray-400">
                             {{ __('Description') }}</th>
+                        <th
+                            class="px-4 py-3 text-left text-[10px] font-bold uppercase tracking-wider text-gray-400 w-24">
+                            {{ __('Unit') }}</th>
                         <th
                             class="px-4 py-3 text-right text-[10px] font-bold uppercase tracking-wider text-gray-400 w-24">
                             {{ __('Qty') }}</th>
@@ -184,6 +253,11 @@
                                 @error('items.' . $i . '.description')
                                     <p class="text-xs text-red-500">{{ $message }}</p>
                                 @enderror
+                            </td>
+                            <td class="px-4 py-2.5">
+                                <input wire:model="items.{{ $i }}.unit" type="text"
+                                    placeholder="{{ __('pcs.') }}"
+                                    class="w-full border border-gray-200 rounded-lg px-2 py-1.5 text-sm focus:outline-none focus:ring-1 focus:ring-indigo-400" />
                             </td>
                             <td class="px-4 py-2.5">
                                 <input wire:model.live="items.{{ $i }}.quantity" type="number"

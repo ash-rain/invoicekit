@@ -274,6 +274,16 @@
             border-radius: 6px;
         }
 
+        .status-cancelled {
+            display: inline-block;
+            border: 3px solid rgba(220, 38, 38, 0.65);
+            color: rgba(220, 38, 38, 0.65);
+            font-weight: bold;
+            font-size: 14pt;
+            padding: 4px 14px;
+            border-radius: 6px;
+        }
+
         .status-overlay {
             text-align: right;
             margin-bottom: 8px;
@@ -297,7 +307,15 @@
                 </td>
                 <td style="vertical-align:top; text-align:right;">
                     <div class="invoice-title">
-                        <h2>{{ __('INVOICE') }}</h2>
+                        @php
+                            $docTitle = match($invoice->document_type ?? 'invoice') {
+                                'credit_note' => __('CREDIT NOTE'),
+                                'debit_note'  => __('DEBIT NOTE'),
+                                'proforma'    => __('PROFORMA INVOICE'),
+                                default       => __('INVOICE'),
+                            };
+                        @endphp
+                        <h2>{{ $docTitle }}</h2>
                         <div class="number">{{ $invoice->invoice_number }}</div>
                     </div>
                 </td>
@@ -308,6 +326,10 @@
         @if ($invoice->status === 'paid')
             <div class="status-overlay">
                 <span class="status-paid">{{ __('PAID') }}</span>
+            </div>
+        @elseif ($invoice->status === 'cancelled')
+            <div class="status-overlay">
+                <span class="status-cancelled">{{ __('CANCELLED') }}</span>
             </div>
         @endif
 

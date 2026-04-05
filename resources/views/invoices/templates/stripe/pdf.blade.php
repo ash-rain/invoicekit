@@ -33,6 +33,10 @@
             display: inline-block; color: #16a34a; font-size: 8.5pt; font-weight: bold;
             letter-spacing: 0.05em; text-transform: uppercase; margin-top: 4px;
         }
+        .inv-ref .status-cancelled {
+            display: inline-block; color: #dc2626; font-size: 8.5pt; font-weight: bold;
+            letter-spacing: 0.05em; text-transform: uppercase; margin-top: 4px;
+        }
 
         /* Parties */
         .parties { width: 100%; margin-bottom: 28px; border-collapse: collapse; }
@@ -108,10 +112,20 @@
                 </td>
                 <td style="vertical-align:middle;">
                     <div class="inv-ref">
-                        <div class="inv-label">{{ __('Invoice') }}</div>
+                        @php
+                            $docLabel = match($invoice->document_type ?? 'invoice') {
+                                'credit_note' => __('Credit Note'),
+                                'debit_note'  => __('Debit Note'),
+                                'proforma'    => __('Proforma Invoice'),
+                                default       => __('Invoice'),
+                            };
+                        @endphp
+                        <div class="inv-label">{{ $docLabel }}</div>
                         <div class="inv-num">{{ $invoice->invoice_number }}</div>
                         @if ($invoice->status === 'paid')
                             <div><span class="status-paid">&#10003; {{ __('Paid') }}</span></div>
+                        @elseif ($invoice->status === 'cancelled')
+                            <div><span class="status-cancelled">&#10007; {{ __('Cancelled') }}</span></div>
                         @endif
                     </div>
                 </td>

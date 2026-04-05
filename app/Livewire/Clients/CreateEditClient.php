@@ -23,6 +23,8 @@ class CreateEditClient extends Component
 
     public string $vat_number = '';
 
+    public string $registration_number = '';
+
     public string $currency = 'EUR';
 
     public string $defaultLanguage = '';
@@ -113,6 +115,7 @@ class CreateEditClient extends Component
             $this->address = $client->address ?? '';
             $this->country = $client->country;
             $this->vat_number = $client->vat_number ?? '';
+            $this->registration_number = $client->registration_number ?? '';
             $this->currency = $client->currency;
             $this->defaultLanguage = $client->default_language ?? '';
         }
@@ -126,6 +129,7 @@ class CreateEditClient extends Component
             'address' => ['nullable', 'string', 'max:1000'],
             'country' => ['required', 'string', 'size:2'],
             'vat_number' => ['nullable', 'string', 'max:30'],
+            'registration_number' => ['nullable', 'string', 'max:50'],
             'currency' => ['required', 'string', 'in:'.implode(',', self::CURRENCIES)],
             'defaultLanguage' => ['nullable', 'string', 'in:'.implode(',', config('invoicekit.supported_languages', ['en']))],
         ];
@@ -160,6 +164,7 @@ class CreateEditClient extends Component
         $data = array_merge($validated, [
             'user_id' => Auth::id(),
             'default_language' => $this->defaultLanguage ?: null,
+            'registration_number' => $this->registration_number ?: null,
         ]);
 
         if ($this->client && $this->client->exists) {

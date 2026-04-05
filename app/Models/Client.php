@@ -18,6 +18,7 @@ class Client extends Model
         'address',
         'country',
         'vat_number',
+        'registration_number',
         'currency',
         'default_language',
     ];

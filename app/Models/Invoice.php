@@ -31,16 +31,27 @@ class Invoice extends Model
         'vat_exempt_notice',
         'stripe_payment_link_url',
         'template',
+        'document_type',
+        'tax_event_date',
+        'issued_by_name',
+        'received_by_name',
+        'original_invoice_id',
+        'cancellation_reason',
+        'cancelled_at',
+        'vat_amount_bgn',
     ];
 
     protected $casts = [
         'issue_date' => 'date',
         'due_date' => 'date',
         'paid_at' => 'datetime',
+        'cancelled_at' => 'datetime',
+        'tax_event_date' => 'date',
         'subtotal' => 'decimal:2',
         'vat_rate' => 'decimal:2',
         'vat_amount' => 'decimal:2',
         'total' => 'decimal:2',
+        'vat_amount_bgn' => 'decimal:2',
         'vat_exempt_applied' => 'boolean',
     ];
 
@@ -79,15 +90,53 @@ class Invoice extends Model
         return $query->whereIn('status', ['sent', 'overdue']);
     }
 
+    public function isCancelled(): bool
+    {
+        return $this->status === 'cancelled' || $this->cancelled_at !== null;
+    }
+
+    public function isProforma(): bool
+    {
+        return $this->document_type === 'proforma';
+    }
+
+    public function originalInvoice(): BelongsTo
+    {
+        return $this->belongsTo(Invoice::class, 'original_invoice_id');
+    }
+
+    public function creditNotes(): HasMany
+    {
+        return $this->hasMany(Invoice::class, 'original_invoice_id')->where('document_type', 'credit_note');
+    }
+
+    public function debitNotes(): HasMany
+    {
+        return $this->hasMany(Invoice::class, 'original_invoice_id')->where('document_type', 'debit_note');
+    }
+
     public function scopeOverdue($query)
     {
         return $query->where('status', 'overdue');
     }
 
     /**
-     * Generate the next invoice number in the format {PREFIX}-YYYY-NNNN.
+     * Generate the next invoice number, delegating to the correct format
+     * based on the company's invoice_numbering_format setting.
      */
     public static function generateNumber(int $userId, ?Company $company = null): string
+    {
+        if ($company?->invoice_numbering_format === 'bg_sequential') {
+            return static::generateBulgarianNumber($userId, $company);
+        }
+
+        return static::generateStandardNumber($userId, $company);
+    }
+
+    /**
+     * Generate the next invoice number in the format {PREFIX}-YYYY-NNNN.
+     */
+    public static function generateStandardNumber(int $userId, ?Company $company = null): string
     {
         $year = now()->year;
         $rawPrefix = $company?->invoice_prefix ?: 'INV';
@@ -102,5 +151,29 @@ class Invoice extends Model
         $next = $last ? (int) substr($last, strlen($prefix)) + 1 : $startingNumber;
 
         return $prefix.str_pad($next, 4, '0', STR_PAD_LEFT);
+    }
+
+    /**
+     * Generate a 10-digit zero-padded sequential number as required by Bulgarian law
+     * (ЗДДС Art. 114, para 1, item 2). Numbers are continuous across years and
+     * shared across all document types (invoices, credit notes, debit notes).
+     */
+    public static function generateBulgarianNumber(int $userId, ?Company $company = null): string
+    {
+        $startingNumber = $company?->bg_invoice_sequence_start ?? 1;
+
+        $last = static::where('user_id', $userId)
+            ->whereIn('document_type', ['invoice', 'credit_note', 'debit_note'])
+            ->whereNotNull('invoice_number')
+            ->orderByDesc('id')
+            ->value('invoice_number');
+
+        if ($last && ctype_digit($last)) {
+            $next = (int) $last + 1;
+        } else {
+            $next = $startingNumber;
+        }
+
+        return str_pad((string) $next, 10, '0', STR_PAD_LEFT);
     }
 }

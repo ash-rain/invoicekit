@@ -69,6 +69,11 @@
             border: 1px solid #bbf7d0; border-radius: 20px;
             padding: 2px 12px; font-size: 8.5pt; font-weight: bold;
         }
+        .status-cancelled-chip {
+            display: inline-block; background: #fef2f2; color: #dc2626;
+            border: 1px solid #fecaca; border-radius: 20px;
+            padding: 2px 12px; font-size: 8.5pt; font-weight: bold;
+        }
 
         /* Items */
         table.items { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
@@ -127,11 +132,23 @@
                 </td>
                 <td style="vertical-align:top; text-align:right;">
                     <div class="invoice-meta">
-                        <div class="label">{{ __('Invoice') }}</div>
+                        @php
+                            $docLabel = match($invoice->document_type ?? 'invoice') {
+                                'credit_note' => __('Credit Note'),
+                                'debit_note'  => __('Debit Note'),
+                                'proforma'    => __('Proforma Invoice'),
+                                default       => __('Invoice'),
+                            };
+                        @endphp
+                        <div class="label">{{ $docLabel }}</div>
                         <div class="number">{{ $invoice->invoice_number }}</div>
                         @if ($invoice->status === 'paid')
                             <div style="margin-top:6px;">
                                 <span class="status-paid-chip">&#10003; {{ __('Paid') }}</span>
+                            </div>
+                        @elseif ($invoice->status === 'cancelled')
+                            <div style="margin-top:6px;">
+                                <span class="status-cancelled-chip">&#10007; {{ __('Cancelled') }}</span>
                             </div>
                         @endif
                     </div>

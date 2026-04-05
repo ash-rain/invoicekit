@@ -36,6 +36,11 @@
             font-weight: bold; letter-spacing: 0.06em; text-transform: uppercase;
             margin-top: 6px;
         }
+        .cancelled-tag {
+            display: inline-block; color: #dc2626; font-size: 9pt;
+            font-weight: bold; letter-spacing: 0.06em; text-transform: uppercase;
+            margin-top: 6px;
+        }
 
         /* Parties */
         .parties { width: 100%; margin-bottom: 36px; border-collapse: collapse; }
@@ -118,10 +123,20 @@
                 </td>
                 <td style="vertical-align:top; text-align:right;">
                     <div class="invoice-meta-block">
-                        <div class="invoice-label">{{ __('Invoice') }}</div>
+                        @php
+                            $docLabel = match($invoice->document_type ?? 'invoice') {
+                                'credit_note' => __('Credit Note'),
+                                'debit_note'  => __('Debit Note'),
+                                'proforma'    => __('Proforma Invoice'),
+                                default       => __('Invoice'),
+                            };
+                        @endphp
+                        <div class="invoice-label">{{ $docLabel }}</div>
                         <div class="invoice-number">{{ $invoice->invoice_number }}</div>
                         @if ($invoice->status === 'paid')
                             <div class="paid-tag">&#10003; {{ __('Paid') }}</div>
+                        @elseif ($invoice->status === 'cancelled')
+                            <div class="cancelled-tag">&#10007; {{ __('Cancelled') }}</div>
                         @endif
                     </div>
                 </td>

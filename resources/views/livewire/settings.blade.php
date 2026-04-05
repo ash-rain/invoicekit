@@ -266,6 +266,21 @@
 
                 <div>
                     <label
+                        class="block text-sm font-medium text-gray-700 mb-1">{{ __('Invoice Numbering Format') }}</label>
+                    <p class="text-xs text-gray-400 mb-1.5">{{ __('Choose how invoice numbers are generated.') }}</p>
+                    <select wire:model.live="invoiceNumberingFormat"
+                        class="w-full border border-gray-300 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                        <option value="standard">{{ __('Standard (PREFIX-YEAR-NUMBER)') }}</option>
+                        <option value="bg_sequential">{{ __('Bulgarian (10-digit sequential)') }}</option>
+                    </select>
+                    @error('invoiceNumberingFormat')
+                        <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                @if ($invoiceNumberingFormat === 'standard')
+                <div>
+                    <label
                         class="block text-sm font-medium text-gray-700 mb-1">{{ __('Invoice Number Prefix') }}</label>
                     <p class="text-xs text-gray-400 mb-1.5">
                         {{ __('Optional alphanumeric prefix added before the invoice number (e.g. INV, 2024).') }}</p>
@@ -286,6 +301,35 @@
                     <input wire:model="invoiceStartingNumber" type="number" min="1" max="99999"
                         class="w-full border border-gray-300 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 @error('invoiceStartingNumber') border-red-400 @enderror" />
                     @error('invoiceStartingNumber')
+                        <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
+                    @enderror
+                </div>
+                @endif
+
+                @if ($invoiceNumberingFormat === 'bg_sequential')
+                <div>
+                    <label
+                        class="block text-sm font-medium text-gray-700 mb-1">{{ __('Invoice Starting Number') }}</label>
+                    <p class="text-xs text-gray-400 mb-1.5">
+                        {{ __('The first 10-digit sequential number for Bulgarian compliance (ЗДДС Art. 114).') }}
+                    </p>
+                    <input wire:model="bgInvoiceSequenceStart" type="number" min="1"
+                        class="w-full border border-gray-300 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 @error('bgInvoiceSequenceStart') border-red-400 @enderror" />
+                    @error('bgInvoiceSequenceStart')
+                        <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
+                    @enderror
+                </div>
+                @endif
+
+                <div>
+                    <label
+                        class="block text-sm font-medium text-gray-700 mb-1">{{ __('Issued By Default Name') }}</label>
+                    <p class="text-xs text-gray-400 mb-1.5">
+                        {{ __('Pre-fill the "Issued by" field on new invoices (required for Bulgarian compliance).') }}</p>
+                    <input wire:model="issuedByDefaultName" type="text" placeholder="{{ __('Your name or position') }}"
+                        maxlength="255"
+                        class="w-full border border-gray-300 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 @error('issuedByDefaultName') border-red-400 @enderror" />
+                    @error('issuedByDefaultName')
                         <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
                     @enderror
                 </div>

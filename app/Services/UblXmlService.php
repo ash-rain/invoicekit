@@ -36,14 +36,36 @@ class UblXmlService
         if ($invoice->due_date) {
             $this->addCbc($dom, $root, 'DueDate', $invoice->due_date->format('Y-m-d'));
         }
-        // BT-3 Invoice type code (380 = Commercial Invoice)
-        $this->addCbc($dom, $root, 'InvoiceTypeCode', '380');
+        // BT-7 Tax point date (Дата на данъчното събитие)
+        if ($invoice->tax_event_date) {
+            $this->addCbc($dom, $root, 'TaxPointDate', $invoice->tax_event_date->format('Y-m-d'));
+        }
+        // BT-3 Invoice type code
+        $typeCode = match ($invoice->document_type ?? 'invoice') {
+            'credit_note' => '381',
+            'debit_note' => '383',
+            default => '380',
+        };
+        $this->addCbc($dom, $root, 'InvoiceTypeCode', $typeCode);
         // BT-22 Notes
         if ($invoice->notes) {
             $this->addCbc($dom, $root, 'Note', $invoice->notes);
         }
         // BT-5 Invoice currency code
         $this->addCbc($dom, $root, 'DocumentCurrencyCode', $invoice->currency ?? 'EUR');
+
+        // BT-25 Reference to original invoice for credit/debit notes
+        if (in_array($invoice->document_type ?? 'invoice', ['credit_note', 'debit_note']) && $invoice->original_invoice_id) {
+            $invoice->loadMissing('originalInvoice');
+            if ($invoice->originalInvoice) {
+                $billingRef = $dom->createElement('cac:BillingReference');
+                $invoiceDocRef = $dom->createElement('cac:InvoiceDocumentReference');
+                $this->addCbc($dom, $invoiceDocRef, 'ID', $invoice->originalInvoice->invoice_number);
+                $this->addCbc($dom, $invoiceDocRef, 'IssueDate', $invoice->originalInvoice->issue_date->format('Y-m-d'));
+                $billingRef->appendChild($invoiceDocRef);
+                $root->appendChild($billingRef);
+            }
+        }
 
         // BG-4 Seller (AccountingSupplierParty)
         $supplierParty = $dom->createElement('cac:AccountingSupplierParty');
@@ -102,6 +124,9 @@ class UblXmlService
 
         $buyerLegalEntity = $dom->createElement('cac:PartyLegalEntity');
         $this->addCbc($dom, $buyerLegalEntity, 'RegistrationName', $client?->name ?? 'Unknown');
+        if ($client?->registration_number) {
+            $this->addCbc($dom, $buyerLegalEntity, 'CompanyID', $client->registration_number);
+        }
         $buyerParty->appendChild($buyerLegalEntity);
 
         if ($client?->address) {

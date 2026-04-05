@@ -23,7 +23,7 @@ return [
         'available' => true,
         'threshold_amount' => 100000,
         'threshold_currency' => 'BGN',
-        'threshold_eur_approx' => 51000,
+        'threshold_eur_approx' => 51130,
         'legal_basis' => 'Art. 96, ал. 1 ЗДДС',
         'invoice_notice_local' => 'Не е начислен ДДС на основание чл. 96, ал. 1 от ЗДДС',
         'invoice_notice_en' => 'VAT not charged pursuant to Art. 96(1) of the Bulgarian VAT Act.',

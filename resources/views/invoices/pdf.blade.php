@@ -274,9 +274,48 @@
             border-radius: 6px;
         }
 
+        .status-cancelled {
+            display: inline-block;
+            border: 3px solid rgba(220, 38, 38, 0.65);
+            color: rgba(220, 38, 38, 0.65);
+            font-weight: bold;
+            font-size: 14pt;
+            padding: 4px 14px;
+            border-radius: 6px;
+            letter-spacing: 0.06em;
+        }
+
         .status-overlay {
             text-align: right;
             margin-bottom: 8px;
+        }
+
+        /* BG compliance: issued/received by */
+        .signatures {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 24px;
+        }
+
+        .signatures td {
+            width: 50%;
+            padding-top: 36px;
+            border-top: 1px solid #9ca3af;
+            font-size: 9.5pt;
+            color: #4b5563;
+        }
+
+        .signatures td.right {
+            text-align: right;
+        }
+
+        .signatures .sig-label {
+            font-size: 8pt;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: #9ca3af;
+            font-weight: bold;
+            margin-bottom: 4px;
         }
     </style>
 </head>
@@ -297,17 +336,29 @@
                 </td>
                 <td style="vertical-align:top; text-align:right;">
                     <div class="invoice-title">
-                        <h2>{{ __('INVOICE') }}</h2>
+                        @php
+                            $docTitle = match($invoice->document_type ?? 'invoice') {
+                                'credit_note' => __('CREDIT NOTE'),
+                                'debit_note'  => __('DEBIT NOTE'),
+                                'proforma'    => __('PROFORMA INVOICE'),
+                                default       => __('INVOICE'),
+                            };
+                        @endphp
+                        <h2>{{ $docTitle }}</h2>
                         <div class="number">{{ $invoice->invoice_number }}</div>
                     </div>
                 </td>
             </tr>
         </table>
 
-        {{-- Paid stamp --}}
+        {{-- Paid / Cancelled stamp --}}
         @if ($invoice->status === 'paid')
             <div class="status-overlay">
                 <span class="status-paid">{{ __('PAID') }}</span>
+            </div>
+        @elseif($invoice->status === 'cancelled')
+            <div class="status-overlay">
+                <span class="status-cancelled">{{ __('CANCELLED') }}</span>
             </div>
         @endif
 
@@ -366,6 +417,9 @@
                         @if ($invoice->client->vat_number)
                             <br><span class="vat-badge">VAT: {{ $invoice->client->vat_number }}</span>
                         @endif
+                        @if ($invoice->client->registration_number)
+                            <br>{{ __('Registration Number') }}: {{ $invoice->client->registration_number }}
+                        @endif
                     </div>
                 </td>
             </tr>
@@ -394,14 +448,31 @@
                         </div>
                     </td>
                 @endif
+                @if ($invoice->tax_event_date)
+                    <td>
+                        <div class="date-box">
+                            <div class="label">{{ __('Tax Event Date') }}</div>
+                            <div class="value">{{ $invoice->tax_event_date->format('d M Y') }}</div>
+                        </div>
+                    </td>
+                @endif
             </tr>
         </table>
+
+        {{-- Original invoice reference for credit/debit notes --}}
+        @if (in_array($invoice->document_type ?? 'invoice', ['credit_note', 'debit_note']) && $invoice->originalInvoice)
+            <div style="margin-bottom:12px; padding:8px 12px; background:#fefce8; border-left:3px solid #eab308; border-radius:4px; font-size:9.5pt; color:#78350f;">
+                {{ __('To Invoice No.') }} <strong>{{ $invoice->originalInvoice->invoice_number }}</strong>
+                ({{ $invoice->originalInvoice->issue_date->format('d M Y') }})
+            </div>
+        @endif
 
         {{-- Line Items Table --}}
         <table class="items">
             <thead>
                 <tr>
                     <th>{{ __('Description') }}</th>
+                    <th style="width:60px">{{ __('Unit') }}</th>
                     <th class="right" style="width:70px">{{ __('Qty') }}</th>
                     <th class="right" style="width:100px">{{ __('Unit Price') }}</th>
                     <th class="right" style="width:110px">{{ __('Amount') }}</th>
@@ -411,6 +482,7 @@
                 @foreach ($invoice->items as $item)
                     <tr>
                         <td>{{ $item->description }}</td>
+                        <td>{{ $item->unit }}</td>
                         <td class="right">
                             {{ rtrim(rtrim(number_format((float) $item->quantity, 2, '.', ''), '0'), '.') }}</td>
                         <td class="right">{{ formatCurrency($invoice->currency, (float) $item->unit_price) }}</td>
@@ -459,6 +531,14 @@
                         </td>
                         <td class="right">{{ formatCurrency($invoice->currency, (float) $invoice->vat_amount) }}</td>
                     </tr>
+                    @if ($invoice->vat_amount_bgn && $invoice->currency !== 'BGN')
+                        <tr>
+                            <td style="font-size:8.5pt; color:#6b7280;">{{ __('VAT in BGN') }}</td>
+                            <td class="right" style="font-size:8.5pt; color:#6b7280;">
+                                BGN {{ number_format((float) $invoice->vat_amount_bgn, 2) }}
+                            </td>
+                        </tr>
+                    @endif
                 @endif
                 <tr class="grand-total">
                     <td>{{ __('Total Due') }}</td>
@@ -473,6 +553,29 @@
                 <div class="notes-label">{{ __('Notes') }}</div>
                 {!! nl2br(e($invoice->notes)) !!}
             </div>
+        @endif
+
+        {{-- Proforma disclaimer --}}
+        @if (($invoice->document_type ?? 'invoice') === 'proforma')
+            <div style="margin-top:16px; padding:10px 14px; background:#eff6ff; border:1px solid #bfdbfe; border-radius:6px; font-size:9pt; color:#1e3a8a; font-weight:bold; text-align:center; letter-spacing:0.04em;">
+                {{ __('PROFORMA — Not a tax document') }}
+            </div>
+        @endif
+
+        {{-- Issued By / Received By (Art. 114 ЗДДС) --}}
+        @if ($invoice->issued_by_name || $invoice->received_by_name)
+            <table class="signatures" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td>
+                        <div class="sig-label">{{ __('Issued By') }}</div>
+                        {{ $invoice->issued_by_name ?? '' }}
+                    </td>
+                    <td class="right">
+                        <div class="sig-label">{{ __('Received By') }}</div>
+                        {{ $invoice->received_by_name ?? '' }}
+                    </td>
+                </tr>
+            </table>
         @endif
 
         {{-- Footer --}}

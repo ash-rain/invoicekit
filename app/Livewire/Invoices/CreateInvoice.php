@@ -36,7 +36,18 @@ class CreateInvoice extends Component
 
     public string $invoiceTemplate = 'classic';
 
-    // Line items: array of ['description', 'quantity', 'unit_price']
+    // Document type & BG compliance fields
+    public string $documentType = 'invoice';
+
+    public ?int $originalInvoiceId = null;
+
+    public string $taxEventDate = '';
+
+    public string $issuedByName = '';
+
+    public string $receivedByName = '';
+
+    // Line items: array of ['description', 'unit', 'quantity', 'unit_price']
     public array $items = [];
 
     public bool $vatExemptActive = false;
@@ -79,8 +90,14 @@ class CreateInvoice extends Component
             $this->invoiceTemplate = $invoice->template ?? $company?->invoice_template ?? 'classic';
             $this->vatType = $invoice->vat_type ?? 'standard';
             $this->vatExemptOverride = $this->vatExemptActive && ! $invoice->vat_exempt_applied;
+            $this->documentType = $invoice->document_type ?? 'invoice';
+            $this->originalInvoiceId = $invoice->original_invoice_id;
+            $this->taxEventDate = $invoice->tax_event_date?->format('Y-m-d') ?? '';
+            $this->issuedByName = $invoice->issued_by_name ?? '';
+            $this->receivedByName = $invoice->received_by_name ?? '';
             $this->items = $invoice->items->map(fn ($item) => [
                 'description' => $item->description,
+                'unit' => $item->unit ?? '',
                 'quantity' => (string) $item->quantity,
                 'unit_price' => (string) $item->unit_price,
             ])->toArray();
@@ -91,6 +108,16 @@ class CreateInvoice extends Component
             // Pre-select language from user locale preference
             $this->language = Auth::user()->locale ?: 'en';
             $this->invoiceTemplate = $company?->invoice_template ?? 'classic';
+
+            // Auto-apply BG compliance defaults
+            if ($this->sellerCountry === 'BG') {
+                $this->taxEventDate = now()->format('Y-m-d');
+                $this->issuedByName = $company?->issued_by_default_name ?? Auth::user()->name;
+                if ($company?->default_currency) {
+                    $this->currency = $company->default_currency;
+                }
+            }
+
             $this->addItem();
         }
 
@@ -99,7 +126,8 @@ class CreateInvoice extends Component
 
     public function addItem(): void
     {
-        $this->items[] = ['description' => '', 'quantity' => '1', 'unit_price' => '0.00'];
+        $unit = ($this->sellerCountry === 'BG') ? 'бр.' : '';
+        $this->items[] = ['description' => '', 'unit' => $unit, 'quantity' => '1', 'unit_price' => '0.00'];
     }
 
     public function removeItem(int $index): void
@@ -186,8 +214,14 @@ class CreateInvoice extends Component
             'notes' => ['nullable', 'string', 'max:2000'],
             'language' => ['required', 'string', 'in:'.implode(',', config('invoicekit.supported_languages', ['en']))],
             'invoiceTemplate' => ['required', 'string', 'in:'.implode(',', array_keys(app(\App\Services\InvoiceTemplateService::class)->getAvailableTemplates()))],
+            'documentType' => ['required', 'string', 'in:invoice,credit_note,debit_note,proforma'],
+            'originalInvoiceId' => ['nullable', 'integer', 'exists:invoices,id'],
+            'taxEventDate' => ['nullable', 'date'],
+            'issuedByName' => ['nullable', 'string', 'max:200'],
+            'receivedByName' => ['nullable', 'string', 'max:200'],
             'items' => ['required', 'array', 'min:1'],
             'items.*.description' => ['required', 'string', 'max:500'],
+            'items.*.unit' => ['nullable', 'string', 'max:20'],
             'items.*.quantity' => ['required', 'numeric', 'min:0.01'],
             'items.*.unit_price' => ['required', 'numeric', 'min:0'],
         ];
@@ -220,11 +254,20 @@ class CreateInvoice extends Component
                 );
             }
 
+            // Calculate BGN VAT equivalent when seller is BG and currency is not BGN
+            $vatAmountBgn = null;
+            if ($this->sellerCountry === 'BG' && $this->currency !== 'BGN' && $this->vatAmount > 0) {
+                $eurToBgn = 1.95583;
+                $vatAmountBgn = $this->currency === 'EUR'
+                    ? round($this->vatAmount * $eurToBgn, 2)
+                    : null; // non-EUR foreign currency — no automatic conversion
+            }
+
             $data = [
                 'user_id' => Auth::id(),
                 'client_id' => $this->clientId,
                 'invoice_number' => $this->invoiceNumber,
-                'status' => $this->invoice?->status ?? 'draft',
+                'status' => $this->invoice?->status ?? ($this->documentType === 'proforma' ? 'draft' : 'draft'),
                 'issue_date' => $this->issueDate,
                 'due_date' => $this->dueDate,
                 'currency' => $this->currency,
@@ -238,6 +281,12 @@ class CreateInvoice extends Component
                 'notes' => $this->notes ?: null,
                 'vat_exempt_applied' => $isExempt,
                 'vat_exempt_notice' => $exemptNotice,
+                'document_type' => $this->documentType,
+                'original_invoice_id' => $this->originalInvoiceId,
+                'tax_event_date' => $this->taxEventDate ?: null,
+                'issued_by_name' => $this->issuedByName ?: null,
+                'received_by_name' => $this->receivedByName ?: null,
+                'vat_amount_bgn' => $vatAmountBgn,
             ];
 
             if ($this->invoice && $this->invoice->exists) {
@@ -255,6 +304,7 @@ class CreateInvoice extends Component
                 InvoiceItem::create([
                     'invoice_id' => $this->invoice->id,
                     'description' => $item['description'],
+                    'unit' => ($item['unit'] ?? '') ?: null,
                     'quantity' => $qty,
                     'unit_price' => $price,
                     'vat_rate' => $this->vatRate,

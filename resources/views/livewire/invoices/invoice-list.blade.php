@@ -43,6 +43,18 @@
             <option value="sent">{{ __('Sent') }}</option>
             <option value="paid">{{ __('Paid') }}</option>
             <option value="overdue">{{ __('Overdue') }}</option>
+            <option value="cancelled">{{ __('Cancelled') }}</option>
+        </select>
+        <select
+            wire:model.live="documentTypeFilter"
+            class="px-4 py-2.5 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 font-medium"
+            style="background:white;border:1px solid #e5e7eb;color:#374151;"
+        >
+            <option value="">{{ __('All Documents') }}</option>
+            <option value="invoice">{{ __('Invoice') }}</option>
+            <option value="credit_note">{{ __('Credit Note') }}</option>
+            <option value="debit_note">{{ __('Debit Note') }}</option>
+            <option value="proforma">{{ __('Proforma Invoice') }}</option>
         </select>
     </div>
 
@@ -64,21 +76,32 @@
                     @forelse($invoices as $invoice)
                         @php
                             $badgeDot = match($invoice->status) {
-                                'paid'    => 'background:#22c55e',
-                                'sent'    => 'background:#3b82f6',
-                                'overdue' => 'background:#ef4444',
-                                default   => 'background:#9ca3af',
+                                'paid'      => 'background:#22c55e',
+                                'sent'      => 'background:#3b82f6',
+                                'overdue'   => 'background:#ef4444',
+                                'cancelled' => 'background:#dc2626',
+                                default     => 'background:#9ca3af',
                             };
                             $badgeStyle = match($invoice->status) {
-                                'paid'    => 'background:#f0fdf4;color:#15803d;',
-                                'sent'    => 'background:#eff6ff;color:#1d4ed8;',
-                                'overdue' => 'background:#fef2f2;color:#dc2626;',
-                                default   => 'background:#f9fafb;color:#6b7280;',
+                                'paid'      => 'background:#f0fdf4;color:#15803d;',
+                                'sent'      => 'background:#eff6ff;color:#1d4ed8;',
+                                'overdue'   => 'background:#fef2f2;color:#dc2626;',
+                                'cancelled' => 'background:#fef2f2;color:#7f1d1d;text-decoration:line-through;',
+                                default     => 'background:#f9fafb;color:#6b7280;',
+                            };
+                            $docTypeLabel = match($invoice->document_type ?? 'invoice') {
+                                'credit_note' => __('Credit Note'),
+                                'debit_note'  => __('Debit Note'),
+                                'proforma'    => __('Proforma Invoice'),
+                                default       => null,
                             };
                         @endphp
                         <tr style="border-top:1px solid #f3f4f6;" onmouseover="this.style.background='#fafafa'" onmouseout="this.style.background=''">
                             <td class="px-5 py-4 text-sm font-semibold text-gray-900 whitespace-nowrap">
                                 {{ $invoice->invoice_number }}
+                                @if ($docTypeLabel)
+                                    <span class="ml-1 text-[10px] font-normal text-gray-400">{{ $docTypeLabel }}</span>
+                                @endif
                             </td>
                             <td class="px-5 py-4 text-sm text-gray-700 whitespace-nowrap">
                                 {{ $invoice->client->name }}
@@ -104,6 +127,9 @@
                                     @endif
                                     @if(in_array($invoice->status, ['sent', 'overdue']))
                                         <button wire:click="markPaid({{ $invoice->id }})" wire:confirm="{{ __('Mark this invoice as paid?') }}" class="text-xs font-semibold text-green-600 hover:text-green-900 transition-colors">{{ __('Mark Paid') }}</button>
+                                    @endif
+                                    @if(!in_array($invoice->status, ['cancelled']))
+                                        <button wire:click="cancelInvoice({{ $invoice->id }})" wire:confirm="{{ __('Cancel Invoice') }}?" class="text-xs font-semibold text-red-500 hover:text-red-700 transition-colors">{{ __('Cancel Invoice') }}</button>
                                     @endif
                                     <a href="{{ route('invoices.pdf', $invoice) }}" target="_blank" class="text-xs font-semibold text-gray-500 hover:text-gray-800 transition-colors">{{ __('PDF') }}</a>
                                 </div>

@@ -27,6 +27,10 @@
             display: inline-block; background: #dcfce7; color: #16a34a;
             border-radius: 3px; padding: 1px 7px; font-size: 7.5pt; font-weight: bold; margin-top: 3px;
         }
+        .cancelled-chip {
+            display: inline-block; background: #fee2e2; color: #dc2626;
+            border-radius: 3px; padding: 1px 7px; font-size: 7.5pt; font-weight: bold; margin-top: 3px;
+        }
 
         /* Parties + Dates combined row */
         .meta-row { width: 100%; margin-bottom: 16px; border-collapse: collapse; }
@@ -92,10 +96,20 @@
                 </td>
                 <td style="vertical-align:middle; text-align:right;">
                     <div class="invoice-number-block">
-                        <div class="inv-label">{{ __('Invoice') }}</div>
+                        @php
+                            $docLabel = match($invoice->document_type ?? 'invoice') {
+                                'credit_note' => __('Credit Note'),
+                                'debit_note'  => __('Debit Note'),
+                                'proforma'    => __('Proforma Invoice'),
+                                default       => __('Invoice'),
+                            };
+                        @endphp
+                        <div class="inv-label">{{ $docLabel }}</div>
                         <div class="inv-num">{{ $invoice->invoice_number }}</div>
                         @if ($invoice->status === 'paid')
                             <span class="paid-chip">&#10003; {{ __('PAID') }}</span>
+                        @elseif ($invoice->status === 'cancelled')
+                            <span class="cancelled-chip">&#10007; {{ __('CANCELLED') }}</span>
                         @endif
                     </div>
                 </td>

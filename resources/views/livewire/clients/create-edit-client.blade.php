@@ -105,6 +105,20 @@
                 @enderror
             </div>
 
+            {{-- Registration Number (ЕИК for BG clients) --}}
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">
+                    {{ $country === 'BG' ? __('Registration Number (ЕИК)') : __('Registration Number') }}
+                    <span class="text-gray-400 font-normal">{{ __('(optional)') }}</span>
+                </label>
+                <input wire:model="registration_number" type="text"
+                    placeholder="{{ $country === 'BG' ? '123456789' : __('Company reg. number') }}"
+                    class="w-full border border-gray-300 rounded-xl px-3 py-2.5 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-indigo-500 @error('registration_number') border-red-400 @enderror" />
+                @error('registration_number')
+                    <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
+                @enderror
+            </div>
+
             {{-- Default Invoice Language --}}
             <div>
                 <label
