@@ -152,9 +152,30 @@
     ];
 
     $featShowcase = [
-        ['icon' => '⏱', 'col' => 'icon-indigo', 'img' => 'app-timer.png', 'side' => 'left', 'tk' => 'f1_title', 'dk' => 'f1_desc'],
-        ['icon' => '📄', 'col' => 'icon-sky', 'img' => 'app-invoice-view.png', 'side' => 'right', 'tk' => 'f2_title', 'dk' => 'f2_desc'],
-        ['icon' => '🔗', 'col' => 'icon-rose', 'img' => 'app-portal.png', 'side' => 'left', 'tk' => 'f6_title', 'dk' => 'f6_desc'],
+        [
+            'icon' => '⏱',
+            'col' => 'icon-indigo',
+            'img' => 'app-timer.png',
+            'side' => 'left',
+            'tk' => 'f1_title',
+            'dk' => 'f1_desc',
+        ],
+        [
+            'icon' => '📄',
+            'col' => 'icon-sky',
+            'img' => 'app-invoice-view.png',
+            'side' => 'right',
+            'tk' => 'f2_title',
+            'dk' => 'f2_desc',
+        ],
+        [
+            'icon' => '🔗',
+            'col' => 'icon-rose',
+            'img' => 'app-portal.png',
+            'side' => 'left',
+            'tk' => 'f6_title',
+            'dk' => 'f6_desc',
+        ],
     ];
 
     $featGrid = [
@@ -325,7 +346,8 @@
                     </div>
                     <div class="fshow-img">
                         <figure class="app-frame">
-                            <img src="{{ asset('images/app/' . $fs['img']) }}" alt="{!! strip_tags($g($fs['tk'])) !!}" loading="lazy">
+                            <img src="{{ asset('images/app/' . $fs['img']) }}" alt="{!! strip_tags($g($fs['tk'])) !!}"
+                                loading="lazy">
                         </figure>
                     </div>
                 </div>
