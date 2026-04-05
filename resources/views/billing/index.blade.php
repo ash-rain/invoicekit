@@ -90,7 +90,7 @@
                     @endif
                 </div>
                 <div class="flex items-center gap-2 flex-wrap justify-end">
-                    @if ($plan !== 'pro')
+                    @if ($plan !== 'pro' || $user->isOnTrial())
                         <button type="button" @click="showPlanModal = true"
                             class="px-4 py-2.5 border border-indigo-300 rounded-xl text-sm font-semibold text-indigo-700 hover:bg-indigo-50">
                             {{ __('Compare Plans') }}
@@ -230,12 +230,12 @@
             @endif
 
             {{-- Plan Comparison --}}
-            @if ($plan !== 'pro')
+            @if ($plan !== 'pro' || $user->isOnTrial())
                 <div class="bg-white rounded-2xl border border-[#eaecf0] p-6">
                     <h3 class="text-sm font-bold text-gray-900 mb-6">{{ __('Upgrade Your Plan') }}</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-{{ $plan === 'free' ? '2' : '1' }} gap-4">
+                    <div class="grid grid-cols-1 md:grid-cols-{{ $plan === 'free' || $user->isOnTrial() ? '2' : '1' }} gap-4">
 
-                        @if ($plan === 'free')
+                        @if ($plan === 'free' || $user->isOnTrial())
                             {{-- Starter Plan --}}
                             <div class="rounded-2xl border-2 border-blue-200 p-6 relative">
                                 <div class="flex items-start justify-between mb-4">
@@ -359,8 +359,8 @@
                         </button>
                     </div>
                     <div class="p-6">
-                        <div class="grid grid-cols-1 {{ $plan === 'free' ? 'md:grid-cols-2' : '' }} gap-4">
-                            @if ($plan === 'free')
+                        <div class="grid grid-cols-1 {{ $plan === 'free' || $user->isOnTrial() ? 'md:grid-cols-2' : '' }} gap-4">
+                            @if ($plan === 'free' || $user->isOnTrial())
                                 <div class="rounded-2xl border-2 border-blue-200 p-5">
                                     <div class="flex items-start justify-between mb-4">
                                         <div>
