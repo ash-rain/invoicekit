@@ -78,7 +78,7 @@ Nastavte týdenní, měsíční, čtvrtletní nebo roční faktury. InvoiceKit j
 Klientský portál
 
 [f6_desc]
-Sdílejte s klientem zabezpečený tokenizovaný odkaz. Klient může zobrazit fakturu, stáhnout PDF a zaplatit online přes Stripe — bez nutnosti přihlášení.
+Sdílejte zabezpečený tokenizovaný odkaz s libovolným klientem. Mohou zobrazit fakturu, stáhnout PDF a zaplatit kartou online přes Stripe — prostředky jdou přímo na váš bankovní účet. Nebo sdílejte svůj IBAN na bezplatné bankovní převody. Bez nutnosti registrace.
 
 [f7_title]
 Funguje na jakémkoli zařízení
@@ -123,7 +123,7 @@ Vyberte klienta, označte záznamy času k fakturaci. InvoiceKit sestaví faktur
 Nechte se zaplatit
 
 [s3_desc]
-Odešlete jedním kliknutím. Klient platí přes Stripe. Vidíte peníze na svém účtu. Hotovo.
+Odešlete jedním kliknutím. Klient platí kartou přes Stripe nebo bezplatným bankovním převodem. Prostředky dorazí přímo na váš bankovní účet. Hotovo.
 
 [vat_tag]
 Soulad s EU
@@ -257,6 +257,9 @@ Režim osvobození od DPH (všech 27 zemí EU)
 [p_pro_l6]
 Všechna pravidla DPH EU
 
+[p_pro_l7]
+Online platby přes Stripe (poplatek 2 %)
+
 [p_pro_cta]
 Přejít na Pro
 
@@ -298,6 +301,40 @@ Je k dispozici bezplatná zkušební verze?
 
 [faq5_a]
 Ano. Všechny nové účty začínají s 14denní zkušební verzí Pro — bez platební karty. Od prvního dne máte plný přístup k Pro. Po uplynutí zkušební doby zůstanete na bezplatném plánu, pokud nepřejdete na vyšší verzi.
+
+
+[pay_tag]
+Online platby
+
+[pay_title]
+Přijímejte platby přímo. Vždy.
+
+[pay_desc]
+Propojte svůj účet Stripe a proměňte každou fakturu na platební odkaz. Klienti platí kartou — prostředky jdou přímo na váš bankovní účet, ne přes prostředníka. Bankovní převody přes IBAN jsou vždy zdarma.
+
+[pay_r1_label]
+Stripe Connect — přímo na váš účet
+
+[pay_r1_sub]
+Používáme Stripe Connect Express. Platba kartou klienta jde přímo na váš bankovní účet. InvoiceKit nikdy nedrží vaše peníze.
+
+[pay_r2_label]
+Klientský portál — bez přihlášení
+
+[pay_r2_sub]
+Každá faktura dostane bezpečný tokenizovaný odkaz. Klient ho otevře v prohlížeči, zobrazí fakturu a zaplatí jedním kliknutím.
+
+[pay_r3_label]
+Jen 2 % za platby kartou — bankovní převody zdarma
+
+[pay_r3_sub]
+Poplatek platformy 2 % se vztahuje jen na platby kartou. Bankovní převody přes IBAN jsou zcela zdarma.
+
+[faq6_q]
+Jak fungují online platby?
+
+[faq6_a]
+Propojte svůj účet Stripe v Nastavení → Platby. InvoiceKit vygeneruje pro každou fakturu bezpečný platební odkaz. Klient klikne na Zaplatit nyní a zaplatí kartou. Prostředky dorazí přímo na váš bankovní účet — InvoiceKit nikdy nedrží vaše peníze. Na platby kartou se vztahuje poplatek platformy 2 %; bankovní převody přes IBAN jsou vždy zdarma.
 
 [cta_title]
 Jste připraveni fakturovat jako Evropan?

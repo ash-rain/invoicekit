@@ -78,7 +78,8 @@ Configura facturas semanales, mensuales, trimestrales o anuales. InvoiceKit las 
 Portal del cliente
 
 [f6_desc]
-Comparte un enlace seguro y tokenizado con cualquier cliente. Puede ver la factura, descargar el PDF y pagar online vía Stripe — sin necesidad de inicio de sesión.
+Comparte un enlace seguro tokenizado con cualquier cliente. Pueden ver la factura, descargar el PDF y pagar en línea con tarjeta a través de Stripe — los fondos van directamente a tu cuenta bancaria. O comparte tu IBAN para transferencias bancarias gratuitas. Sin necesidad de registro.
+
 [f7_title]
 Funciona en cualquier dispositivo
 
@@ -121,7 +122,7 @@ Selecciona un cliente, elige las entradas de tiempo a facturar. InvoiceKit const
 Cobra
 
 [s3_desc]
-Envía con un clic. Tu cliente paga a través de Stripe. Ves el dinero en tu cuenta. Hecho.
+Envía con un clic. Tu cliente paga con tarjeta a través de Stripe o por transferencia bancaria gratuita. Los fondos llegan directamente a tu cuenta bancaria. Listo.
 
 [vat_tag]
 Conformidad UE
@@ -255,6 +256,9 @@ Modo exención de IVA (los 27 países de la UE)
 [p_pro_l6]
 Todas las reglas de IVA de la UE
 
+[p_pro_l7]
+Pagos en línea via Stripe (comisión 2 %)
+
 [p_pro_cta]
 Ir a Pro
 
@@ -296,6 +300,40 @@ Crea proyectos con clientes y tarifas por hora. Usa el temporizador inicio/pausa
 
 [faq5_a]
 Sí. Todas las cuentas nuevas comienzan con una prueba Pro de 14 días — sin tarjeta de crédito requerida. Tienes acceso completo a Pro desde el primer día. Tras la prueba, permaneces en el plan gratuito a menos que elijas actualizar.
+
+
+[pay_tag]
+Pagos en línea
+
+[pay_title]
+Cobra directamente. Siempre.
+
+[pay_desc]
+Conecta tu cuenta de Stripe y convierte cada factura en un enlace de pago. Los clientes pagan con tarjeta — los fondos llegan directamente a tu cuenta bancaria, no a un intermediario. Las transferencias bancarias mediante IBAN son siempre gratuitas.
+
+[pay_r1_label]
+Stripe Connect — directo a tu banco
+
+[pay_r1_sub]
+Usamos Stripe Connect Express. El pago con tarjeta de tu cliente va directamente a tu cuenta bancaria. InvoiceKit nunca retiene tu dinero.
+
+[pay_r2_label]
+Portal del cliente — sin registro
+
+[pay_r2_sub]
+Cada factura recibe un enlace tokenizado seguro. Tu cliente lo abre en cualquier navegador, ve la factura y paga con un clic.
+
+[pay_r3_label]
+Solo 2 % para pagos con tarjeta — transferencias gratis
+
+[pay_r3_sub]
+Una comisión del 2 % se aplica solo cuando el cliente paga con tarjeta. Las transferencias bancarias mediante IBAN son completamente gratuitas.
+
+[faq6_q]
+¿Cómo funcionan los pagos en línea?
+
+[faq6_a]
+Conecta tu cuenta de Stripe en Configuración → Pagos. InvoiceKit genera un enlace de pago seguro para cada factura. Tu cliente hace clic en Pagar ahora y paga con tarjeta. Los fondos llegan directamente a tu cuenta bancaria — InvoiceKit nunca retiene tu dinero. Se aplica una comisión de plataforma del 2 % a los pagos con tarjeta. Las transferencias bancarias mediante IBAN son siempre gratuitas.
 
 [cta_title]
 ¿Listo para facturar como un europeo?

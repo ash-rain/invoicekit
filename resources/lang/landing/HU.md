@@ -78,7 +78,7 @@ Ismétlődő számlák
 Ügyfélportál
 
 [f6_desc]
-Osszon meg egy biztonságos, tokenizált linket bármelyik ügyfelével. Megtekintheti a számlát, letöltheti a PDF-et, és online fizethet Stripe-on keresztül — bejelentkezés nélkül.
+Osszon meg bármely ügyféllel egy biztonságos, tokenizált hivatkozást. Megtekinthetik a számlát, letölthetik a PDF-et, és kártyával fizethetnek online a Stripe segítségével — a pénz közvetlenül az Ön bankszámlájára érkezik. Vagy ossza meg IBAN-ját az ingyenes banki átutalásokhoz. Bejelentkezés nélkül.
 
 [f7_title]
 Bármilyen eszközön működik
@@ -123,7 +123,7 @@ Válassz ügyfelet, jelöld ki a számlázandó időbejegyzéseket. Az InvoiceKi
 Kapj fizetést
 
 [s3_desc]
-Küld el egy kattintással. Az ügyfeled Stripe-on fizet. Látod a pénzt a számládon. Kész.
+Küldje el egy kattintással. Ügyfele kártyával fizet a Stripe segítségével, vagy ingyenes banki átutalással. A pénz közvetlenül az Ön bankszámlájára érkezik. Kész.
 
 [vat_tag]
 EU-megfelelőség
@@ -257,6 +257,9 @@ Peppol / e-Számlázás (UBL 2.1)
 [p_pro_l6]
 Összes EU ÁFA-szabály
 
+[p_pro_l7]
+Online fizetések Stripe-on keresztül (2% díj)
+
 [p_pro_cta]
 Pro-ra váltás
 
@@ -298,6 +301,40 @@ Van ingyenes próbaidőszak?
 
 [faq5_a]
 Igen. Minden új fiók 14 napos Pro próbaidőszakkal kezd — hitelkártya nem szükséges. Az első naptól teljes Pro hozzáférést kap. A próbaidőszak után az ingyenes csomaggal folytatja, hacsak nem dönt az upgrade mellett.
+
+
+[pay_tag]
+Online fizetések
+
+[pay_title]
+Fogadja a fizetéseket közvetlenül. Mindig.
+
+[pay_desc]
+Csatlakoztassa Stripe-fiókját, és alakítson minden számlát fizetési hivatkozássá. Az ügyfelek kártyával fizetnek — a pénz közvetlenül az Ön bankszámlájára érkezik, nem közvetítőhöz. Az IBAN-on keresztüli banki átutalások mindig ingyenesek.
+
+[pay_r1_label]
+Stripe Connect — közvetlenül az Ön bankjába
+
+[pay_r1_sub]
+Stripe Connect Expresst használunk. Ügyfele kártyás fizetése egyenesen az Ön bankszámlájára kerül. Az InvoiceKit soha nem tartja vissza a pénzét.
+
+[pay_r2_label]
+Ügyfélportál — bejelentkezés nélkül
+
+[pay_r2_sub]
+Minden számla kap egy biztonságos tokenizált hivatkozást. Az ügyfél bármely böngészőben megnyitja, látja a számlát, és egy kattintással fizet.
+
+[pay_r3_label]
+Csak 2% kártyás fizetésre — banki átutalások ingyenesek
+
+[pay_r3_sub]
+2%-os platformdíj csak kártyás fizetéskor érvényes. Az IBAN-on keresztüli banki átutalások teljesen ingyenesek.
+
+[faq6_q]
+Hogyan működnek az online fizetések?
+
+[faq6_a]
+Csatlakoztassa Stripe-fiókját a Beállítások → Fizetések menüpontban. Az InvoiceKit minden számlához biztonságos fizetési hivatkozást generál. Ügyfele rákattint a Fizess most gombra, és kártyával fizet. A pénz közvetlenül az Ön bankszámlájára érkezik, az InvoiceKit soha nem tartja vissza. Kártyás fizetésnél 2%-os platformdíj érvényes. Az IBAN-on keresztüli banki átutalások mindig ingyenesek.
 
 [cta_title]
 Készen áll számlázni európaian?

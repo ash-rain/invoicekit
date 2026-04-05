@@ -78,7 +78,7 @@ Richten Sie wöchentliche, monatliche, vierteljährliche oder jährliche Rechnun
 Kundenportal
 
 [f6_desc]
-Teilen Sie einem Kunden einen sicheren, tokenisierten Link. Der Kunde kann die Rechnung ansehen, das PDF herunterladen und online über Stripe bezahlen — ohne Login.
+Teilen Sie einem Kunden einen sicheren, tokenisierten Link. Er kann die Rechnung ansehen, das PDF herunterladen und online per Karte über Stripe bezahlen — das Geld geht direkt auf Ihr Bankkonto. Oder teilen Sie Ihre IBAN für kostenlose Banküberweisungen. Ohne Login.
 
 [f7_title]
 Auf jedem Gerät verfügbar
@@ -123,7 +123,7 @@ Wählen Sie einen Kunden, wählen Sie die abzurechnenden Zeiteinträge. InvoiceK
 Bezahlt werden
 
 [s3_desc]
-Mit einem Klick senden. Der Kunde zahlt über Stripe. Sie sehen das Geld auf Ihrem Konto. Fertig.
+Mit einem Klick senden. Der Kunde zahlt per Karte über Stripe oder kostenloser Banküberweisung. Das Geld geht direkt auf Ihr Bankkonto. Fertig.
 
 [vat_tag]
 EU-Konformität
@@ -257,6 +257,9 @@ Mehrwertsteuer-Befreiungsmodus (alle 27 EU-Länder)
 [p_pro_l6]
 Alle EU-Mehrwertsteuerregeln
 
+[p_pro_l7]
+Online-Zahlungen über Stripe (2 % Gebühr)
+
 [p_pro_cta]
 Pro wählen
 
@@ -298,6 +301,40 @@ Gibt es eine kostenlose Testphase?
 
 [faq5_a]
 Ja. Alle neuen Konten starten mit einer 14-tägigen Pro-Testphase — keine Kreditkarte erforderlich. Sie erhalten vom ersten Tag an vollen Pro-Zugang. Nach der Testphase bleiben Sie im kostenlosen Plan, sofern Sie nicht upgraden.
+
+
+[pay_tag]
+Online-Zahlungen
+
+[pay_title]
+Zahlungen direkt empfangen. Immer.
+
+[pay_desc]
+Verbinden Sie Ihr Stripe-Konto und machen Sie jede Rechnung zu einem Zahlungslink. Kunden zahlen per Karte — Geld landet direkt auf Ihrem Bankkonto, ohne Zwischenhändler. Banküberweisungen per IBAN sind immer kostenlos.
+
+[pay_r1_label]
+Stripe Connect — direkt auf Ihr Konto
+
+[pay_r1_sub]
+Wir nutzen Stripe Connect Express. Die Kartenzahlung Ihres Kunden geht direkt auf Ihr Bankkonto. InvoiceKit hält niemals Ihr Geld zurück.
+
+[pay_r2_label]
+Kundenportal — kein Login nötig
+
+[pay_r2_sub]
+Jede Rechnung erhält einen sicheren tokenisierten Link. Ihr Kunde öffnet ihn im Browser, sieht die Rechnung und zahlt mit einem Klick.
+
+[pay_r3_label]
+Nur 2 % bei Kartenzahlung — Überweisungen kostenlos
+
+[pay_r3_sub]
+Eine Plattformgebühr von 2 % gilt nur bei Kartenzahlung. Banküberweisungen per IBAN sind völlig kostenlos.
+
+[faq6_q]
+Wie funktionieren Online-Zahlungen?
+
+[faq6_a]
+Verbinden Sie Ihr Stripe-Konto unter Einstellungen → Zahlungen. InvoiceKit erstellt für jede Rechnung einen sicheren Zahlungslink. Ihr Kunde klickt auf Jetzt bezahlen und zahlt per Karte. Das Geld geht direkt auf Ihr Bankkonto — InvoiceKit hält niemals Ihr Geld zurück. Bei Kartenzahlungen fällt eine Plattformgebühr von 2 % an. Banküberweisungen per IBAN sind immer kostenlos.
 
 [cta_title]
 Bereit, wie ein Europäer zu fakturieren?

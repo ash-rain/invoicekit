@@ -78,7 +78,8 @@ Issettja fatturi ta' kull ġimgħa, kull xahar, kull tliet xhur jew kull sena. I
 Portal tal-Klijent
 
 [f6_desc]
-Aqsam link sigur, tokenized ma' kull klijent. Jistgħu jaraw il-fattura, jniżżlu l-PDF u jħallsu online permezz ta' Stripe — ma hemmx bżonn ta' login.
+Aqsam link sigur tokenizzat ma' kwalunkwe klijent. Jistgħu jaraw il-fattura, jniżżlu l-PDF u jħallsu onlajn b'karta permezz ta' Stripe — il-fondi jmorru direttament fil-kont bankarju tiegħek. Jew aqsam l-IBAN tiegħek għal trasferimenti bankarji bla ħlas. Ma tinħtieġx reġistrazzjoni.
+
 [f7_title]
 Jaħdem fuq kull apparat
 
@@ -121,7 +122,7 @@ Agħżel klijent, agħżel id-dħuliet taż-żmien biex tibgħatilhom fattura. I
 Irċievi l-ħlas
 
 [s3_desc]
-Ibgħat b'klikk wieħed. Il-klijent tiegħek iħallas permezz ta' Stripe. Tara l-flus fil-kont tiegħek. Lest.
+Ibgħat b'klikk waħda. Il-klijent tiegħek iħallas b'karta permezz ta' Stripe jew bit-trasferiment bankarju bla ħlas. Il-fondi jaslu direttament fil-kont bankarju tiegħek. Lest.
 
 [vat_tag]
 Konformità tal-UE
@@ -255,6 +256,9 @@ Modalità Eżenzjoni VAT (it-27 pajjiż tal-UE kollha)
 [p_pro_l6]
 Ir-regoli kollha tal-VAT tal-UE
 
+[p_pro_l7]
+Ħlasijiet onlajn permezz ta' Stripe (tariffa 2%)
+
 [p_pro_cta]
 Mur għal Pro
 
@@ -296,6 +300,40 @@ Hemm prova b'xejn disponibbli?
 
 [faq5_a]
 Iva. Il-kontijiet ġodda kollha jibdew bi prova ta' 14-il jum Pro — ma hemmx bżonn ta' karta ta' kreditu. Ikollok aċċess sħiħ għal Pro mill-ewwel jum. Wara l-prova, tibqa' fuq il-pjan b'xejn sakemm ma tagħżilx li tuġġorra.
+
+
+[pay_tag]
+Ħlasijiet Onlajn
+
+[pay_title]
+Irċievi ħlasijiet direttament. Dejjem.
+
+[pay_desc]
+Qabbad il-kont Stripe tiegħek u aqleb kull fattura f'link ta' ħlas. Il-klijenti jħallsu b'karta — il-fondi jaslu direttament fil-kont bankarju tiegħek, mhux lil intermedjarju. It-trasferimenti bankarji permezz ta' IBAN huma dejjem bla ħlas.
+
+[pay_r1_label]
+Stripe Connect — direttament lejn il-bank tiegħek
+
+[pay_r1_sub]
+Nużaw Stripe Connect Express. Il-ħlas bil-karta tal-klijent tiegħek imur direttament fil-kont bankarju tiegħek. InvoiceKit qatt ma żżomm il-flus tiegħek.
+
+[pay_r2_label]
+Portal tal-klijent — mingħajr reġistrazzjoni
+
+[pay_r2_sub]
+Kull fattura tirċievi link sigur tokenizzat. Il-klijent tiegħek jiftħu fi kwalunkwe browser, jara l-fattura u jħallas b'klikk waħda.
+
+[pay_r3_label]
+Biss 2% għal ħlasijiet bil-karta — trasferimenti bankarji bla ħlas
+
+[pay_r3_sub]
+Kummissjoni ta' 2% tapplika biss għal ħlasijiet bil-karta. It-trasferimenti bankarji permezz ta' IBAN huma bla ħlas kompletament.
+
+[faq6_q]
+Kif jaħdmu l-ħlasijiet onlajn?
+
+[faq6_a]
+Qabbad il-kont Stripe tiegħek f'Settings → Payments. InvoiceKit jiġġenera link ta' ħlas sigur għal kull fattura. Il-klijent tiegħek ikklikkja Ħallas Issa u jħallas bil-karta. Il-fondi jaslu direttament fil-kont bankarju tiegħek — InvoiceKit qatt ma żżomm il-flus tiegħek. Tapplika kummissjoni ta' pjattaforma ta' 2% għal ħlasijiet bil-karta. It-trasferimenti bankarji permezz ta' IBAN huma dejjem bla ħlas.
 
 [cta_title]
 Lest li tibgħat il-fatturi bħal Ewropew?

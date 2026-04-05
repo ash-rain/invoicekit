@@ -78,7 +78,7 @@ Configurez des factures hebdomadaires, mensuelles, trimestrielles ou annuelles. 
 Portail client
 
 [f6_desc]
-Partagez un lien sécurisé et tokenisé avec n'importe quel client. Il peut consulter la facture, télécharger le PDF et payer en ligne via Stripe — sans connexion requise.
+Partagez un lien sécurisé tokenisé avec n'importe quel client. Il peut consulter la facture, télécharger le PDF et payer en ligne par carte via Stripe — les fonds vont directement sur votre compte bancaire. Ou partagez votre IBAN pour des virements gratuits. Aucune inscription requise.
 
 [f7_title]
 Fonctionne sur tous les appareils
@@ -123,7 +123,7 @@ Sélectionnez un client, choisissez les saisies de temps à facturer. InvoiceKit
 Soyez payé
 
 [s3_desc]
-Envoyez d'un clic. Votre client paie via Stripe. Vous voyez l'argent sur votre compte. C'est fait.
+Envoyez en un clic. Votre client paie par carte via Stripe ou par virement bancaire gratuit. Les fonds arrivent directement sur votre compte bancaire. Terminé.
 
 [vat_tag]
 Conformité UE
@@ -257,6 +257,9 @@ Mode exonération TVA (les 27 pays de l'UE)
 [p_pro_l6]
 Toutes les règles TVA UE
 
+[p_pro_l7]
+Paiements en ligne via Stripe (2 % de frais)
+
 [p_pro_cta]
 Passer au Pro
 
@@ -298,6 +301,40 @@ Y a-t-il une période d'essai gratuite ?
 
 [faq5_a]
 Oui. Tous les nouveaux comptes démarrent avec un essai Pro de 14 jours — sans carte de crédit. Vous bénéficiez d'un accès Pro complet dès le premier jour. Après l'essai, vous restez sur le plan gratuit sauf si vous choisissez de passer à une version supérieure.
+
+
+[pay_tag]
+Paiements en ligne
+
+[pay_title]
+Encaissez directement. À chaque fois.
+
+[pay_desc]
+Connectez votre compte Stripe et transformez chaque facture en lien de paiement. Les clients paient par carte — les fonds arrivent directement sur votre compte bancaire, sans intermédiaire. Les virements bancaires via IBAN sont toujours gratuits.
+
+[pay_r1_label]
+Stripe Connect — directement sur votre compte
+
+[pay_r1_sub]
+Nous utilisons Stripe Connect Express. Le paiement par carte de votre client va directement sur votre compte bancaire. InvoiceKit ne retient jamais votre argent.
+
+[pay_r2_label]
+Portail client — sans connexion
+
+[pay_r2_sub]
+Chaque facture reçoit un lien tokenisé sécurisé. Votre client l'ouvre dans n'importe quel navigateur, voit la facture et paie en un clic.
+
+[pay_r3_label]
+Seulement 2 % pour les paiements par carte — virements gratuits
+
+[pay_r3_sub]
+Une commission de 2 % s'applique uniquement aux paiements par carte. Les virements bancaires via IBAN sont entièrement gratuits.
+
+[faq6_q]
+Comment fonctionnent les paiements en ligne ?
+
+[faq6_a]
+Connectez votre compte Stripe dans Paramètres → Paiements. InvoiceKit génère un lien de paiement sécurisé pour chaque facture. Votre client clique sur Payer maintenant et paie par carte. Les fonds arrivent directement sur votre compte bancaire — InvoiceKit ne retient jamais votre argent. Une commission de plateforme de 2 % s'applique aux paiements par carte. Les virements bancaires via IBAN sont toujours gratuits.
 
 [cta_title]
 Prêt à facturer à l'européenne ?

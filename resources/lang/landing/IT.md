@@ -78,7 +78,7 @@ Imposta fatture settimanali, mensili, trimestrali o annuali. InvoiceKit le clona
 Portale clienti
 
 [f6_desc]
-Condividi un link sicuro e tokenizzato con qualsiasi cliente. Possono visualizzare la fattura, scaricare il PDF e pagare online tramite Stripe — senza bisogno di accesso.
+Condividi un link sicuro tokenizzato con qualsiasi cliente. Possono visualizzare la fattura, scaricare il PDF e pagare online con carta tramite Stripe — i fondi vanno direttamente sul tuo conto bancario. O condividi il tuo IBAN per bonifici bancari gratuiti. Nessuna registrazione richiesta.
 
 [f7_title]
 Funziona su qualsiasi dispositivo
@@ -123,7 +123,7 @@ Seleziona un cliente, scegli le voci di tempo da fatturare. InvoiceKit costruisc
 Vieni pagato
 
 [s3_desc]
-Invia con un clic. Il tuo cliente paga tramite Stripe. Vedi i soldi sul tuo conto. Fatto.
+Invia con un clic. Il tuo cliente paga con carta tramite Stripe o con bonifico bancario gratuito. I fondi arrivano direttamente sul tuo conto bancario. Fatto.
 
 [vat_tag]
 Conformità UE
@@ -257,6 +257,9 @@ Modalità esenzione IVA (tutti i 27 paesi UE)
 [p_pro_l6]
 Tutte le regole IVA UE
 
+[p_pro_l7]
+Pagamenti online tramite Stripe (commissione 2%)
+
 [p_pro_cta]
 Vai a Pro
 
@@ -298,6 +301,40 @@ Crea progetti con clienti e tariffe orarie. Usa il timer start/stop integrato me
 
 [faq5_a]
 Sì. Tutti i nuovi account iniziano con una prova Pro di 14 giorni — nessuna carta di credito richiesta. Hai accesso completo a Pro dal primo giorno. Dopo la prova, rimani sul piano gratuito a meno che non scelga di passare a un piano superiore.
+
+
+[pay_tag]
+Pagamenti online
+
+[pay_title]
+Ricevi pagamenti direttamente. Sempre.
+
+[pay_desc]
+Collega il tuo account Stripe e trasforma ogni fattura in un link di pagamento. I clienti pagano con carta — i fondi arrivano direttamente sul tuo conto bancario, non tramite intermediario. I bonifici bancari via IBAN sono sempre gratuiti.
+
+[pay_r1_label]
+Stripe Connect — direttamente alla tua banca
+
+[pay_r1_sub]
+Utilizziamo Stripe Connect Express. Il pagamento con carta del tuo cliente va direttamente sul tuo conto bancario. InvoiceKit non trattiene mai il tuo denaro.
+
+[pay_r2_label]
+Portale clienti — nessuna registrazione
+
+[pay_r2_sub]
+Ogni fattura riceve un link tokenizzato sicuro. Il tuo cliente lo apre in qualsiasi browser, vede la fattura e paga con un clic.
+
+[pay_r3_label]
+Solo il 2% per i pagamenti con carta — bonifici gratuiti
+
+[pay_r3_sub]
+Una commissione del 2% si applica solo ai pagamenti con carta. I bonifici bancari via IBAN sono completamente gratuiti.
+
+[faq6_q]
+Come funzionano i pagamenti online?
+
+[faq6_a]
+Collega il tuo account Stripe in Impostazioni → Pagamenti. InvoiceKit genera un link di pagamento sicuro per ogni fattura. Il tuo cliente fa clic su Paga ora e paga con carta. I fondi arrivano direttamente sul tuo conto bancario — InvoiceKit non trattiene mai il tuo denaro. Si applica una commissione di piattaforma del 2% ai pagamenti con carta. I bonifici bancari via IBAN sono sempre gratuiti.
 
 [cta_title]
 Pronto a fatturare come un europeo?

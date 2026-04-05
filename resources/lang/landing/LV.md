@@ -78,7 +78,7 @@ Iestatiet iknedēļas, ikmēneša, ceturkšņa vai ikgadējus rēķinus. Invoice
 Klientu portāls
 
 [f6_desc]
-Kopīgojiet drošu, tokenizētu saiti ar jebkuru klientu. Viņi var skatīt rēķinu, lejupielādēt PDF un maksāt tiešsaisitē, izmantojot Stripe — bez pierakštanās.
+Dalieties ar drošu tokenizētu saiti ar jebkuru klientu. Viņi var apskatīt rēķinu, lejupielādēt PDF un veikt maksājumu tiešsaistē ar karti, izmantojot Stripe — naudas līdzekļi nonāk tieši jūsu bankas kontā. Vai arī dalieties ar savu IBAN bezmaksas bankas pārskaitījumiem. Reģistrācija nav nepieciešama.
 
 [f7_title]
 Darbojas jebkurā ierīcē
@@ -123,7 +123,7 @@ Izvēlies klientu, atzīmē laika ierakstus rēķinam. InvoiceKit veido rēķinu
 Saņem samaksu
 
 [s3_desc]
-Nosūti ar vienu klikšķi. Klients maksā caur Stripe. Redzi naudu savā kontā. Pabeigts.
+Nosūtiet ar vienu klikšķi. Jūsu klients maksā ar karti, izmantojot Stripe, vai ar bezmaksas bankas pārskaitījumu. Naudas līdzekļi nonāk tieši jūsu bankas kontā. Gatavs.
 
 [vat_tag]
 ES atbilstība
@@ -257,6 +257,9 @@ PVN atbrīvojuma režīms (visas 27 ES valstis)
 [p_pro_l6]
 Visi ES PVN noteikumi
 
+[p_pro_l7]
+Tiešsaistes maksājumi, izmantojot Stripe (2% maksa)
+
 [p_pro_cta]
 Pāriet uz Pro
 
@@ -298,6 +301,40 @@ Vai ir pieejama bezmaksas izmēģinājuma versija?
 
 [faq5_a]
 Jā. Visi jaunie konti sāk ar 14 dienu Pro izmēģinājuma versiju — kredītkarte nav nepieciešama. No pirmās dienas jums ir pilna Pro piekļuve. Pēc izmēģinājuma versijas paliekat bezmaksas plānā, ja neizlemsiet veikt jaunināšanu.
+
+
+[pay_tag]
+Tiešsaistes maksājumi
+
+[pay_title]
+Saņemiet maksājumus tieši. Vienmēr.
+
+[pay_desc]
+Savienojiet savu Stripe kontu un pārveidojiet katru rēķinu par maksājuma saiti. Klienti maksā ar karti — naudas līdzekļi nonāk tieši jūsu bankas kontā, nevis pie starpnieka. Bankas pārskaitījumi, izmantojot IBAN, vienmēr ir bezmaksas.
+
+[pay_r1_label]
+Stripe Connect — tieši uz jūsu banku
+
+[pay_r1_sub]
+Mēs izmantojam Stripe Connect Express. Jūsu klienta maksājums ar karti nonāk tieši jūsu bankas kontā. InvoiceKit nekad neaiztur jūsu naudu.
+
+[pay_r2_label]
+Klientu portāls — reģistrācija nav vajadzīga
+
+[pay_r2_sub]
+Katrs rēķins saņem drošu tokenizētu saiti. Jūsu klients to atver jebkurā pārlūkprogrammā, redz rēķinu un maksā ar vienu klikšķi.
+
+[pay_r3_label]
+Tikai 2% par karšu maksājumiem — bankas pārskaitījumi bezmaksas
+
+[pay_r3_sub]
+2% platformas komisija tiek piemērota tikai karšu maksājumiem. Bankas pārskaitījumi, izmantojot IBAN, ir pilnīgi bezmaksas.
+
+[faq6_q]
+Kā darbojas tiešsaistes maksājumi?
+
+[faq6_a]
+Savienojiet savu Stripe kontu sadaļā Iestatījumi → Maksājumi. InvoiceKit katram rēķinam ģenerē drošu maksājuma saiti. Jūsu klients noklikšķina uz Maksāt tagad un maksā ar karti. Naudas līdzekļi nonāk tieši jūsu bankas kontā — InvoiceKit nekad neaiztur jūsu naudu. Karšu maksājumiem tiek piemērota 2% platformas komisija. Bankas pārskaitījumi, izmantojot IBAN, vienmēr ir bezmaksas.
 
 [cta_title]
 Gatavs izrakstīt rēķinus kā eiropietis?

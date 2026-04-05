@@ -78,7 +78,7 @@ Socraigh sonraisc sheachtainiúla, mhíosúla, ráithiúla nó bliantúla. Clón
 Tairseach Cliant
 
 [f6_desc]
-Comhroinn nasc slán, tokenized le haon chliant. Is féidir leo an sonrasc a fheiceáil, an PDF a íoslódáil agus íoc ar líne trí Stripe — gan logáil isteach ag teastáil.
+Roinn nasc slán tokenized le haon chliaint. Is féidir leo an sonrasc a fheiceáil, an PDF a íoslódáil agus íoc ar líne le cárta trí Stripe — téann cistí go díreach chuig do chuntas bainc. Nó roinn d'IBAN le haghaidh aistrithe bainc saor in aisce. Ní gá logáil isteach.
 
 [f7_title]
 Oibríonn ar aon ghliús
@@ -123,7 +123,7 @@ Roghnaigh cliant, roghnaigh iontrálacha ama le billeáil. Tógann InvoiceKit an
 Faigh íocaíocht
 
 [s3_desc]
-Seol le haon chliceáil. Íocann do chliant trí Stripe. Feiceann tú an t-airgead i do chuntas. Déanta.
+Seol le cliceáil amháin. Íocann do chliaint le cárta trí Stripe nó trí aistriú bainc saor in aisce. Téann cistí go díreach chuig do chuntas bainc. Déanta.
 
 [vat_tag]
 Comhlíonadh AE
@@ -257,6 +257,9 @@ Mód Díolúine CBL (na 27 tír AE ar fad)
 [p_pro_l6]
 Gach riail CBL AE
 
+[p_pro_l7]
+Íocaíochtaí ar líne trí Stripe (táille 2%)
+
 [p_pro_cta]
 Téigh go Pro
 
@@ -298,6 +301,40 @@ An bhfuil tréimhse trialach saor in aisce ann?
 
 [faq5_a]
 Tá. Tosaíonn gach cuntas nua le triail Pro 14 lá — ní theastaíonn cárta creidmheasa. Faigheann tú rochtain iomlán ar Pro ón gcéad lá. Tar éis na trialach, fanann tú ar an bplean saor in aisce mura roghnáíonn tú uasghrádú.
+
+
+[pay_tag]
+Íocaíochtaí Ar Líne
+
+[pay_title]
+Faigh íoctha go díreach. Gach uair.
+
+[pay_desc]
+Ceangail do chuntas Stripe agus iompaigh gach sonrasc ina nasc íocaíochta. Íocann cliantaí le cárta — téann cistí go díreach chuig do chuntas bainc, ní trí idirghabhálaí. Tá aistrithe bainc trí IBAN saor in aisce i gcónaí.
+
+[pay_r1_label]
+Stripe Connect — díreach chuig do bhanc
+
+[pay_r1_sub]
+Úsáidimid Stripe Connect Express. Téann íocaíocht cárta do chliaint díreach chuig do chuntas bainc. Ní choinníonn InvoiceKit do chuid airgid riamh.
+
+[pay_r2_label]
+Tairseach cliaint — gan logáil isteach
+
+[pay_r2_sub]
+Faigheann gach sonrasc nasc tokenized slán. Osclaíonn do chliaint é in aon bhrabhsálaí, feiceann siad an sonrasc agus íocann le cliceáil amháin.
+
+[pay_r3_label]
+Ach 2% d'íocaíochtaí cárta — aistrithe bainc saor in aisce
+
+[pay_r3_sub]
+Tá táille ardáin 2% i bhfeidhm d'íocaíochtaí cárta amháin. Tá aistrithe bainc trí IBAN saor in aisce ar fad.
+
+[faq6_q]
+Conas a oibríonn íocaíochtaí ar líne?
+
+[faq6_a]
+Ceangail do chuntas Stripe i Socruithe → Íocaíochtaí. Gineann InvoiceKit nasc íocaíochta slán do gach sonrasc. Cliceálann do chliaint Íoc Anois agus íocann siad le cárta. Téann cistí go díreach chuig do chuntas bainc — ní choinníonn InvoiceKit do chuid airgid riamh. Tá táille ardáin 2% i bhfeidhm maidir le híocaíochtaí cárta. Tá aistrithe bainc trí IBAN saor in aisce i gcónaí.
 
 [cta_title]
 Réidh le sonrasc a eisiúint mar Eorpach?

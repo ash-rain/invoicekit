@@ -81,7 +81,7 @@ Set up weekly, monthly, quarterly, or yearly invoices. InvoiceKit clones and iss
 Client Portal
 
 [f6_desc]
-Share a secure tokenized link with any client. They can view the invoice, download the PDF, and pay online via Stripe — no login required.
+Share a secure tokenized link with any client. They can view the invoice, download the PDF, and pay by card via Stripe — funds go directly to your bank account. Or share your IBAN for free bank transfers. No login required.
 
 [f7_title]
 Works on Any Device
@@ -126,7 +126,7 @@ Select a client, pick the time entries to bill. InvoiceKit builds the invoice wi
 Get Paid
 
 [s3_desc]
-Send with one click. Your client pays via Stripe. You see the money in your account. Done.
+Send with one click. Your client pays by card via Stripe or by free bank transfer. Funds land directly in your bank account. Done.
 
 [vat_tag]
 EU Compliance
@@ -266,6 +266,9 @@ VAT Exempt Mode (all 27 EU)
 [p_pro_l6]
 All EU VAT rules
 
+[p_pro_l7]
+Online payments via Stripe (2% fee)
+
 [p_pro_cta]
 Go Pro
 
@@ -307,6 +310,40 @@ Is there a free trial?
 
 [faq5_a]
 Yes. Every new account starts with a 14-day Pro trial — no credit card required. You get full Pro access from day one. After the trial you stay on the Free plan unless you choose to upgrade.
+
+
+[pay_tag]
+Online Payments
+
+[pay_title]
+Get Paid Directly. Every Time.
+
+[pay_desc]
+Connect your Stripe account and turn every invoice into a payment link. Clients pay by card — funds land directly in your bank account, not an intermediary. Bank transfers via IBAN are always free.
+
+[pay_r1_label]
+Stripe Connect — Direct to Your Bank
+
+[pay_r1_sub]
+We use Stripe Connect Express. Your client's card payment goes straight to your bank. InvoiceKit never holds your money.
+
+[pay_r2_label]
+Client Portal — No Login Required
+
+[pay_r2_sub]
+Every invoice gets a secure tokenized link. Your client opens it in any browser, sees the invoice, and pays with one click.
+
+[pay_r3_label]
+Just 2% for Card Payments — Bank Transfers Free
+
+[pay_r3_sub]
+A 2% platform fee applies when a client pays by card. Bank transfers via IBAN have no fee at all.
+
+[faq6_q]
+How do online payments work?
+
+[faq6_a]
+Connect your Stripe account in Settings → Payments. InvoiceKit generates a secure payment link for each invoice. Your client clicks Pay Now and pays by card. Funds land directly in your bank account — InvoiceKit never holds your money. A 2% platform fee applies to card payments. Bank transfers via IBAN are always free.
 
 [cta_title]
 Ready to invoice like a European?

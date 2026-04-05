@@ -344,6 +344,67 @@
         </div>
     </section>
 
+    <!-- ====== ONLINE PAYMENTS ====== -->
+    <div class="pay-section sfull">
+        <div class="pay-inner" style="padding:5rem 2rem">
+            <div class="fade-up">
+                <div class="pay-badge">💳 {!! $g('pay_tag') !!}</div>
+                <h2 class="pay-t">{!! $g('pay_title') !!}</h2>
+                <p class="pay-d">{!! $g('pay_desc') !!}</p>
+                <div class="vat-rules">
+                    <div class="vr">
+                        <div class="vr-i icon-indigo">🔗</div>
+                        <div>
+                            <div class="vr-l">{!! $g('pay_r1_label') !!}</div>
+                            <div class="vr-s">{!! $g('pay_r1_sub') !!}</div>
+                        </div>
+                    </div>
+                    <div class="vr">
+                        <div class="vr-i icon-teal">🔒</div>
+                        <div>
+                            <div class="vr-l">{!! $g('pay_r2_label') !!}</div>
+                            <div class="vr-s">{!! $g('pay_r2_sub') !!}</div>
+                        </div>
+                    </div>
+                    <div class="vr">
+                        <div class="vr-i icon-emerald">💸</div>
+                        <div>
+                            <div class="vr-l">{!! $g('pay_r3_label') !!}</div>
+                            <div class="vr-s">{!! $g('pay_r3_sub') !!}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="fade-up fd2">
+                <div class="portal-card">
+                    <div class="portal-card-hdr">
+                        <div class="portal-logo">⚡ InvoiceKit</div>
+                        <div class="portal-inv">INV-2026-0042</div>
+                    </div>
+                    <div class="portal-from">From: Your Business · Bill to: Acme GmbH</div>
+                    <div class="portal-amount">€3,320.00</div>
+                    <div class="portal-items">
+                        <div class="portal-row">
+                            <span>Web Development — 32h × €85</span>
+                            <span>€2,720</span>
+                        </div>
+                        <div class="portal-row">
+                            <span>UI/UX Design — 8h × €75</span>
+                            <span>€600</span>
+                        </div>
+                    </div>
+                    <a class="portal-pay-btn">💳 Pay Now — €3,320.00</a>
+                    <div class="portal-divider">— or pay by bank transfer —</div>
+                    <div class="portal-iban">
+                        <div class="portal-iban-label">Bank Transfer (free)</div>
+                        <div class="portal-iban-val">IBAN: DE89 3704 0044 0032 1014 00</div>
+                    </div>
+                    <div class="portal-fee">2% platform fee on card payments · Bank transfers always free</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- ====== EU VAT ENGINE ====== -->
     <div class="vat-section sfull">
         <div class="vat-inner" style="padding:5rem 2rem">
@@ -447,6 +508,7 @@
                     <li>{!! $g('p_pro_l4') !!}</li>
                     <li>{!! $g('p_pro_l5') !!}</li>
                     <li>{!! $g('p_pro_l6') !!}</li>
+                    <li>{!! $g('p_pro_l7') !!}</li>
                 </ul>
                 <a href="/register" class="p-cta p-out">{!! $g('p_pro_cta') !!}</a>
             </div>
@@ -460,7 +522,7 @@
             <h2 class="s-title">{!! $g('faq_title') !!}</h2>
         </div>
         <div class="faq-list">
-            @foreach (range(1, 5) as $n)
+            @foreach (range(1, 6) as $n)
                 <details class="fq fade-up">
                     <summary class="fq-q">{!! $g("faq{$n}_q") !!}</summary>
                     <div class="fq-a">{!! $g("faq{$n}_a") !!}</div>

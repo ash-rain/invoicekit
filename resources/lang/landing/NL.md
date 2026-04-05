@@ -78,7 +78,7 @@ Stel wekelijkse, maandelijkse, driemaandelijkse of jaarlijkse facturen in. Invoi
 Klantenportaal
 
 [f6_desc]
-Deel een beveiligde, tokenized link met elke klant. Ze kunnen de factuur bekijken, de PDF downloaden en online betalen via Stripe — zonder aanmelding.
+Deel een veilige tokenized link met elke klant. Ze kunnen de factuur bekijken, de PDF downloaden en online met kaart betalen via Stripe — de middelen gaan direct naar uw bankrekening. Of deel uw IBAN voor gratis overschrijvingen. Geen account vereist.
 
 [f7_title]
 Werkt op elk apparaat
@@ -123,7 +123,7 @@ Selecteer een klant, kies de tijdsvermeldingen om te factureren. InvoiceKit bouw
 Ontvang betaling
 
 [s3_desc]
-Verstuur met één klik. Uw klant betaalt via Stripe. U ziet het geld op uw rekening. Klaar.
+Verzend met één klik. Uw klant betaalt met kaart via Stripe of via gratis bankoverschrijving. Het geld komt direct op uw bankrekening. Klaar.
 
 [vat_tag]
 EU-conformiteit
@@ -257,6 +257,9 @@ BTW-vrijstellingsmodus (alle 27 EU-landen)
 [p_pro_l6]
 Alle EU btw-regels
 
+[p_pro_l7]
+Online betalingen via Stripe (2% vergoeding)
+
 [p_pro_cta]
 Naar Pro
 
@@ -298,6 +301,40 @@ Is er een gratis proefperiode beschikbaar?
 
 [faq5_a]
 Ja. Alle nieuwe accounts beginnen met een gratis proefperiode van 14 dagen Pro — geen creditcard vereist. U heeft vanaf dag één volledige toegang tot Pro. Na de proefperiode blijft u op het gratis abonnement tenzij u ervoor kiest te upgraden.
+
+
+[pay_tag]
+Online betalingen
+
+[pay_title]
+Ontvang betalingen direct. Altijd.
+
+[pay_desc]
+Verbind uw Stripe-account en maak van elke factuur een betaallink. Klanten betalen met kaart — het geld komt direct op uw bankrekening, niet bij een tussenpersoon. Bankoverschrijvingen via IBAN zijn altijd gratis.
+
+[pay_r1_label]
+Stripe Connect — rechtstreeks naar uw bank
+
+[pay_r1_sub]
+Wij gebruiken Stripe Connect Express. De kaartbetaling van uw klant gaat rechtstreeks naar uw bankrekening. InvoiceKit houdt nooit uw geld vast.
+
+[pay_r2_label]
+Klantenportaal — geen inloggen
+
+[pay_r2_sub]
+Elke factuur krijgt een veilige tokenized link. Uw klant opent deze in elke browser, ziet de factuur en betaalt met één klik.
+
+[pay_r3_label]
+Slechts 2% bij kaartbetalingen — overschrijvingen gratis
+
+[pay_r3_sub]
+Een platformprovisie van 2% geldt alleen bij kaartbetalingen. Bankoverschrijvingen via IBAN zijn volledig gratis.
+
+[faq6_q]
+Hoe werken online betalingen?
+
+[faq6_a]
+Verbind uw Stripe-account via Instellingen → Betalingen. InvoiceKit genereert voor elke factuur een veilige betaallink. Uw klant klikt op Nu betalen en betaalt met kaart. Het geld komt direct op uw bankrekening — InvoiceKit houdt nooit uw geld vast. Er geldt een platformprovisie van 2% voor kaartbetalingen. Bankoverschrijvingen via IBAN zijn altijd gratis.
 
 [cta_title]
 Klaar om als een Europeaan te factureren?

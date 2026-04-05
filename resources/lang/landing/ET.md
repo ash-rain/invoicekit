@@ -78,7 +78,7 @@ Seadista nädalased, kuised, kvartalised või aastased arved. InvoiceKit kloonib
 Kliendirportaal
 
 [f6_desc]
-Jaga kliendiga turvalist, tokeniseeritud linki. Ta saab arvet vaadata, PDF-i alla laadida ja Stripe'i kaudu võrgus maksta — sisselogimine pole vajalik.
+Jagage turvalist tokeniseeritud linki mis tahes kliendiga. Nad saavad arvet vaadata, PDF-i alla laadida ja veebis kaardiga Stripe'i kaudu maksta — raha kantakse otse teie pangakontole. Või jagage oma IBAN-i tasuta pangaülekannete jaoks. Sisselogimine pole vajalik.
 
 [f7_title]
 Töötab igas seadmes
@@ -123,7 +123,7 @@ Vali klient, märgi ajaarvestuse kirjed arveldamiseks. InvoiceKit koostab arve �
 Saa makstud
 
 [s3_desc]
-Saada ühe klõpsuga. Sinu klient maksab Stripe'i kaudu. Näed raha oma kontol. Tehtud.
+Saatke ühe klõpsuga. Klient maksab kaardiga Stripe'i kaudu või tasuta pangaülekandega. Raha kantakse otse teie pangakontole. Valmis.
 
 [vat_tag]
 EL-i vastavus
@@ -257,6 +257,9 @@ KM-vabastuse réžiim (kõik 27 EL-i riiki)
 [p_pro_l6]
 Kõik EL-i käibemaksureeglid
 
+[p_pro_l7]
+Võrgumaksed Stripe'i kaudu (2% tasu)
+
 [p_pro_cta]
 Mine Pro-le
 
@@ -298,6 +301,40 @@ Kas on tasuta prooviversioon?
 
 [faq5_a]
 Jah. Kõik uued kontod algavad 14-päevase Pro prooviversiooniga — krediitkaarti pole vaja. Saate täieliku Pro juurdepääsu esimesest päevast. Pärast prooviversiooni jääte tasuta plaanile, kui te ei otsusta uuendada.
+
+
+[pay_tag]
+Võrgumaksed
+
+[pay_title]
+Võtke makseid vastu otse. Alati.
+
+[pay_desc]
+Ühendage oma Stripe'i konto ja muutke iga arve makselingiks. Kliendid maksavad kaardiga — raha jõuab otse teie pangakontole, mitte vahendajale. Pangaülekanded IBAN-i kaudu on alati tasuta.
+
+[pay_r1_label]
+Stripe Connect — otse teie panka
+
+[pay_r1_sub]
+Kasutame Stripe Connect Express'i. Teie kliendi kaardimakse läheb otse teie pangakontole. InvoiceKit ei hoia kunagi teie raha kinni.
+
+[pay_r2_label]
+Kliendi portaal — sisselogimist pole vaja
+
+[pay_r2_sub]
+Iga arve saab turvalise tokeniseeritud lingi. Teie klient avab selle mis tahes brauseris, näeb arvet ja maksab ühe klõpsuga.
+
+[pay_r3_label]
+Ainult 2% kaardimaksete eest — pangaülekanded tasuta
+
+[pay_r3_sub]
+2% platvormikomisjon kehtib ainult kaardimaksete puhul. Pangaülekanded IBAN-i kaudu on täiesti tasuta.
+
+[faq6_q]
+Kuidas toimivad võrgumaksed?
+
+[faq6_a]
+Ühendage Stripe'i konto jaotises Seaded → Maksed. InvoiceKit loob iga arve jaoks turvalise makselingi. Klient klõpsab nupul Maksa kohe ja maksab kaardiga. Raha kantakse otse teie pangakontole — InvoiceKit ei hoia kunagi teie raha kinni. Kaardimaksetele rakendatakse 2% platvormikomisjoni. Pangaülekanded IBAN-i kaudu on alati tasuta.
 
 [cta_title]
 Valmis esitama arveid nagu eurooplane?

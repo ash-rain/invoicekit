@@ -78,7 +78,7 @@ Skonfiguruj tygodniowe, miesięczne, kwartalne lub roczne faktury. InvoiceKit au
 Portal klienta
 
 [f6_desc]
-Udostępnij bezpieczny, tokenizowany link dowolnemu klientowi. Może przeglądać fakturę, pobrać PDF i zapłacić online przez Stripe — bez logowania.
+Udostępnij bezpieczny tokenizowany link dowolnemu klientowi. Mogą przeglądać fakturę, pobierać PDF i płacić kartą online przez Stripe — środki trafiają bezpośrednio na Twoje konto bankowe. Lub udostępnij swój IBAN na bezpłatne przelewy bankowe. Bez logowania.
 
 [f7_title]
 Działa na każddym urządzeniu
@@ -123,7 +123,7 @@ Wybierz klienta, zaznacz wpisy czasu do rozliczenia. InvoiceKit buduje fakturę 
 Otrzymaj płatność
 
 [s3_desc]
-Wyślij jednym kliknięciem. Klient płaci przez Stripe. Widzisz pieniądze na swoim koncie. Gotowe.
+Wyślij jednym kliknięciem. Twój klient płaci kartą przez Stripe lub bezpłatnym przelewem bankowym. Środki trafiają bezpośrednio na Twoje konto bankowe. Gotowe.
 
 [vat_tag]
 Zgodność z UE
@@ -257,6 +257,9 @@ Tryb zwolnienia z VAT (wszystkie 27 krajów UE)
 [p_pro_l6]
 Wszystkie zasady VAT UE
 
+[p_pro_l7]
+Płatności online przez Stripe (prowizja 2%)
+
 [p_pro_cta]
 Przejdź na Pro
 
@@ -298,6 +301,40 @@ Czy dostępny jest bezpłatny okres próbny?
 
 [faq5_a]
 Tak. Wszystkie nowe konta zaczynają z 14-dniowym okresem próbnym Pro — karta kredytowa nie jest wymagana. Od pierwszego dnia masz pełny dostęp do Pro. Po zakończeniu okresu próbnego pozostajesz na planie darmowym, chyba że zdecydujesz się na ulepszenie.
+
+
+[pay_tag]
+Płatności online
+
+[pay_title]
+Otrzymuj płatności bezpośrednio. Zawsze.
+
+[pay_desc]
+Połącz swoje konto Stripe i zamień każdą fakturę w link do płatności. Klienci płacą kartą — środki trafiają bezpośrednio na Twoje konto bankowe, nie do pośrednika. Przelewy bankowe przez IBAN są zawsze bezpłatne.
+
+[pay_r1_label]
+Stripe Connect — bezpośrednio na Twoje konto
+
+[pay_r1_sub]
+Używamy Stripe Connect Express. Płatność kartą Twojego klienta trafia bezpośrednio na Twoje konto bankowe. InvoiceKit nigdy nie przetrzymuje Twoich pieniędzy.
+
+[pay_r2_label]
+Portal klienta — bez logowania
+
+[pay_r2_sub]
+Każda faktura otrzymuje bezpieczny tokenizowany link. Twój klient otwiera go w dowolnej przeglądarce, widzi fakturę i płaci jednym kliknięciem.
+
+[pay_r3_label]
+Tylko 2% za płatności kartą — przelewy bezpłatne
+
+[pay_r3_sub]
+2% prowizja platformy dotyczy tylko płatności kartą. Przelewy bankowe przez IBAN są całkowicie bezpłatne.
+
+[faq6_q]
+Jak działają płatności online?
+
+[faq6_a]
+Połącz swoje konto Stripe w Ustawieniach → Płatności. InvoiceKit generuje bezpieczny link do płatności dla każdej faktury. Twój klient klika Zapłać teraz i płaci kartą. Środki trafiają bezpośrednio na Twoje konto bankowe — InvoiceKit nigdy nie przetrzymuje Twoich pieniędzy. Do płatności kartą stosowana jest prowizja platformy 2%. Przelewy bankowe przez IBAN są zawsze bezpłatne.
 
 [cta_title]
 Gotowy do fakturowania jak Europejczyk?

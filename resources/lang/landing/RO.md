@@ -78,7 +78,7 @@ Configurează facturi săptămânale, lunare, trimestriale sau anuale. InvoiceKi
 Portal client
 
 [f6_desc]
-Partajeaзă un link securizat, tokenized cu orice client. Pot vizualiza factura, descărca PDF-ul și plăti online prin Stripe — fără autentificare.
+Partajați un link tokenizat securizat cu orice client. Aceștia pot vizualiza factura, descărca PDF-ul și plăti online cu cardul prin Stripe — fondurile ajung direct în contul dvs. bancar. Sau partajați IBAN-ul dvs. pentru transferuri bancare gratuite. Fără necesitate de înregistrare.
 
 [f7_title]
 Funcționează pe orice dispozitiv
@@ -123,7 +123,7 @@ Selectează un client, alege înregistrările de timp de facturat. InvoiceKit co
 Primește plata
 
 [s3_desc]
-Trimite cu un clic. Clientul tău plătește prin Stripe. Îți vezi banii în cont. Gata.
+Trimiteți cu un singur clic. Clientul dvs. plătește cu cardul prin Stripe sau prin transfer bancar gratuit. Fondurile ajung direct în contul dvs. bancar. Gata.
 
 [vat_tag]
 Conformitate UE
@@ -257,6 +257,9 @@ Mod Scutire TVA (toate cele 27 de țări UE)
 [p_pro_l6]
 Toate regulile TVA UE
 
+[p_pro_l7]
+Plăți online prin Stripe (comision 2%)
+
 [p_pro_cta]
 Mergi la Pro
 
@@ -298,6 +301,40 @@ Există o perioadă de probă gratuită?
 
 [faq5_a]
 Da. Toate conturile noi încep cu o perioadă de probă Pro de 14 zile — nu este necesar cardul de credit. Ai acces complet la Pro din prima zi. După perioada de probă, rămâi pe planul gratuit dacă nu alegi să faci upgrade.
+
+
+[pay_tag]
+Plăți online
+
+[pay_title]
+Primiți plăți direct. Mereu.
+
+[pay_desc]
+Conectați contul Stripe și transformați fiecare factură într-un link de plată. Clienții plătesc cu cardul — fondurile ajung direct în contul dvs. bancar, nu la un intermediar. Transferurile bancare prin IBAN sunt întotdeauna gratuite.
+
+[pay_r1_label]
+Stripe Connect — direct în banca dvs.
+
+[pay_r1_sub]
+Utilizăm Stripe Connect Express. Plata cu cardul a clientului dvs. merge direct în contul dvs. bancar. InvoiceKit nu reține niciodată banii dvs.
+
+[pay_r2_label]
+Portal client — fără înregistrare
+
+[pay_r2_sub]
+Fiecare factură primește un link tokenizat securizat. Clientul dvs. îl deschide în orice browser, vede factura și plătește cu un singur clic.
+
+[pay_r3_label]
+Doar 2% pentru plăți cu cardul — transferuri gratuite
+
+[pay_r3_sub]
+Un comision de platformă de 2% se aplică doar pentru plăți cu cardul. Transferurile bancare prin IBAN sunt complet gratuite.
+
+[faq6_q]
+Cum funcționează plățile online?
+
+[faq6_a]
+Conectați contul Stripe în Setări → Plăți. InvoiceKit generează un link de plată securizat pentru fiecare factură. Clientul dvs. dă clic pe Plătește acum și plătește cu cardul. Fondurile ajung direct în contul dvs. bancar — InvoiceKit nu reține niciodată banii dvs. Se aplică un comision de platformă de 2% la plățile cu cardul. Transferurile bancare prin IBAN sunt întotdeauna gratuite.
 
 [cta_title]
 Ești gata să facturezi ca un european?

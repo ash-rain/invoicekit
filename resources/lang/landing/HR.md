@@ -78,7 +78,7 @@ Postavi tjedne, mjesečne, tromjesečne ili godišnje račune. InvoiceKit ih aut
 Klijentski portal
 
 [f6_desc]
-Podjeli sigurnu, tokeniziranu vezu s bilo kojim klijentom. Mogu pregledati račun, preuzeti PDF i platiti online putem Stripea — bez potrebe za prijavom.
+Podijelite sigurnu tokeniziranu vezu s bilo kojim klijentom. Mogu pregledati fakturu, preuzeti PDF i platiti online karticom putem Stripea — sredstva idu izravno na vaš bankovni račun. Ili podijelite IBAN za besplatne bankovne prijenose. Prijava nije potrebna.
 
 [f7_title]
 Radi na svakom uređaju
@@ -123,7 +123,7 @@ Odaberi klijenta, označi time unose za naplatu. InvoiceKit izrađuje fakturu s 
 Budi plaćen
 
 [s3_desc]
-Pošalji jednim klikom. Klijent plaća putem Stripea. Vidiš novac na svom računu. Gotovo.
+Pošaljite jednim klikom. Vaš klijent plaća karticom putem Stripea ili besplatnim bankovnim prijenosom. Sredstva stižu izravno na vaš bankovni račun. Gotovo.
 
 [vat_tag]
 EU usklađenost
@@ -257,6 +257,9 @@ Način oslobođenja od PDV-a (svih 27 zemalja EU)
 [p_pro_l6]
 Sva EU PDV pravila
 
+[p_pro_l7]
+Online plaćanja putem Stripea (naknada 2%)
+
 [p_pro_cta]
 Idi na Pro
 
@@ -298,6 +301,40 @@ Postoji li besplatno probno razdoblje?
 
 [faq5_a]
 Da. Svi novi računi počinju s 14-dnevnim Pro probnim razdobljem — nije potrebna kreditna kartica. Imaš puni Pro pristup od prvog dana. Nakon probnog razdoblja ostaneš na besplatnom planu ako ne odabereš nadogradnju.
+
+
+[pay_tag]
+Online plaćanja
+
+[pay_title]
+Primajte plaćanja izravno. Uvijek.
+
+[pay_desc]
+Povežite Stripe račun i pretvorite svaku fakturu u link za plaćanje. Klijenti plaćaju karticom — sredstva idu izravno na vaš bankovni račun, ne posredniku. Bankovni prijenosi putem IBAN-a uvijek su besplatni.
+
+[pay_r1_label]
+Stripe Connect — izravno na vaš račun
+
+[pay_r1_sub]
+Koristimo Stripe Connect Express. Plaćanje karticom vašeg klijenta ide izravno na vaš bankovni račun. InvoiceKit nikada ne zadržava vaš novac.
+
+[pay_r2_label]
+Klijentski portal — bez prijave
+
+[pay_r2_sub]
+Svaka faktura dobiva sigurnu tokeniziranu vezu. Vaš klijent je otvara u bilo kom pregledniku, vidi fakturu i plaća jednim klikom.
+
+[pay_r3_label]
+Samo 2% za kartična plaćanja — bankovni prijenosi besplatni
+
+[pay_r3_sub]
+Naknada platforme od 2% primjenjuje se samo za kartična plaćanja. Bankovni prijenosi putem IBAN-a potpuno su besplatni.
+
+[faq6_q]
+Kako funkcioniraju online plaćanja?
+
+[faq6_a]
+Povežite Stripe račun u Postavkama → Plaćanja. InvoiceKit generira sigurni link za plaćanje za svaku fakturu. Vaš klijent klikne Plati sada i plati karticom. Sredstva stižu izravno na vaš bankovni račun — InvoiceKit nikada ne zadržava vaš novac. Na kartična plaćanja primjenjuje se naknada platforme od 2%. Bankovni prijenosi putem IBAN-a uvijek su besplatni.
 
 [cta_title]
 Spreman fakturirati kao Europljanin?

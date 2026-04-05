@@ -78,7 +78,7 @@ Ställ in veckovisa, månatliga, kvartalsvisa eller årliga fakturor. InvoiceKit
 Kundportal
 
 [f6_desc]
-Dela en säker, tokenized länk med varje kund. De kan se fakturan, ladda ner PDF och betala online via Stripe — utan inloggning.
+Dela en säker tokeniserad länk med vilken klient som helst. De kan se fakturan, ladda ner PDF:en och betala online med kort via Stripe — pengarna går direkt till ditt bankkonto. Eller dela ditt IBAN för gratis banköverföringar. Ingen inloggning krävs.
 
 [f7_title]
 Fungerar på alla enheter
@@ -123,7 +123,7 @@ Välj en kund, markera tidsposter att fakturera. InvoiceKit bygger fakturan med 
 Bli betald
 
 [s3_desc]
-Skicka med ett klick. Din kund betalar via Stripe. Du ser pengarna på ditt konto. Klart.
+Skicka med ett klick. Din klient betalar med kort via Stripe eller med gratis banköverföring. Pengarna hamnar direkt på ditt bankkonto. Klart.
 
 [vat_tag]
 EU-efterlevnad
@@ -257,6 +257,9 @@ Momsbefrielseläge (alla 27 EU-länder)
 [p_pro_l6]
 Alla EU-momsregler
 
+[p_pro_l7]
+Onlinebetalningar via Stripe (2% avgift)
+
 [p_pro_cta]
 Gå till Pro
 
@@ -298,6 +301,40 @@ Finns det en gratis provperiod?
 
 [faq5_a]
 Ja. Alla nya konton börjar med en 14-dagars Pro-provperiod — inget kreditkort krävs. Du har full tillgång till Pro från första dagen. Efter provperioden stannar du på gratisplanen såvida du inte väljer att uppgradera.
+
+
+[pay_tag]
+Onlinebetalningar
+
+[pay_title]
+Ta emot betalningar direkt. Alltid.
+
+[pay_desc]
+Koppla ditt Stripe-konto och gör varje faktura till en betalningslänk. Klienter betalar med kort — pengarna hamnar direkt på ditt bankkonto, inte hos en mellanhand. Banköverföringar via IBAN är alltid gratis.
+
+[pay_r1_label]
+Stripe Connect — direkt till din bank
+
+[pay_r1_sub]
+Vi använder Stripe Connect Express. Din klients kortbetalning går direkt till ditt bankkonto. InvoiceKit håller aldrig inne dina pengar.
+
+[pay_r2_label]
+Kundportalen — ingen inloggning
+
+[pay_r2_sub]
+Varje faktura får en säker tokeniserad länk. Din klient öppnar den i vilken webbläsare som helst, ser fakturan och betalar med ett klick.
+
+[pay_r3_label]
+Bara 2% för kortbetalningar — banköverföringar gratis
+
+[pay_r3_sub]
+En plattformsavgift på 2% gäller bara kortbetalningar. Banköverföringar via IBAN är helt gratis.
+
+[faq6_q]
+Hur fungerar onlinebetalningar?
+
+[faq6_a]
+Koppla ditt Stripe-konto under Inställningar → Betalningar. InvoiceKit genererar en säker betalningslänk för varje faktura. Din klient klickar på Betala nu och betalar med kort. Pengarna hamnar direkt på ditt bankkonto — InvoiceKit håller aldrig inne dina pengar. En plattformsavgift på 2% gäller för kortbetalningar. Banköverföringar via IBAN är alltid gratis.
 
 [cta_title]
 Redo att fakturera som en europé?

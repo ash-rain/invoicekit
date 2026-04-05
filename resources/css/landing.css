@@ -946,6 +946,168 @@ a {
     color: var(--teal)
 }
 
+/* ===== PAYMENTS ===== */
+.pay-section {
+    background: var(--bg1);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border)
+}
+
+.pay-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start
+}
+
+.pay-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: .45rem;
+    font-size: .72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    color: #5eead4;
+    background: rgba(20, 184, 166, .1);
+    padding: .28rem .7rem;
+    border-radius: 100px;
+    margin-bottom: .9rem
+}
+
+.pay-t {
+    font-size: clamp(1.6rem, 2.8vw, 2.2rem);
+    font-weight: 800;
+    letter-spacing: -.025em;
+    margin-bottom: .75rem;
+    line-height: 1.25
+}
+
+.pay-d {
+    color: var(--muted);
+    margin-bottom: 1.75rem;
+    line-height: 1.75;
+    font-size: .975rem
+}
+
+.portal-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--rl);
+    padding: 1.75rem;
+    box-shadow: 0 0 40px rgba(20, 184, 166, .1)
+}
+
+.portal-card-hdr {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.25rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border)
+}
+
+.portal-logo {
+    font-size: .95rem;
+    font-weight: 900;
+    background: linear-gradient(135deg, #fff 20%, var(--teal));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text
+}
+
+.portal-inv {
+    font-size: .68rem;
+    font-family: 'Courier New', monospace;
+    background: rgba(20, 184, 166, .1);
+    border: 1px solid rgba(20, 184, 166, .2);
+    color: #5eead4;
+    padding: .18rem .5rem;
+    border-radius: 4px
+}
+
+.portal-from {
+    font-size: .75rem;
+    color: var(--subtle);
+    margin-bottom: .5rem
+}
+
+.portal-amount {
+    font-size: 2.4rem;
+    font-weight: 900;
+    letter-spacing: -.04em;
+    margin: .5rem 0 1.1rem
+}
+
+.portal-items {
+    display: flex;
+    flex-direction: column;
+    gap: .35rem;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border)
+}
+
+.portal-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: .78rem;
+    color: var(--muted)
+}
+
+.portal-pay-btn {
+    display: block;
+    width: 100%;
+    padding: .85rem;
+    background: linear-gradient(135deg, var(--teal), var(--sky));
+    color: #fff;
+    border-radius: 10px;
+    text-align: center;
+    font-size: .9rem;
+    font-weight: 700;
+    margin-bottom: .85rem;
+    cursor: pointer;
+    text-decoration: none
+}
+
+.portal-divider {
+    text-align: center;
+    font-size: .72rem;
+    color: var(--subtle);
+    margin-bottom: .85rem
+}
+
+.portal-iban {
+    background: rgba(255, 255, 255, .03);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: .7rem .9rem;
+    margin-bottom: .85rem
+}
+
+.portal-iban-label {
+    font-size: .68rem;
+    color: var(--subtle);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    margin-bottom: .2rem
+}
+
+.portal-iban-val {
+    font-size: .8rem;
+    color: var(--muted);
+    font-family: 'Courier New', monospace
+}
+
+.portal-fee {
+    text-align: center;
+    font-size: .72rem;
+    color: var(--subtle)
+}
+
 /* ===== PRICING ===== */
 .pricing-grid {
     display: grid;
@@ -1269,7 +1431,8 @@ details[open] summary.fq-q::after {
         display: none
     }
 
-    .vat-inner {
+    .vat-inner,
+    .pay-inner {
         grid-template-columns: 1fr
     }
 

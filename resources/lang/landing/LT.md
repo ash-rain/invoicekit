@@ -78,7 +78,7 @@ Nustatykite savaitines, mėnesines, ketvirtinės ar metines sąskaitas. InvoiceK
 Klientų portalas
 
 [f6_desc]
-Pasidalinkite saugiu, tokenizuotu nuoroda su bet kuriuo klientu. Jie gali peržiūrėti sąskaitą, atsisiųsti PDF ir mokėti internetu per Stripe — prisijungimas nereikalingas.
+Bendrinkite saugią tokenizuotą nuorodą su bet kuriuo klientu. Jie gali peržiūrėti sąskaitą, atsisiųsti PDF ir mokėti internetu kortele per Stripe — lėšos pervedamos tiesiogiai į jūsų banko sąskaitą. Arba pasidalykite savo IBAN nemokamais banko pervedimais. Prisijungimas nereikalingas.
 
 [f7_title]
 Veikia bet kuriame įrenginyje
@@ -123,7 +123,7 @@ Pasirink klientą, pažymėk laiko įrašus sąskaitai. InvoiceKit sukuria sąsk
 Gauk apmokėjimą
 
 [s3_desc]
-Siųsk vienu paspaudimu. Klientas moka per Stripe. Matai pinigus savo sąskaitoje. Padaryta.
+Siųskite vienu paspaudimu. Jūsų klientas moka kortele per Stripe arba nemokamai banko pervedimu. Lėšos tiesiogiai pervedamos į jūsų banko sąskaitą. Atlikta.
 
 [vat_tag]
 ES atitiktis
@@ -257,6 +257,9 @@ PVM atleidimo režimas (visos 27 ES šalys)
 [p_pro_l6]
 Visos ES PVM taisyklės
 
+[p_pro_l7]
+Mokėjimai internetu per Stripe (2% mokestis)
+
 [p_pro_cta]
 Pereiti į Pro
 
@@ -298,6 +301,40 @@ Ar yra nemokamas bandomasis laikotarpis?
 
 [faq5_a]
 Taip. Visos naujos paskyros pradeda su 14 dienų Pro bandomuoju laikotarpiu — kredito kortelė nereikalinga. Nuo pirmos dienos turite visą Pro prieigą. Po bandomojo laikotarpio liksite nemokamu planu, nebent pasirinksite atnaujinti.
+
+
+[pay_tag]
+Mokėjimai internetu
+
+[pay_title]
+Gaukite mokėjimus tiesiogiai. Visada.
+
+[pay_desc]
+Prijunkite savo Stripe paskyrą ir kiekvieną sąskaitą paverskite mokėjimo nuoroda. Klientai moka kortele — lėšos tiesiogiai patenka į jūsų banko sąskaitą, o ne tarpininkui. Banko pervedimai per IBAN visada yra nemokami.
+
+[pay_r1_label]
+Stripe Connect — tiesiogiai į jūsų banką
+
+[pay_r1_sub]
+Naudojame Stripe Connect Express. Jūsų kliento mokėjimas kortele keliauja tiesiai į jūsų banko sąskaitą. InvoiceKit niekada nelaiko jūsų pinigų.
+
+[pay_r2_label]
+Kliento portalas — prisijungimas nereikalingas
+
+[pay_r2_sub]
+Kiekviena sąskaita gauna saugią tokenizuotą nuorodą. Jūsų klientas ją atidaro bet kurioje naršyklėje, mato sąskaitą ir moka vienu paspaudimu.
+
+[pay_r3_label]
+Tik 2% už kortele atliekamus mokėjimus — banko pervedimai nemokami
+
+[pay_r3_sub]
+2% platformos mokestis taikomas tik mokant kortele. Banko pervedimai per IBAN yra visiškai nemokami.
+
+[faq6_q]
+Kaip veikia mokėjimai internetu?
+
+[faq6_a]
+Prijunkite savo Stripe paskyrą Nustatymų skyriuje → Mokėjimai. InvoiceKit kiekvienai sąskaitai sugeneruoja saugią mokėjimo nuorodą. Jūsų klientas spustelėja Mokėti dabar ir moka kortele. Lėšos tiesiogiai pervedamos į jūsų banko sąskaitą — InvoiceKit niekada nelaiko jūsų pinigų. Kortele atliktiems mokėjimams taikomas 2% platformos mokestis. Banko pervedimai per IBAN visada yra nemokami.
 
 [cta_title]
 Pasiruošęs išrašyti sąskaitas kaip europietis?

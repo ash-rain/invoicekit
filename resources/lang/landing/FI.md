@@ -78,7 +78,7 @@ Aseta viikoittaiset, kuukausittaiset, neljännesvuosittaiset tai vuosittaiset la
 Asiakasportaali
 
 [f6_desc]
-Jaa asiakkaalle turvallinen, tokenoitu linkki. Asiakas voi katsella laskua, ladata PDF:n ja maksaa verkossa Stripen kautta — kirjautumista ei tarvita.
+Jaa turvallinen tokenoitu linkki kenelle tahansa asiakkaalle. He voivat tarkastella laskua, ladata PDF-tiedoston ja maksaa verkossa kortilla Stripen kautta — varat siirtyvät suoraan pankkitilillesi. Tai jaa IBAN-numerosi maksuttomia tilisiirtoja varten. Kirjautuminen ei vaadita.
 
 [f7_title]
 Toimii kaikissa laitteissa
@@ -123,7 +123,7 @@ Valitse asiakas, valitse laskutettavat aikakirjaukset. InvoiceKit rakentaa lasku
 Saa maksu
 
 [s3_desc]
-Lähetä yhdellä napsautuksella. Asiakkaasi maksaa Stripeillä. Näet rahat tililläsi. Valmis.
+Lähetä yhdellä napsautuksella. Asiakkaasi maksaa kortilla Stripen kautta tai maksuttomalla tilisiirrolla. Varat siirtyvät suoraan pankkitilillesi. Valmis.
 
 [vat_tag]
 EU-vaatimustenmukaisuus
@@ -257,6 +257,9 @@ ALV-vapautustila (kaikki 27 EU-maata)
 [p_pro_l6]
 Kaikki EU ALV -säännöt
 
+[p_pro_l7]
+Verkkomaksut Stripen kautta (2 %:n maksu)
+
 [p_pro_cta]
 Siirry Prohon
 
@@ -298,6 +301,40 @@ Onko saatavilla maksuton kokeilujakso?
 
 [faq5_a]
 Kyllä. Kaikki uudet tilit alkavat 14 päivän Pro-kokeilujaksolla — luottokorttia ei tarvita. Saat täyden Pro-pääsyn ensimmäisestä päivästä. Kokeilujakson jälkeen pysyt maksuttomassa suunnitelmassa, ellet valitse päivitystä.
+
+
+[pay_tag]
+Verkkomaksut
+
+[pay_title]
+Saa maksut suoraan. Aina.
+
+[pay_desc]
+Yhdistä Stripe-tilisi ja muuta jokainen lasku maksulinkiksi. Asiakkaat maksavat kortilla — varat siirtyvät suoraan pankkitilillesi, eivät välittäjälle. IBAN-tilisiirrot ovat aina ilmaisia.
+
+[pay_r1_label]
+Stripe Connect — suoraan pankkiisi
+
+[pay_r1_sub]
+Käytämme Stripe Connect Expressiä. Asiakkaasi korttimaksu menee suoraan pankkitilillesi. InvoiceKit ei koskaan pidätä rahojasi.
+
+[pay_r2_label]
+Asiakasportaali — ei kirjautumista
+
+[pay_r2_sub]
+Jokainen lasku saa turvallisen tokenoidun linkin. Asiakkaasi avaa sen missä tahansa selaimessa, näkee laskun ja maksaa yhdellä napsautuksella.
+
+[pay_r3_label]
+Vain 2 % korttimaksuista — tilisiirrot ilmaisia
+
+[pay_r3_sub]
+2 %:n alustapalkkio koskee vain korttimaksuja. IBAN-tilisiirrot ovat täysin ilmaisia.
+
+[faq6_q]
+Miten verkkomaksut toimivat?
+
+[faq6_a]
+Yhdistä Stripe-tilisi kohdassa Asetukset → Maksut. InvoiceKit luo turvallisen maksulinkin jokaiselle laskulle. Asiakkaasi napsauttaa Maksa nyt -painiketta ja maksaa kortilla. Varat siirtyvät suoraan pankkitilillesi — InvoiceKit ei koskaan pidätä rahojasi. Korttimaksuihin sovelletaan 2 %:n alustapalkkiota. IBAN-tilisiirrot ovat aina ilmaisia.
 
 [cta_title]
 Valmis laskuttamaan kuin eurooppalainen?
