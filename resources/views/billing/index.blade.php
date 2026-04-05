@@ -272,7 +272,7 @@
                                                 d="M5 13l4 4L19 7" />
                                         </svg>{{ __('EU VAT automation') }}</li>
                                 </ul>
-                                @if ($plan === 'starter' && !$user->isOnTrial())
+                                @if ($plan === 'starter' && $user->hasActiveSubscription())
                                     <div class="w-full py-2.5 bg-blue-50 text-blue-700 rounded-xl font-bold text-sm text-center border border-blue-200">
                                         {{ __('Current Plan') }}
                                     </div>
@@ -391,7 +391,7 @@
                                             </li>
                                         @endforeach
                                     </ul>
-                                    @if ($plan === 'starter' && !$user->isOnTrial())
+                                    @if ($plan === 'starter' && $user->hasActiveSubscription())
                                         <div class="w-full py-2.5 bg-blue-50 text-blue-700 rounded-xl font-bold text-sm text-center border border-blue-200">
                                             {{ __('Current Plan') }}
                                         </div>
