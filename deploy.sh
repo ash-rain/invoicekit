@@ -6,15 +6,14 @@ APP_DIR="/opt/invoicekit"
 echo "==> Pulling latest code..."
 git -C "$APP_DIR" pull origin main
 
-echo "==> Installing Node dependencies and building assets..."
-npm --prefix "$APP_DIR" ci
-npm --prefix "$APP_DIR" run build
-
 echo "==> Building Docker image..."
 docker compose -f "$APP_DIR/docker-compose.yml" build app
 
 echo "==> Restarting containers..."
 docker compose -f "$APP_DIR/docker-compose.yml" up -d
+
+echo "==> Building assets..."
+docker compose -f "$APP_DIR/docker-compose.yml" exec -T app sh -c "npm ci && npm run build"
 
 echo "==> Running migrations..."
 docker compose -f "$APP_DIR/docker-compose.yml" exec -T app php artisan migrate --force
