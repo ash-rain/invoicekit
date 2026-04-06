@@ -422,6 +422,54 @@
                     </div>
                 </div>
             </div>
+            <div class="fade-up fd2">
+                <div class="aic-card">
+                    <div class="aic-titlebar">
+                        <span class="aic-dot aic-dot-red"></span>
+                        <span class="aic-dot aic-dot-yellow"></span>
+                        <span class="aic-dot aic-dot-green"></span>
+                        <span class="aic-titlebar-label">Document Import</span>
+                    </div>
+                    <div class="aic-body">
+                        <div class="aic-file-row">
+                            <span class="aic-file-icon">📄</span>
+                            <div class="aic-file-meta">
+                                <div class="aic-file-name">invoice_acme_2026.pdf</div>
+                                <div class="aic-file-size">284 KB · PDF</div>
+                            </div>
+                            <span class="aic-file-check">✓</span>
+                        </div>
+                        <div class="aic-processing-pill">✨ Gemini AI is reading your document…</div>
+                        <div class="aic-divider-label">Extracted fields</div>
+                        <div class="aic-fields">
+                            <div class="aic-field-row">
+                                <span class="aic-field-key">Vendor</span>
+                                <span class="aic-field-val">Acme GmbH</span>
+                            </div>
+                            <div class="aic-field-row">
+                                <span class="aic-field-key">Invoice #</span>
+                                <span class="aic-field-val">INV-2026-109</span>
+                            </div>
+                            <div class="aic-field-row">
+                                <span class="aic-field-key">Date</span>
+                                <span class="aic-field-val">3 Apr 2026</span>
+                            </div>
+                            <div class="aic-field-row">
+                                <span class="aic-field-key">Amount</span>
+                                <span class="aic-field-val aic-amount">€ 2,450.00</span>
+                            </div>
+                            <div class="aic-field-row">
+                                <span class="aic-field-key">VAT</span>
+                                <span class="aic-field-val">19% · DE</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="aic-footer">
+                        <button class="aic-btn-primary">Save as Expense →</button>
+                        <button class="aic-btn-ghost">Edit fields</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
