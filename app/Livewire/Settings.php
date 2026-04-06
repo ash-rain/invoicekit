@@ -138,7 +138,9 @@ class Settings extends Component
 
     public function updatedInvoiceLogoUpload(): void
     {
-        $this->validateOnly('invoiceLogoUpload');
+        $this->validateOnly('invoiceLogoUpload', [
+            'invoiceLogoUpload' => ['nullable', 'image', 'max:2048'],
+        ]);
     }
 
     public function saveProfile(): void
