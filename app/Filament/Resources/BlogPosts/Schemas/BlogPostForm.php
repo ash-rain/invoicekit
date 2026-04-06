@@ -40,7 +40,7 @@ class BlogPostForm
                             ->columnSpanFull(),
                         FileUpload::make('featured_image')
                             ->label('Featured Image')
-                            ->image()
+                            ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/gif', 'image/webp', 'image/svg+xml'])
                             ->disk('s3')
                             ->directory('blog-featured')
                             ->visibility('public')
