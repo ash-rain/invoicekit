@@ -392,7 +392,7 @@
     </section>
 
     <!-- ====== AI IMPORT ====== -->
-    <div class="pay-section sfull" style="background:linear-gradient(135deg,#f5f3ff 0%,#ede9fe 50%,#ddd6fe 100%)">
+    <div class="pay-section sfull ai-import-section" style="background:linear-gradient(135deg,#f5f3ff 0%,#ede9fe 50%,#ddd6fe 100%)">
         <div class="pay-inner" style="padding:5rem 2rem">
             <div class="fade-up">
                 <div class="pay-badge" style="background:#ede9fe;color:#6d28d9">🤖 {!! $g('ai_import_tag') !!}</div>

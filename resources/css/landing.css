@@ -968,6 +968,34 @@ a {
     color: var(--muted)
 }
 
+/* ===== AI IMPORT (light bg) ===== */
+.ai-import-section .vr {
+    background: rgba(255, 255, 255, .65);
+    border-color: rgba(109, 40, 217, .18);
+    backdrop-filter: blur(4px)
+}
+
+.ai-import-section .vr-l {
+    color: #1e1b4b
+}
+
+.ai-import-section .vr-s {
+    color: #4c1d95;
+    opacity: .75
+}
+
+.ai-import-section .icon-violet {
+    background: rgba(139, 92, 246, .2)
+}
+
+.ai-import-section .icon-indigo {
+    background: rgba(99, 102, 241, .2)
+}
+
+.ai-import-section .icon-sky {
+    background: rgba(14, 165, 233, .2)
+}
+
 .vat-rt {
     font-size: .72rem;
     font-weight: 700;
