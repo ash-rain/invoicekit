@@ -7,7 +7,7 @@
                 style="font-family:'Syne',sans-serif;letter-spacing:-0.025em;">{{ __('Extracted Data') }}</h1>
             <p class="mt-0.5 text-sm text-gray-500">
                 {{ __('Review and confirm to create your :type.', ['type' => __('invoice')]) }}
-                — <span class="font-medium text-gray-700">{{ $import->original_filename }}</span>
+                — @if($this->fileUrl)<a href="{{ $this->fileUrl }}" target="_blank" class="font-medium text-indigo-600 hover:underline">{{ $import->original_filename }}</a>@else<span class="font-medium text-gray-700">{{ $import->original_filename }}</span>@endif
             </p>
         </div>
         <div class="flex items-center gap-2 self-start sm:self-auto">
@@ -202,9 +202,12 @@
                         <path stroke-linecap="round" stroke-linejoin="round"
                             d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                     </svg>
-                    <p class="text-xs font-medium text-gray-700 truncate">{{ $import->original_filename }}</p>
-                </div>
-                <p class="mt-2 text-xs text-gray-400">{{ __('Importing as draft invoice') }}</p>
+                    @if($this->fileUrl)
+                        <a href="{{ $this->fileUrl }}" target="_blank"
+                            class="text-xs font-medium text-indigo-600 hover:underline truncate">{{ $import->original_filename }}</a>
+                    @else
+                        <p class="text-xs font-medium text-gray-700 truncate">{{ $import->original_filename }}</p>
+                    @endif
             </div>
         </div>
     </div>

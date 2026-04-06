@@ -91,6 +91,14 @@ class ImportReview extends Component
     }
 
     #[Computed]
+    public function fileUrl(): ?string
+    {
+        return $this->import->stored_path
+            ? Storage::disk('minio')->url($this->import->stored_path)
+            : null;
+    }
+
+    #[Computed]
     public function clients()
     {
         return Client::where('user_id', Auth::id())->orderBy('name')->get(['id', 'name']);

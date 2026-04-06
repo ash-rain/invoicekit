@@ -110,6 +110,14 @@ class ImportReview extends Component
     }
 
     #[Computed]
+    public function fileUrl(): ?string
+    {
+        return $this->import->stored_path
+            ? Storage::disk('minio')->url($this->import->stored_path)
+            : null;
+    }
+
+    #[Computed]
     public function subtotal(): float
     {
         return collect($this->items)->sum(
