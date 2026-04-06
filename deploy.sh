@@ -6,6 +6,10 @@ APP_DIR="/opt/invoicekit"
 echo "==> Pulling latest code..."
 git -C "$APP_DIR" pull origin main
 
+echo "==> Installing Node dependencies and building assets..."
+npm --prefix "$APP_DIR" ci
+npm --prefix "$APP_DIR" run build
+
 echo "==> Building Docker image..."
 docker compose -f "$APP_DIR/docker-compose.yml" build app
 
