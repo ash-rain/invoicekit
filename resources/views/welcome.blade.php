@@ -88,8 +88,14 @@
     $en = $parseLandingFile(resource_path('lang/landing/EN.md'));
     $translations = $parseLandingFile(resource_path('lang/landing/' . strtoupper($lang) . '.md'));
     $t = array_merge($en, $translations);
-    $g = fn(string $k, string $d = '') => htmlspecialchars($t[$k] ?? $d, ENT_QUOTES, 'UTF-8');
-    $gnl = fn(string $k, string $d = '') => nl2br(htmlspecialchars($t[$k] ?? $d, ENT_QUOTES, 'UTF-8'));
+    $landingVars = [
+        ':free_limit' => (string) config('ai.limits.free', 2),
+        ':starter_limit' => (string) config('ai.limits.starter', 10),
+    ];
+    $g = fn(string $k, string $d = '') => htmlspecialchars(strtr($t[$k] ?? $d, $landingVars), ENT_QUOTES, 'UTF-8');
+    $gnl = fn(string $k, string $d = '') => nl2br(
+        htmlspecialchars(strtr($t[$k] ?? $d, $landingVars), ENT_QUOTES, 'UTF-8'),
+    );
 
     $vatRates = [
         ['🇦🇹', 'AT', '20%'],
@@ -392,7 +398,8 @@
     </section>
 
     <!-- ====== AI IMPORT ====== -->
-    <div class="pay-section sfull ai-import-section" style="background:linear-gradient(135deg,#f5f3ff 0%,#ede9fe 50%,#ddd6fe 100%)">
+    <div class="pay-section sfull ai-import-section"
+        style="background:linear-gradient(135deg,#f5f3ff 0%,#ede9fe 50%,#ddd6fe 100%)">
         <div class="pay-inner" style="padding:5rem 2rem">
             <div class="fade-up">
                 <div class="pay-badge" style="background:#ede9fe;color:#6d28d9">🤖 {!! $g('ai_import_tag') !!}</div>
@@ -632,6 +639,7 @@
                     <li>{!! $g('p_free_l3') !!}</li>
                     <li>{!! $g('p_free_l4') !!}</li>
                     <li>{!! $g('p_free_l5') !!}</li>
+                    <li>{!! $g('p_free_l6') !!}</li>
                 </ul>
                 <a href="/register" class="p-cta p-out">{!! $g('p_free_cta') !!}</a>
             </div>
@@ -648,6 +656,7 @@
                     <li>{!! $g('p_starter_l4') !!}</li>
                     <li>{!! $g('p_starter_l5') !!}</li>
                     <li>{!! $g('p_starter_l6') !!}</li>
+                    <li>{!! $g('p_starter_l7') !!}</li>
                 </ul>
                 <a href="/register" class="p-cta p-pri">{!! $g('p_starter_cta') !!}</a>
             </div>
@@ -664,8 +673,23 @@
                     <li>{!! $g('p_pro_l5') !!}</li>
                     <li>{!! $g('p_pro_l6') !!}</li>
                     <li>{!! $g('p_pro_l7') !!}</li>
+                    <li>{!! $g('p_pro_l8') !!}</li>
                 </ul>
                 <a href="/register" class="p-cta p-out">{!! $g('p_pro_cta') !!}</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== BYOK CALLOUT ====== -->
+    <section class="section" style="padding-top:0;">
+        <div class="sfull"
+            style="background:linear-gradient(135deg,#ede9fe 0%,#e0f2fe 100%);border-radius:1.5rem;padding:2.5rem;">
+            <div class="flex flex-col md:flex-row md:items-center gap-6">
+                <div class="flex-1">
+                    <div class="s-tag" style="margin-bottom:.75rem">🔑 {!! $g('p_byok_label') !!}</div>
+                    <p style="color:#374151;font-size:.95rem;line-height:1.6">{!! $g('p_byok_desc') !!}</p>
+                </div>
+                <a href="/register" class="btn btn-primary" style="white-space:nowrap">{!! $g('p_free_cta') !!}</a>
             </div>
         </div>
     </section>
@@ -677,7 +701,7 @@
             <h2 class="s-title">{!! $g('faq_title') !!}</h2>
         </div>
         <div class="faq-list">
-            @foreach (range(1, 6) as $n)
+            @foreach (range(1, 7) as $n)
                 <details class="fq fade-up">
                     <summary class="fq-q">{!! $g("faq{$n}_q") !!}</summary>
                     <div class="fq-a">{!! $g("faq{$n}_a") !!}</div>
@@ -705,7 +729,7 @@
             <a href="/privacy">{!! $g('footer_privacy') !!}</a>
             <a href="/terms">{!! $g('footer_terms') !!}</a>
         </div>
-        <div class="footer-copy">{!! $g('footer_copy') !!}</div>
+        <div class="footer-copy">{!! str_replace('NetShell', '<a href="https://nsh.one" style="text-decoration:underline">NetShell</a>', $g('footer_copy')) !!}</div>
     </footer>
 
     <script>

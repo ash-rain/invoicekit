@@ -194,6 +194,9 @@ Időkövetés
 [p_free_l4]
 PDF számla exportálása
 
+[p_free_l6]
+:free_limit AI importálás naponta
+
 [p_free_cta]
 Kezdj ingyenesen
 
@@ -223,6 +226,9 @@ Időkövetés
 
 [p_starter_l5]
 Fizetési emlékeztetők
+
+[p_starter_l7]
+:starter_limit AI importálás naponta
 
 [p_starter_cta]
 Starter választása
@@ -259,6 +265,9 @@ Peppol / e-Számlázás (UBL 2.1)
 
 [p_pro_l7]
 Online fizetések Stripe-on keresztül (2% díj)
+
+[p_pro_l8]
+Korlátlan AI importálás
 
 [p_pro_cta]
 Pro-ra váltás
@@ -336,6 +345,18 @@ Hogyan működnek az online fizetések?
 [faq6_a]
 Csatlakoztassa Stripe-fiókját a Beállítások → Fizetések menüpontban. Az InvoiceKit minden számlához biztonságos fizetési hivatkozást generál. Ügyfele rákattint a Fizess most gombra, és kártyával fizet. A pénz közvetlenül az Ön bankszámlájára érkezik, az InvoiceKit soha nem tartja vissza. Kártyás fizetésnél 2%-os platformdíj érvényes. Az IBAN-on keresztüli banki átutalások mindig ingyenesek.
 
+[faq7_q]
+Hogyan működik az AI dokumentumimportálás?
+
+[faq7_a]
+Az InvoiceKit képes olvasni számla- és kiadási dokumentumokat (PDF, JPEG, PNG), és automatikusan kinyeri a szállítót, az összeget, a dátumot és a tételeket a Google Gemini AI segítségével. Az ingyenes csomag felhasználói :free_limit AI importálást kapnak naponta; a Starter csomag :starter_limit-et. A Pro felhasználóknak korlátlan importálás áll rendelkezésre. Bármely csomagnál hozzáadhatja saját ingyenes Gemini API kulcsát a Beállítások → AI menüpontban az összes korlátozás eltávolításához.
+
+[p_byok_label]
+Használja saját Gemini API kulcsát — korlátlan importálás
+
+[p_byok_desc]
+Bármely csomagban hozzáadhatja saját ingyenes Google Gemini API kulcsát a Beállítások → AI menüpontban. A beállítást követően minden AI-alapú dokumentumimportálás az Ön Google-kvótáját használja — az alkalmazás korlátai nem érvényesek.
+
 [cta_title]
 Készen áll számlázni európaian?
 
@@ -355,7 +376,7 @@ Adatvédelmi irányelvek
 Szolgáltatási feltételek
 
 [footer_copy]
-© 2026 InvoiceKit. Minden jog fenntartva.
+© 2026 NetShell. Minden jog fenntartva.
 
 [f10_title]
 AI-dokumentumimport

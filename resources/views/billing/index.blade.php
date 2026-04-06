@@ -166,6 +166,42 @@
                             @endif
                         @endif
                     </div>
+                    <div class="p-4 bg-[#fafafa] rounded-xl border border-[#eaecf0]">
+                        <div class="text-2xl font-bold text-[#0f1117]">{{ $aiImportsToday }}</div>
+                        <div class="text-sm text-gray-500 mt-1">
+                            {{ __('AI imports today') }}
+                            @if ($aiImportsLimit !== null)
+                                <span class="text-gray-400">/ {{ $aiImportsLimit }} {{ __('limit') }}</span>
+                            @else
+                                <span class="text-gray-400">({{ __('unlimited') }})</span>
+                            @endif
+                        </div>
+                        @if ($aiImportsLimit !== null)
+                            @php $aiPct = min(100, $aiImportsLimit > 0 ? (int) round($aiImportsToday / $aiImportsLimit * 100) : 0); @endphp
+                            <div class="mt-2 h-1.5 bg-gray-200 rounded-full overflow-hidden">
+                                <div class="h-full rounded-full transition-all
+                                {{ $aiPct >= 100 ? 'bg-red-500' : ($aiPct >= 80 ? 'bg-amber-500' : 'bg-indigo-500') }}"
+                                    style="width: {{ $aiPct }}%"></div>
+                            </div>
+                            @if ($aiPct >= 80)
+                                <p
+                                    class="mt-1 text-xs {{ $aiPct >= 100 ? 'text-red-600' : 'text-amber-600' }} font-medium">
+                                    @if ($aiPct >= 100)
+                                        {{ __('Limit reached.') }}
+                                        <a href="#" @click.prevent="showPlanModal = true"
+                                            class="underline">{{ __('Upgrade') }}</a>
+                                        {{ __('or') }}
+                                        <a href="{{ route('settings.index', ['tab' => 'ai']) }}"
+                                            class="underline">{{ __('add your own key') }}</a>
+                                    @else
+                                        {{ __('Approaching limit.') }}
+                                        <a href="#" @click.prevent="showPlanModal = true"
+                                            class="underline">{{ __('Upgrade') }}</a>
+                                    @endif
+                                </p>
+                            @endif
+                        @endif
+                    </div>
                 </div>
             </div>
 
@@ -237,7 +273,8 @@
             @if ($plan !== 'pro' || $user->isOnTrial())
                 <div class="bg-white rounded-2xl border border-[#eaecf0] p-6">
                     <h3 class="text-sm font-bold text-gray-900 mb-6">{{ __('Upgrade Your Plan') }}</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-{{ $plan === 'free' || $user->isOnTrial() ? '2' : '1' }} gap-4">
+                    <div
+                        class="grid grid-cols-1 md:grid-cols-{{ $plan === 'free' || $user->isOnTrial() ? '2' : '1' }} gap-4">
 
                         @if ($plan === 'free' || $user->isOnTrial())
                             {{-- Starter Plan --}}
@@ -247,7 +284,8 @@
                                         <h4 class="text-lg font-bold text-[#0f1117]"
                                             style="font-family:'Syne',sans-serif;">
                                             {{ __('Starter') }}</h4>
-                                        <p class="text-xs text-gray-500 mt-0.5">{{ __('For growing freelancers') }}</p>
+                                        <p class="text-xs text-gray-500 mt-0.5">{{ __('For growing freelancers') }}
+                                        </p>
                                     </div>
                                     <div class="text-right">
                                         <span class="text-2xl font-bold text-blue-600">€9</span>
@@ -275,9 +313,15 @@
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
                                                 d="M5 13l4 4L19 7" />
                                         </svg>{{ __('EU VAT automation') }}</li>
+                                    <li class="flex items-center gap-2"><svg class="w-4 h-4 text-blue-500 shrink-0"
+                                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                                d="M5 13l4 4L19 7" />
+                                        </svg>{{ __(config('ai.limits.starter') . ' AI imports/day') }}</li>
                                 </ul>
                                 @if ($plan === 'starter' && $user->hasActiveSubscription())
-                                    <div class="w-full py-2.5 bg-blue-50 text-blue-700 rounded-xl font-bold text-sm text-center border border-blue-200">
+                                    <div
+                                        class="w-full py-2.5 bg-blue-50 text-blue-700 rounded-xl font-bold text-sm text-center border border-blue-200">
                                         {{ __('Current Plan') }}
                                     </div>
                                 @else
@@ -336,6 +380,11 @@
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
                                             d="M5 13l4 4L19 7" />
                                     </svg>{{ __('Priority support') }}</li>
+                                <li class="flex items-center gap-2"><svg class="w-4 h-4 text-emerald-500 shrink-0"
+                                        fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                            d="M5 13l4 4L19 7" />
+                                    </svg>{{ __('Unlimited AI imports') }}</li>
                             </ul>
                             <form method="POST" action="{{ route('billing.checkout', 'pro') }}">
                                 @csrf
@@ -369,7 +418,8 @@
                         </button>
                     </div>
                     <div class="p-6">
-                        <div class="grid grid-cols-1 {{ $plan === 'free' || $user->isOnTrial() ? 'md:grid-cols-2' : '' }} gap-4">
+                        <div
+                            class="grid grid-cols-1 {{ $plan === 'free' || $user->isOnTrial() ? 'md:grid-cols-2' : '' }} gap-4">
                             @if ($plan === 'free' || $user->isOnTrial())
                                 <div class="rounded-2xl border-2 border-blue-200 p-5">
                                     <div class="flex items-start justify-between mb-4">
@@ -396,7 +446,8 @@
                                         @endforeach
                                     </ul>
                                     @if ($plan === 'starter' && $user->hasActiveSubscription())
-                                        <div class="w-full py-2.5 bg-blue-50 text-blue-700 rounded-xl font-bold text-sm text-center border border-blue-200">
+                                        <div
+                                            class="w-full py-2.5 bg-blue-50 text-blue-700 rounded-xl font-bold text-sm text-center border border-blue-200">
                                             {{ __('Current Plan') }}
                                         </div>
                                     @else

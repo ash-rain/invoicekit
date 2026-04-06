@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Jobs\ProcessDocumentImport;
 use App\Models\DocumentImport;
+use App\Services\PlanService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -48,6 +49,31 @@ class DocumentImporter extends Component
             'files' => ['required', 'array', 'min:1', 'max:10'],
             'files.*' => ['file', 'mimes:jpg,jpeg,png,pdf', 'max:10240'],
         ]);
+
+        $user = Auth::user();
+        $planService = app(PlanService::class);
+
+        if (! $planService->canImportDocument($user)) {
+            $this->addError('files', __('Daily AI import limit reached. :upgrade_link or :settings_link.', [
+                'upgrade_link' => route('billing.index'),
+                'settings_link' => route('settings.index'),
+            ]));
+
+            return;
+        }
+
+        $remaining = $planService->aiImportsRemainingToday($user);
+        $fileCount = count($this->files);
+
+        if ($remaining !== null && $fileCount > $remaining) {
+            $this->addError('files', __('You can only import :remaining more AI document(s) today. :upgrade_link or :settings_link.', [
+                'remaining' => $remaining,
+                'upgrade_link' => route('billing.index'),
+                'settings_link' => route('settings.index'),
+            ]));
+
+            return;
+        }
 
         $userId = Auth::id();
 
@@ -114,6 +140,24 @@ class DocumentImporter extends Component
         return $this->imports->contains(
             fn (DocumentImport $i) => $i->isPending() || $i->isProcessing(),
         );
+    }
+
+    #[Computed]
+    public function aiImportsToday(): int
+    {
+        return app(PlanService::class)->aiImportsTodayCount(Auth::user());
+    }
+
+    #[Computed]
+    public function aiImportsLimit(): ?int
+    {
+        return app(PlanService::class)->aiImportDailyLimit(Auth::user());
+    }
+
+    #[Computed]
+    public function canImport(): bool
+    {
+        return app(PlanService::class)->canImportDocument(Auth::user());
     }
 
     public function render()

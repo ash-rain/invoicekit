@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Exceptions\NoAvailableApiKeyException;
 use App\Models\AiApiKey;
+use App\Models\DocumentImport;
 
 class AiKeyRotationService
 {
@@ -45,5 +46,16 @@ class AiKeyRotationService
             'last_error_at' => null,
             'last_error_message' => null,
         ]);
+    }
+
+    public function isSystemCapReached(): bool
+    {
+        $cap = (int) config('ai.limits.system_daily_cap', 1000);
+
+        $usedToday = DocumentImport::whereDate('created_at', today())
+            ->where('used_own_key', false)
+            ->count();
+
+        return $usedToday >= $cap;
     }
 }

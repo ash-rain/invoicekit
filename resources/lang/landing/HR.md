@@ -194,6 +194,9 @@ Praćenje vremena
 [p_free_l4]
 PDF izvoz faktura
 
+[p_free_l6]
+:free_limit AI uvoza dnevno
+
 [p_free_cta]
 Počni besplatno
 
@@ -223,6 +226,9 @@ Sva EU PDV pravila
 
 [p_starter_l5]
 Podsjetnici plaćanja
+
+[p_starter_l7]
+:starter_limit AI uvoza dnevno
 
 [p_starter_cta]
 Odaberi Starter
@@ -259,6 +265,9 @@ Sva EU PDV pravila
 
 [p_pro_l7]
 Online plaćanja putem Stripea (naknada 2%)
+
+[p_pro_l8]
+Neograničeni AI uvozi
 
 [p_pro_cta]
 Idi na Pro
@@ -336,6 +345,18 @@ Kako funkcioniraju online plaćanja?
 [faq6_a]
 Povežite Stripe račun u Postavkama → Plaćanja. InvoiceKit generira sigurni link za plaćanje za svaku fakturu. Vaš klijent klikne Plati sada i plati karticom. Sredstva stižu izravno na vaš bankovni račun — InvoiceKit nikada ne zadržava vaš novac. Na kartična plaćanja primjenjuje se naknada platforme od 2%. Bankovni prijenosi putem IBAN-a uvijek su besplatni.
 
+[faq7_q]
+Kako funkcionira uvoz dokumenata s AI-om?
+
+[faq7_a]
+InvoiceKit može čitati fakture i dokumente o troškovima (PDF, JPEG, PNG) i automatski izvlačiti dobavljača, iznos, datum i stavke koristeći Google Gemini AI. Korisnici besplatnog plana dobivaju :free_limit AI uvoza dnevno; Starter plan :starter_limit. Pro korisnici imaju neograničene uvoze. Na svakom planu možete dodati vlastiti besplatni Gemini API ključ u Postavkama → AI kako biste uklonili sva ograničenja.
+
+[p_byok_label]
+Koristite vlastiti Gemini API ključ — neograničeni uvozi
+
+[p_byok_desc]
+Na svakom planu možete dodati vlastiti besplatni Google Gemini API ključ u Postavkama → AI. Nakon postavljanja, svi uvozi dokumenata putem AI-a koriste vašu Google kvotu — nema ograničenja aplikacije.
+
 [cta_title]
 Spreman fakturirati kao Europljanin?
 
@@ -355,7 +376,7 @@ Pravila privatnosti
 Uvjeti usluge
 
 [footer_copy]
-© 2026 InvoiceKit. Sva prava zadržana.
+© 2026 NetShell. Sva prava zadržana.
 
 [f10_title]
 AI uvoz dokumenata

@@ -193,6 +193,9 @@ Traċċar taż-żmien
 [p_free_l4]
 Esportazzjonit fattura PDF
 
+[p_free_l6]
+:free_limit importazzjonijiet AI kuljum
+
 [p_free_cta]
 Ibda b'xejn
 
@@ -222,6 +225,9 @@ Ir-regoli kollha tal-VAT tal-UE
 
 [p_starter_l5]
 Tfakkir tal-ħlas
+
+[p_starter_l7]
+:starter_limit importazzjonijiet AI kuljum
 
 [p_starter_cta]
 Agħżel Starter
@@ -258,6 +264,9 @@ Ir-regoli kollha tal-VAT tal-UE
 
 [p_pro_l7]
 Ħlasijiet onlajn permezz ta' Stripe (tariffa 2%)
+
+[p_pro_l8]
+Importazzjonijiet AI mingħajr limitu
 
 [p_pro_cta]
 Mur għal Pro
@@ -335,6 +344,18 @@ Kif jaħdmu l-ħlasijiet onlajn?
 [faq6_a]
 Qabbad il-kont Stripe tiegħek f'Settings → Payments. InvoiceKit jiġġenera link ta' ħlas sigur għal kull fattura. Il-klijent tiegħek ikklikkja Ħallas Issa u jħallas bil-karta. Il-fondi jaslu direttament fil-kont bankarju tiegħek — InvoiceKit qatt ma żżomm il-flus tiegħek. Tapplika kummissjoni ta' pjattaforma ta' 2% għal ħlasijiet bil-karta. It-trasferimenti bankarji permezz ta' IBAN huma dejjem bla ħlas.
 
+[faq7_q]
+Kif jaħdem l-importar tad-dokumenti bl-AI?
+
+[faq7_a]
+InvoiceKit jista' jaqra fatturi u dokumenti tal-ispejjeż (PDF, JPEG, PNG) u awtomatikament jiekol il-fornitur, l-ammont, id-data u l-linji bl-użu ta' Google Gemini AI. L-utenti tal-pjan b'xejn jiksbu :free_limit importazzjonijiet ta' AI kuljum; il-pjan Starter :starter_limit. L-utenti Pro igawdu importazzjonijiet bla limitu. Fi kwalunkwe pjan, tista' żżid iċ-ċavetta tiegħek tal-Gemini API b'xejn f'Settings → AI biex tneħħi l-limitazzjonijiet kollha tal-app.
+
+[p_byok_label]
+Uża ċ-ċavetta tiegħek tal-API ta' Gemini — importazzjonijiet mingħajr limitu
+
+[p_byok_desc]
+Fi kwalunkwe pjan, tista' żżid iċ-ċavetta tal-API ta' Google Gemini b'xejn tiegħek f'Settings → AI. Ladarba jiġi stabbilit, l-importazzjonijiet kollha tal-dokumenti tal-AI jużaw il-kwota tiegħek Google — ma japplikaw l-ebda limiti tal-app.
+
 [cta_title]
 Lest li tibgħat il-fatturi bħal Ewropew?
 
@@ -354,7 +375,7 @@ Politika tal-Privatezza
 Termini tas-Servizz
 
 [footer_copy]
-© 2026 InvoiceKit. Id-drittijiet kollha riżervati.
+© 2026 NetShell. Id-drittijiet kollha riżervati.
 
 [f10_title]
 Importazzjoni ta' dokumenti bl-AI

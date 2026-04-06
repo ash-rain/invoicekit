@@ -194,6 +194,9 @@ Ajanseuranta
 [p_free_l4]
 PDF-laskujen vienti
 
+[p_free_l6]
+:free_limit AI-tuontia päivässä
+
 [p_free_cta]
 Aloita ilmaiseksi
 
@@ -223,6 +226,9 @@ Kaikki EU ALV -säännöt
 
 [p_starter_l5]
 Maksumuistutukset
+
+[p_starter_l7]
+:starter_limit AI-tuontia päivässä
 
 [p_starter_cta]
 Valitse Starter
@@ -259,6 +265,9 @@ Kaikki EU ALV -säännöt
 
 [p_pro_l7]
 Verkkomaksut Stripen kautta (2 %:n maksu)
+
+[p_pro_l8]
+Rajoittamaton AI-tuonti
 
 [p_pro_cta]
 Siirry Prohon
@@ -336,6 +345,18 @@ Miten verkkomaksut toimivat?
 [faq6_a]
 Yhdistä Stripe-tilisi kohdassa Asetukset → Maksut. InvoiceKit luo turvallisen maksulinkin jokaiselle laskulle. Asiakkaasi napsauttaa Maksa nyt -painiketta ja maksaa kortilla. Varat siirtyvät suoraan pankkitilillesi — InvoiceKit ei koskaan pidätä rahojasi. Korttimaksuihin sovelletaan 2 %:n alustapalkkiota. IBAN-tilisiirrot ovat aina ilmaisia.
 
+[faq7_q]
+Miten AI-asiakirjatuonti toimii?
+
+[faq7_a]
+InvoiceKit pystyy lukemaan lasku- ja kuluasiakirjoja (PDF, JPEG, PNG) ja poimimaan automaattisesti toimittajan, summan, päivämäärän ja rivit Google Gemini AI:n avulla. Ilmaisen suunnitelman käyttäjät saavat :free_limit AI-tuontia päivässä, Starter-suunnitelman käyttäjät :starter_limit. Pro-käyttäjillä on rajoittamaton määrä tuonteja. Millä tahansa suunnitelmalla voit lisätä oman ilmaisen Gemini API -avaimen kohdassa Asetukset → AI poistaaksesi kaikki sovelluksen rajoitukset.
+
+[p_byok_label]
+Käytä omaa Gemini API -avaintasi — rajoittamaton käyttö
+
+[p_byok_desc]
+Millä tahansa suunnitelmalla voit lisätä oman ilmaisen Google Gemini API -avaimen kohdassa Asetukset → AI. Kun avain on asetettu, kaikki AI-asiakirjatuonnit käyttävät Google-kiintiötäsi — sovelluksen rajoituksia ei sovelleta.
+
 [cta_title]
 Valmis laskuttamaan kuin eurooppalainen?
 
@@ -355,7 +376,7 @@ Tietosuojakäytäntö
 Käyttöehdot
 
 [footer_copy]
-© 2026 InvoiceKit. Kaikki oikeudet pidätetään.
+© 2026 NetShell. Kaikki oikeudet pidätetään.
 
 [f10_title]
 AI-dokumenttituonti

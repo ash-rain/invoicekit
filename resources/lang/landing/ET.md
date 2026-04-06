@@ -194,6 +194,9 @@ Ajajälgimine
 [p_free_l4]
 PDF-arvete eksport
 
+[p_free_l6]
+:free_limit AI-importi päevas
+
 [p_free_cta]
 Alusta tasuta
 
@@ -223,6 +226,9 @@ Kõik EL-i käibemaksureeglid
 
 [p_starter_l5]
 Maksetuletused
+
+[p_starter_l7]
+:starter_limit AI-importi päevas
 
 [p_starter_cta]
 Vali Starter
@@ -259,6 +265,9 @@ Kõik EL-i käibemaksureeglid
 
 [p_pro_l7]
 Võrgumaksed Stripe'i kaudu (2% tasu)
+
+[p_pro_l8]
+Piiramatu arv AI-importe
 
 [p_pro_cta]
 Mine Pro-le
@@ -336,6 +345,18 @@ Kuidas toimivad võrgumaksed?
 [faq6_a]
 Ühendage Stripe'i konto jaotises Seaded → Maksed. InvoiceKit loob iga arve jaoks turvalise makselingi. Klient klõpsab nupul Maksa kohe ja maksab kaardiga. Raha kantakse otse teie pangakontole — InvoiceKit ei hoia kunagi teie raha kinni. Kaardimaksetele rakendatakse 2% platvormikomisjoni. Pangaülekanded IBAN-i kaudu on alati tasuta.
 
+[faq7_q]
+Kuidas töötab AI-dokumendiiimport?
+
+[faq7_a]
+InvoiceKit suudab lugeda arveid ja kuludokumente (PDF, JPEG, PNG) ning automaatselt eraldada tarnija, summa, kuupäeva ja reaelemendid Google Gemini AI abil. Tasuta plaani kasutajad saavad :free_limit AI-importi päevas; Starter-plaani kasutajad :starter_limit. Pro-kasutajatel on piiramatu arv importe. Igas plaanis saate lisada oma tasuta Gemini API võtme jaotises Seaded → AI, et eemaldada kõik rakenduse piirangud.
+
+[p_byok_label]
+Kasutage oma Gemini API võtit — piiramatu kasutus
+
+[p_byok_desc]
+Igas plaanis saate lisada oma tasuta Google Gemini API võtme jaotises Seaded → AI. Pärast seadistamist kasutavad kõik AI-dokumendiimpordid teie Google'i kvooti — rakenduse piirangud ei kehti.
+
 [cta_title]
 Valmis esitama arveid nagu eurooplane?
 
@@ -355,7 +376,7 @@ Privaatsuspoliitika
 Teenustingimused
 
 [footer_copy]
-© 2026 InvoiceKit. Kõik õigused kaitstud.
+© 2026 NetShell. Kõik õigused kaitstud.
 
 [f10_title]
 Tehisintellekti dokumentide import

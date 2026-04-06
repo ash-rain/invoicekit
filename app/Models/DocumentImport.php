@@ -23,12 +23,14 @@ class DocumentImport extends Model
         'error_message',
         'invoice_id',
         'expense_id',
+        'used_own_key',
     ];
 
     protected function casts(): array
     {
         return [
             'extracted_data' => 'array',
+            'used_own_key' => 'boolean',
         ];
     }
 

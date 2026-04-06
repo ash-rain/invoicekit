@@ -27,15 +27,17 @@ class ProcessDocumentImport implements ShouldQueue
         $this->import->update(['status' => 'processing']);
 
         try {
-            $extractedData = $gemini->extractFromDocument(
+            $result = $gemini->extractFromDocument(
                 $this->import->stored_path,
                 $this->import->mime_type,
                 $this->import->document_type,
+                $this->import->user,
             );
 
             $this->import->update([
                 'status' => 'extracted',
-                'extracted_data' => $extractedData,
+                'extracted_data' => $result['data'],
+                'used_own_key' => $result['usedOwnKey'],
                 'error_message' => null,
             ]);
 

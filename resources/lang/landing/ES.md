@@ -193,6 +193,9 @@ Control del tiempo
 [p_free_l4]
 Exportación de facturas PDF
 
+[p_free_l6]
+:free_limit importaciones de AI por día
+
 [p_free_cta]
 Empezar gratis
 
@@ -222,6 +225,9 @@ Todas las reglas de IVA de la UE
 
 [p_starter_l5]
 Recordatorios de pago
+
+[p_starter_l7]
+:starter_limit importaciones de AI por día
 
 [p_starter_cta]
 Elegir Starter
@@ -258,6 +264,9 @@ Todas las reglas de IVA de la UE
 
 [p_pro_l7]
 Pagos en línea via Stripe (comisión 2 %)
+
+[p_pro_l8]
+Importaciones de AI ilimitadas
 
 [p_pro_cta]
 Ir a Pro
@@ -335,6 +344,18 @@ Una comisión del 2 % se aplica solo cuando el cliente paga con tarjeta. Las tra
 [faq6_a]
 Conecta tu cuenta de Stripe en Configuración → Pagos. InvoiceKit genera un enlace de pago seguro para cada factura. Tu cliente hace clic en Pagar ahora y paga con tarjeta. Los fondos llegan directamente a tu cuenta bancaria — InvoiceKit nunca retiene tu dinero. Se aplica una comisión de plataforma del 2 % a los pagos con tarjeta. Las transferencias bancarias mediante IBAN son siempre gratuitas.
 
+[faq7_q]
+¿Cómo funciona la importación de documentos con AI?
+
+[faq7_a]
+InvoiceKit puede leer facturas y documentos de gastos (PDF, JPEG, PNG) y extraer automáticamente el proveedor, el importe, la fecha y las líneas usando Google Gemini AI. Los usuarios del plan gratuito obtienen :free_limit importaciones de AI por día; el plan Starter, :starter_limit. Los usuarios Pro disfrutan de importaciones ilimitadas. En cualquier plan, puedes añadir tu propia clave de Gemini API gratuita en Ajustes → AI para eliminar todos los límites.
+
+[p_byok_label]
+Usa tu propia clave de API de Gemini — importaciones ilimitadas
+
+[p_byok_desc]
+En cualquier plan, puedes añadir tu propia clave de Google Gemini API gratuita en Ajustes → AI. Una vez configurada, todas las importaciones de documentos con AI utilizan tu cuota de Google, sin límites de la aplicación.
+
 [cta_title]
 ¿Listo para facturar como un europeo?
 
@@ -354,7 +375,7 @@ Política de privacidad
 Términos del servicio
 
 [footer_copy]
-© 2026 InvoiceKit. Todos los derechos reservados.
+© 2026 NetShell. Todos los derechos reservados.
 
 [f10_title]
 Importación de documentos con IA

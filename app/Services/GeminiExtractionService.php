@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Exceptions\NoAvailableApiKeyException;
 use App\Models\AiApiKey;
+use App\Models\User;
 use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
@@ -22,11 +23,12 @@ class GeminiExtractionService
      * @param  string  $storedPath  MinIO path of the uploaded file
      * @param  string  $mimeType  MIME type (image/jpeg, image/png, application/pdf)
      * @param  string  $documentType  'invoice' or 'expense'
-     * @return array<string, mixed>
+     * @param  User|null  $user  When provided, uses the user's own API key if configured
+     * @return array{data: array<string, mixed>, usedOwnKey: bool}
      *
      * @throws \RuntimeException
      */
-    public function extractFromDocument(string $storedPath, string $mimeType, string $documentType): array
+    public function extractFromDocument(string $storedPath, string $mimeType, string $documentType, ?User $user = null): array
     {
         $fileContents = Storage::disk('minio')->get($storedPath);
 
@@ -37,6 +39,13 @@ class GeminiExtractionService
         $base64 = base64_encode($fileContents);
         $prompt = $this->buildPrompt($documentType);
         $schema = $this->buildResponseSchema($documentType);
+
+        if ($user?->gemini_api_key) {
+            $result = $this->callGeminiWithRawKey($user->gemini_api_key, $base64, $mimeType, $prompt, $schema);
+
+            return ['data' => $result, 'usedOwnKey' => true];
+        }
+
         $lastError = null;
 
         for ($attempt = 1; $attempt <= self::MAX_ATTEMPTS; $attempt++) {
@@ -45,7 +54,7 @@ class GeminiExtractionService
                 $result = $this->callGemini($key, $base64, $mimeType, $prompt, $schema);
                 $this->rotation->markUsed($key);
 
-                return $result;
+                return ['data' => $result, 'usedOwnKey' => false];
             } catch (NoAvailableApiKeyException $e) {
                 throw $e;
             } catch (\Throwable $e) {
@@ -69,11 +78,21 @@ class GeminiExtractionService
     }
 
     /**
-     * Test that an API key is valid by sending a minimal request.
+     * Test that an AiApiKey model is valid by sending a minimal request.
      *
      * @throws \RuntimeException
      */
     public function testKey(AiApiKey $key): void
+    {
+        $this->testRawKey($key->api_key);
+    }
+
+    /**
+     * Test that a raw API key string is valid by sending a minimal request.
+     *
+     * @throws \RuntimeException
+     */
+    public function testRawKey(string $apiKey): void
     {
         $payload = [
             'contents' => [
@@ -88,9 +107,9 @@ class GeminiExtractionService
             ],
         ];
 
-        $endpoint = config('services.gemini.endpoint');
+        $endpoint = config('ai.gemini.endpoint');
         $response = Http::timeout(15)
-            ->post("{$endpoint}?key={$key->api_key}", $payload);
+            ->post("{$endpoint}?key={$apiKey}", $payload);
 
         if ($response->failed()) {
             throw new \RuntimeException($this->parseApiError($response->json()));
@@ -101,11 +120,53 @@ class GeminiExtractionService
     private function callGemini(AiApiKey $key, string $base64, string $mimeType, string $prompt, array $schema): array
     {
         $payload = $this->buildPayload($base64, $mimeType, $prompt, $schema);
-        $endpoint = config('services.gemini.endpoint');
+        $endpoint = config('ai.gemini.endpoint');
 
         try {
             $response = Http::timeout(90)
                 ->post("{$endpoint}?key={$key->api_key}", $payload);
+        } catch (ConnectionException $e) {
+            throw new \RuntimeException('Connection to Gemini API timed out.', 0, $e);
+        }
+
+        if ($response->status() === 429) {
+            throw new \RuntimeException('Rate limit exceeded (429).');
+        }
+
+        if ($response->status() === 401 || $response->status() === 403) {
+            throw new \RuntimeException('Invalid or unauthorized API key ('.$response->status().').');
+        }
+
+        if ($response->failed()) {
+            $error = $this->parseApiError($response->json());
+            throw new \RuntimeException("Gemini API error: {$error}");
+        }
+
+        $json = $response->json();
+        $text = data_get($json, 'candidates.0.content.parts.0.text', '');
+
+        if (empty($text)) {
+            throw new \RuntimeException('Gemini returned an empty response.');
+        }
+
+        $decoded = json_decode($text, true);
+
+        if (json_last_error() !== JSON_ERROR_NONE) {
+            throw new \RuntimeException('Failed to parse Gemini JSON response: '.json_last_error_msg());
+        }
+
+        return $decoded ?? [];
+    }
+
+    /** @return array<string, mixed> */
+    private function callGeminiWithRawKey(string $apiKey, string $base64, string $mimeType, string $prompt, array $schema): array
+    {
+        $payload = $this->buildPayload($base64, $mimeType, $prompt, $schema);
+        $endpoint = config('ai.gemini.endpoint');
+
+        try {
+            $response = Http::timeout(90)
+                ->post("{$endpoint}?key={$apiKey}", $payload);
         } catch (ConnectionException $e) {
             throw new \RuntimeException('Connection to Gemini API timed out.', 0, $e);
         }

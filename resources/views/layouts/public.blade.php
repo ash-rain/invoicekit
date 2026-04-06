@@ -64,7 +64,7 @@
     <footer class="border-t border-gray-100 mt-24 py-12">
         <div
             class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-gray-500">
-            <p>© {{ date('Y') }} InvoiceKit. All rights reserved.</p>
+            <p>© {{ date('Y') }} <a href="https://nsh.one" class="hover:text-gray-900 transition-colors">NetShell</a>. All rights reserved.</p>
             <div class="flex items-center gap-6">
                 <a href="{{ route('blog.index') }}" class="hover:text-gray-900 transition-colors">Blog</a>
                 <a href="{{ route('blog.feed') }}" class="hover:text-gray-900 transition-colors">RSS Feed</a>

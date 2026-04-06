@@ -194,6 +194,9 @@ Tijdregistratie
 [p_free_l4]
 PDF-factuurexport
 
+[p_free_l6]
+:free_limit AI-imports per dag
+
 [p_free_cta]
 Gratis beginnen
 
@@ -223,6 +226,9 @@ Alle EU btw-regels
 
 [p_starter_l5]
 Betalingsherinneringen
+
+[p_starter_l7]
+:starter_limit AI-imports per dag
 
 [p_starter_cta]
 Starter kiezen
@@ -259,6 +265,9 @@ Alle EU btw-regels
 
 [p_pro_l7]
 Online betalingen via Stripe (2% vergoeding)
+
+[p_pro_l8]
+Onbeperkte AI-imports
 
 [p_pro_cta]
 Naar Pro
@@ -336,6 +345,18 @@ Hoe werken online betalingen?
 [faq6_a]
 Verbind uw Stripe-account via Instellingen → Betalingen. InvoiceKit genereert voor elke factuur een veilige betaallink. Uw klant klikt op Nu betalen en betaalt met kaart. Het geld komt direct op uw bankrekening — InvoiceKit houdt nooit uw geld vast. Er geldt een platformprovisie van 2% voor kaartbetalingen. Bankoverschrijvingen via IBAN zijn altijd gratis.
 
+[faq7_q]
+Hoe werkt het importeren van documenten met AI?
+
+[faq7_a]
+InvoiceKit kan facturen en onkostendocumenten (PDF, JPEG, PNG) lezen en automatisch de leverancier, het bedrag, de datum en de regels extraheren met Google Gemini AI. Gebruikers van het gratis abonnement krijgen :free_limit AI-imports per dag; Starter-abonnementgebruikers :starter_limit. Pro-gebruikers hebben onbeperkte imports. Op elk abonnement kun je je eigen gratis Gemini API-sleutel toevoegen via Instellingen → AI om alle app-limieten op te heffen.
+
+[p_byok_label]
+Gebruik je eigen Gemini API-sleutel — onbeperkte imports
+
+[p_byok_desc]
+Op elk abonnement kun je je eigen gratis Google Gemini API-sleutel toevoegen via Instellingen → AI. Eenmaal ingesteld, gebruiken alle AI-documentimports je Google-quota — geen app-limieten van toepassing.
+
 [cta_title]
 Klaar om als een Europeaan te factureren?
 
@@ -355,7 +376,7 @@ Privacybeleid
 Servicevoorwaarden
 
 [footer_copy]
-© 2026 InvoiceKit. Alle rechten voorbehouden.
+© 2026 NetShell. Alle rechten voorbehouden.
 
 [f10_title]
 AI-documentimport

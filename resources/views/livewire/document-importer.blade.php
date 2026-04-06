@@ -96,9 +96,37 @@
                     <path stroke-linecap="round" stroke-linejoin="round"
                         d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.347.347A3.75 3.75 0 0113.5 21h-3a3.75 3.75 0 01-2.652-1.098l-.347-.347z" />
                 </svg>
-                <p class="text-xs text-indigo-700">
-                    {{ __('AI will extract the data from your documents. Review and confirm before saving.') }}</p>
+                <div class="flex-1">
+                    <p class="text-xs text-indigo-700">
+                        {{ __('AI will extract the data from your documents. Review and confirm before saving.') }}
+                    </p>
+                    @if ($this->aiImportsLimit !== null)
+                        <p class="text-xs text-indigo-600 mt-1">
+                            {{ __('AI imports today') }}: <strong>{{ $this->aiImportsToday }} /
+                                {{ $this->aiImportsLimit }}</strong>
+                            &mdash; <a href="{{ route('settings.index', ['tab' => 'ai']) }}"
+                                class="underline">{{ __('add your own Gemini API key') }}</a>
+                            {{ __('for unlimited imports') }}
+                        </p>
+                    @else
+                        <p class="text-xs text-indigo-600 mt-1">{{ __('unlimited — own key') }}</p>
+                    @endif
+                </div>
             </div>
+
+            @if (!$this->canImport)
+                <div class="mt-4 p-4 rounded-xl bg-amber-50 border border-amber-200">
+                    <p class="text-sm font-semibold text-amber-800">{{ __('Daily AI import limit reached.') }}</p>
+                    <p class="text-xs text-amber-700 mt-1">
+                        <a href="{{ route('billing.index') }}"
+                            class="underline font-medium">{{ __('Upgrade your plan') }}</a>
+                        {{ __('or') }}
+                        <a href="{{ route('settings.index', ['tab' => 'ai']) }}"
+                            class="underline font-medium">{{ __('add your own key') }}</a>
+                        {{ __('to continue importing today.') }}
+                    </p>
+                </div>
+            @endif
         </div>
 
         {{-- Import queue / status list --}}
@@ -126,8 +154,8 @@
                                     @if ($import->isPending())
                                         <div
                                             class="w-7 h-7 rounded-full flex items-center justify-center bg-gray-100 shrink-0">
-                                            <svg class="w-3.5 h-3.5 text-gray-400" fill="none" stroke="currentColor"
-                                                stroke-width="2" viewBox="0 0 24 24">
+                                            <svg class="w-3.5 h-3.5 text-gray-400" fill="none"
+                                                stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round"
                                                     d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                                             </svg>

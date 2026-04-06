@@ -194,6 +194,9 @@ Registo de tempo
 [p_free_l4]
 Exportação de faturas PDF
 
+[p_free_l6]
+:free_limit importações de IA por dia
+
 [p_free_cta]
 Começar grátis
 
@@ -223,6 +226,9 @@ Todas as regras de IVA da UE
 
 [p_starter_l5]
 Lembretes de pagamento
+
+[p_starter_l7]
+:starter_limit importações de IA por dia
 
 [p_starter_cta]
 Escolher Starter
@@ -259,6 +265,9 @@ Todas as regras de IVA da UE
 
 [p_pro_l7]
 Pagamentos online via Stripe (comissão 2%)
+
+[p_pro_l8]
+Importações de IA ilimitadas
 
 [p_pro_cta]
 Ir para Pro
@@ -336,6 +345,18 @@ Como funcionam os pagamentos online?
 [faq6_a]
 Ligue a sua conta Stripe em Definições → Pagamentos. O InvoiceKit gera um link de pagamento seguro para cada fatura. O seu cliente clica em Pagar agora e paga com cartão. Os fundos chegam diretamente à sua conta bancária — o InvoiceKit nunca retém o seu dinheiro. Aplica-se uma comissão de plataforma de 2% nos pagamentos com cartão. As transferências bancárias via IBAN são sempre gratuitas.
 
+[faq7_q]
+Como funciona a importação de documentos com IA?
+
+[faq7_a]
+O InvoiceKit pode ler faturas e documentos de despesas (PDF, JPEG, PNG) e extrair automaticamente o fornecedor, o valor, a data e os itens usando o Google Gemini AI. Os usuários do plano gratuito obtêm :free_limit importações de IA por dia; o plano Starter oferece :starter_limit. Os usuários Pro têm importações ilimitadas. Em qualquer plano, você pode adicionar sua própria chave Gemini API gratuita em Configurações → IA para remover todos os limites.
+
+[p_byok_label]
+Use sua própria chave API do Gemini — importações ilimitadas
+
+[p_byok_desc]
+Em qualquer plano, você pode adicionar sua própria chave gratuita Google Gemini API em Configurações → IA. Uma vez configurada, todas as importações de documentos com IA usam sua cota do Google — nenhum limite do aplicativo se aplica.
+
 [cta_title]
 Pronto para faturar como um europeu?
 
@@ -355,7 +376,7 @@ Política de privacidade
 Termos de serviço
 
 [footer_copy]
-© 2026 InvoiceKit. Todos os direitos reservados.
+© 2026 NetShell. Todos os direitos reservados.
 
 [f10_title]
 Importação de documentos com IA

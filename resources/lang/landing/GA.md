@@ -194,6 +194,9 @@ Rianú ama
 [p_free_l4]
 Easpórtáil sonrasc PDF
 
+[p_free_l6]
+:free_limit iompórtáil AI in aghaidh an lae
+
 [p_free_cta]
 Tosaigh saor in aisce
 
@@ -223,6 +226,9 @@ Gach riail CBL AE
 
 [p_starter_l5]
 Meabhrúcháin íocaíochta
+
+[p_starter_l7]
+:starter_limit iompórtáil AI in aghaidh an lae
 
 [p_starter_cta]
 Roghnaigh Starter
@@ -259,6 +265,9 @@ Gach riail CBL AE
 
 [p_pro_l7]
 Íocaíochtaí ar líne trí Stripe (táille 2%)
+
+[p_pro_l8]
+Iompórtáil AI neamhtheoranta
 
 [p_pro_cta]
 Téigh go Pro
@@ -336,6 +345,18 @@ Conas a oibríonn íocaíochtaí ar líne?
 [faq6_a]
 Ceangail do chuntas Stripe i Socruithe → Íocaíochtaí. Gineann InvoiceKit nasc íocaíochta slán do gach sonrasc. Cliceálann do chliaint Íoc Anois agus íocann siad le cárta. Téann cistí go díreach chuig do chuntas bainc — ní choinníonn InvoiceKit do chuid airgid riamh. Tá táille ardáin 2% i bhfeidhm maidir le híocaíochtaí cárta. Tá aistrithe bainc trí IBAN saor in aisce i gcónaí.
 
+[faq7_q]
+Conas a oibríonn iompórtáil doiciméad AI?
+
+[faq7_a]
+Is féidir le InvoiceKit sonraisc agus doiciméid chaiteachais (PDF, JPEG, PNG) a léamh agus an soláthraí, an méid, an dáta agus na míreanna a bhaint go huathoibríoch ag baint úsáide as Google Gemini AI. Gheobhaidh úsáideoirí an phlean saor in aisce :free_limit iompórtáil AI in aghaidh an lae; plean Starter :starter_limit. Tá iompórtáil neamhtheoranta ag úsáideoirí Pro. Ar aon phlean, is féidir leat d'eochair Gemini API saor in aisce féin a chur leis in Socruithe → AI chun na teorainneacha go léir a bhaint.
+
+[p_byok_label]
+Úsáid do Eochair API Gemini Féin — iompórtáil neamhtheoranta
+
+[p_byok_desc]
+Ar aon phlean, is féidir leat d'eochair API Google Gemini saor in aisce féin a chur leis in Socruithe → AI. Nuair a bheidh sé socraithe, úsáidtear do chuóta Google le haghaidh gach iompórtáil doiciméad AI — ní bheidh teorainneacha an aip i bhfeidhm.
+
 [cta_title]
 Réidh le sonrasc a eisiúint mar Eorpach?
 
@@ -355,7 +376,7 @@ Polasaí Príobháideachais
 Téarmaí Seirbhíse
 
 [footer_copy]
-© 2026 InvoiceKit. Gach ceart ar cosaint.
+© 2026 NetShell. Gach ceart ar cosaint.
 
 [f10_title]
 Iompórtáil doiciméad CI

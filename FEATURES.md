@@ -187,10 +187,15 @@ Generated via DomPDF (DejaVu Sans font for full Unicode / multi-language support
 |---------|------|-----------------|--------------|
 | Clients | 3 | Unlimited | Unlimited |
 | Invoices/month | 5 | 20 | Unlimited |
+| AI document imports/day | 2 | 50 | Unlimited |
 
 - Limits enforced at creation time with inline error (clients) or redirect to billing (invoices)
-- Billing page shows current plan badge, client + invoice usage counts, upgrade cards
+- AI import limits checked in `DocumentImporter`; shows dual CTA (upgrade + own API key) when reached
+- Billing page shows current plan badge, client + invoice + AI import usage counts, upgrade cards
 - `User::isFree()`, `isStarter()`, `isPro()` helpers
+- **BYOK (Bring Your Own Key)**: users can save a personal Gemini API key in Settings → AI tab; this bypasses all app-enforced AI import limits entirely. Key is stored encrypted at rest.
+- **System daily cap**: admin-provided keys are hard-capped at 1000 AI imports/day (configurable via `AI_SYSTEM_DAILY_CAP` env var or `config/ai.php`)
+- All limit values configurable via `config/ai.php` (`limits.free`, `limits.starter`, `limits.system_daily_cap`)
 
 ---
 

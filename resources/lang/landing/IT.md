@@ -194,6 +194,9 @@ Monitoraggio del tempo
 [p_free_l4]
 Esportazione fatture PDF
 
+[p_free_l6]
+:free_limit importazioni AI al giorno
+
 [p_free_cta]
 Inizia gratis
 
@@ -223,6 +226,9 @@ Tutte le regole IVA UE
 
 [p_starter_l5]
 Promemoria pagamenti
+
+[p_starter_l7]
+:starter_limit importazioni AI al giorno
 
 [p_starter_cta]
 Scegli Starter
@@ -259,6 +265,9 @@ Tutte le regole IVA UE
 
 [p_pro_l7]
 Pagamenti online tramite Stripe (commissione 2%)
+
+[p_pro_l8]
+Importazioni AI illimitate
 
 [p_pro_cta]
 Vai a Pro
@@ -336,6 +345,18 @@ Come funzionano i pagamenti online?
 [faq6_a]
 Collega il tuo account Stripe in Impostazioni → Pagamenti. InvoiceKit genera un link di pagamento sicuro per ogni fattura. Il tuo cliente fa clic su Paga ora e paga con carta. I fondi arrivano direttamente sul tuo conto bancario — InvoiceKit non trattiene mai il tuo denaro. Si applica una commissione di piattaforma del 2% ai pagamenti con carta. I bonifici bancari via IBAN sono sempre gratuiti.
 
+[faq7_q]
+Come funziona l'importazione AI di documenti?
+
+[faq7_a]
+InvoiceKit può leggere fatture e note spese (PDF, JPEG, PNG) ed estrarre automaticamente il fornitore, l'importo, la data e le voci tramite Google Gemini AI. Gli utenti del piano gratuito ottengono :free_limit importazioni AI al giorno; il piano Starter ne prevede :starter_limit. Gli utenti Pro hanno importazioni illimitate. Con qualsiasi piano puoi aggiungere la tua chiave Gemini API gratuita in Impostazioni → AI per rimuovere tutti i limiti.
+
+[p_byok_label]
+Usa la tua chiave API Gemini — importazioni illimitate
+
+[p_byok_desc]
+Con qualsiasi piano, puoi aggiungere la tua chiave API Google Gemini gratuita in Impostazioni → AI. Una volta impostata, tutte le importazioni di documenti AI utilizzano la tua quota Google: nessun limite applicativo.
+
 [cta_title]
 Pronto a fatturare come un europeo?
 
@@ -355,7 +376,7 @@ Informativa sulla privacy
 Termini di servizio
 
 [footer_copy]
-© 2026 InvoiceKit. Tutti i diritti riservati.
+© 2026 NetShell. Tutti i diritti riservati.
 
 [f10_title]
 Importazione documenti con IA

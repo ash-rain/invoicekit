@@ -42,6 +42,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'reminder_before_due_days',
         'reminder_on_due_day',
         'reminder_overdue_intervals',
+        'gemini_api_key',
     ];
 
     /**
@@ -70,6 +71,7 @@ class User extends Authenticatable implements MustVerifyEmail
             'reminder_overdue_intervals' => 'array',
             'trial_ends_at' => 'datetime',
             'subscribed_until' => 'datetime',
+            'gemini_api_key' => 'encrypted',
         ];
     }
 
@@ -107,6 +109,11 @@ class User extends Authenticatable implements MustVerifyEmail
     public function clients(): HasMany
     {
         return $this->hasMany(Client::class);
+    }
+
+    public function documentImports(): HasMany
+    {
+        return $this->hasMany(DocumentImport::class);
     }
 
     public function projects(): HasMany

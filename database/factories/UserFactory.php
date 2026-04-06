@@ -41,4 +41,24 @@ class UserFactory extends Factory
             'email_verified_at' => null,
         ]);
     }
+
+    public function free(): static
+    {
+        return $this->state(['plan' => 'free']);
+    }
+
+    public function starter(): static
+    {
+        return $this->state(['plan' => 'starter']);
+    }
+
+    public function pro(): static
+    {
+        return $this->state(['plan' => 'pro']);
+    }
+
+    public function withGeminiKey(string $key = 'test-gemini-key'): static
+    {
+        return $this->state(['gemini_api_key' => $key]);
+    }
 }

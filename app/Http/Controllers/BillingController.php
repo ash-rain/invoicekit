@@ -47,6 +47,35 @@ class BillingController extends Controller
             }
         }
 
+        // When returning from the Stripe Customer Portal, sync subscription state immediately.
+        // This handles cancellations, plan changes, and payment method updates from the portal.
+        if ($request->query('from') === 'portal' && $stripeKey && $user->stripe_subscription_id) {
+            try {
+                $stripe = new StripeClient($stripeKey);
+                $subscription = $stripe->subscriptions->retrieve($user->stripe_subscription_id);
+
+                $cancelAtPeriodEnd = $subscription->cancel_at_period_end ?? false;
+                $status = $subscription->status ?? null;
+                $periodEnd = $subscription->current_period_end ?? null;
+
+                $updates = [
+                    'subscription_status' => $cancelAtPeriodEnd ? 'canceled' : $status,
+                    'subscribed_until' => $periodEnd ? \Carbon\Carbon::createFromTimestamp($periodEnd) : null,
+                ];
+
+                if ($status === 'active') {
+                    $priceId = $subscription->items->data[0]->price->id ?? null;
+                    $starterPriceId = config('services.stripe.starter_price_id');
+                    $updates['plan'] = ($priceId && $priceId === $starterPriceId) ? 'starter' : 'pro';
+                }
+
+                $user->update($updates);
+                $user->refresh();
+            } catch (\Exception) {
+                // Silently ignore — webhook will sync later.
+            }
+        }
+
         $plan = $user->plan;
 
         $clientCount = $user->clients()->count();
@@ -77,6 +106,8 @@ class BillingController extends Controller
             'invoicesThisMonth' => $invoicesThisMonth,
             'clientsLimit' => $planData['clients_limit'],
             'invoicesLimit' => $planData['invoices_per_month_limit'],
+            'aiImportsToday' => $this->planService->aiImportsTodayCount($user),
+            'aiImportsLimit' => $this->planService->aiImportDailyLimit($user),
             'user' => $user,
             'billingHistory' => $billingHistory,
         ]);
@@ -147,7 +178,7 @@ class BillingController extends Controller
 
         $session = $stripe->billingPortal->sessions->create([
             'customer' => $user->stripe_customer_id,
-            'return_url' => route('billing.index'),
+            'return_url' => route('billing.index').'?from=portal',
         ]);
 
         return redirect($session->url);

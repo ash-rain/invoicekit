@@ -194,6 +194,9 @@ Suivi du temps
 [p_free_l4]
 Export de factures PDF
 
+[p_free_l6]
+:free_limit importations IA par jour
+
 [p_free_cta]
 Commencer gratuitement
 
@@ -223,6 +226,9 @@ Toutes les règles TVA UE
 
 [p_starter_l5]
 Rappels de paiement
+
+[p_starter_l7]
+:starter_limit importations IA par jour
 
 [p_starter_cta]
 Choisir Starter
@@ -259,6 +265,9 @@ Toutes les règles TVA UE
 
 [p_pro_l7]
 Paiements en ligne via Stripe (2 % de frais)
+
+[p_pro_l8]
+Importations IA illimitées
 
 [p_pro_cta]
 Passer au Pro
@@ -336,6 +345,18 @@ Comment fonctionnent les paiements en ligne ?
 [faq6_a]
 Connectez votre compte Stripe dans Paramètres → Paiements. InvoiceKit génère un lien de paiement sécurisé pour chaque facture. Votre client clique sur Payer maintenant et paie par carte. Les fonds arrivent directement sur votre compte bancaire — InvoiceKit ne retient jamais votre argent. Une commission de plateforme de 2 % s'applique aux paiements par carte. Les virements bancaires via IBAN sont toujours gratuits.
 
+[faq7_q]
+Comment fonctionne l'importation de documents par IA ?
+
+[faq7_a]
+InvoiceKit peut lire des factures et des documents de dépenses (PDF, JPEG, PNG) et extraire automatiquement le fournisseur, le montant, la date et les lignes grâce à Google Gemini AI. Les utilisateurs du plan gratuit bénéficient de :free_limit importations IA par jour ; le plan Starter en offre :starter_limit. Les utilisateurs Pro bénéficient d'importations illimitées. Sur n'importe quel plan, vous pouvez ajouter votre propre clé Gemini API gratuite dans Paramètres → IA pour supprimer toutes les limites.
+
+[p_byok_label]
+Utilisez votre propre clé API Gemini — importations illimitées
+
+[p_byok_desc]
+Sur n'importe quel plan, vous pouvez ajouter votre propre clé API Google Gemini gratuite dans Paramètres → IA. Une fois configurée, toutes les importations de documents IA utilisent votre quota Google — aucune limite applicative ne s'applique.
+
 [cta_title]
 Prêt à facturer à l'européenne ?
 
@@ -355,7 +376,7 @@ Politique de confidentialité
 Conditions d'utilisation
 
 [footer_copy]
-© 2026 InvoiceKit. Tous droits réservés.
+© 2026 NetShell. Tous droits réservés.
 
 [f10_title]
 Import IA de documents

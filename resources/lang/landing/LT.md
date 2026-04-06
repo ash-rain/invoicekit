@@ -194,6 +194,9 @@ Laiko sekimas
 [p_free_l4]
 PDF sąskaitų eksportavimas
 
+[p_free_l6]
+:free_limit AI importai per dieną
+
 [p_free_cta]
 Pradėti nemokamai
 
@@ -223,6 +226,9 @@ Visos ES PVM taisyklės
 
 [p_starter_l5]
 Mokėjimų priminimai
+
+[p_starter_l7]
+:starter_limit AI importai per dieną
 
 [p_starter_cta]
 Pasirinkti Starter
@@ -259,6 +265,9 @@ Visos ES PVM taisyklės
 
 [p_pro_l7]
 Mokėjimai internetu per Stripe (2% mokestis)
+
+[p_pro_l8]
+Neriboti AI importai
 
 [p_pro_cta]
 Pereiti į Pro
@@ -336,6 +345,18 @@ Kaip veikia mokėjimai internetu?
 [faq6_a]
 Prijunkite savo Stripe paskyrą Nustatymų skyriuje → Mokėjimai. InvoiceKit kiekvienai sąskaitai sugeneruoja saugią mokėjimo nuorodą. Jūsų klientas spustelėja Mokėti dabar ir moka kortele. Lėšos tiesiogiai pervedamos į jūsų banko sąskaitą — InvoiceKit niekada nelaiko jūsų pinigų. Kortele atliktiems mokėjimams taikomas 2% platformos mokestis. Banko pervedimai per IBAN visada yra nemokami.
 
+[faq7_q]
+Kaip veikia AI dokumentų importavimas?
+
+[faq7_a]
+InvoiceKit gali skaityti sąskaitų ir išlaidų dokumentus (PDF, JPEG, PNG) ir automatiškai ištraukti tiekėją, sumą, datą ir eilutes naudodamas Google Gemini AI. Nemokamo plano vartotojai gauna :free_limit AI importus per dieną; Starter plano vartotojai – :starter_limit. Pro vartotojai mėgaujasi neribotais importais. Bet kuriame plane galite pridėti savo nemokamą Gemini API raktą Nustatymų → AI skyriuje, kad pašalintumėte visus apribojimus.
+
+[p_byok_label]
+Naudokite savo Gemini API raktą — neribotas importavimas
+
+[p_byok_desc]
+Bet kuriame plane galite pridėti savo nemokamą Google Gemini API raktą Nustatymų → AI skyriuje. Kai jis bus nustatytas, visi AI dokumentų importai naudos jūsų Google kvotą — jokių programos apribojimų.
+
 [cta_title]
 Pasiruošęs išrašyti sąskaitas kaip europietis?
 
@@ -355,7 +376,7 @@ Privatumo politika
 Paslaugų teikimo sąlygos
 
 [footer_copy]
-© 2026 InvoiceKit. Visos teisės saugomos.
+© 2026 NetShell. Visos teisės saugomos.
 
 [f10_title]
 DI dokumentų importas

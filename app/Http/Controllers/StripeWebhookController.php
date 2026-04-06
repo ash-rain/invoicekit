@@ -117,8 +117,12 @@ class StripeWebhookController extends Controller
 
         $updates = [];
 
-        // If Stripe reports cancel_at_period_end, keep local 'canceled' status; otherwise sync Stripe status
-        if (! $cancelAtPeriodEnd) {
+        // When cancel_at_period_end is set (portal cancellation OR modal "at period end"),
+        // mark as canceled so the UI reflects the pending cancellation immediately.
+        // Otherwise sync the status Stripe reports.
+        if ($cancelAtPeriodEnd) {
+            $updates['subscription_status'] = 'canceled';
+        } else {
             $updates['subscription_status'] = $status;
         }
 

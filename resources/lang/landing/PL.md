@@ -194,6 +194,9 @@ Do 3 klientów
 [p_free_l4]
 Eksport faktur PDF
 
+[p_free_l6]
+:free_limit importy AI dziennie
+
 [p_free_cta]
 Zacznij za darmo
 
@@ -223,6 +226,9 @@ Wszystkie zasady VAT UE
 
 [p_starter_l5]
 Przypomnienia o płatnościach
+
+[p_starter_l7]
+:starter_limit importy AI dziennie
 
 [p_starter_cta]
 Wybierz Starter
@@ -259,6 +265,9 @@ Wszystkie zasady VAT UE
 
 [p_pro_l7]
 Płatności online przez Stripe (prowizja 2%)
+
+[p_pro_l8]
+Nieograniczone importy AI
 
 [p_pro_cta]
 Przejdź na Pro
@@ -336,6 +345,18 @@ Jak działają płatności online?
 [faq6_a]
 Połącz swoje konto Stripe w Ustawieniach → Płatności. InvoiceKit generuje bezpieczny link do płatności dla każdej faktury. Twój klient klika Zapłać teraz i płaci kartą. Środki trafiają bezpośrednio na Twoje konto bankowe — InvoiceKit nigdy nie przetrzymuje Twoich pieniędzy. Do płatności kartą stosowana jest prowizja platformy 2%. Przelewy bankowe przez IBAN są zawsze bezpłatne.
 
+[faq7_q]
+Jak działa import dokumentów AI?
+
+[faq7_a]
+InvoiceKit może odczytywać faktury i dokumenty wydatków (PDF, JPEG, PNG) i automatycznie wyodrębniać dostawcę, kwotę, datę i pozycje za pomocą Google Gemini AI. Użytkownicy planu darmowego otrzymują :free_limit importy AI dziennie; planu Starter — :starter_limit. Użytkownicy Pro mają nieograniczoną liczbę importów. W każdym planie możesz dodać własny bezpłatny klucz Gemini API w ustawieniach Ustawienia → AI, aby usunąć wszystkie ograniczenia.
+
+[p_byok_label]
+Użyj własnego klucza API Gemini — bez limitów
+
+[p_byok_desc]
+W każdym planie możesz dodać własny bezpłatny klucz Google Gemini API w ustawieniach Ustawienia → AI. Po skonfigurowaniu wszystkie importy dokumentów AI korzystają z Twojego limitu Google — żadne limity aplikacji nie mają zastosowania.
+
 [cta_title]
 Gotowy do fakturowania jak Europejczyk?
 
@@ -355,7 +376,7 @@ Polityka prywatności
 Warunki usługi
 
 [footer_copy]
-© 2026 InvoiceKit. Wszelkie prawa zastrzeżone.
+© 2026 NetShell. Wszelkie prawa zastrzeżone.
 
 [f10_title]
 Import dokumentów przez AI

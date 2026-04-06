@@ -200,6 +200,9 @@ PDF invoice export
 [p_free_l5]
 14-day Pro trial included
 
+[p_free_l6]
+:free_limit AI imports per day
+
 [p_free_cta]
 Get started free
 
@@ -232,6 +235,9 @@ Payment reminders
 
 [p_starter_l6]
 Expense tracking
+
+[p_starter_l7]
+:starter_limit AI imports per day
 
 [p_starter_cta]
 Start Starter
@@ -269,11 +275,20 @@ All EU VAT rules
 [p_pro_l7]
 Online payments via Stripe (2% fee)
 
+[p_pro_l8]
+Unlimited AI imports
+
 [p_pro_cta]
 Go Pro
 
 [p_popular]
 Most popular
+
+[p_byok_label]
+Use your own Gemini API key — unlimited imports
+
+[p_byok_desc]
+On any plan, you can add your own free Google Gemini API key in Settings → AI. Once set, all AI document imports use your Google quota — no app limits apply.
 
 [faq_tag]
 FAQ
@@ -345,6 +360,12 @@ How do online payments work?
 [faq6_a]
 Connect your Stripe account in Settings → Payments. InvoiceKit generates a secure payment link for each invoice. Your client clicks Pay Now and pays by card. Funds land directly in your bank account — InvoiceKit never holds your money. A 2% platform fee applies to card payments. Bank transfers via IBAN are always free.
 
+[faq7_q]
+How does AI document import work?
+
+[faq7_a]
+InvoiceKit can read invoice and expense documents (PDF, JPEG, PNG) and automatically extract the vendor, amount, date, and line items using Google Gemini AI. Free plan users get :free_limit AI imports per day; Starter plan users get :starter_limit. Pro users have unlimited imports. On any plan, you can add your own free Gemini API key in Settings → AI to remove all limits.
+
 [cta_title]
 Ready to invoice like a European?
 
@@ -364,7 +385,7 @@ Privacy Policy
 Terms of Service
 
 [footer_copy]
-© 2026 InvoiceKit. All rights reserved.
+© 2026 NetShell. All rights reserved.
 
 [f10_title]
 AI Document Import

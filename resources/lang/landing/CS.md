@@ -194,6 +194,9 @@ Sledování času
 [p_free_l4]
 Export faktur do PDF
 
+[p_free_l6]
+:free_limit AI importy za den
+
 [p_free_cta]
 Začít zdarma
 
@@ -223,6 +226,9 @@ Všechna pravidla DPH EU
 
 [p_starter_l5]
 Upomínky plateb
+
+[p_starter_l7]
+:starter_limit AI importy za den
 
 [p_starter_cta]
 Zvolit Starter
@@ -259,6 +265,9 @@ Všechna pravidla DPH EU
 
 [p_pro_l7]
 Online platby přes Stripe (poplatek 2 %)
+
+[p_pro_l8]
+Neomezené AI importy
 
 [p_pro_cta]
 Přejít na Pro
@@ -336,6 +345,18 @@ Jak fungují online platby?
 [faq6_a]
 Propojte svůj účet Stripe v Nastavení → Platby. InvoiceKit vygeneruje pro každou fakturu bezpečný platební odkaz. Klient klikne na Zaplatit nyní a zaplatí kartou. Prostředky dorazí přímo na váš bankovní účet — InvoiceKit nikdy nedrží vaše peníze. Na platby kartou se vztahuje poplatek platformy 2 %; bankovní převody přes IBAN jsou vždy zdarma.
 
+[faq7_q]
+Jak funguje AI import dokumentů?
+
+[faq7_a]
+InvoiceKit dokáže číst faktury a výdajové doklady (PDF, JPEG, PNG) a automaticky extrahovat dodavatele, částku, datum a položky pomocí Google Gemini AI. Uživatelé bezplatného plánu mají :free_limit AI importy za den; Starter plán :starter_limit. Pro uživatelé mají neomezený počet. Na jakémkoli plánu si můžete v Nastavení → AI přidat vlastní bezplatný klíč Gemini API a zrušit všechna omezení.
+
+[p_byok_label]
+Použijte vlastní Gemini API klíč — neomezené importy
+
+[p_byok_desc]
+Na jakémkoli plánu si můžete v Nastavení → AI přidat vlastní bezplatný Google Gemini API klíč. Po nastavení budou všechny AI importy dokumentů využívat vaši Google kvótu — žádná omezení aplikace.
+
 [cta_title]
 Jste připraveni fakturovat jako Evropan?
 
@@ -355,7 +376,7 @@ Zásady ochrany osobních údajů
 Podmínky používání
 
 [footer_copy]
-© 2026 InvoiceKit. Všechna práva vyhrazena.
+© 2026 NetShell. Všechna práva vyhrazena.
 
 [f10_title]
 Import dokumentů pomocí AI

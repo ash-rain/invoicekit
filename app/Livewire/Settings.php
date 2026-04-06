@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\Company;
+use App\Services\GeminiExtractionService;
 use App\Services\VatExemptionService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -88,6 +89,9 @@ class Settings extends Component
     /** @var int[] */
     public array $reminderOverdueIntervals = [7, 14];
 
+    // ----- AI tab -----
+    public string $geminiApiKey = '';
+
     public function mount(): void
     {
         if (request()->query('tab')) {
@@ -134,6 +138,7 @@ class Settings extends Component
         $this->reminderBeforeDueDays = $user->reminder_before_due_days ?? 3;
         $this->reminderOnDueDay = (bool) ($user->reminder_on_due_day ?? true);
         $this->reminderOverdueIntervals = $user->reminder_overdue_intervals ?? [7, 14];
+        // geminiApiKey is intentionally not pre-filled — show status via user->gemini_api_key check in view
     }
 
     public function updatedInvoiceLogoUpload(): void
@@ -287,6 +292,33 @@ class Settings extends Component
         ]);
 
         session()->flash('notifications_saved', true);
+    }
+
+    public function saveAi(): void
+    {
+        $this->validate([
+            'geminiApiKey' => ['required', 'string', 'min:10', 'max:200'],
+        ]);
+
+        try {
+            app(GeminiExtractionService::class)->testRawKey($this->geminiApiKey);
+        } catch (\Throwable $e) {
+            $this->addError('geminiApiKey', __('The API key is invalid: :message', ['message' => $e->getMessage()]));
+
+            return;
+        }
+
+        Auth::user()->update(['gemini_api_key' => $this->geminiApiKey]);
+        $this->geminiApiKey = '';
+
+        session()->flash('ai_saved', true);
+    }
+
+    public function removeGeminiKey(): void
+    {
+        Auth::user()->update(['gemini_api_key' => null]);
+
+        session()->flash('ai_key_removed', true);
     }
 
     public function getVatExemptionInfoProperty(): ?array

@@ -92,4 +92,54 @@ class PlanService
 
         return max(0, $plan['invoices_per_month_limit'] - $count);
     }
+
+    public function aiImportDailyLimit(User $user): ?int
+    {
+        if ($user->gemini_api_key) {
+            return null;
+        }
+
+        $limits = config('ai.limits', []);
+        $plan = $user->plan ?? 'free';
+
+        if (array_key_exists($plan, $limits)) {
+            return $limits[$plan];
+        }
+
+        return $limits['free'] ?? 2;
+    }
+
+    public function aiImportsTodayCount(User $user): int
+    {
+        return $user->documentImports()
+            ->whereDate('created_at', today())
+            ->where('used_own_key', false)
+            ->count();
+    }
+
+    public function canImportDocument(User $user): bool
+    {
+        if ($user->gemini_api_key) {
+            return true;
+        }
+
+        $limit = $this->aiImportDailyLimit($user);
+
+        if ($limit === null) {
+            return true;
+        }
+
+        return $this->aiImportsTodayCount($user) < $limit;
+    }
+
+    public function aiImportsRemainingToday(User $user): ?int
+    {
+        $limit = $this->aiImportDailyLimit($user);
+
+        if ($limit === null) {
+            return null;
+        }
+
+        return max(0, $limit - $this->aiImportsTodayCount($user));
+    }
 }

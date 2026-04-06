@@ -194,6 +194,9 @@ Laika uzskaite
 [p_free_l4]
 PDF rēķinu eksports
 
+[p_free_l6]
+:free_limit AI importi dienā
+
 [p_free_cta]
 Sākt bez maksas
 
@@ -223,6 +226,9 @@ Visi ES PVN noteikumi
 
 [p_starter_l5]
 Maksājumu atgādinājumi
+
+[p_starter_l7]
+:starter_limit AI importi dienā
 
 [p_starter_cta]
 Izvēlēties Starter
@@ -259,6 +265,9 @@ Visi ES PVN noteikumi
 
 [p_pro_l7]
 Tiešsaistes maksājumi, izmantojot Stripe (2% maksa)
+
+[p_pro_l8]
+Neierobežoti AI importi
 
 [p_pro_cta]
 Pāriet uz Pro
@@ -336,6 +345,18 @@ Kā darbojas tiešsaistes maksājumi?
 [faq6_a]
 Savienojiet savu Stripe kontu sadaļā Iestatījumi → Maksājumi. InvoiceKit katram rēķinam ģenerē drošu maksājuma saiti. Jūsu klients noklikšķina uz Maksāt tagad un maksā ar karti. Naudas līdzekļi nonāk tieši jūsu bankas kontā — InvoiceKit nekad neaiztur jūsu naudu. Karšu maksājumiem tiek piemērota 2% platformas komisija. Bankas pārskaitījumi, izmantojot IBAN, vienmēr ir bezmaksas.
 
+[faq7_q]
+Kā darbojas AI dokumentu importēšana?
+
+[faq7_a]
+InvoiceKit var lasīt rēķinus un izdevumu dokumentus (PDF, JPEG, PNG) un automātiski izvilkt piegādātāju, summu, datumu un rindas, izmantojot Google Gemini AI. Bezmaksas plāna lietotāji saņem :free_limit AI importus dienā; Starter plāna lietotāji — :starter_limit. Pro lietotājiem importi ir neierobežoti. Jebkurā plānā varat pievienot savu bezmaksas Gemini API atslēgu Iestatījumu → AI sadaļā, lai noņemtu visus ierobežojumus.
+
+[p_byok_label]
+Izmantojiet savu Gemini API atslēgu — neierobežoti importi
+
+[p_byok_desc]
+Jebkurā plānā varat pievienot savu bezmaksas Google Gemini API atslēgu Iestatījumu → AI sadaļā. Pēc iestatīšanas visi AI dokumentu importi izmantos jūsu Google kvotu — lietotnes ierobežojumi neattiecas.
+
 [cta_title]
 Gatavs izrakstīt rēķinus kā eiropietis?
 
@@ -355,7 +376,7 @@ Privātuma politika
 Pakalpojuma noteikumi
 
 [footer_copy]
-© 2026 InvoiceKit. Visas tiesības aizsargātas.
+© 2026 NetShell. Visas tiesības aizsargātas.
 
 [f10_title]
 MI dokumentu imports

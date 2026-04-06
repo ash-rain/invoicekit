@@ -194,6 +194,9 @@ Zeiterfassung
 [p_free_l4]
 PDF-Rechnungsexport
 
+[p_free_l6]
+:free_limit KI-Importe pro Tag
+
 [p_free_cta]
 Kostenlos starten
 
@@ -223,6 +226,9 @@ Alle EU-Mehrwertsteuerregeln
 
 [p_starter_l5]
 Zahlungserinnerungen
+
+[p_starter_l7]
+:starter_limit KI-Importe pro Tag
 
 [p_starter_cta]
 Starter wählen
@@ -259,6 +265,9 @@ Alle EU-Mehrwertsteuerregeln
 
 [p_pro_l7]
 Online-Zahlungen über Stripe (2 % Gebühr)
+
+[p_pro_l8]
+Unbegrenzte KI-Importe
 
 [p_pro_cta]
 Pro wählen
@@ -336,6 +345,18 @@ Wie funktionieren Online-Zahlungen?
 [faq6_a]
 Verbinden Sie Ihr Stripe-Konto unter Einstellungen → Zahlungen. InvoiceKit erstellt für jede Rechnung einen sicheren Zahlungslink. Ihr Kunde klickt auf Jetzt bezahlen und zahlt per Karte. Das Geld geht direkt auf Ihr Bankkonto — InvoiceKit hält niemals Ihr Geld zurück. Bei Kartenzahlungen fällt eine Plattformgebühr von 2 % an. Banküberweisungen per IBAN sind immer kostenlos.
 
+[faq7_q]
+Wie funktioniert der KI-Dokumentimport?
+
+[faq7_a]
+InvoiceKit kann Rechnungs- und Ausgabendokumente (PDF, JPEG, PNG) lesen und mithilfe von Google Gemini AI automatisch Lieferant, Betrag, Datum und Positionen extrahieren. Nutzer des kostenlosen Tarifs erhalten :free_limit KI-Importe pro Tag; Starter-Tarif-Nutzer :starter_limit. Pro-Nutzer profitieren von unbegrenzten Importen. In jedem Tarif können Sie Ihren eigenen kostenlosen Gemini-API-Schlüssel unter Einstellungen → KI hinzufügen, um alle App-Limits aufzuheben.
+
+[p_byok_label]
+Eigenen Gemini-API-Schlüssel verwenden — unbegrenzte Importe
+
+[p_byok_desc]
+In jedem Plan können Sie Ihren eigenen kostenlosen Google Gemini API-Schlüssel unter Einstellungen → KI hinzufügen. Sobald er hinterlegt ist, verwenden alle KI-gestützten Dokumentimporte Ihr Google-Kontingent — keine App-Limits gelten.
+
 [cta_title]
 Bereit, wie ein Europäer zu fakturieren?
 
@@ -355,7 +376,7 @@ Datenschutzerklärung
 Nutzungsbedingungen
 
 [footer_copy]
-© 2026 InvoiceKit. Alle Rechte vorbehalten.
+© 2026 NetShell. Alle Rechte vorbehalten.
 
 [f10_title]
 KI-Dokumentenimport

@@ -1,4 +1,4 @@
-const CACHE_NAME = 'invoicekit-v1';
+const CACHE_NAME = 'invoicekit-v2';
 const STATIC_ASSETS = [
     '/manifest.json',
     '/icons/icon-192.png',
@@ -55,6 +55,14 @@ self.addEventListener('fetch', (event) => {
         event.respondWith(
             caches.match(event.request).then((cached) => cached || fetch(event.request))
         );
+        return;
+    }
+
+    // Let navigations pass through natively — calling fetch() on navigate-mode
+    // requests inside a service worker can produce ERR_FAILED when the navigation
+    // originates from a cross-origin redirect (e.g. returning from Stripe checkout).
+    // Pages are not meaningfully cached anyway, so there is no offline benefit lost.
+    if (event.request.mode === 'navigate') {
         return;
     }
 

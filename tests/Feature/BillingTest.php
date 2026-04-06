@@ -477,4 +477,72 @@ class BillingTest extends TestCase
         $this->assertTrue($user->trial_ends_at->isFuture());
         $this->assertEqualsWithDelta(14, now()->diffInDays($user->trial_ends_at), 1);
     }
+
+    // ── Webhook: cancel_at_period_end (portal cancellation) ──────────────────
+
+    public function test_webhook_subscription_updated_with_cancel_at_period_end_sets_canceled_status(): void
+    {
+        config(['services.stripe.webhook_secret' => null]);
+
+        $futureTimestamp = Carbon::now()->addMonth()->timestamp;
+
+        $user = User::factory()->create([
+            'stripe_customer_id' => 'cus_portal_cancel',
+            'plan' => 'pro',
+            'subscription_status' => 'active',
+            'stripe_subscription_id' => 'sub_portal123',
+        ]);
+
+        $payload = [
+            'type' => 'customer.subscription.updated',
+            'data' => [
+                'object' => [
+                    'customer' => 'cus_portal_cancel',
+                    'status' => 'active',
+                    'cancel_at_period_end' => true,
+                    'current_period_end' => $futureTimestamp,
+                    'items' => ['data' => [['price' => ['id' => 'price_pro']]]],
+                ],
+            ],
+        ];
+
+        $this->postJson(route('billing.webhook'), $payload)->assertOk();
+
+        $user->refresh();
+        $this->assertEquals('canceled', $user->subscription_status);
+        $this->assertEquals('pro', $user->plan);
+        $this->assertNotNull($user->subscribed_until);
+    }
+
+    public function test_webhook_subscription_updated_without_cancel_at_period_end_syncs_stripe_status(): void
+    {
+        config(['services.stripe.webhook_secret' => null]);
+
+        $futureTimestamp = Carbon::now()->addMonth()->timestamp;
+
+        $user = User::factory()->create([
+            'stripe_customer_id' => 'cus_reactivate',
+            'plan' => 'pro',
+            'subscription_status' => 'canceled',
+            'stripe_subscription_id' => 'sub_react456',
+        ]);
+
+        $payload = [
+            'type' => 'customer.subscription.updated',
+            'data' => [
+                'object' => [
+                    'customer' => 'cus_reactivate',
+                    'status' => 'active',
+                    'cancel_at_period_end' => false,
+                    'current_period_end' => $futureTimestamp,
+                    'items' => ['data' => [['price' => ['id' => 'price_pro']]]],
+                ],
+            ],
+        ];
+
+        $this->postJson(route('billing.webhook'), $payload)->assertOk();
+
+        $user->refresh();
+        $this->assertEquals('active', $user->subscription_status);
+    }
 }

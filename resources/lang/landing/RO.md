@@ -194,6 +194,9 @@ Urmărire timp
 [p_free_l4]
 Export facturi PDF
 
+[p_free_l6]
+:free_limit importuri AI pe zi
+
 [p_free_cta]
 Începe gratuit
 
@@ -223,6 +226,9 @@ Toate regulile TVA UE
 
 [p_starter_l5]
 Memento plăți
+
+[p_starter_l7]
+:starter_limit importuri AI pe zi
 
 [p_starter_cta]
 Alege Starter
@@ -259,6 +265,9 @@ Toate regulile TVA UE
 
 [p_pro_l7]
 Plăți online prin Stripe (comision 2%)
+
+[p_pro_l8]
+Importuri AI nelimitate
 
 [p_pro_cta]
 Mergi la Pro
@@ -336,6 +345,18 @@ Cum funcționează plățile online?
 [faq6_a]
 Conectați contul Stripe în Setări → Plăți. InvoiceKit generează un link de plată securizat pentru fiecare factură. Clientul dvs. dă clic pe Plătește acum și plătește cu cardul. Fondurile ajung direct în contul dvs. bancar — InvoiceKit nu reține niciodată banii dvs. Se aplică un comision de platformă de 2% la plățile cu cardul. Transferurile bancare prin IBAN sunt întotdeauna gratuite.
 
+[faq7_q]
+Cum funcționează importul de documente cu AI?
+
+[faq7_a]
+InvoiceKit poate citi facturi și documente de cheltuieli (PDF, JPEG, PNG) și extrage automat furnizorul, suma, data și liniile utilizând Google Gemini AI. Utilizatorii planului gratuit primesc :free_limit importuri AI pe zi; planul Starter oferă :starter_limit. Utilizatorii Pro beneficiază de importuri nelimitate. La orice plan, puteți adăuga propria cheie Gemini API gratuită în Setări → AI pentru a elimina toate limitele.
+
+[p_byok_label]
+Folosiți propria cheie API Gemini — importuri nelimitate
+
+[p_byok_desc]
+La orice plan, puteți adăuga propria cheie API Google Gemini gratuită în Setări → AI. Odată configurată, toate importurile de documente AI folosesc cota dvs. Google — fără limite impuse de aplicație.
+
 [cta_title]
 Ești gata să facturezi ca un european?
 
@@ -355,7 +376,7 @@ Politică de confidențialitate
 Termeni de serviciu
 
 [footer_copy]
-© 2026 InvoiceKit. Toate drepturile rezervate.
+© 2026 NetShell. Toate drepturile rezervate.
 
 [f10_title]
 Import de documente cu IA

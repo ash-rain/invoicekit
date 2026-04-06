@@ -14,6 +14,7 @@
         'invoicing' => __('Invoicing'),
         'payments' => __('Payments'),
         'notifications' => __('Notifications'),
+        'ai' => __('AI'),
         'account' => __('Account'),
     ] as $key => $label)
             <button type="button" x-on:click="tab = '{{ $key }}'"
@@ -721,6 +722,93 @@
                 </button>
             </div>
         </form>
+    </div>
+
+    {{-- ── AI TAB ───────────────────────────────────────────────────────────── --}}
+    <div x-show="tab === 'ai'" x-cloak>
+
+        @if (session('ai_saved'))
+            <div class="mb-4 p-3 bg-green-50 border border-green-200 text-green-700 rounded-xl text-sm">
+                {{ __('API key configured') }}
+            </div>
+        @endif
+
+        @if (session('ai_key_removed'))
+            <div class="mb-4 p-3 bg-amber-50 border border-amber-200 text-amber-700 rounded-xl text-sm">
+                {{ __('Gemini API key removed.') }}
+            </div>
+        @endif
+
+        <div class="bg-white rounded-2xl border border-[#eaecf0] p-6 space-y-6">
+            <div>
+                <h3 class="text-sm font-bold text-gray-900">{{ __('Gemini API Key') }}</h3>
+                <p class="text-xs text-gray-500 mt-0.5">
+                    {{ __('Provide your own Gemini API key to bypass all app import limits and use your own Google AI quota.') }}
+                </p>
+            </div>
+
+            {{-- Current key status --}}
+            @if ($user->gemini_api_key)
+                <div class="flex items-center gap-3 p-4 bg-green-50 rounded-xl border border-green-200">
+                    <svg class="w-5 h-5 text-green-600 shrink-0" fill="none" stroke="currentColor"
+                        stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <div class="flex-1">
+                        <p class="text-sm font-semibold text-green-800">{{ __('API key configured') }}</p>
+                        <p class="text-xs text-green-600 mt-0.5">{{ __('No API key set') }}</p>
+                    </div>
+                    <button wire:click="removeGeminiKey"
+                        wire:confirm="{{ __('Remove your Gemini API key? You will fall back to plan limits.') }}"
+                        class="px-3 py-1.5 text-xs font-semibold text-red-600 border border-red-200 rounded-lg hover:bg-red-50 transition-colors">
+                        {{ __('Remove API key') }}
+                    </button>
+                </div>
+            @else
+                <div class="flex items-center gap-3 p-4 bg-gray-50 rounded-xl border border-gray-200">
+                    <svg class="w-5 h-5 text-gray-400 shrink-0" fill="none" stroke="currentColor"
+                        stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />
+                    </svg>
+                    <p class="text-sm text-gray-500">{{ __('No API key set') }}</p>
+                </div>
+            @endif
+
+            {{-- Add / replace key form --}}
+            <form wire:submit="saveAi" class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">
+                        {{ $user->gemini_api_key ? __('Replace API Key') : __('Add API Key') }}
+                    </label>
+                    <input wire:model="geminiApiKey" type="password" autocomplete="off" placeholder="AIza..."
+                        class="w-full border border-gray-300 rounded-xl px-3 py-2.5 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-indigo-500 @error('geminiApiKey') border-red-400 @enderror" />
+                    @error('geminiApiKey')
+                        <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                {{-- Instructions --}}
+                <div class="p-4 bg-indigo-50 rounded-xl border border-indigo-100 text-xs text-indigo-800 space-y-1.5">
+                    <p class="font-semibold">{{ __('How to get a free Gemini API key:') }}</p>
+                    <ol class="list-decimal list-inside space-y-1 text-indigo-700">
+                        <li>{{ __('Go to') }} <a href="https://aistudio.google.com/app/apikey" target="_blank"
+                                rel="noopener noreferrer"
+                                class="underline font-medium">aistudio.google.com/app/apikey</a></li>
+                        <li>{{ __('Click "Create API key" and copy it') }}</li>
+                        <li>{{ __('Paste it above and click Save') }}</li>
+                    </ol>
+                </div>
+
+                <div class="flex justify-end">
+                    <button type="submit"
+                        class="px-5 py-2.5 bg-[#0f1117] text-white text-sm font-bold rounded-xl hover:bg-[#1a1f2e]">
+                        {{ __('Save') }}
+                    </button>
+                </div>
+            </form>
+        </div>
     </div>
 
     {{-- ── ACCOUNT TAB ─────────────────────────────────────────────────────── --}}
