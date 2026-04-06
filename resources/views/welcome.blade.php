@@ -185,6 +185,7 @@
         ['icon' => '📲', 'col' => 'icon-emerald', 'tk' => 'f7_title', 'dk' => 'f7_desc'],
         ['icon' => '🧾', 'col' => 'icon-orange', 'tk' => 'f8_title', 'dk' => 'f8_desc'],
         ['icon' => '💱', 'col' => 'icon-cyan', 'tk' => 'f9_title', 'dk' => 'f9_desc'],
+        ['icon' => '🤖', 'col' => 'icon-violet', 'tk' => 'f10_title', 'dk' => 'f10_desc'],
     ];
 @endphp
 <!DOCTYPE html>
@@ -389,6 +390,40 @@
             @endforeach
         </div>
     </section>
+
+    <!-- ====== AI IMPORT ====== -->
+    <div class="pay-section sfull" style="background:linear-gradient(135deg,#f5f3ff 0%,#ede9fe 50%,#ddd6fe 100%)">
+        <div class="pay-inner" style="padding:5rem 2rem">
+            <div class="fade-up">
+                <div class="pay-badge" style="background:#ede9fe;color:#6d28d9">🤖 {!! $g('ai_import_tag') !!}</div>
+                <h2 class="pay-t" style="color:#1e1b4b">{!! $g('ai_import_title') !!}</h2>
+                <p class="pay-d" style="color:#4c1d95;opacity:.85">{!! $g('ai_import_desc') !!}</p>
+                <div class="vat-rules">
+                    <div class="vr">
+                        <div class="vr-i icon-violet">📄</div>
+                        <div>
+                            <div class="vr-l">{!! $g('ai_import_r1_label') !!}</div>
+                            <div class="vr-s">{!! $g('ai_import_r1_sub') !!}</div>
+                        </div>
+                    </div>
+                    <div class="vr">
+                        <div class="vr-i icon-indigo">✨</div>
+                        <div>
+                            <div class="vr-l">{!! $g('ai_import_r2_label') !!}</div>
+                            <div class="vr-s">{!! $g('ai_import_r2_sub') !!}</div>
+                        </div>
+                    </div>
+                    <div class="vr">
+                        <div class="vr-i icon-sky">✅</div>
+                        <div>
+                            <div class="vr-l">{!! $g('ai_import_r3_label') !!}</div>
+                            <div class="vr-s">{!! $g('ai_import_r3_sub') !!}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- ====== HOW IT WORKS ====== -->
     <section class="section" id="how" style="padding-top:1rem">

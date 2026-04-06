@@ -356,3 +356,36 @@ Szolgáltatási feltételek
 
 [footer_copy]
 © 2026 InvoiceKit. Minden jog fenntartva.
+
+[f10_title]
+AI-dokumentumimport
+
+[f10_desc]
+Töltsön fel számlákat, nyugtákat vagy kiadási bizonylatokat. Az AI automatikusan kinyeri az összegeket, dátumokat, szállítókat és áfát. Ellenőrizze és mentse egy kattintással.
+
+[ai_import_tag]
+AI-alapú import
+
+[ai_import_title]
+Hagyja az AI-ra a papírmunkát
+
+[ai_import_desc]
+Töltse fel bármely dokumentum PDF, JPG vagy PNG formátumát. A Gemini AI elolvassa és kinyeri az összes adatot. Ellenőrizze a kinyert mezőket, szükség esetén módosítsa, és mentse piszkozat számlakánt vagy kiadásként egy kattintással.
+
+[ai_import_r1_label]
+PDF, JPG & PNG támogatott
+
+[ai_import_r1_sub]
+Egyszerre legfeljebb 10 fájl tölthető fel — párhuzamosan feldolgozva az AI által
+
+[ai_import_r2_label]
+Teljes automatikus kinyerés
+
+[ai_import_r2_sub]
+Összegek, dátumok, adószámok, szállítónevek és tételek — azonnali kinyeréssel
+
+[ai_import_r3_label]
+Ellenőrzés mentés előtt
+
+[ai_import_r3_sub]
+Minden import átmegy egy megerősítési képernyőn — Ön marad az irányítóban

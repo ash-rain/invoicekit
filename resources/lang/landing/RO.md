@@ -356,3 +356,36 @@ Termeni de serviciu
 
 [footer_copy]
 © 2026 InvoiceKit. Toate drepturile rezervate.
+
+[f10_title]
+Import de documente cu IA
+
+[f10_desc]
+Încărcați facturi, chitanțe sau documente de cheltuieli. IA extrage automat sumele, datele, furnizorii și TVA. Revizuiți și salvați cu un clic.
+
+[ai_import_tag]
+Import bazat pe IA
+
+[ai_import_title]
+Lăsați IA să se ocupe de hârtii
+
+[ai_import_desc]
+Încărcați un PDF, JPG sau PNG al oricărui document. Gemini IA citește și extrage toate datele pentru dvs. Revizuiți câmpurile extrase, ajustați dacă este necesar și salvați ca ciornă de factură sau cheltuială cu un clic.
+
+[ai_import_r1_label]
+PDF, JPG & PNG suportate
+
+[ai_import_r1_sub]
+Încărcați până la 10 fișiere odată — procesate în paralel de IA
+
+[ai_import_r2_label]
+Extracție automată completă
+
+[ai_import_r2_sub]
+Sume, date, coduri TVA, nume furnizori și linii — extrase instant
+
+[ai_import_r3_label]
+Revizuire înainte de salvare
+
+[ai_import_r3_sub]
+Fiecare import trece printr-un ecran de confirmare — dvs. rămâneți în control

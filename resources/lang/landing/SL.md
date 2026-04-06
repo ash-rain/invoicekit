@@ -356,3 +356,36 @@ Pogoji storitve
 
 [footer_copy]
 © 2026 InvoiceKit. Vse pravice pridržane.
+
+[f10_title]
+Uvoz dokumentov z AI
+
+[f10_desc]
+Naložite račune, potrdila ali dokumente stroškov. AI samodejno izvleče zneske, datume, dobavitelje in DDV. Preglejte in shranite z enim klikom.
+
+[ai_import_tag]
+Uvoz z AI
+
+[ai_import_title]
+Pustite AI, da uredi papirje
+
+[ai_import_desc]
+Naložite PDF, JPG ali PNG kateregakoli dokumenta. Gemini AI prebere in izvleče vse podatke za vas. Preglejte izvlečena polja, prilagodite po potrebi in shranite kot osnutek računa ali strošek z enim klikom.
+
+[ai_import_r1_label]
+PDF, JPG & PNG podprti
+
+[ai_import_r1_sub]
+Naložite do 10 datotek hkrati — AI jih obdela vzporedno
+
+[ai_import_r2_label]
+Popolna samodejno ekstrakcija
+
+[ai_import_r2_sub]
+Zneski, datumi, številke DDV, imena dobaviteljev in postavke — izvlečene takoj
+
+[ai_import_r3_label]
+Pregled pred shranjevanjem
+
+[ai_import_r3_sub]
+Vsak uvoz gre skozi zaslon za potrditev — vi ostanete v nadzoru

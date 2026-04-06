@@ -356,3 +356,36 @@ Käyttöehdot
 
 [footer_copy]
 © 2026 InvoiceKit. Kaikki oikeudet pidätetään.
+
+[f10_title]
+AI-dokumenttituonti
+
+[f10_desc]
+Lataa laskut, kuitit tai kulutositteet. Tekoäly poimii automaattisesti summat, päivämäärät, toimittajat ja ALV:n. Tarkista ja tallenna yhdellä klikkauksella.
+
+[ai_import_tag]
+Tekoälyllä toimiva tuonti
+
+[ai_import_title]
+Anna tekoälyn hoitaa paperityöt
+
+[ai_import_desc]
+Lataa mikä tahansa asiakirja PDF:nä, JPG:nä tai PNG:nä. Gemini-tekoäly lukee ja poimii kaikki tiedot puolestasi. Tarkista poimitut kentät, muokkaa tarvittaessa ja tallenna laskuluonnoksena tai kuluna yhdellä klikkauksella.
+
+[ai_import_r1_label]
+PDF, JPG & PNG tuettu
+
+[ai_import_r1_sub]
+Lataa kerralla jopa 10 tiedostoa — tekoäly käsittelee ne rinnakkain
+
+[ai_import_r2_label]
+Täysin automaattinen poiminta
+
+[ai_import_r2_sub]
+Summat, päivämäärät, ALV-numerot, toimittajanimet ja rivit — poimitaan välittömästi
+
+[ai_import_r3_label]
+Tarkistus ennen tallentamista
+
+[ai_import_r3_sub]
+Jokainen tuonti käy läpi vahvistusnäytön — sinä pysyt hallinnassa

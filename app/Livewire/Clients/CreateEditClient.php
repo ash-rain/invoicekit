@@ -118,6 +118,12 @@ class CreateEditClient extends Component
             $this->registration_number = $client->registration_number ?? '';
             $this->currency = $client->currency;
             $this->defaultLanguage = $client->default_language ?? '';
+        } else {
+            // Pre-fill from query params (e.g. when redirected from import review)
+            $this->name = request()->query('name', '');
+            $this->email = request()->query('email', '');
+            $this->address = request()->query('address', '');
+            $this->vat_number = request()->query('vat_number', '');
         }
     }
 

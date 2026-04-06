@@ -356,3 +356,36 @@ Uvjeti usluge
 
 [footer_copy]
 © 2026 InvoiceKit. Sva prava zadržana.
+
+[f10_title]
+AI uvoz dokumenata
+
+[f10_desc]
+Prenesite fakture, račune ili dokumenty troškova. AI automatski izvlači iznose, datume, dobavljače i PDV. Pregledajte i spremite jednim klikom.
+
+[ai_import_tag]
+AI-potpomognuti uvoz
+
+[ai_import_title]
+Neka AI obradi papirologiju
+
+[ai_import_desc]
+Prenesite PDF, JPG ili PNG bilo kojeg dokumenta. Gemini AI čita i izvlači sve podatke za vas. Pregledajte izvučene vrijednosti, prilagodite po potrebi i spremite kao nacrt fakture ili trošak jednim klikom.
+
+[ai_import_r1_label]
+PDF, JPG & PNG podržani
+
+[ai_import_r1_sub]
+Prenesite do 10 datoteka odjednom — AI ih obrađuje paralelno
+
+[ai_import_r2_label]
+Potpuna automatska ekstrakcija
+
+[ai_import_r2_sub]
+Iznosi, datumi, PDV brojevi, nazivi dobavljača i stavke — izvučeni trenutno
+
+[ai_import_r3_label]
+Pregled prije spremanja
+
+[ai_import_r3_sub]
+Svaki uvoz prolazi kroz zaslon za potvrdu — vi ostajete u kontroli

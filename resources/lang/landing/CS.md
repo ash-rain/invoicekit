@@ -356,3 +356,36 @@ Podmínky používání
 
 [footer_copy]
 © 2026 InvoiceKit. Všechna práva vyhrazena.
+
+[f10_title]
+Import dokumentů pomocí AI
+
+[f10_desc]
+Nahrajte faktury, účtenky nebo výdajové dokumenty. AI automaticky extrahuje částky, data, dodavatele a DPH. Zkontrolujte a uložte jedním kliknutím.
+
+[ai_import_tag]
+Import s podporou AI
+
+[ai_import_title]
+Nechte AI zvládnout papírování
+
+[ai_import_desc]
+Nahrajte PDF, JPG nebo PNG libovolného dokumentu. Gemini AI přečte a extrahuje všechna data za vás. Zkontrolujte extrahovaná pole, upravte dle potřeby a uložte jako koncept faktury nebo výdaj jedním kliknutím.
+
+[ai_import_r1_label]
+PDF, JPG & PNG jsou podporovány
+
+[ai_import_r1_sub]
+Nahrajte až 10 souborů najednou — zpracovány paralelně AI
+
+[ai_import_r2_label]
+Plná automatická extrakce
+
+[ai_import_r2_sub]
+Částky, data, DIČ, názvy dodavatelů a položky — extrahováno okamžitě
+
+[ai_import_r3_label]
+Kontrola před uložením
+
+[ai_import_r3_sub]
+Každý import prochází potvrzovací obrazovkou — zachováte kontrolu

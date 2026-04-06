@@ -356,3 +356,36 @@ Servicevoorwaarden
 
 [footer_copy]
 © 2026 InvoiceKit. Alle rechten voorbehouden.
+
+[f10_title]
+AI-documentimport
+
+[f10_desc]
+Upload facturen, bonnen of uitgavendocumenten. AI extraheert automatisch bedragen, datums, leveranciers en BTW. Controleer en sla op met één klik.
+
+[ai_import_tag]
+AI-gestuurde import
+
+[ai_import_title]
+Laat AI het papierwerk doen
+
+[ai_import_desc]
+Upload een PDF, JPG of PNG van elk document. Gemini AI leest en extraheert alle gegevens voor u. Controleer de geëxtraheerde velden, pas aan indien nodig, en sla op als conceptfactuur of uitgave met één klik.
+
+[ai_import_r1_label]
+PDF, JPG & PNG ondersteund
+
+[ai_import_r1_sub]
+Upload tot 10 bestanden tegelijk — parallel verwerkt door AI
+
+[ai_import_r2_label]
+Volledige automatische extractie
+
+[ai_import_r2_sub]
+Bedragen, datums, BTW-nummers, leveranciersnamen en regels — direct geëxtraheerd
+
+[ai_import_r3_label]
+Controleer voor opslaan
+
+[ai_import_r3_sub]
+Elke import doorloopt een bevestigingsscherm — u blijft in controle

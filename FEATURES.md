@@ -330,3 +330,45 @@ InvoiceKit ships as a fully installable Progressive Web App available to all use
 - Works offline for previously cached views; deferred sync resumes when connectivity is restored
 
 **Push notifications** are delivered through the same service worker registration (see Notifications & Emails section).
+
+---
+
+## AI Document Import
+
+InvoiceKit supports batch document import powered by Google Gemini 1.5 Flash (free-tier multimodal AI). Users can upload scanned invoices, receipts, or expense documents and have the extracted data reviewed before saving.
+
+### Supported Formats
+- PDF, JPG, JPEG, PNG — up to 10 MB per file, up to 10 files per batch
+
+### AI API Key Management (Filament Admin)
+- **Model**: `AiApiKey` — encrypts the `api_key` field at rest
+- **Filament resource** (`/admin/ai-api-keys`): create, edit, delete, toggle active, copy label
+- **Test Key action**: sends a minimal request to Gemini to verify the key is valid; shows success/error feedback
+- **Key rotation**: `AiKeyRotationService` selects the next available key via round-robin and applies a 60-second cooldown after any error. Throws `NoAvailableApiKeyException` when no key is available
+
+### Import Pipeline
+1. User navigates to **Import Invoices** or **Import Expenses** (buttons on list pages and dashboard shortcuts)
+2. `DocumentImporter` Livewire component handles drag-and-drop / file picker upload
+   - Files stored to MinIO: `imports/{userId}/{batchId}/`
+   - A `DocumentImport` record is created per file with `status = pending`
+   - `ProcessDocumentImport` job dispatched to the `imports` queue
+3. The page polls every 2 s to show live extraction status: `pending → processing → extracted → completed / failed`
+4. Once `extracted`, a **Review** button appears linking to the review page
+5. **Invoice Import Review** (`/invoices/import/{import}/review`):
+   - Pre-fills invoice number, date, due date, currency, line items from Gemini output
+   - Auto-matches client by VAT number or name (case-insensitive LIKE)
+   - User can add/remove line items and adjust all fields
+   - **Confirm Import** creates a draft `Invoice` + `InvoiceItem` records in a DB transaction; marks import as `completed`
+   - **Skip** discards the import without creating a record
+6. **Expense Import Review** (`/expenses/import/{import}/review`):
+   - Pre-fills amount, description, vendor, category, date, currency from Gemini output
+   - **Confirm Import** copies the original uploaded file from MinIO `imports/` → `receipts/{userId}/` and attaches it as `receipt_file`; creates `Expense` record; marks import as `completed`
+
+### Notifications
+- `DocumentImportSuccessNotification`: sent via WebPush + database channel; links to the correct review route based on `document_type`
+- `DocumentImportFailedNotification`: sent via WebPush + database channel; includes the error message
+
+### Client Filter Enhancement
+- Invoice and expense list pages now include a **Filter by client** `<select>` dropdown (URL-bound via `#[Url]`)
+- Client detail page (`/clients/{client}`) shows stats (Total Invoiced, Total Paid, Outstanding, Total Expenses), recent invoices and expenses tables, and shortcuts to create a new invoice or expense for that specific client
+

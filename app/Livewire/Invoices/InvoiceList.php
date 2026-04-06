@@ -2,10 +2,13 @@
 
 namespace App\Livewire\Invoices;
 
+use App\Models\Client;
 use App\Models\Invoice;
 use App\Notifications\InvoicePaidNotification;
 use Illuminate\Support\Facades\Auth;
+use Livewire\Attributes\Computed;
 use Livewire\Attributes\Layout;
+use Livewire\Attributes\Url;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -20,6 +23,9 @@ class InvoiceList extends Component
 
     public string $search = '';
 
+    #[Url]
+    public string $clientFilter = '';
+
     public function updatingStatusFilter(): void
     {
         $this->resetPage();
@@ -31,6 +37,11 @@ class InvoiceList extends Component
     }
 
     public function updatingSearch(): void
+    {
+        $this->resetPage();
+    }
+
+    public function updatingClientFilter(): void
     {
         $this->resetPage();
     }
@@ -62,12 +73,19 @@ class InvoiceList extends Component
         ]);
     }
 
+    #[Computed]
+    public function clients()
+    {
+        return Client::where('user_id', Auth::id())->orderBy('name')->get(['id', 'name']);
+    }
+
     public function render()
     {
         $invoices = Invoice::where('user_id', Auth::id())
             ->with('client')
             ->when($this->statusFilter, fn ($q) => $q->where('status', $this->statusFilter))
             ->when($this->documentTypeFilter, fn ($q) => $q->where('document_type', $this->documentTypeFilter))
+            ->when($this->clientFilter, fn ($q) => $q->where('client_id', $this->clientFilter))
             ->when($this->search, fn ($q) => $q->where('invoice_number', 'like', "%{$this->search}%"))
             ->orderByDesc('issue_date')
             ->paginate(15);

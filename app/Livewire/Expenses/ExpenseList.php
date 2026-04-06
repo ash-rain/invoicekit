@@ -2,9 +2,12 @@
 
 namespace App\Livewire\Expenses;
 
+use App\Models\Client;
 use App\Models\Expense;
 use Illuminate\Support\Facades\Auth;
+use Livewire\Attributes\Computed;
 use Livewire\Attributes\Layout;
+use Livewire\Attributes\Url;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -17,6 +20,9 @@ class ExpenseList extends Component
 
     public string $categoryFilter = '';
 
+    #[Url]
+    public string $clientFilter = '';
+
     public function updatedSearch(): void
     {
         $this->resetPage();
@@ -27,10 +33,21 @@ class ExpenseList extends Component
         $this->resetPage();
     }
 
+    public function updatedClientFilter(): void
+    {
+        $this->resetPage();
+    }
+
     public function delete(int $expenseId): void
     {
         $expense = Expense::where('user_id', Auth::id())->findOrFail($expenseId);
         $expense->delete();
+    }
+
+    #[Computed]
+    public function clients()
+    {
+        return Client::where('user_id', Auth::id())->orderBy('name')->get(['id', 'name']);
     }
 
     public function render()
@@ -39,6 +56,7 @@ class ExpenseList extends Component
             ->with(['client', 'project'])
             ->when($this->search, fn ($q) => $q->where('description', 'like', '%'.$this->search.'%'))
             ->when($this->categoryFilter, fn ($q) => $q->where('category', $this->categoryFilter))
+            ->when($this->clientFilter, fn ($q) => $q->where('client_id', $this->clientFilter))
             ->orderByDesc('date')
             ->paginate(20);
 

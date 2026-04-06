@@ -365,3 +365,36 @@ Terms of Service
 
 [footer_copy]
 © 2026 InvoiceKit. All rights reserved.
+
+[f10_title]
+AI Document Import
+
+[f10_desc]
+Drag and drop invoices, receipts, or expense documents. AI extracts amounts, dates, vendors, and VAT automatically. Review and save in one click.
+
+[ai_import_tag]
+AI-Powered Import
+
+[ai_import_title]
+Let AI handle the paperwork
+
+[ai_import_desc]
+Upload a PDF, JPG, or PNG of any document. Gemini AI reads and extracts all the data for you. Review the extracted fields, adjust if needed, and save as a draft invoice or expense in one click.
+
+[ai_import_r1_label]
+Supports PDF, JPG & PNG
+
+[ai_import_r1_sub]
+Upload up to 10 files at once — processed in parallel by AI
+
+[ai_import_r2_label]
+Extracts everything automatically
+
+[ai_import_r2_sub]
+Amounts, dates, VAT numbers, vendor names, and line items — all pulled out instantly
+
+[ai_import_r3_label]
+Review before saving
+
+[ai_import_r3_sub]
+Every import goes through a confirmation screen — you stay in control

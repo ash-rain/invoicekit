@@ -356,3 +356,36 @@ Användarvillkor
 
 [footer_copy]
 © 2026 InvoiceKit. Alla rättigheter förbehållna.
+
+[f10_title]
+AI-dokumentimport
+
+[f10_desc]
+Ladda upp fakturor, kvitton eller utgiftsdokument. AI extraherar automatiskt belopp, datum, leverantörer och moms. Granska och spara med ett klick.
+
+[ai_import_tag]
+AI-driven import
+
+[ai_import_title]
+Låt AI hantera pappersarbetet
+
+[ai_import_desc]
+Ladda upp en PDF, JPG eller PNG av vilket dokument som helst. Gemini AI läser och extraherar all data åt dig. Granska de extraherade fälten, justera vid behov och spara som fakturautkast eller utgift med ett klick.
+
+[ai_import_r1_label]
+PDF, JPG & PNG stöds
+
+[ai_import_r1_sub]
+Ladda upp upp till 10 filer samtidigt — bearbetas parallellt av AI
+
+[ai_import_r2_label]
+Fullständig automatisk extrahering
+
+[ai_import_r2_sub]
+Belopp, datum, momsregistreringsnummer, leverantörsnamn och rader — extraheras omedelbart
+
+[ai_import_r3_label]
+Granska innan du sparar
+
+[ai_import_r3_sub]
+Varje import går genom en bekräftelseskärm — du har kontrollen

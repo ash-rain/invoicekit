@@ -73,6 +73,7 @@
                             <td class="px-5 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">{{ $client->currency }}</td>
                             <td class="px-5 py-4 whitespace-nowrap text-right">
                                 <div class="flex items-center justify-end gap-3">
+                                    <a href="{{ route('clients.show', $client) }}" class="text-xs font-semibold text-gray-500 hover:text-gray-900 transition-colors">{{ __('View') }}</a>
                                     <a href="{{ route('clients.edit', $client) }}" class="text-xs font-semibold text-indigo-600 hover:text-indigo-900 transition-colors">{{ __('Edit') }}</a>
                                     <button
                                         wire:click="deleteClient({{ $client->id }})"

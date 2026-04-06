@@ -356,3 +356,36 @@ Conditions d'utilisation
 
 [footer_copy]
 © 2026 InvoiceKit. Tous droits réservés.
+
+[f10_title]
+Import IA de documents
+
+[f10_desc]
+Téléchargez des factures, reçus ou notes de frais. L'IA extrait automatiquement les montants, dates, fournisseurs et TVA. Vérifiez et enregistrez en un clic.
+
+[ai_import_tag]
+Import propulsé par IA
+
+[ai_import_title]
+Laissez l'IA gérer la paperasse
+
+[ai_import_desc]
+Téléchargez un PDF, JPG ou PNG de n'importe quel document. L'IA Gemini lit et extrait toutes les données pour vous. Vérifiez les champs extraits, ajustez si nécessaire, et enregistrez comme brouillon de facture ou dépense en un clic.
+
+[ai_import_r1_label]
+PDF, JPG & PNG pris en charge
+
+[ai_import_r1_sub]
+Téléchargez jusqu'à 10 fichiers à la fois — traités en parallèle par l'IA
+
+[ai_import_r2_label]
+Extraction automatique complète
+
+[ai_import_r2_sub]
+Montants, dates, numéros de TVA, noms de fournisseurs et lignes — tout extrait instantanément
+
+[ai_import_r3_label]
+Vérification avant enregistrement
+
+[ai_import_r3_sub]
+Chaque import passe par un écran de confirmation — vous gardez le contrôle

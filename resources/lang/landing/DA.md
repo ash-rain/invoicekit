@@ -355,3 +355,36 @@ Servicevilkår
 
 [footer_copy]
 © 2026 InvoiceKit. Alle rettigheder forbeholdes.
+
+[f10_title]
+AI-dokumentimport
+
+[f10_desc]
+Upload fakturaer, kvitteringer eller udgiftsdokumenter. AI udtrækker automatisk beløb, datoer, leverandører og moms. Gennemgå og gem med ét klik.
+
+[ai_import_tag]
+AI-drevet import
+
+[ai_import_title]
+Lad AI håndtere papirarbejdet
+
+[ai_import_desc]
+Upload en PDF, JPG eller PNG af et hvilket som helst dokument. Gemini AI læser og udtrækker alle data for dig. Gennemgå de udtrukne felter, juster om nødvendigt, og gem som kladde eller udgift med ét klik.
+
+[ai_import_r1_label]
+PDF, JPG & PNG understøttet
+
+[ai_import_r1_sub]
+Upload op til 10 filer på én gang — behandlet parallelt af AI
+
+[ai_import_r2_label]
+Fuld automatisk udtrækning
+
+[ai_import_r2_sub]
+Beløb, datoer, momsnumre, leverandørnavne og linjer — udtrukket øjeblikkeligt
+
+[ai_import_r3_label]
+Gennemgå før gemning
+
+[ai_import_r3_sub]
+Hver import gennemgår en bekræftelsesskærm — du beholder kontrollen

@@ -54,4 +54,8 @@ return [
         'application_fee_percent' => (float) env('STRIPE_APPLICATION_FEE_PERCENT', 2),
     ],
 
+    'gemini' => [
+        'endpoint' => env('GEMINI_ENDPOINT', 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent'),
+    ],
+
 ];

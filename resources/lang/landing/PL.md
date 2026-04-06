@@ -356,3 +356,36 @@ Warunki usługi
 
 [footer_copy]
 © 2026 InvoiceKit. Wszelkie prawa zastrzeżone.
+
+[f10_title]
+Import dokumentów przez AI
+
+[f10_desc]
+Prześlij faktury, paragony lub dokumenty wydatków. AI automatycznie wyodrębnia kwoty, daty, dostawców i VAT. Sprawdź i zapisz jednym kliknięciem.
+
+[ai_import_tag]
+Import wspomagany AI
+
+[ai_import_title]
+Pozwól AI zająć się papierologią
+
+[ai_import_desc]
+Prześlij PDF, JPG lub PNG dowolnego dokumentu. Gemini AI odczytuje i wyodrębnia wszystkie dane za Ciebie. Sprawdź wyodrębnione pola, dostosuj w razie potrzeby i zapisz jako wersję roboczą faktury lub wydatek jednym kliknięciem.
+
+[ai_import_r1_label]
+PDF, JPG i PNG obsługiwane
+
+[ai_import_r1_sub]
+Prześlij do 10 plików naraz — przetwarzane równolegle przez AI
+
+[ai_import_r2_label]
+Pełna automatyczna ekstrakcja
+
+[ai_import_r2_sub]
+Kwoty, daty, numery VAT, nazwy dostawców i pozycje — wyodrębniane natychmiastowo
+
+[ai_import_r3_label]
+Weryfikacja przed zapisem
+
+[ai_import_r3_sub]
+Każdy import przechodzi przez ekran potwierdzenia — zachowujesz kontrolę

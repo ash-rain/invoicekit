@@ -356,3 +356,36 @@ Teenustingimused
 
 [footer_copy]
 © 2026 InvoiceKit. Kõik õigused kaitstud.
+
+[f10_title]
+Tehisintellekti dokumentide import
+
+[f10_desc]
+Laadige üles arved, kviitungid või kulutõendid. Tehisintellekt eraldab automaatselt summad, kuupäevad, tarnijad ja käibemaksu. Vaadake üle ja salvestage ühe klikiga.
+
+[ai_import_tag]
+Tehisintellektiga toetatud import
+
+[ai_import_title]
+Laske tehisintellektil paberitöö ära teha
+
+[ai_import_desc]
+Laadige üles mis tahes dokumendi PDF, JPG või PNG. Gemini tehisintellekt loeb ja eraldab kõik andmed teie eest. Vaadake eraldatud väljad üle, reguleerige vajadusel ja salvestage arve mustandina või kuluna ühe klikiga.
+
+[ai_import_r1_label]
+PDF, JPG & PNG toetatud
+
+[ai_import_r1_sub]
+Laadige korraga üles kuni 10 faili — tehisintellekt töötleb neid paralleelselt
+
+[ai_import_r2_label]
+Täielik automaatne eraldamine
+
+[ai_import_r2_sub]
+Summad, kuupäevad, KMKR-numbrid, tarnijate nimed ja read — eraldatakse koheselt
+
+[ai_import_r3_label]
+Kontrollimine enne salvestamist
+
+[ai_import_r3_sub]
+Iga import läbib kinnitusekraani — teie jääte kontrolli alla

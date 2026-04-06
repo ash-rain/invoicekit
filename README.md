@@ -17,6 +17,7 @@ InvoiceKit helps EU-based freelancers manage clients, track billable time, gener
 - **Client Portal** — Tokenised public invoice links (no login required)
 - **Expense Tracking** — Receipt upload, CSV export, category filters
 - **Billing** — Stripe Checkout + Customer Portal, webhook-driven subscription sync, 14-day Pro trial
+- **AI Document Import** — Drag-and-drop invoices and receipts (PDF/JPG/PNG); Gemini 1.5 Flash extracts all fields; review and confirm to create a draft invoice or expense with receipt attached
 - **Notifications** — In-app bell, web push (VAPID), invoice reminder emails with PDF attachment
 - **Multi-currency** — EUR, USD, BGN, RON, PLN, CZK, HUF
 - **24 EU languages** — Full UI and PDF localisation

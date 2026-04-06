@@ -356,3 +356,36 @@ Nutzungsbedingungen
 
 [footer_copy]
 © 2026 InvoiceKit. Alle Rechte vorbehalten.
+
+[f10_title]
+KI-Dokumentenimport
+
+[f10_desc]
+Laden Sie Rechnungen, Quittungen oder Ausgabendokumente hoch. KI extrahiert Beträge, Daten, Lieferanten und MwSt. automatisch. Überprüfen und in einem Klick speichern.
+
+[ai_import_tag]
+KI-gestützter Import
+
+[ai_import_title]
+KI übernimmt den Papierkram
+
+[ai_import_desc]
+Laden Sie ein PDF, JPG oder PNG eines Dokuments hoch. Gemini KI liest und extrahiert alle Daten für Sie. Überprüfen Sie die extrahierten Felder, passen Sie sie bei Bedarf an und speichern Sie als Rechnungsentwurf oder Ausgabe.
+
+[ai_import_r1_label]
+PDF, JPG & PNG unterstützt
+
+[ai_import_r1_sub]
+Bis zu 10 Dateien auf einmal hochladen — parallel von der KI verarbeitet
+
+[ai_import_r2_label]
+Alles automatisch extrahieren
+
+[ai_import_r2_sub]
+Beträge, Daten, MwSt.-Nummern, Lieferantennamen und Positionen – sofort extrahiert
+
+[ai_import_r3_label]
+Vor dem Speichern überprüfen
+
+[ai_import_r3_sub]
+Jeder Import durchläuft einen Bestätigungsbildschirm – Sie behalten die Kontrolle

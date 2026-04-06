@@ -356,3 +356,36 @@ Pakalpojuma noteikumi
 
 [footer_copy]
 © 2026 InvoiceKit. Visas tiesības aizsargātas.
+
+[f10_title]
+MI dokumentu imports
+
+[f10_desc]
+Augšupielādējiet rēķinus, čekus vai izdevumu dokumentus. MI automātiski iegūst summas, datumus, piegādātājus un PVN. Pārbaudiet un saglabājiet ar vienu klikšķi.
+
+[ai_import_tag]
+MI atbalstīts imports
+
+[ai_import_title]
+Ļaujiet MI rūpēties par dokumentiem
+
+[ai_import_desc]
+Augšupielādējiet jebkura dokumenta PDF, JPG vai PNG. Gemini MI nolasa un iegūst visus datus jūsu vietā. Pārbaudiet iegūtos laukus, ja nepieciešams, pielāgojiet un saglabājiet kā rēķina melnrakstu vai izdevumu ar vienu klikšķi.
+
+[ai_import_r1_label]
+PDF, JPG & PNG atbalstīts
+
+[ai_import_r1_sub]
+Augšupielādējiet līdz 10 failiem uzreiz — MI apstrādā tos paralēli
+
+[ai_import_r2_label]
+Pilnīga automātiska ieguve
+
+[ai_import_r2_sub]
+Summas, datumi, PVN numuri, piegādātāju nosaukumi un rindas — iegūtas uzreiz
+
+[ai_import_r3_label]
+Pārbaude pirms saglabāšanas
+
+[ai_import_r3_sub]
+Katrs imports iziet cauri apstiprinājuma ekrānam — jūs paliekat kontrolē

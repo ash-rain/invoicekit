@@ -6,17 +6,28 @@
             <h1 class="text-[26px] font-bold text-gray-900 leading-tight" style="font-family:'Syne',sans-serif;letter-spacing:-0.025em;">{{ __('Invoices') }}</h1>
             <p class="mt-0.5 text-sm text-gray-500">{{ __('Create and manage your invoices') }}</p>
         </div>
-        <a
-            href="{{ route('invoices.create') }}"
-            class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-bold transition-all self-start sm:self-auto"
-            style="background:#0f1117;color:white;"
-            onmouseover="this.style.background='#1e2130'" onmouseout="this.style.background='#0f1117'"
-        >
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/>
-            </svg>
-            {{ __('New Invoice') }}
-        </a>
+        <div class="flex items-center gap-2 self-start sm:self-auto">
+            <a
+                href="{{ route('invoices.import') }}"
+                class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold border border-gray-200 text-gray-700 hover:bg-gray-50 transition-all"
+            >
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.347.347A3.75 3.75 0 0113.5 21h-3a3.75 3.75 0 01-2.652-1.098l-.347-.347z"/>
+                </svg>
+                {{ __('Import Invoices') }}
+            </a>
+            <a
+                href="{{ route('invoices.create') }}"
+                class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-bold transition-all self-start sm:self-auto"
+                style="background:#0f1117;color:white;"
+                onmouseover="this.style.background='#1e2130'" onmouseout="this.style.background='#0f1117'"
+            >
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/>
+                </svg>
+                {{ __('New Invoice') }}
+            </a>
+        </div>
     </div>
 
     {{-- Filter bar --}}
@@ -55,6 +66,16 @@
             <option value="credit_note">{{ __('Credit Note') }}</option>
             <option value="debit_note">{{ __('Debit Note') }}</option>
             <option value="proforma">{{ __('Proforma Invoice') }}</option>
+        </select>
+        <select
+            wire:model.live="clientFilter"
+            class="px-4 py-2.5 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 font-medium"
+            style="background:white;border:1px solid #e5e7eb;color:#374151;"
+        >
+            <option value="">{{ __('All Clients') }}</option>
+            @foreach ($this->clients as $client)
+                <option value="{{ $client->id }}">{{ $client->name }}</option>
+            @endforeach
         </select>
     </div>
 

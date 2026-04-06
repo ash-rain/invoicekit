@@ -356,3 +356,36 @@ Téarmaí Seirbhíse
 
 [footer_copy]
 © 2026 InvoiceKit. Gach ceart ar cosaint.
+
+[f10_title]
+Iompórtáil doiciméad CI
+
+[f10_desc]
+Uaslódáil sonraisc, admhálacha nó doiciméid caiteachais. Baineann CI amach go huathoibríoch méideanna, dátaí, soláthraithe agus CBL. Déan athbhreithniú agus sábháil le haon chliceáil.
+
+[ai_import_tag]
+Iompórtáil le CI
+
+[ai_import_title]
+Lig don CI an obair pháipéir a dhéanamh
+
+[ai_import_desc]
+Uaslódáil PDF, JPG nó PNG d'aon doiciméad. Léann agus baineann Gemini CI gach sonra amach ar do shon. Déan athbhreithniú ar na réimsí easraithe, coigeartaigh más gá, agus sábháil mar dhréacht sonraisc nó caiteachas le haon chliceáil.
+
+[ai_import_r1_label]
+PDF, JPG & PNG tacaithe
+
+[ai_import_r1_sub]
+Uaslódáil suas le 10 comhad ag an am céanna — próiseáilte i gcomhthráth ag CI
+
+[ai_import_r2_label]
+Eastóscadh iomlán uathoibríoch
+
+[ai_import_r2_sub]
+Méideanna, dátaí, uimhreacha CBL, ainmneacha soláthróirí agus línte — eastósctha láithreach
+
+[ai_import_r3_label]
+Athbhreithniú roimh shábháil
+
+[ai_import_r3_sub]
+Téann gach iompórtáil trí scáileán deimhnithe — tá tú i gcónaí i gceannas

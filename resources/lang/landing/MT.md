@@ -355,3 +355,36 @@ Termini tas-Servizz
 
 [footer_copy]
 © 2026 InvoiceKit. Id-drittijiet kollha riżervati.
+
+[f10_title]
+Importazzjoni ta' dokumenti bl-AI
+
+[f10_desc]
+Agħbbu fatturi, irċevuti jew dokumenti tal-infiq. L-AI testragi awtomatikament l-ammonti, id-dati, il-fornituri u l-VAT. Irrevedi u salva b'klikk wieħed.
+
+[ai_import_tag]
+Importazzjoni bl-AI
+
+[ai_import_title]
+Ħalli l-AI tiġġestixxi d-dokumenti
+
+[ai_import_desc]
+Agħbbi PDF, JPG jew PNG ta' kwalunkwe dokument. Gemini AI taqra u testragi d-dejta kollha għalik. Irrevedi l-oqsma estratti, aġġusta jekk meħtieġ, u salva bħala abbozz ta' fattura jew infiq b'klikk wieħed.
+
+[ai_import_r1_label]
+PDF, JPG & PNG appoġġati
+
+[ai_import_r1_sub]
+Agħbbi sa 10 fajls fl-istess ħin — pproċessati b'mod parallel mill-AI
+
+[ai_import_r2_label]
+Estrazzjoni kompletament awtomatika
+
+[ai_import_r2_sub]
+Ammonti, dati, numri tal-VAT, ismijiet tal-fornituri u linji — estratti immedjatament
+
+[ai_import_r3_label]
+Reviżjoni qabel is-salvataġġ
+
+[ai_import_r3_sub]
+Kull importazzjoni tgħaddi minn skrin ta' konferma — int tibqa' fil-kontroll

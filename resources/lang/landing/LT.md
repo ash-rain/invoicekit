@@ -356,3 +356,36 @@ Paslaugų teikimo sąlygos
 
 [footer_copy]
 © 2026 InvoiceKit. Visos teisės saugomos.
+
+[f10_title]
+DI dokumentų importas
+
+[f10_desc]
+Įkelkite sąskaitas, kvitus ar išlaidų dokumentus. DI automatiškai ištraukia sumas, datas, tiekėjus ir PVM. Peržiūrėkite ir išsaugokite vienu spustelėjimu.
+
+[ai_import_tag]
+DI palaikomas importas
+
+[ai_import_title]
+Leiskite DI tvarkyti dokumentus
+
+[ai_import_desc]
+Įkelkite bet kurio dokumento PDF, JPG ar PNG. Gemini DI nuskaito ir ištraukia visus duomenis už jus. Peržiūrėkite ištrauktus laukus, prireikus pataisykite ir išsaugokite kaip sąskaitos juodraštį ar išlaidą vienu spustelėjimu.
+
+[ai_import_r1_label]
+PDF, JPG & PNG palaikomi
+
+[ai_import_r1_sub]
+Įkelkite iki 10 failų vienu metu — DI juos apdoroja lygiagrečiai
+
+[ai_import_r2_label]
+Visiškai automatinis ištraukimas
+
+[ai_import_r2_sub]
+Sumos, datos, PVM numeriai, tiekėjų vardai ir eilutės — ištraukiami akimirksniu
+
+[ai_import_r3_label]
+Peržiūra prieš išsaugojimą
+
+[ai_import_r3_sub]
+Kiekvienas importas praeina per patvirtinimo ekraną — jūs lieka kontroliuojantis

@@ -7,13 +7,17 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PushSubscriptionController;
 use App\Http\Controllers\StripeConnectController;
 use App\Http\Controllers\StripeWebhookController;
+use App\Livewire\Clients\ClientDetail;
 use App\Livewire\Clients\ClientList;
 use App\Livewire\Clients\CreateEditClient;
 use App\Livewire\Dashboard;
+use App\Livewire\DocumentImporter;
 use App\Livewire\Expenses\CreateExpense;
 use App\Livewire\Expenses\ExpenseList;
+use App\Livewire\Expenses\ImportReview as ExpenseImportReview;
 use App\Livewire\Invoices\CreateInvoice;
 use App\Livewire\Invoices\CreateRecurringInvoice;
+use App\Livewire\Invoices\ImportReview as InvoiceImportReview;
 use App\Livewire\Invoices\InvoiceList;
 use App\Livewire\Invoices\RecurringInvoiceList;
 use App\Livewire\OnboardingWizard;
@@ -107,6 +111,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // Clients
     Route::get('/clients', ClientList::class)->name('clients.index');
     Route::get('/clients/create', CreateEditClient::class)->name('clients.create');
+    Route::get('/clients/{client}', ClientDetail::class)->name('clients.show');
     Route::get('/clients/{client}/edit', CreateEditClient::class)->name('clients.edit');
 
     // Projects
@@ -120,6 +125,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     // Invoices
     Route::get('/invoices', InvoiceList::class)->name('invoices.index');
+    Route::get('/invoices/import', DocumentImporter::class)->name('invoices.import');
+    Route::get('/invoices/import/{import}/review', InvoiceImportReview::class)->name('invoices.import.review');
     Route::get('/invoices/create', CreateInvoice::class)->name('invoices.create');
     Route::get('/invoices/{invoice}', function ($invoice) {
         $inv = \App\Models\Invoice::findOrFail($invoice);
@@ -138,6 +145,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     // Expenses
     Route::get('/expenses', ExpenseList::class)->name('expenses.index');
+    Route::get('/expenses/import', DocumentImporter::class)->name('expenses.import')->defaults('type', 'expense');
+    Route::get('/expenses/import/{import}/review', ExpenseImportReview::class)->name('expenses.import.review');
     Route::get('/expenses/create', CreateExpense::class)->name('expenses.create');
     Route::get('/expenses/{expense}/edit', CreateExpense::class)->name('expenses.edit');
     Route::get('/expenses/export', function () {

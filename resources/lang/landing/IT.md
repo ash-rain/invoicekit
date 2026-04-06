@@ -356,3 +356,36 @@ Termini di servizio
 
 [footer_copy]
 © 2026 InvoiceKit. Tutti i diritti riservati.
+
+[f10_title]
+Importazione documenti con IA
+
+[f10_desc]
+Carica fatture, ricevute o documenti di spesa. L'IA estrae automaticamente importi, date, fornitori e IVA. Rivedi e salva in un clic.
+
+[ai_import_tag]
+Importazione con IA
+
+[ai_import_title]
+Lascia che l'IA gestisca la burocrazia
+
+[ai_import_desc]
+Carica un PDF, JPG o PNG di qualsiasi documento. L'IA Gemini legge ed estrae tutti i dati per te. Rivedi i campi estratti, modifica se necessario, e salva come bozza fattura o spesa in un clic.
+
+[ai_import_r1_label]
+PDF, JPG & PNG supportati
+
+[ai_import_r1_sub]
+Carica fino a 10 file contemporaneamente — elaborati in parallelo dall'IA
+
+[ai_import_r2_label]
+Estrazione automatica completa
+
+[ai_import_r2_sub]
+Importi, date, numeri IVA, nomi fornitori e righe — estratti istantaneamente
+
+[ai_import_r3_label]
+Revisione prima del salvataggio
+
+[ai_import_r3_sub]
+Ogni importazione passa per una schermata di conferma — tu rimani in controllo

@@ -18,6 +18,13 @@
                 </svg>
                 {{ __('CSV Export') }}
             </a>
+            <a href="{{ route('expenses.import') }}"
+                class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold border border-gray-200 text-gray-700 hover:bg-gray-50 transition">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.347.347A3.75 3.75 0 0113.5 21h-3a3.75 3.75 0 01-2.652-1.098l-.347-.347z"/>
+                </svg>
+                {{ __('Import Expenses') }}
+            </a>
             <a href="{{ route('expenses.create') }}"
                 class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-bold transition-all"
                 style="background:#0f1117;color:white;" onmouseover="this.style.background='#1e2130'"
@@ -48,6 +55,13 @@
                 <option value="hosting">{{ __('Hosting') }}</option>
                 <option value="marketing">{{ __('Marketing') }}</option>
                 <option value="other">{{ __('Other') }}</option>
+            </select>
+            <select wire:model.live="clientFilter"
+                class="px-3 py-2 text-sm border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none">
+                <option value="">{{ __('All Clients') }}</option>
+                @foreach ($this->clients as $client)
+                    <option value="{{ $client->id }}">{{ $client->name }}</option>
+                @endforeach
             </select>
         </div>
     </div>
