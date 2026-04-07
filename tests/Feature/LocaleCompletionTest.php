@@ -9,7 +9,8 @@ class LocaleCompletionTest extends TestCase
     /** @return array<string, array{0: string}> */
     public static function localeProvider(): array
     {
-        $locales = config('invoicekit.supported_languages', []);
+        $config = require __DIR__.'/../../config/invoicekit.php';
+        $locales = $config['supported_languages'] ?? [];
 
         return collect($locales)
             ->filter(fn ($code) => $code !== 'en')

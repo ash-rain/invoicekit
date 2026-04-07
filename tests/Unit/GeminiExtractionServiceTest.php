@@ -69,8 +69,8 @@ class GeminiExtractionServiceTest extends TestCase
 
         $result = $this->service->extractFromDocument('imports/1/test.pdf', 'application/pdf', 'invoice');
 
-        $this->assertEquals('Acme Corp', $result['vendor_name']);
-        $this->assertEquals('INV-2024-001', $result['invoice_number']);
+        $this->assertEquals('Acme Corp', $result['data']['vendor_name']);
+        $this->assertEquals('INV-2024-001', $result['data']['invoice_number']);
     }
 
     public function test_extract_marks_key_failed_on_429_and_retries(): void

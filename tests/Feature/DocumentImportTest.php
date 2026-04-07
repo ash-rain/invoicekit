@@ -66,7 +66,7 @@ class DocumentImportTest extends TestCase
         $gemini = $this->createMock(GeminiExtractionService::class);
         $gemini->expects($this->once())
             ->method('extractFromDocument')
-            ->willReturn($extractedData);
+            ->willReturn(['data' => $extractedData, 'usedOwnKey' => false]);
 
         $this->app->instance(GeminiExtractionService::class, $gemini);
 
@@ -122,7 +122,7 @@ class DocumentImportTest extends TestCase
                 $import->refresh();
                 $capturedStatus = $import->status;
 
-                return ['vendor_name' => 'Test'];
+                return ['data' => ['vendor_name' => 'Test'], 'usedOwnKey' => false];
             });
 
         Notification::fake();

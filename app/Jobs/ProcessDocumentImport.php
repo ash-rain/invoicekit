@@ -20,7 +20,9 @@ class ProcessDocumentImport implements ShouldQueue
 
     public function __construct(
         public readonly DocumentImport $import,
-    ) {}
+    ) {
+        $this->onQueue('imports');
+    }
 
     public function handle(GeminiExtractionService $gemini): void
     {
