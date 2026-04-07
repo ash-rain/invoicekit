@@ -43,6 +43,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'reminder_on_due_day',
         'reminder_overdue_intervals',
         'gemini_api_key',
+        'setup_guide_dismissed_at',
+        'setup_guide_dismissed_steps',
     ];
 
     /**
@@ -72,12 +74,24 @@ class User extends Authenticatable implements MustVerifyEmail
             'trial_ends_at' => 'datetime',
             'subscribed_until' => 'datetime',
             'gemini_api_key' => 'encrypted',
+            'setup_guide_dismissed_at' => 'datetime',
+            'setup_guide_dismissed_steps' => 'array',
         ];
     }
 
     public function hasStripeConnect(): bool
     {
         return $this->stripe_connect_onboarded === true && $this->stripe_connect_id !== null;
+    }
+
+    public function hasSetupGuideDismissed(): bool
+    {
+        return $this->setup_guide_dismissed_at !== null;
+    }
+
+    public function hasSetupGuideStepDismissed(string $key): bool
+    {
+        return in_array($key, $this->setup_guide_dismissed_steps ?? []);
     }
 
     public function isPro(): bool
