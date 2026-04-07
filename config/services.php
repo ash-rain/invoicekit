@@ -51,6 +51,7 @@ return [
         'webhook_secret' => env('STRIPE_WEBHOOK_SECRET'),
         'pro_price_id' => env('STRIPE_PRO_PRICE_ID'),
         'starter_price_id' => env('STRIPE_STARTER_PRICE_ID'),
+        'client_id' => env('STRIPE_CLIENT_ID'),
         'application_fee_percent' => (float) env('STRIPE_APPLICATION_FEE_PERCENT', 2),
     ],
 

@@ -234,6 +234,94 @@ class StripeConnectTest extends TestCase
         $this->assertFalse($user->stripe_connect_onboarded);
     }
 
+    // ── Stripe not configured guards ─────────────────────────────────────────
+
+    public function test_onboard_redirects_with_error_when_stripe_not_configured(): void
+    {
+        config(['services.stripe.key' => null]);
+        $user = User::factory()->create();
+
+        $this->actingAs($user)
+            ->post(route('stripe-connect.onboard'))
+            ->assertRedirect()
+            ->assertSessionHas('error');
+    }
+
+    public function test_callback_redirects_with_error_when_stripe_not_configured(): void
+    {
+        config(['services.stripe.key' => null]);
+        $user = User::factory()->create(['stripe_connect_id' => 'acct_test123']);
+
+        $this->actingAs($user)
+            ->get(route('stripe-connect.callback'))
+            ->assertRedirect(route('settings.index', ['tab' => 'payments']))
+            ->assertSessionHas('error');
+    }
+
+    public function test_refresh_redirects_with_error_when_stripe_not_configured(): void
+    {
+        config(['services.stripe.key' => null]);
+        $user = User::factory()->create(['stripe_connect_id' => 'acct_test123']);
+
+        $this->actingAs($user)
+            ->get(route('stripe-connect.refresh'))
+            ->assertRedirect(route('settings.index', ['tab' => 'payments']))
+            ->assertSessionHas('error');
+    }
+
+    public function test_dashboard_redirects_with_error_when_stripe_not_configured(): void
+    {
+        config(['services.stripe.key' => null]);
+        $user = User::factory()->create([
+            'stripe_connect_id' => 'acct_test123',
+            'stripe_connect_onboarded' => true,
+        ]);
+
+        $this->actingAs($user)
+            ->get(route('stripe-connect.dashboard'))
+            ->assertRedirect()
+            ->assertSessionHas('error');
+    }
+
+    // ── Webhook: account.application.deauthorized ─────────────────────────────
+
+    public function test_webhook_account_deauthorized_clears_connect_fields(): void
+    {
+        config(['services.stripe.webhook_secret' => null]);
+
+        $user = User::factory()->create([
+            'stripe_connect_id' => 'acct_deauth123',
+            'stripe_connect_onboarded' => true,
+        ]);
+
+        $this->postJson(route('billing.webhook'), [
+            'type' => 'account.application.deauthorized',
+            'data' => [
+                'object' => [
+                    'id' => 'acct_deauth123',
+                ],
+            ],
+        ])->assertOk();
+
+        $user->refresh();
+        $this->assertNull($user->stripe_connect_id);
+        $this->assertFalse($user->stripe_connect_onboarded);
+    }
+
+    public function test_webhook_account_deauthorized_does_nothing_for_unknown_account(): void
+    {
+        config(['services.stripe.webhook_secret' => null]);
+
+        $this->postJson(route('billing.webhook'), [
+            'type' => 'account.application.deauthorized',
+            'data' => [
+                'object' => [
+                    'id' => 'acct_unknown999',
+                ],
+            ],
+        ])->assertOk();
+    }
+
     // ── Webhook: checkout.session.completed (invoice type) ───────────────────
 
     public function test_webhook_checkout_completed_marks_invoice_as_paid(): void

@@ -41,6 +41,7 @@ class StripeWebhookController extends Controller
             'customer.subscription.deleted' => $this->handleSubscriptionDeleted($data),
             'invoice.payment_failed' => $this->handlePaymentFailed($data),
             'account.updated' => $this->handleAccountUpdated($data),
+            'account.application.deauthorized' => $this->handleAccountDeauthorized($data),
             default => null,
         };
 
@@ -223,5 +224,31 @@ class StripeWebhookController extends Controller
             $user->update(['stripe_connect_onboarded' => false]);
             Log::warning('Stripe Connect account disabled for user.', ['user_id' => $user->id]);
         }
+    }
+
+    /**
+     * Handle account.application.deauthorized — user revoked access from their Stripe dashboard.
+     * Clear Connect fields locally so the user can re-onboard if desired.
+     */
+    private function handleAccountDeauthorized(mixed $account): void
+    {
+        $accountId = is_array($account) ? ($account['id'] ?? null) : ($account->id ?? null);
+
+        if (! $accountId) {
+            return;
+        }
+
+        $user = User::where('stripe_connect_id', $accountId)->first();
+
+        if (! $user) {
+            return;
+        }
+
+        $user->update([
+            'stripe_connect_id' => null,
+            'stripe_connect_onboarded' => false,
+        ]);
+
+        Log::info('Stripe Connect account deauthorized for user.', ['user_id' => $user->id]);
     }
 }
