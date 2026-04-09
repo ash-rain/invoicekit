@@ -32,13 +32,24 @@ Implemented features as of March 2026.
 
 ## Client Management
 
-**Fields**: name, email, address, country (41 countries), VAT number, currency, default invoice language
+**Fields**: name, email, address, country (41 countries), VAT number, registration number, currency, default invoice language
 
 - List with name search + pagination (15/page)
 - Create, edit, delete (with confirmation)
 - Per-country EU VAT number format validation (regex for all 26 EU member states)
 - Plan gate on creation: Free plan capped at 3 clients
 - Client's `default_language` pre-fills invoice language on invoice creation
+
+### Company Lookup & Auto-fill
+
+Enter a VAT number or national registration number on the New Client screen to auto-fill all company details:
+
+- **Layer 1 — EU VIES**: For EU VAT numbers (e.g. `DE123456789`), the free VIES REST API is queried first. Returns verified name, address, and VAT-registered status. No limits apply.
+- **Layer 2 — Gemini AI fallback**: For non-VAT-registered companies (e.g. Bulgarian ЕИК `203137077`) or when VIES has no data, a Gemini AI lookup is performed using country-specific context. Results are cached 24 h per number.
+- **Localized registration labels**: The registration number field label updates per selected country — ЕИК (BG), KVK-nummer (NL), SIRET (FR), Handelsregisternummer (DE), CVR-nummer (DK), etc.
+- **Duplicate detection**: If the looked-up VAT or registration number matches an existing client, a warning banner with a link is shown.
+- **Source badge**: VIES results show a green "Verified via EU VIES" badge; Gemini results show an amber "AI-sourced — please verify" badge.
+- **Lookup limits** (Gemini only): Free plan = 2 AI lookups/day; Starter = 10/day; Pro = unlimited. Users with their own Gemini API key bypass limits entirely.
 
 ---
 

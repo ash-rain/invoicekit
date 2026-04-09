@@ -655,5 +655,18 @@
     "Open Settings": "Atvērt iestatījumus",
     "Connect Stripe": "Savienot Stripe",
     "Add API Key": "Pievienot API atslēgu",
-    "Hide the setup guide? You can still access all these settings at any time.": "Slēpt iestatīšanas rokasgrāmatu? Visiem šiem iestatījumiem varat piekļūt jebkurā laikā."
+    "Hide the setup guide? You can still access all these settings at any time.": "Slēpt iestatīšanas rokasgrāmatu? Visiem šiem iestatījumiem varat piekļūt jebkurā laikā.",
+    "Look up by VAT or registration number": "Meklēt pēc PVN numura vai reģistrācijas numura",
+    "— auto-fills the form below": "— automātiski aizpilda anketu",
+    "e.g. DE123456789 or 203137077": "piem. LV12345678901 vai 203137077",
+    "Look up": "Meklēt",
+    "Looking up…": "Meklē…",
+    "Please enter a VAT or registration number to look up.": "Lūdzu, ievadiet PVN numuru vai reģistrācijas numuru.",
+    "You have reached your daily lookup limit. Upgrade your plan or add your own Gemini API key in Settings → AI.": "Esat sasniedzis dienas meklēšanas limitu. Uzlabojiet plānu vai pievienojiet savu Gemini API atslēgu Iestatījumi → AI.",
+    "No company found for \":number\". Please fill in the details manually.": "Uzņēmums ar numuru \":number\" nav atrasts. Lūdzu, aizpildiet datus manuāli.",
+    "Verified via EU VIES — VAT-registered company": "Pārbaudīts caur EU VIES — PVN maksātājs",
+    "AI-sourced — please verify the details before saving": "AI avots — lūdzu, pārbaudiet datus pirms saglabāšanas",
+    ":count AI lookup remaining today|:count AI lookups remaining today": ":count AI meklēšana atlikusi šodien|:count AI meklēšanas atlikušas šodien",
+    "A client with this number already exists.": "Klients ar šo numuru jau pastāv.",
+    "View existing client →": "Skatīt esošo klientu →"
 }

@@ -655,5 +655,18 @@
     "Open Settings": "Open Settings",
     "Connect Stripe": "Connect Stripe",
     "Add API Key": "Add API Key",
-    "Hide the setup guide? You can still access all these settings at any time.": "Hide the setup guide? You can still access all these settings at any time."
+    "Hide the setup guide? You can still access all these settings at any time.": "Hide the setup guide? You can still access all these settings at any time.",
+    "Look up by VAT or registration number": "Look up by VAT or registration number",
+    "— auto-fills the form below": "— auto-fills the form below",
+    "e.g. DE123456789 or 203137077": "e.g. DE123456789 or 203137077",
+    "Look up": "Look up",
+    "Looking up…": "Looking up…",
+    "Please enter a VAT or registration number to look up.": "Please enter a VAT or registration number to look up.",
+    "You have reached your daily lookup limit. Upgrade your plan or add your own Gemini API key in Settings → AI.": "You have reached your daily lookup limit. Upgrade your plan or add your own Gemini API key in Settings → AI.",
+    "No company found for \":number\". Please fill in the details manually.": "No company found for \":number\". Please fill in the details manually.",
+    "Verified via EU VIES — VAT-registered company": "Verified via EU VIES — VAT-registered company",
+    "AI-sourced — please verify the details before saving": "AI-sourced — please verify the details before saving",
+    ":count AI lookup remaining today|:count AI lookups remaining today": ":count AI lookup remaining today|:count AI lookups remaining today",
+    "A client with this number already exists.": "A client with this number already exists.",
+    "View existing client →": "View existing client →"
 }

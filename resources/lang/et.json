@@ -655,5 +655,18 @@
     "Open Settings": "Ava seaded",
     "Connect Stripe": "Ühenda Stripe",
     "Add API Key": "Lisa API võti",
-    "Hide the setup guide? You can still access all these settings at any time.": "Peita seadistusjuhend? Pääsete nendele sätetele ligi igal ajal."
+    "Hide the setup guide? You can still access all these settings at any time.": "Peita seadistusjuhend? Pääsete nendele sätetele ligi igal ajal.",
+    "Look up by VAT or registration number": "Otsing KMKR-numbri või registreerimisnumbri järgi",
+    "— auto-fills the form below": "— täidab vormi automaatselt",
+    "e.g. DE123456789 or 203137077": "nt. EE123456789 või 203137077",
+    "Look up": "Otsi",
+    "Looking up…": "Otsin…",
+    "Please enter a VAT or registration number to look up.": "Palun sisestage KMKR-number või registreerimisnumber.",
+    "You have reached your daily lookup limit. Upgrade your plan or add your own Gemini API key in Settings → AI.": "Olete jõudnud oma päevase otsingupiirangu lõppu. Uuendage oma plaani või lisage oma Gemini API võti jaotises Seaded → AI.",
+    "No company found for \":number\". Please fill in the details manually.": "Ettevõtet \":number\" ei leitud. Palun täitke andmed käsitsi.",
+    "Verified via EU VIES — VAT-registered company": "Kinnitatud EU VIES kaudu — käibemaksukohustuslane",
+    "AI-sourced — please verify the details before saving": "AI allikas — palun kontrollige andmeid enne salvestamist",
+    ":count AI lookup remaining today|:count AI lookups remaining today": ":count AI otsing jäänud täna|:count AI otsingut jäänud täna",
+    "A client with this number already exists.": "Selle numbriga klient on juba olemas.",
+    "View existing client →": "Vaata olemasolevat klienti →"
 }

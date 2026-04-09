@@ -40,4 +40,24 @@ return [
         'system_daily_cap' => env('AI_SYSTEM_DAILY_CAP', 1000),
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | AI Company Lookup Limits
+    |--------------------------------------------------------------------------
+    |
+    | Daily per-user limits for AI-powered company lookups (Gemini fallback),
+    | keyed by plan. null means unlimited. VIES lookups are free and do not
+    | count against these limits.
+    |
+    | Users who provide their own Gemini API key in Settings → AI bypass
+    | all app-enforced limits entirely, using their own free quota.
+    |
+    */
+
+    'lookup_limits' => [
+        'free' => env('AI_LOOKUP_LIMIT_FREE', 2),
+        'starter' => env('AI_LOOKUP_LIMIT_STARTER', 10),
+        'pro' => null,
+    ],
+
 ];

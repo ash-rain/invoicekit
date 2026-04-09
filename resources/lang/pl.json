@@ -655,5 +655,18 @@
     "Open Settings": "Otwórz ustawienia",
     "Connect Stripe": "Połącz Stripe",
     "Add API Key": "Dodaj klucz API",
-    "Hide the setup guide? You can still access all these settings at any time.": "Ukryć przewodnik konfiguracji? Zawsze możesz uzyskać dostęp do tych ustawień."
+    "Hide the setup guide? You can still access all these settings at any time.": "Ukryć przewodnik konfiguracji? Zawsze możesz uzyskać dostęp do tych ustawień.",
+    "Look up by VAT or registration number": "Wyszukaj po NIP lub numerze KRS",
+    "— auto-fills the form below": "— automatycznie wypełnia formularz",
+    "e.g. DE123456789 or 203137077": "np. PL1234567890 lub 203137077",
+    "Look up": "Szukaj",
+    "Looking up…": "Szukanie…",
+    "Please enter a VAT or registration number to look up.": "Proszę podać numer NIP lub rejestracyjny.",
+    "You have reached your daily lookup limit. Upgrade your plan or add your own Gemini API key in Settings → AI.": "Przekroczono dzienny limit wyszukiwań. Zaktualizuj plan lub dodaj własny klucz API Gemini w Ustawienia → AI.",
+    "No company found for \":number\". Please fill in the details manually.": "Nie znaleziono firmy dla \":number\". Uzupełnij dane ręcznie.",
+    "Verified via EU VIES — VAT-registered company": "Zweryfikowano przez EU VIES — podatnik VAT",
+    "AI-sourced — please verify the details before saving": "Źródło AI — przed zapisem sprawdzć dane",
+    ":count AI lookup remaining today|:count AI lookups remaining today": ":count wyszukiwanie AI pozostało dziś|:count wyszukiwania AI pozostały dziś",
+    "A client with this number already exists.": "Klient z tym numerem już istnieje.",
+    "View existing client →": "Zobacz istniejącego klienta →"
 }

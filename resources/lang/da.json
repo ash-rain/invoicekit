@@ -655,5 +655,18 @@
     "Open Settings": "Åbn indstillinger",
     "Connect Stripe": "Forbind Stripe",
     "Add API Key": "Tilføj API-nøgle",
-    "Hide the setup guide? You can still access all these settings at any time.": "Skjul opsætningsguiden? Du kan altid tilgå disse indstillinger."
+    "Hide the setup guide? You can still access all these settings at any time.": "Skjul opsætningsguiden? Du kan altid tilgå disse indstillinger.",
+    "Look up by VAT or registration number": "Søg via moms- eller CVR-nummer",
+    "— auto-fills the form below": "— udfylder automatisk formularen",
+    "e.g. DE123456789 or 203137077": "f.eks. DE123456789 eller 203137077",
+    "Look up": "Søg",
+    "Looking up…": "Søger…",
+    "Please enter a VAT or registration number to look up.": "Indtast venligst et moms- eller registreringsnummer.",
+    "You have reached your daily lookup limit. Upgrade your plan or add your own Gemini API key in Settings → AI.": "Du har nået din daglige søgegrænse. Opgrader din plan eller tilføj din egen Gemini API-nøgle under Indstillinger → AI.",
+    "No company found for \":number\". Please fill in the details manually.": "Ingen virksomhed fundet for \":number\". Udfyld venligst oplysningerne manuelt.",
+    "Verified via EU VIES — VAT-registered company": "Verificeret via EU VIES — momsregistreret virksomhed",
+    "AI-sourced — please verify the details before saving": "AI-kilde — kontroller venligst oplysningerne inden lagring",
+    ":count AI lookup remaining today|:count AI lookups remaining today": ":count AI-søgning tilbage i dag|:count AI-søgninger tilbage i dag",
+    "A client with this number already exists.": "En klient med dette nummer findes allerede.",
+    "View existing client →": "Se eksisterende klient →"
 }

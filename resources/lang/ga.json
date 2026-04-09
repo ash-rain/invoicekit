@@ -655,5 +655,18 @@
     "Open Settings": "Oscail socruithe",
     "Connect Stripe": "Ceangail Stripe",
     "Add API Key": "Cuir eochair API leis",
-    "Hide the setup guide? You can still access all these settings at any time.": "An treoir socrúcháin a fholú? Is féidir leat rochtain a fháil ar na socruithe seo ag am ar bith."
+    "Hide the setup guide? You can still access all these settings at any time.": "An treoir socrúcháin a fholú? Is féidir leat rochtain a fháil ar na socruithe seo ag am ar bith.",
+    "Look up by VAT or registration number": "Cuardaigh de réir uimhir CBL nó uimhir chlárúcháin",
+    "— auto-fills the form below": "— líonann an fhoirm go huathoibríoch",
+    "e.g. DE123456789 or 203137077": "m.sh. IE1234567T nó 203137077",
+    "Look up": "Cuardaigh",
+    "Looking up…": "Á chuardach…",
+    "Please enter a VAT or registration number to look up.": "Iontráil uimhir CBL nó uimhir chlárúcháin le do thoil.",
+    "You have reached your daily lookup limit. Upgrade your plan or add your own Gemini API key in Settings → AI.": "Tá do theorainn laethiúil sroichte agat. Uasghradúigh do phlean nó cuir d’eochair API Gemini féin leis i Socruithe → AI.",
+    "No company found for \":number\". Please fill in the details manually.": "Níor aimsodh cuideachta do \":number\". Líon isteach na sonraí de láimh le do thoil.",
+    "Verified via EU VIES — VAT-registered company": "Fíoraithe trí EU VIES — cuideachta cláraithe le CBL",
+    "AI-sourced — please verify the details before saving": "Foinse AI — seiceáil na sonraí sula sábháilfidh tú",
+    ":count AI lookup remaining today|:count AI lookups remaining today": ":count cuardach AI fágtha inniu|:count cuardach AI fágtha inniu",
+    "A client with this number already exists.": "Tá cliant leis an uimhir seo ann cheana féin.",
+    "View existing client →": "Féach ar an gcliant atá ann cheana →"
 }

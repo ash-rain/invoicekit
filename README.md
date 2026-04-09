@@ -9,7 +9,7 @@ InvoiceKit helps EU-based freelancers manage clients, track billable time, gener
 ## Features
 
 - **Time Tracking** — Live timer, manual entry, weekly summary, per-project earnings
-- **Client Management** — EU VAT number validation, per-client currency and language defaults
+- **Client Management** — EU VAT number validation, per-client currency and language defaults, company auto-fill by VAT/registration number (VIES + Gemini AI fallback)
 - **Project Management** — Hourly rate, multi-currency, archive/restore
 - **EU VAT Engine** — Standard rate, reverse charge (B2B), OSS (B2C), exempt (non-EU), small-business exemption for all 27 EU countries
 - **Invoice Generation** — PDF (DomPDF), UBL 2.1 / Peppol BIS Billing 3.0 XML, sequential numbering, full lifecycle

@@ -655,5 +655,18 @@
     "Open Settings": "Otvori postavke",
     "Connect Stripe": "Poveži Stripe",
     "Add API Key": "Dodaj API ključ",
-    "Hide the setup guide? You can still access all these settings at any time.": "Sakriti vodič za postavljanje? Ovim postavkama možete pristupiti u bilo koje vrijeme."
+    "Hide the setup guide? You can still access all these settings at any time.": "Sakriti vodič za postavljanje? Ovim postavkama možete pristupiti u bilo koje vrijeme.",
+    "Look up by VAT or registration number": "Pretraži po PDV-ID-u ili OIB-u",
+    "— auto-fills the form below": "— automatski popunjava obrazac",
+    "e.g. DE123456789 or 203137077": "npr. HR12345678901 ili 203137077",
+    "Look up": "Pretraži",
+    "Looking up…": "Pretraživanje…",
+    "Please enter a VAT or registration number to look up.": "Unesite PDV broj ili registracijski broj.",
+    "You have reached your daily lookup limit. Upgrade your plan or add your own Gemini API key in Settings → AI.": "Dosegli ste dnevni limit pretraživanja. Nadogradite plan ili dodajte vlastiti Gemini API ključ u Postavke → AI.",
+    "No company found for \":number\". Please fill in the details manually.": "Tvrtka za \":number\" nije pronađena. Popunite podatke ručno.",
+    "Verified via EU VIES — VAT-registered company": "Verificirano preko EU VIES — tvrtka registrirana za PDV",
+    "AI-sourced — please verify the details before saving": "Izvor: AI — provjerite podatke prije pohrane",
+    ":count AI lookup remaining today|:count AI lookups remaining today": ":count AI pretraga preostala danas|:count AI pretrage preostale danas",
+    "A client with this number already exists.": "Klijent s ovim brojem već postoji.",
+    "View existing client →": "Prikaži postojećeg klijenta →"
 }

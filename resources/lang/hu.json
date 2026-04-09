@@ -655,5 +655,18 @@
     "Open Settings": "Beállítások megnyitása",
     "Connect Stripe": "Stripe csatlakoztatása",
     "Add API Key": "API kulcs hozzáadása",
-    "Hide the setup guide? You can still access all these settings at any time.": "Elrejti a beállítási útmutatót? Ezeket a beállításokat bármikor elérheti."
+    "Hide the setup guide? You can still access all these settings at any time.": "Elrejti a beállítási útmutatót? Ezeket a beállításokat bármikor elérheti.",
+    "Look up by VAT or registration number": "Keresés adószám vagy cégjegyzékszám alapján",
+    "— auto-fills the form below": "— automatikusan kitölti az alábbi űrlapot",
+    "e.g. DE123456789 or 203137077": "pl. HU12345678 vagy 203137077",
+    "Look up": "Keresés",
+    "Looking up…": "Keresés…",
+    "Please enter a VAT or registration number to look up.": "Kérjük, adjon meg egy adószámot vagy cégjegyzékszAmot.",
+    "You have reached your daily lookup limit. Upgrade your plan or add your own Gemini API key in Settings → AI.": "Elérte a napi keresési korlátot. Frissítse előfizetését, vagy adja hozzá saját Gemini API-kulcsát a Beállítások → AI menüben.",
+    "No company found for \":number\". Please fill in the details manually.": "A(z) \":number\" szám alapján nem található cég. Kérjük, töltse ki az adatokat kézzel.",
+    "Verified via EU VIES — VAT-registered company": "Ellenőrizve az EU VIES-en keresztül — ÁFA-alany",
+    "AI-sourced — please verify the details before saving": "AI forrás — mentés előtt ellenőrizze az adatokat",
+    ":count AI lookup remaining today|:count AI lookups remaining today": ":count AI-keresés van hátra ma|:count AI-keresés van hátra ma",
+    "A client with this number already exists.": "Ezzel a számmal már létezik ügyfél.",
+    "View existing client →": "Meglévő ügyfél megtekintése →"
 }

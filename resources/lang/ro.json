@@ -655,5 +655,18 @@
     "Open Settings": "Deschideți setările",
     "Connect Stripe": "Conectați Stripe",
     "Add API Key": "Adăugați cheia API",
-    "Hide the setup guide? You can still access all these settings at any time.": "Ascundeți ghidul de configurare? Puteți accesa aceste setări oricând."
+    "Hide the setup guide? You can still access all these settings at any time.": "Ascundeți ghidul de configurare? Puteți accesa aceste setări oricând.",
+    "Look up by VAT or registration number": "Căutare după CUI sau număr de înregistrare",
+    "— auto-fills the form below": "— completează automat formularul",
+    "e.g. DE123456789 or 203137077": "ex. RO12345678 sau 203137077",
+    "Look up": "Caută",
+    "Looking up…": "Se caută…",
+    "Please enter a VAT or registration number to look up.": "Vă rugăm introduceți un CUI sau număr de înregistrare.",
+    "You have reached your daily lookup limit. Upgrade your plan or add your own Gemini API key in Settings → AI.": "Ați atins limita zilnică de căutări. Actualizați planul sau adăugați propria cheie API Gemini în Setări → AI.",
+    "No company found for \":number\". Please fill in the details manually.": "Nu s-a găsit nicio companie pentru \":number\". Vă rugăm completați datele manual.",
+    "Verified via EU VIES — VAT-registered company": "Verificat prin EU VIES — companie înregistrată în scopuri de TVA",
+    "AI-sourced — please verify the details before saving": "Sursă AI — verificați datele înainte de salvare",
+    ":count AI lookup remaining today|:count AI lookups remaining today": ":count căutare AI rămasă azi|:count căutări AI rămase azi",
+    "A client with this number already exists.": "Un client cu acest număr există deja.",
+    "View existing client →": "Vizualizați clientul existent →"
 }

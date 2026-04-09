@@ -3,6 +3,7 @@
 namespace App\Livewire\Clients;
 
 use App\Models\Client;
+use App\Services\CompanyLookupService;
 use App\Services\PlanService;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Layout;
@@ -28,6 +29,21 @@ class CreateEditClient extends Component
     public string $currency = 'EUR';
 
     public string $defaultLanguage = '';
+
+    // ── Lookup state ────────────────────────────────────────────────
+    public string $lookupInput = '';
+
+    public string $lookupType = 'vat';  // 'vat' | 'registration'
+
+    public bool $isLookingUp = false;
+
+    public string $lookupError = '';
+
+    public string $lookupSource = '';  // 'vies' | 'gemini' | ''
+
+    public ?int $remainingLookups = null;
+
+    public ?int $existingClientId = null;
 
     public const CURRENCIES = ['EUR', 'USD', 'BGN', 'RON', 'PLN', 'CZK', 'HUF'];
 
@@ -124,6 +140,12 @@ class CreateEditClient extends Component
             $this->email = request()->query('email', '');
             $this->address = request()->query('address', '');
             $this->vat_number = request()->query('vat_number', '');
+
+            // Pre-load remaining lookup count so the counter shows immediately
+            $user = Auth::user();
+            if ($user) {
+                $this->remainingLookups = app(CompanyLookupService::class)->remainingLookups($user);
+            }
         }
     }
 
@@ -191,6 +213,88 @@ class CreateEditClient extends Component
             'currencies' => self::CURRENCIES,
             'localeNames' => config('invoicekit.locale_names', []),
             'supportedLanguages' => config('invoicekit.supported_languages', ['en']),
+            'registrationNumberLabel' => config("country_defaults.{$this->country}.registration_number_label", __('Registration Number')),
+            'registrationNumberHint' => config("country_defaults.{$this->country}.registration_number_hint", ''),
         ]);
+    }
+
+    public function lookupCompany(): void
+    {
+        $this->lookupError = '';
+        $this->lookupSource = '';
+        $this->existingClientId = null;
+
+        $input = trim($this->lookupInput);
+
+        if ($input === '') {
+            $this->lookupError = __('Please enter a VAT or registration number to look up.');
+
+            return;
+        }
+
+        $service = app(CompanyLookupService::class);
+        $user = Auth::user();
+
+        $result = $service->lookup($input, $this->country, $user, $this->lookupType);
+
+        if (! $result['found']) {
+            if ($result['limit_reached'] ?? false) {
+                $this->lookupError = __('You have reached your daily lookup limit. Upgrade your plan or add your own Gemini API key in Settings → AI.');
+            } else {
+                $this->lookupError = __('No company found for ":number". Please fill in the details manually.', ['number' => $input]);
+            }
+
+            return;
+        }
+
+        // Populate form fields
+        if ($result['name']) {
+            $this->name = $result['name'];
+        }
+
+        if ($result['address']) {
+            $this->address = $result['address'];
+        }
+
+        if ($result['country']) {
+            $this->country = $result['country'];
+        }
+
+        if ($result['vat_number']) {
+            $this->vat_number = $result['vat_number'];
+        }
+
+        if ($result['registration_number']) {
+            $this->registration_number = $result['registration_number'];
+        }
+
+        $this->lookupSource = $result['source'] ?? '';
+
+        // Always refresh the counter — it may have been consumed by this call
+        if (! $user?->gemini_api_key) {
+            $this->remainingLookups = $service->remainingLookups($user);
+        }
+
+        // Duplicate detection
+        $query = Client::where('user_id', Auth::id());
+
+        if ($result['vat_number']) {
+            $query->where('vat_number', $result['vat_number']);
+        } elseif ($result['registration_number']) {
+            $query->where('registration_number', $result['registration_number']);
+        } else {
+            $query = null;
+        }
+
+        if ($query !== null) {
+            $existingClient = $query->when(
+                $this->client?->exists,
+                fn ($q) => $q->where('id', '!=', $this->client->id)
+            )->first();
+
+            if ($existingClient) {
+                $this->existingClientId = $existingClient->id;
+            }
+        }
     }
 }

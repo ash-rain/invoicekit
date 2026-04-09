@@ -655,5 +655,18 @@
     "Open Settings": "Άνοιγμα ρυθμίσεων",
     "Connect Stripe": "Σύνδεση Stripe",
     "Add API Key": "Προσθήκη κλειδιού API",
-    "Hide the setup guide? You can still access all these settings at any time.": "Απόκρυψη οδηγού εγκατάστασης; Μπορείτε να αποκτήσετε πρόσβαση σε αυτές τις ρυθμίσεις ανά πάσα στιγμή."
+    "Hide the setup guide? You can still access all these settings at any time.": "Απόκρυψη οδηγού εγκατάστασης; Μπορείτε να αποκτήσετε πρόσβαση σε αυτές τις ρυθμίσεις ανά πάσα στιγμή.",
+    "Look up by VAT or registration number": "Αναζήτηση με ΑΦΜ ή αριθμό μητρώου",
+    "— auto-fills the form below": "— συμπληρώνει αυτόματα τη φόρμα",
+    "e.g. DE123456789 or 203137077": "π.χ. EL123456789 ή 203137077",
+    "Look up": "Αναζήτηση",
+    "Looking up…": "Αναζήτηση…",
+    "Please enter a VAT or registration number to look up.": "Παρακαλώ εισάγετε ΑΦΜ ή αριθμό μητρώου.",
+    "You have reached your daily lookup limit. Upgrade your plan or add your own Gemini API key in Settings → AI.": "Φτάσατε στο ημερήσιο όριο αναζητήσεων. Αναβαθμίστε το πλάνο σας ή προσθέστε δικό σας Gemini API κλειδί στις Ρυθμίσεις → ΤΝ.",
+    "No company found for \":number\". Please fill in the details manually.": "Δεν βρέθηκε εταιρεία για \":number\". Συμπληρώστε τα στοιχεία χειροκίνητα.",
+    "Verified via EU VIES — VAT-registered company": "Επαληθεύτηκε μέσω EU VIES — εταιρεία εγγεγραμμένη στο ΦΠΑ",
+    "AI-sourced — please verify the details before saving": "Πηγή ΤΝ — επαληθεύστε τα στοιχεία πριν αποθηκεύσετε",
+    ":count AI lookup remaining today|:count AI lookups remaining today": ":count αναζήτηση ΤΝ απομένει σήμερα|:count αναζητήσεις ΤΝ απομένουν σήμερα",
+    "A client with this number already exists.": "Υπάρχει ήδη πελάτης με αυτόν τον αριθμό.",
+    "View existing client →": "Προβολή υπάρχοντος πελάτη →"
 }

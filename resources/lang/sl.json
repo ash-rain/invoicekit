@@ -655,5 +655,18 @@
     "Open Settings": "Odpri nastavitve",
     "Connect Stripe": "Poveži Stripe",
     "Add API Key": "Dodaj API ključ",
-    "Hide the setup guide? You can still access all these settings at any time.": "Skrijete vodnik za nastavitev? Do teh nastavitev lahko dostopate kadar koli."
+    "Hide the setup guide? You can still access all these settings at any time.": "Skrijete vodnik za nastavitev? Do teh nastavitev lahko dostopate kadar koli.",
+    "Look up by VAT or registration number": "Iskanje po DDV-ID ali matični številki",
+    "— auto-fills the form below": "— samodejno izpolni obrazec",
+    "e.g. DE123456789 or 203137077": "npr. SI12345678 ali 203137077",
+    "Look up": "Išči",
+    "Looking up…": "Iskanje…",
+    "Please enter a VAT or registration number to look up.": "Vnesite DDV-ID ali matično številko.",
+    "You have reached your daily lookup limit. Upgrade your plan or add your own Gemini API key in Settings → AI.": "Dosegli ste dnevno omejitev iskanja. Nadgradite naročnino ali dodajte lasten Gemini API ključ v Nastavitve → AI.",
+    "No company found for \":number\". Please fill in the details manually.": "Ni bilo najdeno podjetje za \":number\". Prosimo, izpolnite podatke ročno.",
+    "Verified via EU VIES — VAT-registered company": "Preverjeno prek EU VIES — podjetje, zavezanec za DDV",
+    "AI-sourced — please verify the details before saving": "Vir AI — pred shranjevanjem preverite podatke",
+    ":count AI lookup remaining today|:count AI lookups remaining today": ":count AI iskanje ostaja danes|:count AI iskanja ostajajo danes",
+    "A client with this number already exists.": "Stranka s to številko že obstaja.",
+    "View existing client →": "Oglejte si obstoječo stranko →"
 }

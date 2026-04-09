@@ -655,5 +655,18 @@
     "Open Settings": "Avaa asetukset",
     "Connect Stripe": "Yhdistä Stripe",
     "Add API Key": "Lisää API-avain",
-    "Hide the setup guide? You can still access all these settings at any time.": "Piilotetaanko asennusopas? Voit käyttää näitä asetuksia milloin tahansa."
+    "Hide the setup guide? You can still access all these settings at any time.": "Piilotetaanko asennusopas? Voit käyttää näitä asetuksia milloin tahansa.",
+    "Look up by VAT or registration number": "Hae ALV- tai Y-tunnuksella",
+    "— auto-fills the form below": "— täyttää lomakkeen automaattisesti",
+    "e.g. DE123456789 or 203137077": "esim. FI12345678 tai 203137077",
+    "Look up": "Hae",
+    "Looking up…": "Haetaan…",
+    "Please enter a VAT or registration number to look up.": "Anna ALV-tunnus tai Y-tunnus.",
+    "You have reached your daily lookup limit. Upgrade your plan or add your own Gemini API key in Settings → AI.": "Olet saavuttanut päivittäisen hakurajan. Päivitä tilaus tai lisää oma Gemini API -avaimesi kohdassa Asetukset → AI.",
+    "No company found for \":number\". Please fill in the details manually.": "Yritystä \":number\" ei löydy. Täytä tiedot manuaalisesti.",
+    "Verified via EU VIES — VAT-registered company": "Vahvistettu EU VIES -palvelusta — ALV-rekisteröity yritys",
+    "AI-sourced — please verify the details before saving": "AI-lähde — tarkista tiedot ennen tallennusta",
+    ":count AI lookup remaining today|:count AI lookups remaining today": ":count AI-haku jäljellä tänään|:count AI-hakua jäljellä tänään",
+    "A client with this number already exists.": "Asiakas tällä numerolla on jo olemassa.",
+    "View existing client →": "Näytä olemassa oleva asiakas →"
 }

@@ -655,5 +655,18 @@
     "Open Settings": "Atidaryti nustatymus",
     "Connect Stripe": "Prijungti Stripe",
     "Add API Key": "Pridėti API raktą",
-    "Hide the setup guide? You can still access all these settings at any time.": "Slėpti sąrankos vadovą? Šiuos nustatymus galėsite pasiekti bet kuriuo metu."
+    "Hide the setup guide? You can still access all these settings at any time.": "Slėpti sąrankos vadovą? Šiuos nustatymus galėsite pasiekti bet kuriuo metu.",
+    "Look up by VAT or registration number": "Ieškoti pagal PVM kodą arba registracijos numerį",
+    "— auto-fills the form below": "— automačiškai užpildo formą",
+    "e.g. DE123456789 or 203137077": "pvz. LT100001234567 arba 203137077",
+    "Look up": "Ieškoti",
+    "Looking up…": "Ieškoma…",
+    "Please enter a VAT or registration number to look up.": "Įveskite PVM kodą arba registracijos numerį.",
+    "You have reached your daily lookup limit. Upgrade your plan or add your own Gemini API key in Settings → AI.": "Pasiekėte dienos paieškos limitą. Atnaujinkite planą arba pridėkite savo Gemini API raktą Nustatymuose → DI.",
+    "No company found for \":number\". Please fill in the details manually.": "Įmonė su numeriu \":number\" nerasta. Užpildykite duomenis rankiniu būdu.",
+    "Verified via EU VIES — VAT-registered company": "Patvirtinta per EU VIES — PVM mokėtojas",
+    "AI-sourced — please verify the details before saving": "DI šaltinis — prieš išsaugant patikrinkite duomenis",
+    ":count AI lookup remaining today|:count AI lookups remaining today": ":count DI paieška liko šiandien|:count DI paieškų liko šiandien",
+    "A client with this number already exists.": "Klientas su šiuo numeriu jau egzistuoja.",
+    "View existing client →": "Peržiūrėti esamą klientą →"
 }

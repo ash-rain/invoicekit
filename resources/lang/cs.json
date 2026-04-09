@@ -655,5 +655,18 @@
     "Open Settings": "Otevřít nastavení",
     "Connect Stripe": "Připojit Stripe",
     "Add API Key": "Přidat API klíč",
-    "Hide the setup guide? You can still access all these settings at any time.": "Skrýt průvodce nastavením? K těmto nastavením máte přístup kdykoli."
+    "Hide the setup guide? You can still access all these settings at any time.": "Skrýt průvodce nastavením? K těmto nastavením máte přístup kdykoli.",
+    "Look up by VAT or registration number": "Vyhledat podle DIČ nebo IČO",
+    "— auto-fills the form below": "— automaticky vyplní formulář",
+    "e.g. DE123456789 or 203137077": "např. DE123456789 nebo 203137077",
+    "Look up": "Vyhledat",
+    "Looking up…": "Hledám…",
+    "Please enter a VAT or registration number to look up.": "Zadejte prosím DIČ nebo IČO.",
+    "You have reached your daily lookup limit. Upgrade your plan or add your own Gemini API key in Settings → AI.": "Dosáhli jste denního limitu vyhledávání. Upgradujte plán nebo přidejte vlastní Gemini API klíč v Nastavení → AI.",
+    "No company found for \":number\". Please fill in the details manually.": "Pro \":number\" nebyla nalezena žádná firma. Vyplněte prosím údaje ručně.",
+    "Verified via EU VIES — VAT-registered company": "Ověřeno přes EU VIES — plátce DPH",
+    "AI-sourced — please verify the details before saving": "Zdroj: AI — před uložením prosím ověřte údaje",
+    ":count AI lookup remaining today|:count AI lookups remaining today": ":count vyhledávání AI zbývá dnes|:count vyhledávání AI zbývají dnes",
+    "A client with this number already exists.": "Klient s tímto číslem již existuje.",
+    "View existing client →": "Zobrazit existujícího klienta →"
 }

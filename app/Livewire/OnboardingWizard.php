@@ -142,7 +142,7 @@ class OnboardingWizard extends Component
 
             // Create the first company for this user
             if (! $user->currentCompany) {
-                $isBulgarian = $this->companyCountry === 'BG';
+                $countryDefaults = config('country_defaults.'.$this->companyCountry, []);
 
                 $company = Company::create([
                     'user_id' => $user->id,
@@ -150,10 +150,10 @@ class OnboardingWizard extends Component
                     'country' => $this->companyCountry,
                     'address_line1' => $this->companyAddress ?: null,
                     'bank_iban' => $this->companyBankIban ?: null,
-                    'default_currency' => $isBulgarian ? 'BGN' : $this->clientCurrency,
-                    'invoice_numbering_format' => $isBulgarian ? 'bg_sequential' : 'standard',
-                    'vat_exempt' => $isBulgarian,
-                    'issued_by_default_name' => $isBulgarian ? $user->name : null,
+                    'default_currency' => $countryDefaults['currency'] ?? $this->clientCurrency,
+                    'invoice_numbering_format' => $countryDefaults['invoice_numbering_format'] ?? 'standard',
+                    'vat_exempt' => $countryDefaults['vat_exempt_default'] ?? false,
+                    'issued_by_default_name' => ($countryDefaults['vat_exempt_default'] ?? false) ? $user->name : null,
                 ]);
                 $user->update([
                     'current_company_id' => $company->id,

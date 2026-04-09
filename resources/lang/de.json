@@ -655,5 +655,18 @@
     "Open Settings": "Einstellungen öffnen",
     "Connect Stripe": "Stripe verbinden",
     "Add API Key": "API-Schlüssel hinzufügen",
-    "Hide the setup guide? You can still access all these settings at any time.": "Einrichtungsassistenten ausblenden? Sie können jederzeit auf diese Einstellungen zugreifen."
+    "Hide the setup guide? You can still access all these settings at any time.": "Einrichtungsassistenten ausblenden? Sie können jederzeit auf diese Einstellungen zugreifen.",
+    "Look up by VAT or registration number": "Suche nach USt-ID oder Handelsregisternummer",
+    "— auto-fills the form below": "— füllt das Formular automatisch aus",
+    "e.g. DE123456789 or 203137077": "z.B. DE123456789 oder 203137077",
+    "Look up": "Suchen",
+    "Looking up…": "Suche…",
+    "Please enter a VAT or registration number to look up.": "Bitte geben Sie eine USt-ID oder Registrierungsnummer ein.",
+    "You have reached your daily lookup limit. Upgrade your plan or add your own Gemini API key in Settings → AI.": "Sie haben Ihr tägliches Suchlimit erreicht. Upgraden Sie Ihren Plan oder fügen Sie unter Einstellungen → KI Ihren eigenen Gemini-API-Schlüssel hinzu.",
+    "No company found for \":number\". Please fill in the details manually.": "Kein Unternehmen für \":number\" gefunden. Bitte füllen Sie die Details manuell aus.",
+    "Verified via EU VIES — VAT-registered company": "Verifiziert über EU VIES — umsatzsteuerpflichtiges Unternehmen",
+    "AI-sourced — please verify the details before saving": "KI-Quelle — bitte überprüfen Sie die Details vor dem Speichern",
+    ":count AI lookup remaining today|:count AI lookups remaining today": ":count KI-Suche heute verbleibend|:count KI-Suchen heute verbleibend",
+    "A client with this number already exists.": "Ein Kunde mit dieser Nummer existiert bereits.",
+    "View existing client →": "Vorhandenen Kunden anzeigen →"
 }

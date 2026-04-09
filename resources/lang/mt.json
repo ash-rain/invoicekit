@@ -655,5 +655,18 @@
     "Open Settings": "Iftaħ is-settings",
     "Connect Stripe": "Qabbad Stripe",
     "Add API Key": "Żid Sarur API",
-    "Hide the setup guide? You can still access all these settings at any time.": "Aħbi l-gwida tal-konfigurazzjoni? Tista' tasal għal dawn is-settings fi kwalunkwe ħin."
+    "Hide the setup guide? You can still access all these settings at any time.": "Aħbi l-gwida tal-konfigurazzjoni? Tista' tasal għal dawn is-settings fi kwalunkwe ħin.",
+    "Look up by VAT or registration number": "Fittex bin-numru tal-VAT jew tan-numru ta’ reġistrazzjoni",
+    "— auto-fills the form below": "— jimla l-formola awtomatikament",
+    "e.g. DE123456789 or 203137077": "eż. MT12345678 jew 203137077",
+    "Look up": "Fittex",
+    "Looking up…": "Qed infittex…",
+    "Please enter a VAT or registration number to look up.": "Jekk joġġbok daħħal numru tal-VAT jew numru ta’ reġistrazzjoni.",
+    "You have reached your daily lookup limit. Upgrade your plan or add your own Gemini API key in Settings → AI.": "Laħaqt il-limitu ta’ fittexiet tal-ġurnata. Aġġorna l-pjan tiegħek jew żid il-Gemini API key tiegħek f’ Settings → AI.",
+    "No company found for \":number\". Please fill in the details manually.": "Ma nstabet l-ebda kumpanija għal \":number\". Jekk joġġbok imla d-dettalji manwalment.",
+    "Verified via EU VIES — VAT-registered company": "Verifikat permezz ta’ EU VIES — kumpanija reġistrata għall-VAT",
+    "AI-sourced — please verify the details before saving": "Sors AI — jekk joġġbok ivverifika d-dettalji qabel ma ssalva",
+    ":count AI lookup remaining today|:count AI lookups remaining today": ":count fittxija AI fadal illum|:count fittxijiet AI fadal illum",
+    "A client with this number already exists.": "Diġà jeżistiklijent b’dan in-numru.",
+    "View existing client →": "Ara l-klijent eżistenti →"
 }

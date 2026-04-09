@@ -655,5 +655,18 @@
     "Open Settings": "Instellingen openen",
     "Connect Stripe": "Stripe verbinden",
     "Add API Key": "API-sleutel toevoegen",
-    "Hide the setup guide? You can still access all these settings at any time.": "Installatiegids verbergen? U kunt deze instellingen altijd openen."
+    "Hide the setup guide? You can still access all these settings at any time.": "Installatiegids verbergen? U kunt deze instellingen altijd openen.",
+    "Look up by VAT or registration number": "Zoeken op BTW- of KvK-nummer",
+    "— auto-fills the form below": "— vult het formulier automatisch in",
+    "e.g. DE123456789 or 203137077": "bijv. NL123456789B01 of 203137077",
+    "Look up": "Zoeken",
+    "Looking up…": "Zoeken…",
+    "Please enter a VAT or registration number to look up.": "Voer een BTW- of registratienummer in.",
+    "You have reached your daily lookup limit. Upgrade your plan or add your own Gemini API key in Settings → AI.": "U heeft uw dagelijkse zoeklimiet bereikt. Upgrade uw abonnement of voeg uw eigen Gemini API-sleutel toe in Instellingen → AI.",
+    "No company found for \":number\". Please fill in the details manually.": "Geen bedrijf gevonden voor \":number\". Vul de gegevens handmatig in.",
+    "Verified via EU VIES — VAT-registered company": "Geverifieerd via EU VIES — BTW-geregistreerd bedrijf",
+    "AI-sourced — please verify the details before saving": "AI-bron — controleer de gegevens voor het opslaan",
+    ":count AI lookup remaining today|:count AI lookups remaining today": ":count AI-zoekopdracht over vandaag|:count AI-zoekopdrachten over vandaag",
+    "A client with this number already exists.": "Er bestaat al een klant met dit nummer.",
+    "View existing client →": "Bekijk bestaande klant →"
 }

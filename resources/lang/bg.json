@@ -655,5 +655,18 @@
     "Open Settings": "Към настройките",
     "Connect Stripe": "Свържи Stripe",
     "Add API Key": "Добави API ключ",
-    "Hide the setup guide? You can still access all these settings at any time.": "Скрий ръководството за настройка? Можете да достъпите всички тези настройки по всяко време."
+    "Hide the setup guide? You can still access all these settings at any time.": "Скрий ръководството за настройка? Можете да достъпите всички тези настройки по всяко време.",
+    "Look up by VAT or registration number": "Търсене по ДДС или ЕИК номер",
+    "— auto-fills the form below": "— автоматично попълва формата",
+    "e.g. DE123456789 or 203137077": "напр. BG203137077 или 203137077",
+    "Look up": "Търси",
+    "Looking up…": "Търсене…",
+    "Please enter a VAT or registration number to look up.": "Моля въведете ДДС или ЕИК номер.",
+    "You have reached your daily lookup limit. Upgrade your plan or add your own Gemini API key in Settings → AI.": "Достигнахте дневния лимит за търсене. Надградете плана си или добавете собствен Гемини API ключ в Настройки → ИИ.",
+    "No company found for \":number\". Please fill in the details manually.": "Не е намерена компания за \":number\". Моля попълнете данните ръчно.",
+    "Verified via EU VIES — VAT-registered company": "Проверено чрез EU VIES — ДДС регистрирана компания",
+    "AI-sourced — please verify the details before saving": "Данни от ИИ — моля проверете преди запис",
+    ":count AI lookup remaining today|:count AI lookups remaining today": ":count търсене с ИИ остава днес|:count търсения с ИИ остават днес",
+    "A client with this number already exists.": "Клиент с този номер вече съществува.",
+    "View existing client →": "Виж съществуващия клиент →"
 }
