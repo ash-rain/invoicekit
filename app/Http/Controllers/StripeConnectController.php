@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PaymentMethod;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -72,6 +73,19 @@ class StripeConnectController extends Controller
 
         if ($account->charges_enabled && $account->details_submitted) {
             $user->update(['stripe_connect_onboarded' => true]);
+
+            // Auto-create Stripe payment method
+            $company = $user->currentCompany;
+            if ($company) {
+                PaymentMethod::firstOrCreate(
+                    ['company_id' => $company->id, 'type' => PaymentMethod::TYPE_STRIPE],
+                    [
+                        'label' => 'Stripe',
+                        'stripe_connect_id' => $user->stripe_connect_id,
+                        'is_default' => ! $company->paymentMethods()->exists(),
+                    ]
+                );
+            }
 
             return redirect()->route('settings.index', ['tab' => 'payments'])
                 ->with('success', 'Your Stripe account is connected and ready to accept payments.');
@@ -156,6 +170,27 @@ class StripeConnectController extends Controller
                 ]);
             } catch (\Exception) {
                 // Account may already be deauthorized; proceed with local cleanup
+            }
+        }
+
+        // Remove Stripe payment method
+        $company = $user->currentCompany;
+        if ($company) {
+            $stripeMethod = $company->paymentMethods()
+                ->where('type', PaymentMethod::TYPE_STRIPE)
+                ->first();
+
+            if ($stripeMethod) {
+                $wasDefault = $stripeMethod->is_default;
+                $stripeMethod->delete();
+
+                // Promote next method to default if needed
+                if ($wasDefault) {
+                    $next = $company->paymentMethods()->first();
+                    if ($next) {
+                        $next->update(['is_default' => true]);
+                    }
+                }
             }
         }
 

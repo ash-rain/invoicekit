@@ -5,6 +5,7 @@ namespace App\Livewire\Invoices;
 use App\Models\Client;
 use App\Models\Invoice;
 use App\Models\InvoiceItem;
+use App\Models\PaymentMethod;
 use App\Services\EuVatService;
 use App\Services\PlanService;
 use App\Services\VatExemptionService;
@@ -54,6 +55,8 @@ class CreateInvoice extends Component
 
     public bool $vatExemptOverride = false;
 
+    public ?int $paymentMethodId = null;
+
     // Seller VAT country (from user's current company or fallback)
     public string $sellerCountry = 'BG';
 
@@ -76,6 +79,7 @@ class CreateInvoice extends Component
 
         $this->sellerCountry = $company?->country ?? 'BG';
         $this->vatExemptActive = (bool) ($company?->vat_exempt ?? false);
+        $this->paymentMethodId = $company?->defaultPaymentMethod?->id;
 
         if ($invoice && $invoice->exists) {
             $this->authorize('update', $invoice);
@@ -95,6 +99,7 @@ class CreateInvoice extends Component
             $this->taxEventDate = $invoice->tax_event_date?->format('Y-m-d') ?? '';
             $this->issuedByName = $invoice->issued_by_name ?? '';
             $this->receivedByName = $invoice->received_by_name ?? '';
+            $this->paymentMethodId = $invoice->payment_method_id ?? $this->paymentMethodId;
             $this->items = $invoice->items->map(fn ($item) => [
                 'description' => $item->description,
                 'unit' => $item->unit ?? '',
@@ -219,6 +224,7 @@ class CreateInvoice extends Component
             'taxEventDate' => ['nullable', 'date'],
             'issuedByName' => ['nullable', 'string', 'max:200'],
             'receivedByName' => ['nullable', 'string', 'max:200'],
+            'paymentMethodId' => ['nullable', 'integer', 'exists:payment_methods,id'],
             'items' => ['required', 'array', 'min:1'],
             'items.*.description' => ['required', 'string', 'max:500'],
             'items.*.unit' => ['nullable', 'string', 'max:20'],
@@ -287,6 +293,10 @@ class CreateInvoice extends Component
                 'issued_by_name' => $this->issuedByName ?: null,
                 'received_by_name' => $this->receivedByName ?: null,
                 'vat_amount_bgn' => $vatAmountBgn,
+                'payment_method_id' => $this->paymentMethodId,
+                'payment_method_snapshot' => $this->paymentMethodId
+                    ? PaymentMethod::find($this->paymentMethodId)?->toSnapshot()
+                    : null,
             ];
 
             if ($this->invoice && $this->invoice->exists) {
@@ -321,12 +331,16 @@ class CreateInvoice extends Component
     {
         $clients = Client::where('user_id', Auth::id())->orderBy('name')->get();
 
+        $company = Auth::user()->currentCompany;
+        $paymentMethods = $company ? $company->paymentMethods()->orderByDesc('is_default')->get() : collect();
+
         return view('livewire.invoices.create-invoice', [
             'clients' => $clients,
             'selected' => $this->selectedClient(),
             'localeNames' => config('invoicekit.locale_names', []),
             'supportedLanguages' => config('invoicekit.supported_languages', ['en']),
             'templates' => app(\App\Services\InvoiceTemplateService::class)->getAvailableTemplates(),
+            'paymentMethods' => $paymentMethods,
         ]);
     }
 }

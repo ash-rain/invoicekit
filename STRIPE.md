@@ -121,6 +121,10 @@ A user clicks **Cancel Subscription** on the billing page:
 
 The **Manage Billing** button (shown when a user has a `stripe_customer_id`) posts to `POST /billing/portal`, which redirects the user to Stripe's self-serve portal where they can update their payment method, download invoices, or cancel.
 
+### Stripe Connect & Payment Methods
+
+When a user completes Stripe Connect onboarding, a **Stripe payment method** is automatically created in their company's payment methods list. This allows Stripe to appear as a selectable payment method on invoices. When Stripe is disconnected, the payment method is automatically removed (and if it was the default, the next available method is promoted).
+
 ### Payment Links (Invoice-level)
 
 Individual invoices can have a Stripe Payment Link attached:

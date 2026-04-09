@@ -48,12 +48,6 @@ class Settings extends Component
 
     public string $registrationNumber = '';
 
-    public string $bankName = '';
-
-    public string $bankIban = '';
-
-    public string $bankBic = '';
-
     // ----- Invoicing tab -----
     public string $defaultCurrency = 'EUR';
 
@@ -118,9 +112,6 @@ class Settings extends Component
             $this->companyCountry = $company->country ?? '';
             $this->vatNumber = $company->vat_number ?? '';
             $this->registrationNumber = $company->registration_number ?? '';
-            $this->bankName = $company->bank_name ?? '';
-            $this->bankIban = $company->bank_iban ?? '';
-            $this->bankBic = $company->bank_bic ?? '';
             $this->defaultCurrency = $company->default_currency ?? 'EUR';
             $this->defaultPaymentTerms = $company->default_payment_terms ?? 30;
             $this->defaultInvoiceNotes = $company->default_invoice_notes ?? '';
@@ -187,9 +178,6 @@ class Settings extends Component
             'companyCountry' => ['required', 'string', 'size:2'],
             'vatNumber' => ['nullable', 'string', 'max:50'],
             'registrationNumber' => ['nullable', 'string', 'max:50'],
-            'bankName' => ['nullable', 'string', 'max:100'],
-            'bankIban' => ['nullable', 'string', 'max:50'],
-            'bankBic' => ['nullable', 'string', 'max:11'],
         ]);
 
         $user = Auth::user();
@@ -204,9 +192,6 @@ class Settings extends Component
             'country' => $this->companyCountry,
             'vat_number' => $this->vatNumber ?: null,
             'registration_number' => $this->registrationNumber ?: null,
-            'bank_name' => $this->bankName ?: null,
-            'bank_iban' => $this->bankIban ?: null,
-            'bank_bic' => $this->bankBic ?: null,
         ];
 
         if ($company) {

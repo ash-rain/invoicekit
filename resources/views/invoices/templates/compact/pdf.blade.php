@@ -328,15 +328,7 @@
                             @if ($company->registration_number)
                                 Reg: {{ $company->registration_number }}<br>
                             @endif
-                            @if ($company->bank_iban)
-                                @if ($company->bank_name)
-                                    {{ $company->bank_name }}<br>
-                                @endif
-                                IBAN: {{ $company->bank_iban }}<br>
-                                @if ($company->bank_bic)
-                                    BIC: {{ $company->bank_bic }}<br>
-                                @endif
-                            @endif
+                            @include('invoices.partials.payment-method-pdf')
                         @else
                             {{ $invoice->user->email }}
                         @endif

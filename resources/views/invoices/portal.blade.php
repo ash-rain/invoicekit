@@ -81,12 +81,17 @@
                     @if ($company?->address_line1)
                         <p class="text-xs text-gray-500">{{ $company->address_line1 }}</p>
                     @endif
-                    @if ($company?->bank_iban)
-                        <p class="text-xs text-gray-500 font-mono mt-1">{{ __('IBAN:') }} {{ $company->bank_iban }}
-                        </p>
-                    @endif
-                    @if ($company?->bank_bic)
-                        <p class="text-xs text-gray-500 font-mono">{{ __('BIC:') }} {{ $company->bank_bic }}</p>
+                    @php $portalPm = $invoice->resolvedPaymentMethod(); @endphp
+                    @if ($portalPm && $portalPm['type'] === 'bank_transfer' && ($portalPm['bank_iban'] ?? null))
+                        <p class="text-xs text-gray-500 font-mono mt-1">{{ __('IBAN:') }} {{ $portalPm['bank_iban'] }}</p>
+                        @if ($portalPm['bank_bic'] ?? null)
+                            <p class="text-xs text-gray-500 font-mono">{{ __('BIC:') }} {{ $portalPm['bank_bic'] }}</p>
+                        @endif
+                    @elseif ($company?->bank_iban)
+                        <p class="text-xs text-gray-500 font-mono mt-1">{{ __('IBAN:') }} {{ $company->bank_iban }}</p>
+                        @if ($company?->bank_bic)
+                            <p class="text-xs text-gray-500 font-mono">{{ __('BIC:') }} {{ $company->bank_bic }}</p>
+                        @endif
                     @endif
                 </div>
                 <div>
@@ -231,8 +236,62 @@
                         </div>
                     @endif
 
-                    {{-- Bank transfer --}}
-                    @if ($company?->bank_iban || $company?->bank_bic)
+                    {{-- Payment method details --}}
+                    @php $paymentPm = $invoice->resolvedPaymentMethod(); @endphp
+                    @if ($paymentPm && $paymentPm['type'] === 'bank_transfer')
+                        <div class="rounded-xl border border-[#eaecf0] bg-[#fafafa] px-4 py-3">
+                            <div class="flex items-center gap-3 mb-3">
+                                <span class="flex h-8 w-8 items-center justify-center rounded-full bg-gray-100">
+                                    <svg class="h-4 w-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z" />
+                                    </svg>
+                                </span>
+                                <p class="text-sm font-semibold text-gray-900">{{ __('Bank Transfer') }}</p>
+                            </div>
+                            <div class="space-y-1.5 text-sm pl-11">
+                                @if ($paymentPm['bank_name'] ?? null)
+                                    <div class="flex gap-2">
+                                        <span class="text-gray-500 min-w-[80px]">{{ __('Bank') }}</span>
+                                        <span class="text-gray-900">{{ $paymentPm['bank_name'] }}</span>
+                                    </div>
+                                @endif
+                                @if ($paymentPm['bank_iban'] ?? null)
+                                    <div class="flex gap-2">
+                                        <span class="text-gray-500 min-w-[80px]">IBAN</span>
+                                        <span class="font-mono text-gray-900">{{ $paymentPm['bank_iban'] }}</span>
+                                    </div>
+                                @endif
+                                @if ($paymentPm['bank_bic'] ?? null)
+                                    <div class="flex gap-2">
+                                        <span class="text-gray-500 min-w-[80px]">BIC / SWIFT</span>
+                                        <span class="font-mono text-gray-900">{{ $paymentPm['bank_bic'] }}</span>
+                                    </div>
+                                @endif
+                                <div class="flex gap-2">
+                                    <span class="text-gray-500 min-w-[80px]">{{ __('Reference') }}</span>
+                                    <span class="font-mono text-gray-900">{{ $invoice->invoice_number }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    @elseif ($paymentPm && $paymentPm['type'] === 'cash')
+                        <div class="rounded-xl border border-[#eaecf0] bg-[#fafafa] px-4 py-3">
+                            <div class="flex items-center gap-3">
+                                <span class="flex h-8 w-8 items-center justify-center rounded-full bg-green-50">
+                                    <svg class="h-4 w-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"/>
+                                    </svg>
+                                </span>
+                                <div>
+                                    <p class="text-sm font-semibold text-gray-900">{{ __('Payment in cash') }}</p>
+                                    @if ($paymentPm['notes'] ?? null)
+                                        <p class="text-xs text-gray-500 mt-0.5">{{ $paymentPm['notes'] }}</p>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                    @elseif ($company?->bank_iban || $company?->bank_bic)
+                        {{-- Fallback to legacy company bank fields --}}
                         <div class="rounded-xl border border-[#eaecf0] bg-[#fafafa] px-4 py-3">
                             <div class="flex items-center gap-3 mb-3">
                                 <span class="flex h-8 w-8 items-center justify-center rounded-full bg-gray-100">

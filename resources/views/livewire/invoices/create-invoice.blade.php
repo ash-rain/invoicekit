@@ -107,6 +107,24 @@
                 @enderror
             </div>
 
+            {{-- Payment Method --}}
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">{{ __('Payment Method') }}</label>
+                <select wire:model="paymentMethodId"
+                    class="w-full border border-gray-300 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 @error('paymentMethodId') border-red-400 @enderror">
+                    <option value="">{{ __('— Company default —') }}</option>
+                    @foreach ($paymentMethods as $pm)
+                        <option value="{{ $pm->id }}">
+                            {{ $pm->displayLabel() }} ({{ match($pm->type) { 'bank_transfer' => __('Bank Transfer'), 'stripe' => 'Stripe', 'cash' => __('Cash'), default => $pm->type } }})
+                            @if ($pm->is_default) — {{ __('Default') }}@endif
+                        </option>
+                    @endforeach
+                </select>
+                @error('paymentMethodId')
+                    <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
+                @enderror
+            </div>
+
             {{-- Client --}}
             <div class="md:col-span-2">
                 <label class="block text-sm font-medium text-gray-700 mb-1">

@@ -17,6 +17,7 @@ class PlanService
             'price' => 0,
             'clients_limit' => 3,
             'invoices_per_month_limit' => 5,
+            'payment_methods_limit' => 1,
             'recurring_invoices' => false,
             'client_portal' => false,
         ],
@@ -25,6 +26,7 @@ class PlanService
             'price' => 9,
             'clients_limit' => null,
             'invoices_per_month_limit' => 20,
+            'payment_methods_limit' => 3,
             'recurring_invoices' => false,
             'client_portal' => false,
         ],
@@ -33,6 +35,7 @@ class PlanService
             'price' => 29,
             'clients_limit' => null,
             'invoices_per_month_limit' => null,
+            'payment_methods_limit' => null,
             'recurring_invoices' => true,
             'client_portal' => true,
         ],
@@ -91,6 +94,30 @@ class PlanService
             ->count();
 
         return max(0, $plan['invoices_per_month_limit'] - $count);
+    }
+
+    public function canAddPaymentMethod(User $user): bool
+    {
+        $plan = $this->getPlan($user);
+        if ($plan['payment_methods_limit'] === null) {
+            return true;
+        }
+
+        $count = $user->currentCompany?->paymentMethods()->count() ?? 0;
+
+        return $count < $plan['payment_methods_limit'];
+    }
+
+    public function paymentMethodsRemaining(User $user): ?int
+    {
+        $plan = $this->getPlan($user);
+        if ($plan['payment_methods_limit'] === null) {
+            return null;
+        }
+
+        $count = $user->currentCompany?->paymentMethods()->count() ?? 0;
+
+        return max(0, $plan['payment_methods_limit'] - $count);
     }
 
     public function aiImportDailyLimit(User $user): ?int

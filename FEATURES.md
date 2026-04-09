@@ -99,6 +99,26 @@ Enter a VAT number or national registration number on the New Client screen to a
 
 **Per-invoice VAT exempt override**: when the company is VAT-exempt, a Pro-accessible checkbox allows charging VAT on a one-off basis (e.g. for a cross-border supply outside the exemption)
 
+**Per-invoice payment method**: each invoice can override the company default payment method. The selected payment method is snapshotted at save time so issued invoices are immutable.
+
+---
+
+## Payment Methods
+
+Multiple payment methods per company, managed in Settings → Business tab.
+
+**Types**: Bank Transfer (IBAN/BIC), Stripe (auto-created on Stripe Connect), Cash
+
+**Features**:
+- Add, edit, delete payment methods
+- Set a default payment method per company
+- Per-invoice payment method override (dropdown in invoice builder, defaults to company default)
+- Payment method snapshot stored on invoice at creation — issued invoices never change retroactively
+- Stripe Connect integration: connecting Stripe auto-creates a Stripe payment method; disconnecting removes it
+- Plan-gated: Free = 1 method, Starter = 3, Pro = unlimited
+
+**EU compliance**: Invoices must display at least one payment method. All PDF templates and the client portal render the resolved payment method (snapshot → live method → company default → legacy bank fields).
+
 ---
 
 ## EU VAT Engine
@@ -140,7 +160,7 @@ Three-tab settings page:
 
 **Profile tab**: display name, tagline, website, phone, profile photo (stored in S3/MinIO), locale/language preference
 
-**Business tab**: company name, full address, VAT number, registration number, bank name, IBAN, BIC
+**Business tab**: company name, full address, VAT number, registration number, payment methods management (bank transfer, Stripe, cash)
 
 **Invoicing tab**: default currency, default payment terms, default invoice notes, invoice logo upload, VAT exemption toggle + reason + notice language. Country-aware info panel shows threshold and legal basis for the company's country.
 
@@ -198,6 +218,7 @@ Generated via DomPDF (DejaVu Sans font for full Unicode / multi-language support
 |---------|------|-----------------|--------------|
 | Clients | 3 | Unlimited | Unlimited |
 | Invoices/month | 5 | 20 | Unlimited |
+| Payment methods | 1 | 3 | Unlimited |
 | AI document imports/day | 2 | 50 | Unlimited |
 
 - Limits enforced at creation time with inline error (clients) or redirect to billing (invoices)

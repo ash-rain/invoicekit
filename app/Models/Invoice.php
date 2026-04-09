@@ -39,6 +39,8 @@ class Invoice extends Model
         'cancellation_reason',
         'cancelled_at',
         'vat_amount_bgn',
+        'payment_method_id',
+        'payment_method_snapshot',
     ];
 
     protected $casts = [
@@ -53,6 +55,7 @@ class Invoice extends Model
         'total' => 'decimal:2',
         'vat_amount_bgn' => 'decimal:2',
         'vat_exempt_applied' => 'boolean',
+        'payment_method_snapshot' => 'array',
     ];
 
     public function user(): BelongsTo
@@ -63,6 +66,36 @@ class Invoice extends Model
     public function client(): BelongsTo
     {
         return $this->belongsTo(Client::class);
+    }
+
+    public function paymentMethod(): BelongsTo
+    {
+        return $this->belongsTo(PaymentMethod::class);
+    }
+
+    /**
+     * Resolve the payment method for display: snapshot first, then live method, then company default.
+     *
+     * @return array<string, mixed>|null
+     */
+    public function resolvedPaymentMethod(): ?array
+    {
+        if ($this->payment_method_snapshot) {
+            return $this->payment_method_snapshot;
+        }
+
+        $method = $this->paymentMethod;
+        if ($method) {
+            return $method->toSnapshot();
+        }
+
+        $company = $this->user?->currentCompany;
+        $default = $company?->defaultPaymentMethod;
+        if ($default) {
+            return $default->toSnapshot();
+        }
+
+        return null;
     }
 
     public function items(): HasMany
