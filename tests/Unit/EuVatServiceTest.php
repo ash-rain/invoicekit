@@ -40,7 +40,7 @@ class EuVatServiceTest extends TestCase
     /**
      * @dataProvider sameCountryVatRatesProvider
      */
-    public function test_same_country_rates_match_plan(string $country, int $expectedRate): void
+    public function test_same_country_rates_match_plan(string $country, int|float $expectedRate): void
     {
         $result = $this->vat->calculateVat($country, $country, false, 100.00);
 
@@ -52,21 +52,33 @@ class EuVatServiceTest extends TestCase
     public static function sameCountryVatRatesProvider(): array
     {
         return [
-            'BG' => ['BG', 20],
-            'DE' => ['DE', 19],
-            'FR' => ['FR', 20],
-            'RO' => ['RO', 19],
-            'PL' => ['PL', 23],
-            'CZ' => ['CZ', 21],
-            'IT' => ['IT', 22],
-            'ES' => ['ES', 21],
-            'NL' => ['NL', 21],
-            'PT' => ['PT', 23],
             'AT' => ['AT', 20],
             'BE' => ['BE', 21],
+            'BG' => ['BG', 20],
+            'CY' => ['CY', 19],
+            'CZ' => ['CZ', 21],
+            'DE' => ['DE', 19],
+            'DK' => ['DK', 25],
+            'EE' => ['EE', 22],
+            'EL' => ['EL', 24],
+            'ES' => ['ES', 21],
+            'FI' => ['FI', 25.5],
+            'FR' => ['FR', 20],
             'HR' => ['HR', 25],
             'HU' => ['HU', 27],
+            'IE' => ['IE', 23],
+            'IT' => ['IT', 22],
+            'LT' => ['LT', 21],
+            'LU' => ['LU', 17],
+            'LV' => ['LV', 21],
+            'MT' => ['MT', 18],
+            'NL' => ['NL', 21],
+            'PL' => ['PL', 23],
+            'PT' => ['PT', 23],
+            'RO' => ['RO', 19],
             'SE' => ['SE', 25],
+            'SI' => ['SI', 22],
+            'SK' => ['SK', 23],
         ];
     }
 
@@ -130,7 +142,7 @@ class EuVatServiceTest extends TestCase
     /**
      * @dataProvider sameCountryVatRatesProvider
      */
-    public function test_eu_business_buyers_across_all_eu_countries_get_reverse_charge(string $buyerCountry, int $ignored): void
+    public function test_eu_business_buyers_across_all_eu_countries_get_reverse_charge(string $buyerCountry, int|float $ignored): void
     {
         // Pick a different seller country (BG as default seller)
         $sellerCountry = $buyerCountry === 'BG' ? 'DE' : 'BG';
@@ -232,7 +244,7 @@ class EuVatServiceTest extends TestCase
 
     public function test_is_eu_country_returns_true_for_eu_members(): void
     {
-        foreach (['BG', 'DE', 'FR', 'RO', 'PL', 'CZ', 'IT', 'ES', 'NL', 'PT', 'AT', 'BE', 'HR', 'HU', 'SE'] as $code) {
+        foreach (['AT', 'BE', 'BG', 'CY', 'CZ', 'DE', 'DK', 'EE', 'EL', 'ES', 'FI', 'FR', 'HR', 'HU', 'IE', 'IT', 'LT', 'LU', 'LV', 'MT', 'NL', 'PL', 'PT', 'RO', 'SE', 'SI', 'SK'] as $code) {
             $this->assertTrue($this->vat->isEuCountry($code), "Expected {$code} to be EU");
         }
     }

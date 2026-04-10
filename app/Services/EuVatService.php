@@ -8,21 +8,33 @@ class EuVatService
      * Standard VAT rates by EU country (ISO 2-letter code).
      */
     private array $vatRates = [
-        'BG' => 20,
-        'DE' => 19,
-        'FR' => 20,
-        'RO' => 19,
-        'PL' => 23,
-        'CZ' => 21,
-        'IT' => 22,
-        'ES' => 21,
-        'NL' => 21,
-        'PT' => 23,
         'AT' => 20,
         'BE' => 21,
+        'BG' => 20,
+        'CY' => 19,
+        'CZ' => 21,
+        'DE' => 19,
+        'DK' => 25,
+        'EE' => 22,
+        'EL' => 24,
+        'ES' => 21,
+        'FI' => 25.5,
+        'FR' => 20,
         'HR' => 25,
         'HU' => 27,
+        'IE' => 23,
+        'IT' => 22,
+        'LT' => 21,
+        'LU' => 17,
+        'LV' => 21,
+        'MT' => 18,
+        'NL' => 21,
+        'PL' => 23,
+        'PT' => 23,
+        'RO' => 19,
         'SE' => 25,
+        'SI' => 22,
+        'SK' => 23,
     ];
 
     /**
@@ -98,7 +110,7 @@ class EuVatService
     /**
      * Return the VAT rate for a given country, or null if not an EU country.
      */
-    public function rateForCountry(string $countryCode): ?int
+    public function rateForCountry(string $countryCode): int|float|null
     {
         return $this->vatRates[strtoupper($countryCode)] ?? null;
     }
