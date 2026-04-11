@@ -53,6 +53,11 @@ class SetupGuideTest extends TestCase
             'default_payment_terms' => 30,
         ]);
 
+        \App\Models\PaymentMethod::factory()->create([
+            'company_id' => $company->id,
+            'is_default' => true,
+        ]);
+
         $user->update(['current_company_id' => $company->id]);
 
         Livewire::actingAs($user->fresh())
@@ -305,6 +310,11 @@ class SetupGuideTest extends TestCase
             'default_payment_terms' => 30,
         ]);
 
+        \App\Models\PaymentMethod::factory()->create([
+            'company_id' => $company->id,
+            'is_default' => true,
+        ]);
+
         $user->update(['current_company_id' => $company->id]);
 
         $component = Livewire::actingAs($user->fresh())->test(SetupGuide::class);
@@ -320,8 +330,8 @@ class SetupGuideTest extends TestCase
 
         $component = Livewire::actingAs($user)->test(SetupGuide::class);
 
-        // 2 out of 6 steps = 33%
-        $this->assertSame(33, $component->instance()->progressPercent());
+        // 2 out of 7 steps = 29% (round(2/7*100))
+        $this->assertSame(29, $component->instance()->progressPercent());
     }
 
     // ─── Dismiss entire guide ─────────────────────────────────────────────────
@@ -335,6 +345,55 @@ class SetupGuideTest extends TestCase
             ->call('dismissGuide');
 
         $this->assertNotNull($user->fresh()->setup_guide_dismissed_at);
+    }
+
+    // ─── Step: Payment Method (auto-detect + dismissible) ─────────────────────
+
+    public function test_payment_method_step_is_incomplete_when_no_payment_method_configured(): void
+    {
+        $user = User::factory()->create();
+
+        $company = Company::factory()->create([
+            'user_id' => $user->id,
+        ]);
+
+        $user->update(['current_company_id' => $company->id]);
+
+        $component = Livewire::actingAs($user->fresh())->test(SetupGuide::class);
+
+        $this->assertFalse($component->instance()->isStepCompleted('payment_method'));
+    }
+
+    public function test_payment_method_step_auto_completes_when_payment_method_exists(): void
+    {
+        $user = User::factory()->create();
+
+        $company = Company::factory()->create([
+            'user_id' => $user->id,
+        ]);
+
+        \App\Models\PaymentMethod::factory()->create([
+            'company_id' => $company->id,
+            'type' => 'bank_transfer',
+            'is_default' => true,
+        ]);
+
+        $user->update(['current_company_id' => $company->id]);
+
+        $component = Livewire::actingAs($user->fresh())->test(SetupGuide::class);
+
+        $this->assertTrue($component->instance()->isStepCompleted('payment_method'));
+    }
+
+    public function test_payment_method_step_can_be_dismissed(): void
+    {
+        $user = User::factory()->create();
+
+        Livewire::actingAs($user)
+            ->test(SetupGuide::class)
+            ->call('dismissStep', 'payment_method');
+
+        $this->assertContains('payment_method', $user->fresh()->setup_guide_dismissed_steps);
     }
 
     // ─── Step definitions integrity ───────────────────────────────────────────

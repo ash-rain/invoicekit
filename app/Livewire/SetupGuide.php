@@ -43,6 +43,15 @@ class SetupGuide extends Component
                 'dismissible' => false,
             ],
             [
+                'key' => 'payment_method',
+                'title' => 'Add a payment method',
+                'description' => 'Add your IBAN or connect Stripe so clients know how to pay you',
+                'url' => '/settings?tab=business',
+                'cta' => 'Add Payment Method',
+                'auto_detect' => true,
+                'dismissible' => true,
+            ],
+            [
                 'key' => 'connect_stripe',
                 'title' => 'Connect Stripe for online payments',
                 'description' => 'Accept credit card payments from your clients',
@@ -92,6 +101,7 @@ class SetupGuide extends Component
         return match ($key) {
             'business_profile' => $this->isBusinessProfileComplete($user),
             'invoicing_defaults' => $this->isInvoicingDefaultsComplete($user),
+            'payment_method' => $this->hasPaymentMethod($user),
             'connect_stripe' => $user->hasStripeConnect(),
             'ai_services' => $user->gemini_api_key !== null,
             default => false,
@@ -180,5 +190,16 @@ class SetupGuide extends Component
 
         return filled($company->default_currency)
             && $company->default_payment_terms !== null;
+    }
+
+    private function hasPaymentMethod(\App\Models\User $user): bool
+    {
+        $company = $user->currentCompany;
+
+        if ($company === null) {
+            return false;
+        }
+
+        return $company->paymentMethods()->exists();
     }
 }
