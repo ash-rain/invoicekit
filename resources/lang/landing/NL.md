@@ -11,29 +11,32 @@ Inloggen
 Gratis beginnen
 
 [hero_badge]
-🇪🇺 Gebouwd voor Europese freelancers
+🇪🇺 Gemaakt voor Europese freelancers
 
 [hero_headline]
 Factureer als een Europeaan.
-Registreer tijd als een pro.
+Houd tijd bij als een professional.
 
 [hero_subheadline]
-Het enige hulpmiddel dat EU-freelancers nodig hebben — van urenregistratie tot wettelijk conforme btw-facturen. Verwerkt automatisch verlegging, OSS en alle 24 EU-btw-tarieven.
+De enige tool die EU-freelancers nodig hebben — van tijdregistratie tot juridisch conforme btw-facturen. Handelt automatisch verlegging, OSS, creditnota's en alle 27 EU-btw-tarieven af.
 
 [hero_cta_primary]
-Gratis starten — geen creditcard
+Gratis beginnen — geen creditcard
 
 [hero_cta_secondary]
 Bekijk functies ↓
 
 [hero_trust_1]
-Gratis te starten
+Gratis om te starten
 
 [hero_trust_2]
 Geen creditcard nodig
 
 [hero_trust_3]
-Op elk moment opzegbaar
+Op elk moment opzeggen
+
+[hero_trust_4]
+14 dagen Pro-proefperiode
 
 [features_tag]
 Functies
@@ -42,124 +45,250 @@ Functies
 Alles op één plek
 
 [features_subtitle]
-Stop met jongleren met spreadsheets en losse apps. InvoiceKit beheert elke stap van uw eerste factureerbare minuut tot uw laatste ontvangen euro.
+Stop met jongleren met spreadsheets en aparte apps. InvoiceKit handelt elke stap af van je eerste factureerbare minuut tot je laatste geïnde euro.
+
+[group_invoicing_tag]
+Facturatie
+
+[group_invoicing_title]
+Professionele facturen, elke keer
+
+[group_invoicing_subtitle]
+Van eenmalige facturen tot terugkerende facturering, creditnota's en e-facturatie — alles wat je nodig hebt om klanten correct te factureren.
 
 [f1_title]
-Tijdregistratie
+Factuurgenerator
 
 [f1_desc]
-Start/stop-timer per project. Handmatige invoer voor eerder werk. Dagelijkse logs, wekelijkse samenvattingen en maandelijkse rapporten met totaal factureerbare uren.
+Genereer professionele PDF-facturen in seconden. Automatisch genummerd, juridisch opgemaakt, met alle vereiste EU-velden inclusief volledige btw-uitsplitsing.
 
 [f2_title]
-Factuurbouwer
+Creditnota's en geannuleerde facturen
 
 [f2_desc]
-Genereer in seconden professionele pdf-facturen. Automatisch genummerd, wettelijk opgemaakt, met alle verplichte EU-velden inclusief volledige btw-uitsplitsing.
+Stel creditnota's op om verzonden facturen gedeeltelijk of volledig terug te draaien. Annulering (сторно) annuleert een factuur volledig. Beide verwijzen naar het origineel en genereren correcte juridische documenten.
 
 [f3_title]
-EU btw-engine
-
-[f3_desc]
-Automatische btw voor elk EU-scenario: standaardtarief, verlegging (B2B), OSS (B2C EU-consumenten) en 0% vrijgesteld voor kopers buiten de EU.
-
-[f4_title]
-Klantbeheer
-
-[f4_desc]
-Sla klanten op met land, btw-nummer en valuta. Landvlaggen, directe zoekfunctie en volledige facturatiegeschiedenis per klant.
-
-[f5_title]
 Terugkerende facturen
 
+[f3_desc]
+Stel wekelijkse, maandelijkse, driemaandelijkse of jaarlijkse facturen in. InvoiceKit kloont en verstuurt ze automatisch — geen handmatig werk, geen gemiste factureringscycli.
+
+[f4_title]
+Peppol / e-Facturatie
+
+[f4_desc]
+Genereer UBL 2.1 / Peppol BIS Billing 3.0 compatibele XML-bestanden. Dien in bij het e-facturatieportaal van je land of stuur direct naar klanten die gestructureerde facturen accepteren.
+
+[group_compliance_tag]
+EU-naleving
+
+[group_compliance_title]
+Gebouwd voor EU-wetgeving, niet eromheen
+
+[group_compliance_subtitle]
+Van automatische btw-berekening tot landspecifieke factuurvalidatie, InvoiceKit handelt de juridische complexiteit voor je af.
+
+[f5_title]
+EU btw-engine
+
 [f5_desc]
-Stel wekelijkse, maandelijkse, driemaandelijkse of jaarlijkse facturen in. InvoiceKit kloont en verzendt ze automatisch — geen handmatig werk, geen gemiste factureringscycli.
+Automatische btw voor elk EU-scenario: standaardtarief, verlegging (B2B), OSS (B2C EU-consumenten) en 0% vrijstelling voor niet-EU-kopers.
 
 [f6_title]
-Klantenportaal
+Landspecifieke validatie
 
 [f6_desc]
-Deel een veilige tokenized link met elke klant. Ze kunnen de factuur bekijken, de PDF downloaden en online met kaart betalen via Stripe — de middelen gaan direct naar uw bankrekening. Of deel uw IBAN voor gratis overschrijvingen. Geen account vereist.
+InvoiceKit valideert facturen tegen landspecifieke wettelijke vereisten. Bulgarije wordt vandaag volledig ondersteund — verplichte velden, juridische basisteksten en documentvalidatiepoorten. Meer landen volgen.
 
 [f7_title]
-Werkt op elk apparaat
+Btw-tarieven per regel
 
 [f7_desc]
-Voeg InvoiceKit toe aan het startscherm van uw telefoon, tablet of computer. Installeert als een native app, start zonder browser en werkt offline — zodat u overal tijd kunt registreren of facturen kunt controleren.
+Wijs verschillende btw-tarieven toe per regel — standaard, verlaagd of nul. Totalen groeperen per tarief met een duidelijke btw-uitsplitsing.
 
 [f8_title]
-Uitgavenbeheer
+Btw-vrijstellingsmodus
 
 [f8_desc]
-Registreer zakelijke uitgaven met bonnen, categorieën en leveranciersgegevens. Filter op datum of categorie, exporteer naar CSV en houd een maandelijks overzicht bij naast uw inkomsten.
+Voor kleine bedrijven onder de nationale drempel. Automatische juridische melding op facturen, overschrijving per factuur wanneer nodig. Alle 27 EU-landen ondersteund.
+
+[group_payments_tag]
+Betalingen
+
+[group_payments_title]
+Sneller betaald worden, op jouw manier
+
+[group_payments_subtitle]
+Kaartbetaling, bankoverschrijving of contant — InvoiceKit handelt elke betaalmethode af en zorgt ervoor dat je klanten altijd weten hoe ze moeten betalen.
 
 [f9_title]
-Meerdere valuta's
+Klantenportaal en Stripe-betalingen
 
 [f9_desc]
-Factureer in EUR, USD, BGN, RON, PLN, CZK of HUF. Elke klant slaat de voorkeurvaluta op — die wordt automatisch ingevuld op elke nieuwe factuur.
+Deel een beveiligde getokeniseerde link. Klanten bekijken de factuur, downloaden de PDF en betalen per kaart via Stripe — het geld gaat direct naar je bank. Geen login vereist.
+
+[f10_title]
+Betaalmethoden
+
+[f10_desc]
+Beheer meerdere betaalmethoden — bankoverschrijving (IBAN/BIC), Stripe of contant. Stel een standaard in, overschrijf per factuur. Betaalgegevens worden als snapshot opgeslagen, zodat verstuurde facturen nooit wijzigen.
+
+[f11_title]
+Meerdere valuta's
+
+[f11_desc]
+Factureer in EUR, USD, BGN, RON, PLN, CZK of HUF. Elke klant slaat zijn voorkeursvaluta op — wordt automatisch ingevuld op elke nieuwe factuur zodat je nooit in de verkeerde valuta factureert.
+
+[f12_title]
+Bedrijfsopzoeking
+
+[f12_desc]
+Voer een btw-nummer of KvK-nummer in bij het toevoegen van een klant. InvoiceKit bevraagt eerst EU VIES, dan AI. Naam, adres en btw-status worden direct ingevuld.
+
+[group_productivity_tag]
+Productiviteit
+
+[group_productivity_title]
+Je dagelijkse workflow, gestroomlijnd
+
+[group_productivity_subtitle]
+Registreer tijd, log uitgaven, importeer documenten met AI en krijg overal toegang tot alles vanaf elk apparaat — online of offline.
+
+[f13_title]
+Tijdregistratie
+
+[f13_desc]
+Start/stop timer per project. Handmatige invoer voor eerder werk. Dagelijkse logs, wekelijkse samenvattingen en maandelijkse rapporten met totaal factureerbare uren.
+
+[f14_title]
+Uitgavenregistratie
+
+[f14_desc]
+Log zakelijke uitgaven met bonnen, categorieën en leveranciersdetails. Filter op datum of categorie, exporteer naar CSV en houd maandelijkse uitgaven naast inkomsten.
+
+[f15_title]
+AI-documentimport
+
+[f15_desc]
+Sleep facturen, bonnen of uitgavendocumenten. AI haalt bedragen, datums, leveranciers en btw automatisch op. Controleer en sla op met één klik.
+
+[f16_title]
+Werkt op elk apparaat
+
+[f16_desc]
+Voeg InvoiceKit toe aan het startscherm van je telefoon, tablet of desktop. Installeert als een native app, opent zonder browser en werkt offline zodat je overal tijd kunt registreren of facturen kunt bekijken.
 
 [how_tag]
 Hoe het werkt
 
 [how_title]
-Van bijgehouden seconden tot betaalde factuur
+Van geregistreerde seconden naar betaalde factuur
 
 [how_subtitle]
-Drie eenvoudige stappen. Dat is alles.
+Drie simpele stappen. Dat is alles.
 
 [s1_title]
-Registreer uw tijd
+Registreer je tijd
 
 [s1_desc]
-Klik op Start voor een project. Werk. Klik op Stop. Elke seconde wordt automatisch geregistreerd — geen spreadsheets, niets vergeten.
+Klik op Start bij elk project. Werk. Klik op Stop. Elke seconde wordt automatisch gelogd — geen spreadsheets, niets vergeten.
 
 [s2_title]
-Genereer de factuur
+Genereer factuur
 
 [s2_desc]
-Selecteer een klant, kies de tijdsvermeldingen om te factureren. InvoiceKit bouwt de factuur met correcte btw, wettelijke opmaak en uw huisstijl.
+Selecteer een klant, kies de tijdregistraties om te factureren. InvoiceKit maakt de factuur met correcte btw, juridische opmaak en jouw branding.
 
 [s3_title]
 Ontvang betaling
 
 [s3_desc]
-Verzend met één klik. Uw klant betaalt met kaart via Stripe of via gratis bankoverschrijving. Het geld komt direct op uw bankrekening. Klaar.
+Verstuur met één klik. Je klant betaalt per kaart via Stripe of gratis bankoverschrijving. Het geld komt direct op je bankrekening. Klaar.
 
-[vat_tag]
-EU-conformiteit
+[compliance_tag]
+EU-naleving
 
-[vat_title]
-Btw elke keer correct
+[compliance_title]
+Diepgaande naleving, land voor land
 
-[vat_desc]
-De EU-btw-wetgeving is complex. InvoiceKit behandelt elk scenario automatisch — standaardtarieven, verlegging voor B2B-klanten, OSS voor EU-consumenten en 0% voor kopers buiten de EU.
+[compliance_subtitle]
+InvoiceKit stopt niet bij btw-berekening. Voor ondersteunde landen valideert het elke factuur tegen lokale wettelijke vereisten voordat je hem kunt versturen.
 
-[vat_r1_label]
-Facturering in hetzelfde land
+[compliance_bg_title]
+🇧🇬 Bulgarije — Volledige naleving
 
-[vat_r1_sub]
-Lokaal standaard btw-tarief automatisch toegepast
+[compliance_bg_item1]
+Factuurvalidatiepoort — blokkeert het versturen van onvolledige facturen
 
-[vat_r2_label]
-EU B2B (Verlegging)
+[compliance_bg_item2]
+Creditnota's (кредитно известие) en annulering/сторно
 
-[vat_r2_sub]
-0% btw — koper verantwoordt btw op grond van Art. 44 Dir. 2006/112/EG
+[compliance_bg_item3]
+Btw per regel met standaard, verlaagd en nultarief
 
-[vat_r3_label]
-EU B2C (OSS-regels)
+[compliance_bg_item4]
+Automatische invulling juridische grondslag op elke factuur
 
-[vat_r3_sub]
-Tarief van de verkoper toegepast (of OSS-tarief waar van toepassing)
+[compliance_bg_item5]
+Klantvolledigheidsindicatoren
 
-[vat_r4_label]
-Koper buiten de EU
+[compliance_more]
+Meer landen volgen — Roemenië, Polen, Duitsland en anderen zijn de volgende.
 
-[vat_r4_sub]
-0% btw — buiten het toepassingsgebied van de EU-btw, vrijgesteld
+[pay_tag]
+Online betalingen
 
-[vat_rates_title]
-Ondersteunde btw-tarieven
+[pay_title]
+Direct betaald worden. Elke keer.
+
+[pay_desc]
+Koppel je Stripe-account en maak van elke factuur een betaallink. Klanten betalen per kaart — het geld komt direct op je bankrekening, niet bij een tussenpersoon. Bankoverschrijvingen via IBAN zijn altijd gratis.
+
+[pay_r1_label]
+Stripe Connect — direct naar je bank
+
+[pay_r1_sub]
+We gebruiken Stripe Connect Express. De kaartbetaling van je klant gaat direct naar je bank. InvoiceKit houdt nooit je geld vast.
+
+[pay_r2_label]
+Klantenportaal — geen login nodig
+
+[pay_r2_sub]
+Elke factuur krijgt een beveiligde getokeniseerde link. Je klant opent het in een browser, ziet de factuur en betaalt met één klik.
+
+[pay_r3_label]
+Slechts 2% voor kaartbetalingen — bankoverschrijvingen gratis
+
+[pay_r3_sub]
+Een platformkosten van 2% geldt wanneer een klant per kaart betaalt. Bankoverschrijvingen via IBAN zijn geheel kosteloos.
+
+[ai_import_tag]
+AI-import
+
+[ai_import_title]
+Laat AI het papierwerk doen
+
+[ai_import_desc]
+Upload een PDF, JPG of PNG van elk document. Gemini AI leest en haalt alle gegevens voor je op. Controleer de opgehaalde velden, pas aan indien nodig en sla op als conceptfactuur of uitgave met één klik.
+
+[ai_import_r1_label]
+Ondersteunt PDF, JPG en PNG
+
+[ai_import_r1_sub]
+Upload tot 10 bestanden tegelijk — parallel verwerkt door AI
+
+[ai_import_r2_label]
+Haalt alles automatisch op
+
+[ai_import_r2_sub]
+Bedragen, datums, btw-nummers, leveranciersnamen en regelitems — alles direct opgehaald
+
+[ai_import_r3_label]
+Controleer voor het opslaan
+
+[ai_import_r3_sub]
+Elke import gaat door een bevestigingsscherm — jij houdt de controle
 
 [pricing_tag]
 Prijzen
@@ -168,7 +297,7 @@ Prijzen
 Eenvoudige, eerlijke prijzen
 
 [pricing_subtitle]
-Begin gratis. Upgrade wanneer uw bedrijf groeit. Geen contracten, op elk moment opzegbaar.
+Begin gratis. Upgrade wanneer je bedrijf groeit. Geen contracten, op elk moment opzeggen.
 
 [p_free_name]
 Gratis
@@ -180,7 +309,7 @@ Gratis
 voor altijd
 
 [p_free_desc]
-Alles wat u nodig heeft om te beginnen.
+Alles wat je nodig hebt om te beginnen.
 
 [p_free_l1]
 Tot 3 klanten
@@ -194,7 +323,16 @@ Tijdregistratie
 [p_free_l4]
 PDF-factuurexport
 
+[p_free_l5]
+EU btw-engine
+
 [p_free_l6]
+Creditnota's en geannuleerde facturen
+
+[p_free_l7]
+14 dagen Pro-proefperiode inbegrepen
+
+[p_free_l8]
 :free_limit AI-imports per dag
 
 [p_free_cta]
@@ -213,7 +351,7 @@ per maand
 Voor groeiende freelancers.
 
 [p_starter_l1]
-Onbeperkte klanten
+Onbeperkt klanten
 
 [p_starter_l2]
 20 facturen per maand
@@ -227,11 +365,20 @@ Alle EU btw-regels
 [p_starter_l5]
 Betalingsherinneringen
 
+[p_starter_l6]
+Uitgavenregistratie
+
 [p_starter_l7]
+Tot 3 betaalmethoden
+
+[p_starter_l8]
+Automatische bedrijfsopzoeking — 10/dag
+
+[p_starter_l9]
 :starter_limit AI-imports per dag
 
 [p_starter_cta]
-Starter kiezen
+Start Starter
 
 [p_pro_name]
 Pro
@@ -258,22 +405,40 @@ Klantenportaal
 Peppol / e-Facturatie (UBL 2.1)
 
 [p_pro_l5]
-BTW-vrijstellingsmodus (alle 27 EU-landen)
+Btw-vrijstellingsmodus (alle 27 EU-landen)
 
 [p_pro_l6]
 Alle EU btw-regels
 
 [p_pro_l7]
-Online betalingen via Stripe (2% vergoeding)
+Landspecifieke naleving
 
 [p_pro_l8]
-Onbeperkte AI-imports
+Btw-tarieven per regel
+
+[p_pro_l9]
+Onbeperkt betaalmethoden
+
+[p_pro_l10]
+Onbeperkt bedrijfsopzoekingen
+
+[p_pro_l11]
+Online betalingen via Stripe (2% kosten)
+
+[p_pro_l12]
+Onbeperkt AI-imports
 
 [p_pro_cta]
-Naar Pro
+Ga Pro
 
 [p_popular]
 Meest populair
+
+[p_byok_label]
+Gebruik je eigen Gemini API-sleutel — onbeperkt imports
+
+[p_byok_desc]
+Op elk plan kun je je eigen gratis Google Gemini API-sleutel toevoegen in Instellingen → AI. Eenmaal ingesteld gebruiken alle AI-documentimports je Google-quota — geen app-limieten van toepassing.
 
 [faq_tag]
 FAQ
@@ -285,89 +450,79 @@ Veelgestelde vragen
 Is InvoiceKit echt EU btw-conform?
 
 [faq1_a]
-Ja. InvoiceKit berekent automatisch de correcte btw voor elke factuur op basis van uw land, het land van uw klant en of hij een geldig EU btw-nummer heeft. Het behandelt correct standaardtarieven, verlegging, OSS en niet-EU vrijgestelde scenario's.
+Ja. InvoiceKit berekent automatisch de juiste btw voor elke factuur op basis van jouw land, het land van je klant en of ze een geldig EU btw-nummer hebben. Het handelt correct standaardtarieven, verlegging, OSS en niet-EU-vrijstellingsscenario's af.
 
 [faq2_q]
 Welke EU-landen worden ondersteund?
 
 [faq2_a]
-Alle 27 EU-lidstaten. Btw-tarieven zijn vastgelegd voor BG, DE, FR, RO, PL, CZ, IT, ES, NL, PT, AT, BE, HR, HU, SE en alle anderen. Tarieven worden bijgewerkt wanneer de EU-wetgeving verandert.
+Alle 27 EU-lidstaten. Btw-tarieven zijn vastgelegd voor BG, DE, FR, RO, PL, CZ, IT, ES, NL, PT, AT, BE, HR, HU, SE en alle andere. Tarieven worden bijgewerkt wanneer EU-wetgeving verandert.
 
 [faq3_q]
 Ondersteunt InvoiceKit terugkerende facturen?
 
 [faq3_a]
-Ja. U kunt elke factuur omzetten in een terugkerende met wekelijkse, maandelijkse, driemaandelijkse of jaarlijkse intervallen. InvoiceKit kloont en verzendt de factuur automatisch op de vervaldatum — u hoeft niets te doen.
+Ja. Je kunt elke factuur terugkerend maken met wekelijkse, maandelijkse, driemaandelijkse of jaarlijkse intervallen. InvoiceKit kloont en verstuurt de factuur automatisch op de vervaldatum — je hoeft niets te doen.
 
 [faq4_q]
 Hoe werkt tijdregistratie?
 
 [faq4_a]
-Maak projecten aan met klanten en uurtarieven. Gebruik de ingebouwde start/stop-timer terwijl u werkt. Alle bijgehouden tijd wordt opgeslagen en kan met één klik direct worden omgezet in factuurregels.
+Maak projecten aan met klanten en uurtarieven. Gebruik de ingebouwde start/stop-timer terwijl je werkt. Alle geregistreerde tijd wordt opgeslagen en kan met één klik direct worden omgezet in factuurregelitems.
 
 [faq5_q]
-Is er een gratis proefperiode beschikbaar?
+Is er een gratis proefperiode?
 
 [faq5_a]
-Ja. Alle nieuwe accounts beginnen met een gratis proefperiode van 14 dagen Pro — geen creditcard vereist. U heeft vanaf dag één volledige toegang tot Pro. Na de proefperiode blijft u op het gratis abonnement tenzij u ervoor kiest te upgraden.
-
-
-[pay_tag]
-Online betalingen
-
-[pay_title]
-Ontvang betalingen direct. Altijd.
-
-[pay_desc]
-Verbind uw Stripe-account en maak van elke factuur een betaallink. Klanten betalen met kaart — het geld komt direct op uw bankrekening, niet bij een tussenpersoon. Bankoverschrijvingen via IBAN zijn altijd gratis.
-
-[pay_r1_label]
-Stripe Connect — rechtstreeks naar uw bank
-
-[pay_r1_sub]
-Wij gebruiken Stripe Connect Express. De kaartbetaling van uw klant gaat rechtstreeks naar uw bankrekening. InvoiceKit houdt nooit uw geld vast.
-
-[pay_r2_label]
-Klantenportaal — geen inloggen
-
-[pay_r2_sub]
-Elke factuur krijgt een veilige tokenized link. Uw klant opent deze in elke browser, ziet de factuur en betaalt met één klik.
-
-[pay_r3_label]
-Slechts 2% bij kaartbetalingen — overschrijvingen gratis
-
-[pay_r3_sub]
-Een platformprovisie van 2% geldt alleen bij kaartbetalingen. Bankoverschrijvingen via IBAN zijn volledig gratis.
+Ja. Elk nieuw account begint met een 14 dagen Pro-proefperiode — geen creditcard vereist. Je krijgt volledige Pro-toegang vanaf dag één. Na de proefperiode blijf je op het Gratis-plan tenzij je kiest voor een upgrade.
 
 [faq6_q]
 Hoe werken online betalingen?
 
 [faq6_a]
-Verbind uw Stripe-account via Instellingen → Betalingen. InvoiceKit genereert voor elke factuur een veilige betaallink. Uw klant klikt op Nu betalen en betaalt met kaart. Het geld komt direct op uw bankrekening — InvoiceKit houdt nooit uw geld vast. Er geldt een platformprovisie van 2% voor kaartbetalingen. Bankoverschrijvingen via IBAN zijn altijd gratis.
+Koppel je Stripe-account in Instellingen → Betalingen. InvoiceKit genereert een beveiligde betaallink voor elke factuur. Je klant klikt op Betaal Nu en betaalt per kaart. Het geld komt direct op je bankrekening — InvoiceKit houdt nooit je geld vast. Platformkosten van 2% gelden voor kaartbetalingen. Bankoverschrijvingen via IBAN zijn altijd gratis.
 
 [faq7_q]
-Hoe werkt het importeren van documenten met AI?
+Hoe werkt AI-documentimport?
 
 [faq7_a]
-InvoiceKit kan facturen en onkostendocumenten (PDF, JPEG, PNG) lezen en automatisch de leverancier, het bedrag, de datum en de regels extraheren met Google Gemini AI. Gebruikers van het gratis abonnement krijgen :free_limit AI-imports per dag; Starter-abonnementgebruikers :starter_limit. Pro-gebruikers hebben onbeperkte imports. Op elk abonnement kun je je eigen gratis Gemini API-sleutel toevoegen via Instellingen → AI om alle app-limieten op te heffen.
+InvoiceKit kan facturen en uitgavendocumenten (PDF, JPEG, PNG) lezen en automatisch leverancier, bedrag, datum en regelitems ophalen met Google Gemini AI. Gratis-gebruikers krijgen :free_limit AI-imports per dag; Starter-gebruikers krijgen :starter_limit. Pro-gebruikers hebben onbeperkt imports. Op elk plan kun je je eigen gratis Gemini API-sleutel toevoegen in Instellingen → AI om alle limieten te verwijderen.
 
-[p_byok_label]
-Gebruik je eigen Gemini API-sleutel — onbeperkte imports
+[faq8_q]
+Wat zijn creditnota's en geannuleerde facturen?
 
-[p_byok_desc]
-Op elk abonnement kun je je eigen gratis Google Gemini API-sleutel toevoegen via Instellingen → AI. Eenmaal ingesteld, gebruiken alle AI-documentimports je Google-quota — geen app-limieten van toepassing.
+[faq8_a]
+Creditnota's laten je een verzonden factuur gedeeltelijk of volledig terugdraaien. Annulering (сторно) annuleert een factuur volledig. Beide genereren correcte documenten met juridische verwijzingen naar de originele factuur. Beschikbaar op alle plannen.
+
+[faq9_q]
+Wat is landspecifieke naleving?
+
+[faq9_a]
+Naast EU-btw valideert InvoiceKit facturen tegen landspecifieke wettelijke vereisten. Bulgarije wordt vandaag volledig ondersteund — inclusief verplichte velden, juridische basisteksten en btw-tarieven per regel. Meer landen worden toegevoegd.
+
+[faq10_q]
+Wat is Peppol / e-Facturatie?
+
+[faq10_a]
+Peppol is de EU-standaard voor elektronische facturatie (UBL 2.1). InvoiceKit genereert Peppol BIS Billing 3.0 compatibele XML-bestanden die je kunt indienen bij het e-facturatieportaal van je land of direct kunt sturen naar klanten die gestructureerde facturen accepteren. Beschikbaar op het Pro-plan.
+
+[faq11_q]
+Hoe werkt automatische bedrijfsopzoeking?
+
+[faq11_a]
+Voer een btw-nummer of nationaal registratienummer in bij het toevoegen van een klant. InvoiceKit bevraagt eerst de EU VIES-database, dan AI-opzoeking voor niet-VIES-nummers. Bedrijfsnaam, adres en btw-status worden automatisch ingevuld. Opzoeklimieten hangen af van je plan; het toevoegen van je eigen gratis Gemini API-sleutel verwijdert alle limieten.
 
 [cta_title]
-Klaar om als een Europeaan te factureren?
+Klaar om te factureren als een Europeaan?
 
 [cta_subtitle]
-Sluit u aan bij EU-freelancers die zijn gestopt met spreadsheets en zijn begonnen met op tijd betaald worden.
+Sluit je aan bij EU-freelancers die gestopt zijn met worstelen met spreadsheets en op tijd betaald worden.
 
 [cta_button]
 Begin vandaag gratis →
 
 [footer_tagline]
-EU-conforme facturering voor Europese freelancers.
+EU-conforme facturatie voor Europese freelancers.
 
 [footer_privacy]
 Privacybeleid
@@ -377,36 +532,3 @@ Servicevoorwaarden
 
 [footer_copy]
 © 2026 NetShell. Alle rechten voorbehouden.
-
-[f10_title]
-AI-documentimport
-
-[f10_desc]
-Upload facturen, bonnen of uitgavendocumenten. AI extraheert automatisch bedragen, datums, leveranciers en BTW. Controleer en sla op met één klik.
-
-[ai_import_tag]
-AI-gestuurde import
-
-[ai_import_title]
-Laat AI het papierwerk doen
-
-[ai_import_desc]
-Upload een PDF, JPG of PNG van elk document. Gemini AI leest en extraheert alle gegevens voor u. Controleer de geëxtraheerde velden, pas aan indien nodig, en sla op als conceptfactuur of uitgave met één klik.
-
-[ai_import_r1_label]
-PDF, JPG & PNG ondersteund
-
-[ai_import_r1_sub]
-Upload tot 10 bestanden tegelijk — parallel verwerkt door AI
-
-[ai_import_r2_label]
-Volledige automatische extractie
-
-[ai_import_r2_sub]
-Bedragen, datums, BTW-nummers, leveranciersnamen en regels — direct geëxtraheerd
-
-[ai_import_r3_label]
-Controleer voor opslaan
-
-[ai_import_r3_sub]
-Elke import doorloopt een bevestigingsscherm — u blijft in controle

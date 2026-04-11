@@ -18,10 +18,10 @@ Laskuta kuin eurooppalainen.
 Seuraa aikaa kuin ammattilainen.
 
 [hero_subheadline]
-Ainoa työkalu, jota EU-freelancerit tarvitsevat — ajanseurannasta lainmukaisiin ALV-laskuihin. Käsittelee automaattisesti käännetyn verovelvollisuuden, OSS:n ja kaikki 24 EU:n ALV-kantaa.
+Ainoa työkalu, jonka EU:n freelancerit tarvitsevat — ajanseurannasta laillisesti vaatimustenmukaisiin ALV-laskuihin. Käsittelee automaattisesti käännetyn verovelvollisuuden, OSS:n, hyvityslaskut ja kaikki 27 EU:n ALV-kantaa.
 
 [hero_cta_primary]
-Aloita ilmaiseksi — ei korttia
+Aloita ilmaiseksi — ei luottokorttia
 
 [hero_cta_secondary]
 Katso ominaisuudet ↓
@@ -33,7 +33,10 @@ Ilmainen aloitus
 Ei luottokorttia tarvita
 
 [hero_trust_3]
-Peruuta milloin tahansa
+Peru milloin tahansa
+
+[hero_trust_4]
+14 päivän Pro-kokeilu
 
 [features_tag]
 Ominaisuudet
@@ -42,124 +45,250 @@ Ominaisuudet
 Kaikki yhdessä paikassa
 
 [features_subtitle]
-Lopeta taulukoiden ja erillisten sovellusten jongleeraus. InvoiceKit hoitaa jokaisen vaiheen ensimmäisestä laskutettavasta minuutista viimeiseen kerättyyn euroon.
+Lopeta taulukoiden ja erillisten sovellusten kanssa jongleeraaminen. InvoiceKit hoitaa jokaisen vaiheen ensimmäisestä laskutettavasta minuutista viimeiseen kerättyyn euroon.
+
+[group_invoicing_tag]
+Laskutus
+
+[group_invoicing_title]
+Ammattimaiset laskut, joka kerta
+
+[group_invoicing_subtitle]
+Kertalaskuista toistuvaan laskutukseen, hyvityslaskuihin ja e-laskutukseen — kaikki mitä tarvitset asiakkaiden oikeaan laskutukseen.
 
 [f1_title]
-Ajanseuranta
+Laskunrakentaja
 
 [f1_desc]
-Käynnistä/pysäytä -ajastin projektikohtaisesti. Manuaalinen syöttö aikaisemmalle työlle. Päiväkirjat, viikkotiivistelmät ja kuukausiraportit kokonaislaskutettavilla tunneilla.
+Luo ammattimaisia PDF-laskuja sekunneissa. Automaattisesti numeroituja, laillisesti muotoiltuja, kaikki vaaditut EU-kentät mukaan lukien täydellinen ALV-erittely.
 
 [f2_title]
-Laskugeneraattori
+Hyvityslaskut ja mitätöidyt laskut
 
 [f2_desc]
-Luo ammattimaisia PDF-laskuja sekunneissa. Automaattinen numerointi, juridinen muotoilu, kaikilla pakollisilla EU-kentillä sisältäen täydellisen ALV-erittelyn.
+Laadi hyvityslaskuja lähetettyjen laskujen osittaiseen tai täydelliseen peruuttamiseen. Mitätöinti (сторно) peruuttaa laskun kokonaan. Molemmat viittaavat alkuperäiseen ja luovat asianmukaiset oikeudelliset asiakirjat.
 
 [f3_title]
-EU ALV -moottori
-
-[f3_desc]
-Automaattinen ALV jokaiseen EU-skenaarioon: normaalikanta, käännetty verovelvollisuus (B2B), OSS (B2C EU-kuluttajat) ja 0% vapautettu EU:n ulkopuolisille ostajille.
-
-[f4_title]
-Asiakashallinta
-
-[f4_desc]
-Tallenna asiakkaat maan, ALV-numeron ja valuutan kanssa. Maiden liput, välitön haku ja täydellinen laskutushistoria asiakaskohtaisesti.
-
-[f5_title]
 Toistuvat laskut
 
+[f3_desc]
+Aseta viikoittaiset, kuukausittaiset, neljännesvuosittaiset tai vuosittaiset laskut. InvoiceKit kloonaa ja lähettää ne automaattisesti — ei manuaalista työtä, ei unohdettuja laskutusjaksoja.
+
+[f4_title]
+Peppol / e-Laskutus
+
+[f4_desc]
+Luo UBL 2.1 / Peppol BIS Billing 3.0 -yhteensopivia XML-tiedostoja. Lähetä maasi e-laskutusportaaliin tai suoraan asiakkaille, jotka hyväksyvät rakenteisia laskuja.
+
+[group_compliance_tag]
+EU-vaatimustenmukaisuus
+
+[group_compliance_title]
+Rakennettu EU-lainsäädännölle, ei sen ympärille
+
+[group_compliance_subtitle]
+Automaattisesta ALV-laskennasta maakohtaiseen laskuvalidointiin, InvoiceKit hoitaa oikeudellisen monimutkaisuuden puolestasi.
+
+[f5_title]
+EU ALV-moottori
+
 [f5_desc]
-Aseta viikoittaiset, kuukausittaiset, neljännesvuosittaiset tai vuosittaiset laskut. InvoiceKit kloonaa ja lähettää ne automaattisesti — ei manuaalista työtä, ei unohdettuja laskutussyklejä.
+Automaattinen ALV jokaiseen EU-tilanteeseen: vakiokanta, käännetty verovelvollisuus (B2B), OSS (B2C EU-kuluttajat) ja 0% vapautus EU:n ulkopuolisille ostajille.
 
 [f6_title]
-Asiakasportaali
+Maakohtainen validointi
 
 [f6_desc]
-Jaa turvallinen tokenoitu linkki kenelle tahansa asiakkaalle. He voivat tarkastella laskua, ladata PDF-tiedoston ja maksaa verkossa kortilla Stripen kautta — varat siirtyvät suoraan pankkitilillesi. Tai jaa IBAN-numerosi maksuttomia tilisiirtoja varten. Kirjautuminen ei vaadita.
+InvoiceKit validoi laskut maakohtaisia lakisääteisiä vaatimuksia vastaan. Bulgaria on täysin tuettu tänään — pakolliset kentät, oikeudellisen perusteen tekstit ja asiakirjojen validointiportit. Lisää maita tulossa.
 
 [f7_title]
-Toimii kaikissa laitteissa
+ALV-kannat rivikohtaisesti
 
 [f7_desc]
-Lisää InvoiceKit puhelimesi, tabletisi tai tietokoneesi aloitusnäytölle. Asentuu kuten natiivisovellus, avautuu ilman selainta ja toimii offline-tilassa, jotta voit kirjata aikaa tai tarkistaa laskuja missä tahansa.
+Määritä eri ALV-kantoja rivikohtaisesti — vakio, alennettu tai nolla. Summat ryhmitellään kannan mukaan selkeällä ALV-erittelyllä.
 
 [f8_title]
-Kulujen seuranta
+ALV-vapautustila
 
 [f8_desc]
-Kirjaa liiketoiminnan kulut kuiteilla, kategorioilla ja toimittajatiedoilla. Suodata päivämäärän tai kategorian mukaan, vie CSV:ksi ja seuraa kuukausittaista kulukatsausta tulojen rinnalla.
+Pienyrityksille kansallisen kynnysarvon alla. Automaattinen lakisääteinen ilmoitus laskuilla, laskukohtainen ohitus tarvittaessa. Kaikki 27 EU-maata tuettu.
+
+[group_payments_tag]
+Maksaminen
+
+[group_payments_title]
+Saa maksusi nopeammin, omalla tavallasi
+
+[group_payments_subtitle]
+Korttimaksu, pankkisiirto tai käteinen — InvoiceKit käsittelee jokaisen maksutavan ja varmistaa, että asiakkaasi tietävät aina miten maksaa.
 
 [f9_title]
-Useita valuuttoja
+Asiakasportaali ja Stripe-maksut
 
 [f9_desc]
-Laskuta EUR, USD, BGN, RON, PLN, CZK tai HUF-valuutoissa. Jokainen asiakas tallentaa haluamansa valuutan — se täytetään automaattisesti jokaiselle uudelle laskulle.
+Jaa turvallinen tokenoitu linkki. Asiakkaat tarkastelevat laskua, lataavat PDF:n ja maksavat kortilla Stripen kautta — varat menevät suoraan pankkiisi. Kirjautumista ei tarvita.
+
+[f10_title]
+Maksutavat
+
+[f10_desc]
+Hallinnoi useita maksutapoja — pankkisiirto (IBAN/BIC), Stripe tai käteinen. Aseta oletus, ohita laskukohtaisesti. Maksutiedot tallennetaan tilannekuvana, joten lähetetyt laskut eivät koskaan muutu.
+
+[f11_title]
+Useita valuuttoja
+
+[f11_desc]
+Laskuta EUR, USD, BGN, RON, PLN, CZK tai HUF-valuutassa. Jokainen asiakas tallentaa haluamansa valuutan — täyttyy automaattisesti jokaisessa uudessa laskussa, jottei koskaan laskuta väärässä valuutassa.
+
+[f12_title]
+Yrityshaku
+
+[f12_desc]
+Syötä ALV-tunnus tai rekisterinumero asiakasta lisätessä. InvoiceKit kysyy ensin EU VIES:stä, sitten turvautuu tekoälyyn. Nimi, osoite ja ALV-tila täyttyvät välittömästi.
+
+[group_productivity_tag]
+Tuottavuus
+
+[group_productivity_title]
+Päivittäinen työnkulkusi, tehostettuna
+
+[group_productivity_subtitle]
+Seuraa aikaa, kirjaa kuluja, tuo asiakirjoja tekoälyllä ja pääse kaikkeen käsiksi miltä tahansa laitteelta — verkossa tai offline.
+
+[f13_title]
+Ajanseuranta
+
+[f13_desc]
+Käynnistä/pysäytä ajastin projektikohtaisesti. Manuaalinen syöttö aiemmalle työlle. Päivälokit, viikkoyhteenvedot ja kuukausiraportit laskutettavien tuntien kokonaismäärällä.
+
+[f14_title]
+Kuluseuranta
+
+[f14_desc]
+Kirjaa yrityskulut kuittien, kategorioiden ja toimittajatietojen kanssa. Suodata päivämäärän tai kategorian mukaan, vie CSV-muotoon ja pidä kuukausikulut tulojen rinnalla.
+
+[f15_title]
+Tekoälyllä tapahtuva asiakirjatuonti
+
+[f15_desc]
+Vedä ja pudota laskuja, kuitteja tai kuluasiakirjoja. Tekoäly poimii summat, päivämäärät, toimittajat ja ALV:n automaattisesti. Tarkista ja tallenna yhdellä napsautuksella.
+
+[f16_title]
+Toimii millä tahansa laitteella
+
+[f16_desc]
+Lisää InvoiceKit puhelimen, tabletin tai tietokoneen aloitusnäytölle. Asentuu kuin natiivisovellus, avautuu ilman selainta ja toimii offline, joten voit kirjata aikaa tai tarkistaa laskuja missä tahansa.
 
 [how_tag]
-Näin se toimii
+Miten se toimii
 
 [how_title]
 Seuratuista sekunneista maksettuun laskuun
 
 [how_subtitle]
-Kolme yksinkertaista vaihetta. Se on kaikki mitä tarvitaan.
+Kolme yksinkertaista vaihetta. Siinä kaikki.
 
 [s1_title]
 Seuraa aikaasi
 
 [s1_desc]
-Napsauta Käynnistä projektille. Tee töitä. Napsauta Pysäytä. Jokainen sekunti kirjataan automaattisesti — ei taulukoita, ei unohduksia.
+Napsauta Aloita missä tahansa projektissa. Työskentele. Napsauta Lopeta. Jokainen sekunti kirjataan automaattisesti — ei taulukoita, ei unohtamista.
 
 [s2_title]
 Luo lasku
 
 [s2_desc]
-Valitse asiakas, valitse laskutettavat aikakirjaukset. InvoiceKit rakentaa laskun oikealla ALV:lla, juridisella muotoilulla ja brändilläsi.
+Valitse asiakas, valitse laskutettavat aikakirjaukset. InvoiceKit rakentaa laskun oikealla ALV:lla, laillisella muotoilulla ja brändilläsi.
 
 [s3_title]
 Saa maksu
 
 [s3_desc]
-Lähetä yhdellä napsautuksella. Asiakkaasi maksaa kortilla Stripen kautta tai maksuttomalla tilisiirrolla. Varat siirtyvät suoraan pankkitilillesi. Valmis.
+Lähetä yhdellä napsautuksella. Asiakkaasi maksaa kortilla Stripen kautta tai ilmaisella pankkisiirrolla. Varat saapuvat suoraan pankkitilillesi. Valmis.
 
-[vat_tag]
+[compliance_tag]
 EU-vaatimustenmukaisuus
 
-[vat_title]
-ALV oikein joka kerta
+[compliance_title]
+Syvä vaatimustenmukaisuus, maa maalta
 
-[vat_desc]
-EU:n ALV-lainsäädäntö on monimutkainen. InvoiceKit käsittelee jokaisen skenaarion automaattisesti — normaalikantoja, käännetty verovelvollisuus B2B-asiakkaille, OSS EU-kuluttajille ja 0% EU:n ulkopuolisille ostajille.
+[compliance_subtitle]
+InvoiceKit ei pysähdy ALV-laskentaan. Tuetuissa maissa se validoi jokaisen laskun paikallisia lakisääteisiä vaatimuksia vastaan ennen kuin voit lähettää sen.
 
-[vat_r1_label]
-Laskutus samassa maassa
+[compliance_bg_title]
+🇧🇬 Bulgaria — Täysi vaatimustenmukaisuus
 
-[vat_r1_sub]
-Paikallinen tavallinen ALV-kanta sovelletaan automaattisesti
+[compliance_bg_item1]
+Laskun validointiportti — estää puutteellisten laskujen lähettämisen
 
-[vat_r2_label]
-EU B2B (Käännetty verovelvollisuus)
+[compliance_bg_item2]
+Hyvityslaskut (кредитно известие) ja mitätöinti/сторно
 
-[vat_r2_sub]
-0% ALV — ostaja tilittää ALV:n Art. 44 Dir. 2006/112/EY mukaisesti
+[compliance_bg_item3]
+ALV rivikohtaisesti vakio-, alennetulla ja nollakannalla
 
-[vat_r3_label]
-EU B2C (OSS-säännöt)
+[compliance_bg_item4]
+Oikeudellisen perusteen automaattinen täyttö jokaisessa laskussa
 
-[vat_r3_sub]
-Myyjän kanta sovelletaan (tai OSS-kanta soveltuvin osin)
+[compliance_bg_item5]
+Asiakastietojen täydellisyysindikaattorit
 
-[vat_r4_label]
-EU:n ulkopuolinen ostaja
+[compliance_more]
+Lisää maita tulossa — Romania, Puola, Saksa ja muut ovat seuraavina.
 
-[vat_r4_sub]
-0% ALV — EU:n ALV:n soveltamisalan ulkopuolella, vapautettu
+[pay_tag]
+Verkkomaksut
 
-[vat_rates_title]
-Tuetut ALV-kannat
+[pay_title]
+Saa maksu suoraan. Joka kerta.
+
+[pay_desc]
+Yhdistä Stripe-tilisi ja muuta jokainen lasku maksulingiksi. Asiakkaat maksavat kortilla — varat saapuvat suoraan pankkitilillesi, eivät välittäjälle. Pankkisiirrot IBAN-tunnuksella ovat aina ilmaisia.
+
+[pay_r1_label]
+Stripe Connect — suoraan pankkiisi
+
+[pay_r1_sub]
+Käytämme Stripe Connect Expressiä. Asiakkaasi korttimaksu menee suoraan pankkiisi. InvoiceKit ei koskaan pidä rahojasi.
+
+[pay_r2_label]
+Asiakasportaali — ei kirjautumista
+
+[pay_r2_sub]
+Jokainen lasku saa turvallisen tokenoidun linkin. Asiakkaasi avaa sen selaimessa, näkee laskun ja maksaa yhdellä napsautuksella.
+
+[pay_r3_label]
+Vain 2% korttimaksuista — pankkisiirrot ilmaisia
+
+[pay_r3_sub]
+2%:n alustamaksu peritään korttimaksusta. Pankkisiirroissa IBAN-tunnuksella ei ole lainkaan maksua.
+
+[ai_import_tag]
+Tekoälypohjainen tuonti
+
+[ai_import_title]
+Anna tekoälyn hoitaa paperityöt
+
+[ai_import_desc]
+Lataa PDF, JPG tai PNG mistä tahansa asiakirjasta. Gemini AI lukee ja poimii kaikki tiedot puolestasi. Tarkista poimitut kentät, muokkaa tarvittaessa ja tallenna luonnoslaskuksi tai kuluksi yhdellä napsautuksella.
+
+[ai_import_r1_label]
+Tukee PDF-, JPG- ja PNG-tiedostoja
+
+[ai_import_r1_sub]
+Lataa kerralla jopa 10 tiedostoa — tekoäly käsittelee rinnakkain
+
+[ai_import_r2_label]
+Poimii kaiken automaattisesti
+
+[ai_import_r2_sub]
+Summat, päivämäärät, ALV-tunnukset, toimittajanimet ja rivinimikkeet — kaikki poimitaan välittömästi
+
+[ai_import_r3_label]
+Tarkista ennen tallentamista
+
+[ai_import_r3_sub]
+Jokainen tuonti käy vahvistusnäytön läpi — sinulla on täysi hallinta
 
 [pricing_tag]
 Hinnoittelu
@@ -168,7 +297,7 @@ Hinnoittelu
 Yksinkertainen, rehellinen hinnoittelu
 
 [pricing_subtitle]
-Aloita ilmaiseksi. Päivitä kun yrityksesi kasvaa. Ei sopimuksia, peruuta milloin tahansa.
+Aloita ilmaiseksi. Päivitä kun yrityksesi kasvaa. Ei sopimuksia, peru milloin tahansa.
 
 [p_free_name]
 Ilmainen
@@ -194,8 +323,17 @@ Ajanseuranta
 [p_free_l4]
 PDF-laskujen vienti
 
+[p_free_l5]
+EU ALV-moottori
+
 [p_free_l6]
-:free_limit AI-tuontia päivässä
+Hyvityslaskut ja mitätöidyt laskut
+
+[p_free_l7]
+14 päivän Pro-kokeilu sisältyy
+
+[p_free_l8]
+:free_limit tekoälytuontia päivässä
 
 [p_free_cta]
 Aloita ilmaiseksi
@@ -213,7 +351,7 @@ kuukaudessa
 Kasvaville freelancereille.
 
 [p_starter_l1]
-Rajattomat asiakkaat
+Rajaton asiakkaiden määrä
 
 [p_starter_l2]
 20 laskua kuukaudessa
@@ -222,16 +360,25 @@ Rajattomat asiakkaat
 Ajanseuranta
 
 [p_starter_l4]
-Kaikki EU ALV -säännöt
+Kaikki EU ALV-säännöt
 
 [p_starter_l5]
 Maksumuistutukset
 
+[p_starter_l6]
+Kuluseuranta
+
 [p_starter_l7]
-:starter_limit AI-tuontia päivässä
+Enintään 3 maksutapaa
+
+[p_starter_l8]
+Automaattinen yrityshaku — 10/päivä
+
+[p_starter_l9]
+:starter_limit tekoälytuontia päivässä
 
 [p_starter_cta]
-Valitse Starter
+Aloita Starter
 
 [p_pro_name]
 Pro
@@ -243,7 +390,7 @@ Pro
 kuukaudessa
 
 [p_pro_desc]
-Vakavamielisille freelancereille.
+Vakaville freelancereille.
 
 [p_pro_l1]
 Kaikki rajatonta
@@ -261,113 +408,121 @@ Peppol / e-Laskutus (UBL 2.1)
 ALV-vapautustila (kaikki 27 EU-maata)
 
 [p_pro_l6]
-Kaikki EU ALV -säännöt
+Kaikki EU ALV-säännöt
 
 [p_pro_l7]
-Verkkomaksut Stripen kautta (2 %:n maksu)
+Maakohtainen vaatimustenmukaisuus
 
 [p_pro_l8]
-Rajoittamaton AI-tuonti
+ALV-kannat rivikohtaisesti
+
+[p_pro_l9]
+Rajaton maksutapojen määrä
+
+[p_pro_l10]
+Rajaton yrityshaku
+
+[p_pro_l11]
+Verkkomaksut Stripen kautta (2% maksu)
+
+[p_pro_l12]
+Rajaton tekoälytuonti
 
 [p_pro_cta]
-Siirry Prohon
+Siirry Pro-tiliin
 
 [p_popular]
 Suosituin
 
+[p_byok_label]
+Käytä omaa Gemini API-avaintasi — rajaton tuonti
+
+[p_byok_desc]
+Millä tahansa suunnitelmalla voit lisätä oman ilmaisen Google Gemini API-avaimesi Asetuksissa → Tekoäly. Asettamisen jälkeen kaikki tekoälyasiakirjatuonnit käyttävät Google-kiintiötäsi — sovelluksen rajoitukset eivät päde.
+
 [faq_tag]
-FAQ
+UKK
 
 [faq_title]
 Usein kysytyt kysymykset
 
 [faq1_q]
-Onko InvoiceKit todella EU ALV -yhteensopiva?
+Onko InvoiceKit todella EU ALV-vaatimusten mukainen?
 
 [faq1_a]
-Kyllä. InvoiceKit laskee automaattisesti oikean ALV:n jokaiselle laskulle maasi, asiakkaasi maan ja heidän voimassa olevan EU ALV -numeronsa perusteella. Se käsittelee oikein normaalikantoja, käännettyä verovelvollisuutta, OSS:ää ja EU:n ulkopuolisia vapautuksia.
+Kyllä. InvoiceKit laskee automaattisesti oikean ALV:n jokaiselle laskulle maasi, asiakkaasi maan ja voimassa olevan EU ALV-tunnuksen perusteella. Se käsittelee oikein vakiokannat, käännetyn verovelvollisuuden, OSS:n ja EU:n ulkopuoliset vapautustilanteet.
 
 [faq2_q]
-Mitä EU-maita tuetaan?
+Mitkä EU-maat ovat tuettuja?
 
 [faq2_a]
-Kaikki 27 EU:n jäsenvaltiota. ALV-kannat on kovakoodattu BG, DE, FR, RO, PL, CZ, IT, ES, NL, PT, AT, BE, HR, HU, SE:lle ja kaikille muille. Kannat päivitetään EU-lainsäädännön muuttuessa.
+Kaikki 27 EU-jäsenvaltiota. ALV-kannat on koodattu BG, DE, FR, RO, PL, CZ, IT, ES, NL, PT, AT, BE, HR, HU, SE ja kaikille muille. Kantoja päivitetään EU-lainsäädännön muuttuessa.
 
 [faq3_q]
 Tukeeko InvoiceKit toistuvia laskuja?
 
 [faq3_a]
-Kyllä. Voit muuttaa minkä tahansa laskun toistuvaksi viikoittaisilla, kuukausittaisilla, neljännesvuosittaisilla tai vuosittaisilla väleillä. InvoiceKit kloonaa ja lähettää laskun automaattisesti eräpäivänä — sinun ei tarvitse tehdä mitään.
+Kyllä. Voit muuttaa minkä tahansa laskun toistuvaksi viikoittaisin, kuukausittaisin, neljännesvuosittaisin tai vuosittaisin välein. InvoiceKit kloonaa ja lähettää laskun automaattisesti eräpäivänä — sinun ei tarvitse koskea siihen.
 
 [faq4_q]
 Miten ajanseuranta toimii?
 
 [faq4_a]
-Luo projekteja asiakkailla ja tuntitaksoilla. Käytä sisäänrakennettua käynnistä/pysäytä -ajastinta töitä tehdessäsi. Kaikki seurattu aika tallennetaan ja voidaan yhdellä napsautuksella muuntaa suoraan laskuriveiksi.
+Luo projekteja asiakkailla ja tuntiveloituksilla. Käytä sisäänrakennettua aloita/lopeta-ajastinta työskennellessäsi. Kaikki seurattu aika tallennetaan ja voidaan muuntaa suoraan laskurivinimikkeiksi yhdellä napsautuksella.
 
 [faq5_q]
-Onko saatavilla maksuton kokeilujakso?
+Onko ilmainen kokeilu?
 
 [faq5_a]
-Kyllä. Kaikki uudet tilit alkavat 14 päivän Pro-kokeilujaksolla — luottokorttia ei tarvita. Saat täyden Pro-pääsyn ensimmäisestä päivästä. Kokeilujakson jälkeen pysyt maksuttomassa suunnitelmassa, ellet valitse päivitystä.
-
-
-[pay_tag]
-Verkkomaksut
-
-[pay_title]
-Saa maksut suoraan. Aina.
-
-[pay_desc]
-Yhdistä Stripe-tilisi ja muuta jokainen lasku maksulinkiksi. Asiakkaat maksavat kortilla — varat siirtyvät suoraan pankkitilillesi, eivät välittäjälle. IBAN-tilisiirrot ovat aina ilmaisia.
-
-[pay_r1_label]
-Stripe Connect — suoraan pankkiisi
-
-[pay_r1_sub]
-Käytämme Stripe Connect Expressiä. Asiakkaasi korttimaksu menee suoraan pankkitilillesi. InvoiceKit ei koskaan pidätä rahojasi.
-
-[pay_r2_label]
-Asiakasportaali — ei kirjautumista
-
-[pay_r2_sub]
-Jokainen lasku saa turvallisen tokenoidun linkin. Asiakkaasi avaa sen missä tahansa selaimessa, näkee laskun ja maksaa yhdellä napsautuksella.
-
-[pay_r3_label]
-Vain 2 % korttimaksuista — tilisiirrot ilmaisia
-
-[pay_r3_sub]
-2 %:n alustapalkkio koskee vain korttimaksuja. IBAN-tilisiirrot ovat täysin ilmaisia.
+Kyllä. Jokainen uusi tili alkaa 14 päivän Pro-kokeilulla — ei luottokorttia tarvita. Saat täyden Pro-pääsyn ensimmäisestä päivästä. Kokeilun jälkeen jäät Ilmaiselle suunnitelmalle, ellet valitse päivitystä.
 
 [faq6_q]
 Miten verkkomaksut toimivat?
 
 [faq6_a]
-Yhdistä Stripe-tilisi kohdassa Asetukset → Maksut. InvoiceKit luo turvallisen maksulinkin jokaiselle laskulle. Asiakkaasi napsauttaa Maksa nyt -painiketta ja maksaa kortilla. Varat siirtyvät suoraan pankkitilillesi — InvoiceKit ei koskaan pidätä rahojasi. Korttimaksuihin sovelletaan 2 %:n alustapalkkiota. IBAN-tilisiirrot ovat aina ilmaisia.
+Yhdistä Stripe-tilisi Asetuksissa → Maksut. InvoiceKit luo turvallisen maksulinkin jokaiselle laskulle. Asiakkaasi napsauttaa Maksa Nyt ja maksaa kortilla. Varat saapuvat suoraan pankkitilillesi — InvoiceKit ei koskaan pidä rahojasi. 2%:n alustamaksu peritään korttimaksuista. Pankkisiirrot IBAN-tunnuksella ovat aina ilmaisia.
 
 [faq7_q]
-Miten AI-asiakirjatuonti toimii?
+Miten tekoälyasiakirjatuonti toimii?
 
 [faq7_a]
-InvoiceKit pystyy lukemaan lasku- ja kuluasiakirjoja (PDF, JPEG, PNG) ja poimimaan automaattisesti toimittajan, summan, päivämäärän ja rivit Google Gemini AI:n avulla. Ilmaisen suunnitelman käyttäjät saavat :free_limit AI-tuontia päivässä, Starter-suunnitelman käyttäjät :starter_limit. Pro-käyttäjillä on rajoittamaton määrä tuonteja. Millä tahansa suunnitelmalla voit lisätä oman ilmaisen Gemini API -avaimen kohdassa Asetukset → AI poistaaksesi kaikki sovelluksen rajoitukset.
+InvoiceKit voi lukea lasku- ja kuluasiakirjoja (PDF, JPEG, PNG) ja poimia automaattisesti toimittajan, summan, päivämäärän ja rivinimikkeet Google Gemini AI:n avulla. Ilmaisen suunnitelman käyttäjät saavat :free_limit tekoälytuontia päivässä; Starter-käyttäjät saavat :starter_limit. Pro-käyttäjillä on rajaton tuonti. Millä tahansa suunnitelmalla voit lisätä oman ilmaisen Gemini API-avaimesi Asetuksissa → Tekoäly poistaaksesi kaikki rajoitukset.
 
-[p_byok_label]
-Käytä omaa Gemini API -avaintasi — rajoittamaton käyttö
+[faq8_q]
+Mitä ovat hyvityslaskut ja mitätöidyt laskut?
 
-[p_byok_desc]
-Millä tahansa suunnitelmalla voit lisätä oman ilmaisen Google Gemini API -avaimen kohdassa Asetukset → AI. Kun avain on asetettu, kaikki AI-asiakirjatuonnit käyttävät Google-kiintiötäsi — sovelluksen rajoituksia ei sovelleta.
+[faq8_a]
+Hyvityslaskut mahdollistavat lähetetyn laskun osittaisen tai täydellisen peruuttamisen. Mitätöinti (сторно) peruuttaa laskun kokonaan. Molemmat luovat asianmukaiset asiakirjat oikeudellisine viittauksineen alkuperäiseen laskuun. Saatavilla kaikissa suunnitelmissa.
+
+[faq9_q]
+Mitä on maakohtainen vaatimustenmukaisuus?
+
+[faq9_a]
+EU ALV:n lisäksi InvoiceKit validoi laskut maakohtaisia lakisääteisiä vaatimuksia vastaan. Bulgaria on täysin tuettu tänään — mukaan lukien pakolliset kentät, oikeudellisen perusteen tekstit ja ALV-kannat rivikohtaisesti. Lisää maita lisätään.
+
+[faq10_q]
+Mikä on Peppol / e-Laskutus?
+
+[faq10_a]
+Peppol on EU:n standardi sähköiselle laskutukselle (UBL 2.1). InvoiceKit luo Peppol BIS Billing 3.0 -yhteensopivia XML-tiedostoja, jotka voit lähettää maasi e-laskutusportaaliin tai suoraan asiakkaille, jotka hyväksyvät rakenteisia laskuja. Saatavilla Pro-suunnitelmassa.
+
+[faq11_q]
+Miten automaattinen yrityshaku toimii?
+
+[faq11_a]
+Syötä ALV-tunnus tai kansallinen rekisterinumero asiakasta lisätessä. InvoiceKit kysyy ensin EU VIES -tietokannasta, sitten turvautuu tekoälyhakuun ei-VIES-numeroille. Yrityksen nimi, osoite ja ALV-tila täyttyvät automaattisesti. Hakurajoitukset riippuvat suunnitelmastasi; oman ilmaisen Gemini API-avaimen lisääminen poistaa kaikki rajoitukset.
 
 [cta_title]
 Valmis laskuttamaan kuin eurooppalainen?
 
 [cta_subtitle]
-Liity eurooppalaisiin freelancereihin, jotka lopettivat taulukoiden kanssa taistelemisen ja alkoivat saada maksut ajallaan.
+Liity EU:n freelancereihin, jotka lopettivat taulukoiden kanssa taistelemisen ja alkoivat saada maksuja ajallaan.
 
 [cta_button]
 Aloita ilmaiseksi tänään →
 
 [footer_tagline]
-EU-yhteensopiva laskutus eurooppalaisille freelancereille.
+EU-vaatimusten mukainen laskutus eurooppalaisille freelancereille.
 
 [footer_privacy]
 Tietosuojakäytäntö
@@ -377,36 +532,3 @@ Käyttöehdot
 
 [footer_copy]
 © 2026 NetShell. Kaikki oikeudet pidätetään.
-
-[f10_title]
-AI-dokumenttituonti
-
-[f10_desc]
-Lataa laskut, kuitit tai kulutositteet. Tekoäly poimii automaattisesti summat, päivämäärät, toimittajat ja ALV:n. Tarkista ja tallenna yhdellä klikkauksella.
-
-[ai_import_tag]
-Tekoälyllä toimiva tuonti
-
-[ai_import_title]
-Anna tekoälyn hoitaa paperityöt
-
-[ai_import_desc]
-Lataa mikä tahansa asiakirja PDF:nä, JPG:nä tai PNG:nä. Gemini-tekoäly lukee ja poimii kaikki tiedot puolestasi. Tarkista poimitut kentät, muokkaa tarvittaessa ja tallenna laskuluonnoksena tai kuluna yhdellä klikkauksella.
-
-[ai_import_r1_label]
-PDF, JPG & PNG tuettu
-
-[ai_import_r1_sub]
-Lataa kerralla jopa 10 tiedostoa — tekoäly käsittelee ne rinnakkain
-
-[ai_import_r2_label]
-Täysin automaattinen poiminta
-
-[ai_import_r2_sub]
-Summat, päivämäärät, ALV-numerot, toimittajanimet ja rivit — poimitaan välittömästi
-
-[ai_import_r3_label]
-Tarkistus ennen tallentamista
-
-[ai_import_r3_sub]
-Jokainen tuonti käy läpi vahvistusnäytön — sinä pysyt hallinnassa

@@ -11,29 +11,32 @@ Autentificare
 Începe gratuit
 
 [hero_badge]
-🇪🇺 Creat pentru freelanceri europeni
+🇪🇺 Creat pentru Freelanceri Europeni
 
 [hero_headline]
 Facturează ca un european.
 Urmărește timpul ca un profesionist.
 
 [hero_subheadline]
-Singurul instrument de care au nevoie freelancerii din UE — de la urmărirea timpului la facturi TVA conforme legal. Gestionează automat taxarea inversă, OSS și toate cele 24 de cote TVA din UE.
+Singurul instrument de care au nevoie freelancerii din UE — de la urmărirea timpului la facturi TVA conforme legal. Gestionează automat taxarea inversă, OSS, note de credit și toate cele 27 cote TVA ale UE.
 
 [hero_cta_primary]
-Începe gratuit — fără card
+Începe gratuit — fără card de credit
 
 [hero_cta_secondary]
 Vezi funcționalitățile ↓
 
 [hero_trust_1]
-Start gratuit
+Gratuit pentru început
 
 [hero_trust_2]
-Fără card de credit
+Nu necesită card de credit
 
 [hero_trust_3]
-Anulare oricând
+Anulați oricând
+
+[hero_trust_4]
+14 zile de probă Pro
 
 [features_tag]
 Funcționalități
@@ -42,133 +45,259 @@ Funcționalități
 Totul într-un singur loc
 
 [features_subtitle]
-Oprește-te din jonglat cu foi de calcul și aplicații separate. InvoiceKit gestionează fiecare pas de la primul minut facturabil la ultimul euro încasat.
+Nu mai jonglați cu foi de calcul și aplicații separate. InvoiceKit gestionează fiecare pas de la primul minut facturabil până la ultimul euro încasat.
+
+[group_invoicing_tag]
+Facturare
+
+[group_invoicing_title]
+Facturi profesionale, de fiecare dată
+
+[group_invoicing_subtitle]
+De la facturi unice la facturare recurentă, note de credit și facturare electronică — tot ce aveți nevoie pentru a factura clienții corect.
 
 [f1_title]
-Urmărire timp
+Generator de Facturi
 
 [f1_desc]
-Cronometru start/stop pe proiect. Introducere manuală pentru munca trecută. Jurnale zilnice, rezumate săptămânale și rapoarte lunare cu totalul orelor facturabile.
+Generați facturi PDF profesionale în câteva secunde. Numerotate automat, formatate legal, cu toate câmpurile UE necesare inclusiv defalcarea completă a TVA.
 
 [f2_title]
-Generator de facturi
+Note de credit și facturi anulate
 
 [f2_desc]
-Generează facturi PDF profesionale în câteva secunde. Numerotate automat, formatate legal, cu toate câmpurile UE obligatorii inclusiv defalcarea completă a TVA.
+Emiteți note de credit pentru a anula parțial sau total facturile trimise. Anularea (сторно) anulează complet o factură. Ambele fac referire la original și generează documente legale corespunzătoare.
 
 [f3_title]
-Motor TVA european
+Facturi Recurente
 
 [f3_desc]
-TVA automat pentru fiecare scenariu UE: cotă standard, taxare inversă (B2B), OSS (consumatori B2C UE) și 0% scutit pentru cumpărători din afara UE.
+Configurați facturi săptămânale, lunare, trimestriale sau anuale. InvoiceKit le clonează și le emite automat — fără muncă manuală, fără cicluri de facturare ratate.
 
 [f4_title]
-Gestionare clienți
+Peppol / Facturare Electronică
 
 [f4_desc]
-Stochează clienți cu țara, codul de TVA și moneda. Steaguri de țări, căutare instantanee și istoric complet de facturare per client.
+Generați fișiere XML conforme UBL 2.1 / Peppol BIS Billing 3.0. Trimiteți la portalul de facturare electronică al țării dvs. sau direct clienților care acceptă facturi structurate.
+
+[group_compliance_tag]
+Conformitate UE
+
+[group_compliance_title]
+Construit pentru legislația UE, nu în jurul ei
+
+[group_compliance_subtitle]
+De la calculul automat al TVA la validarea facturilor specifice fiecărei țări, InvoiceKit gestionează complexitatea juridică pentru dvs.
 
 [f5_title]
-Facturi recurente
+Motor TVA UE
 
 [f5_desc]
-Configurează facturi săptămânale, lunare, trimestriale sau anuale. InvoiceKit le clonează și le trimite automat — fără muncă manuală, fără cicluri de facturare ratate.
+TVA automat pentru fiecare scenariu UE: cotă standard, taxare inversă (B2B), OSS (consumatori B2C din UE) și 0% scutit pentru cumpărători din afara UE.
 
 [f6_title]
-Portal client
+Validare specifică țării
 
 [f6_desc]
-Partajați un link tokenizat securizat cu orice client. Aceștia pot vizualiza factura, descărca PDF-ul și plăti online cu cardul prin Stripe — fondurile ajung direct în contul dvs. bancar. Sau partajați IBAN-ul dvs. pentru transferuri bancare gratuite. Fără necesitate de înregistrare.
+InvoiceKit validează facturile în raport cu cerințele legale specifice fiecărei țări. Bulgaria este complet suportată astăzi — câmpuri obligatorii, texte de bază legală și porți de validare a documentelor. Mai multe țări urmează.
 
 [f7_title]
-Funcționează pe orice dispozitiv
+Cote TVA pe linie
 
 [f7_desc]
-Adaugă InvoiceKit pe ecranul de start al telefonului, tabletei sau computerului. Se instalează ca o aplicație nativă, se lansează fără browser și funcționează offline, ca să poți înregistra timp sau verifica facturi oriunde.
+Atribuiți cote TVA diferite pe linie de articol — standard, redusă sau zero. Totalurile sunt grupate pe cotă cu un rezumat clar al TVA.
 
 [f8_title]
-Urmărire cheltuieli
+Mod Scutire TVA
 
 [f8_desc]
-Înregistrează cheltuieli de afaceri cu chitanțe, categorii și date furnizor. Filtrează după dată sau categorie, exportă în CSV și urmărește un rezumat lunar al cheltuielilor.
+Pentru întreprinderile mici sub pragul național. Notificare legală automată pe facturi, substituire per factură când este necesar. Toate cele 27 de țări UE sunt suportate.
+
+[group_payments_tag]
+Încasări
+
+[group_payments_title]
+Fiți plătit mai repede, în felul dvs.
+
+[group_payments_subtitle]
+Plăți cu cardul, transferuri bancare sau numerar — InvoiceKit gestionează fiecare metodă de plată și se asigură că clienții dvs. știu întotdeauna cum să plătească.
 
 [f9_title]
-Multi-monedă
+Portal Client și Plăți Stripe
 
 [f9_desc]
-Facturează în EUR, USD, BGN, RON, PLN, CZK sau HUF. Fiecare client stochează moneda preferată — se completează automat pe fiecare factură nouă.
+Partajați un link tokenizat securizat. Clienții vizualizează factura, descarcă PDF-ul și plătesc cu cardul prin Stripe — fondurile merg direct în contul dvs. bancar. Nu este necesar login.
+
+[f10_title]
+Metode de plată
+
+[f10_desc]
+Gestionați mai multe metode de plată — transfer bancar (IBAN/BIC), Stripe sau numerar. Setați o metodă implicită, suprascrieți per factură. Detaliile de plată sunt salvate astfel încât facturile emise să nu se schimbe niciodată.
+
+[f11_title]
+Multi-Valută
+
+[f11_desc]
+Facturați în EUR, USD, BGN, RON, PLN, CZK sau HUF. Fiecare client stochează moneda preferată — se completează automat pe fiecare factură nouă pentru a nu factura niciodată în moneda greșită.
+
+[f12_title]
+Căutare companie
+
+[f12_desc]
+Introduceți un număr de TVA sau de înregistrare când adăugați un client. InvoiceKit interogează mai întâi EU VIES, apoi apelează la AI. Numele, adresa și statutul TVA se completează automat instantaneu.
+
+[group_productivity_tag]
+Productivitate
+
+[group_productivity_title]
+Fluxul dvs. zilnic de lucru, simplificat
+
+[group_productivity_subtitle]
+Urmăriți timpul, înregistrați cheltuielile, importați documente cu AI și accesați totul de pe orice dispozitiv — online sau offline.
+
+[f13_title]
+Urmărire Timp
+
+[f13_desc]
+Cronometru start/stop per proiect. Intrare manuală pentru munca din trecut. Jurnale zilnice, rezumate săptămânale și rapoarte lunare cu totalul orelor facturabile.
+
+[f14_title]
+Urmărire Cheltuieli
+
+[f14_desc]
+Înregistrați cheltuielile de afaceri cu chitanțe, categorii și detalii despre furnizori. Filtrați după dată sau categorie, exportați în CSV și urmăriți cheltuielile lunare alături de venituri.
+
+[f15_title]
+Import Documente cu AI
+
+[f15_desc]
+Trageți și plasați facturi, chitanțe sau documente de cheltuieli. AI extrage automat sumele, datele, furnizorii și TVA. Verificați și salvați cu un singur clic.
+
+[f16_title]
+Funcționează pe Orice Dispozitiv
+
+[f16_desc]
+Adăugați InvoiceKit pe ecranul de start al telefonului, tabletei sau computerului. Se instalează ca o aplicație nativă, se deschide fără browser și funcționează offline pentru a înregistra timp sau verifica facturi oriunde.
 
 [how_tag]
-Cum funcționează
+Cum Funcționează
 
 [how_title]
 De la secunde urmărite la factură plătită
 
 [how_subtitle]
-Trei pași simpli. Asta e tot ce trebuie.
+Trei pași simpli. Atât.
 
 [s1_title]
-Urmărește-ți timpul
+Urmăriți-vă Timpul
 
 [s1_desc]
-Apasă Start pentru un proiect. Lucrează. Apasă Stop. Fiecare secundă este înregistrată automat — fără foi de calcul, fără să uiți.
+Faceți clic pe Start pentru orice proiect. Lucrați. Faceți clic pe Stop. Fiecare secundă este înregistrată automat — fără foi de calcul, fără să uitați.
 
 [s2_title]
-Generează factura
+Generați Factura
 
 [s2_desc]
-Selectează un client, alege înregistrările de timp de facturat. InvoiceKit construiește factura cu TVA corect, format legal și brandul tău.
+Selectați un client, alegeți înregistrările de timp de facturat. InvoiceKit construiește factura cu TVA corect, formatare legală și brandul dvs.
 
 [s3_title]
-Primește plata
+Fiți Plătit
 
 [s3_desc]
 Trimiteți cu un singur clic. Clientul dvs. plătește cu cardul prin Stripe sau prin transfer bancar gratuit. Fondurile ajung direct în contul dvs. bancar. Gata.
 
-[vat_tag]
+[compliance_tag]
 Conformitate UE
 
-[vat_title]
-TVA corect de fiecare dată
+[compliance_title]
+Conformitate profundă, țară cu țară
 
-[vat_desc]
-Legislația TVA din UE este complexă. InvoiceKit gestionează automat fiecare scenariu — cote standard, taxare inversă pentru clienții B2B, OSS pentru consumatorii UE și 0% pentru cumpărătorii din afara UE.
+[compliance_subtitle]
+InvoiceKit nu se oprește la calculul TVA. Pentru țările suportate, validează fiecare factură în raport cu cerințele legale locale înainte de a o putea emite.
 
-[vat_r1_label]
-Facturare în aceeași țară
+[compliance_bg_title]
+🇧🇬 Bulgaria — Conformitate Completă
 
-[vat_r1_sub]
-Cota TVA locală standard aplicată automat
+[compliance_bg_item1]
+Poartă de validare a facturilor — blochează emiterea facturilor incomplete
 
-[vat_r2_label]
-UE B2B (Taxare inversă)
+[compliance_bg_item2]
+Note de credit (кредитно известие) și anulare/сторно
 
-[vat_r2_sub]
-0% TVA — cumpărătorul contabilizează TVA conform Art. 44 Dir. 2006/112/CE
+[compliance_bg_item3]
+TVA pe linie cu cote standard, reduse și zero
 
-[vat_r3_label]
-UE B2C (Reguli OSS)
+[compliance_bg_item4]
+Completare automată a bazei legale pe fiecare factură
 
-[vat_r3_sub]
-Cota vânzătorului aplicată (sau cota OSS unde este cazul)
+[compliance_bg_item5]
+Indicatori de completitudine a clientului
 
-[vat_r4_label]
-Cumpărător din afara UE
+[compliance_more]
+Mai multe țări urmează — România, Polonia, Germania și altele sunt pe lista de așteptare.
 
-[vat_r4_sub]
-0% TVA — în afara domeniului de aplicare al TVA UE, scutit
+[pay_tag]
+Plăți Online
 
-[vat_rates_title]
-Cote TVA suportate
+[pay_title]
+Fiți Plătit Direct. De Fiecare Dată.
+
+[pay_desc]
+Conectați contul Stripe și transformați fiecare factură într-un link de plată. Clienții plătesc cu cardul — fondurile ajung direct în contul dvs. bancar, nu la un intermediar. Transferurile bancare prin IBAN sunt întotdeauna gratuite.
+
+[pay_r1_label]
+Stripe Connect — Direct în Banca Dvs.
+
+[pay_r1_sub]
+Folosim Stripe Connect Express. Plata cu cardul a clientului dvs. merge direct în banca dvs. InvoiceKit nu vă reține niciodată banii.
+
+[pay_r2_label]
+Portal Client — Nu Este Necesar Login
+
+[pay_r2_sub]
+Fiecare factură primește un link tokenizat securizat. Clientul dvs. îl deschide în orice browser, vede factura și plătește cu un singur clic.
+
+[pay_r3_label]
+Doar 2% pentru Plăți cu Cardul — Transferuri Gratuite
+
+[pay_r3_sub]
+O taxă de platformă de 2% se aplică când un client plătește cu cardul. Transferurile bancare prin IBAN nu au nicio taxă.
+
+[ai_import_tag]
+Import Asistat de AI
+
+[ai_import_title]
+Lăsați AI-ul să se ocupe de documentație
+
+[ai_import_desc]
+Încărcați un PDF, JPG sau PNG al oricărui document. Gemini AI citește și extrage toate datele pentru dvs. Verificați câmpurile extrase, ajustați dacă este necesar și salvați ca factură ciornă sau cheltuială cu un singur clic.
+
+[ai_import_r1_label]
+Suportă PDF, JPG și PNG
+
+[ai_import_r1_sub]
+Încărcați până la 10 fișiere odată — procesate în paralel de AI
+
+[ai_import_r2_label]
+Extrage totul automat
+
+[ai_import_r2_sub]
+Sume, date, numere TVA, nume furnizori și linii de articole — toate extrase instantaneu
+
+[ai_import_r3_label]
+Verificați înainte de salvare
+
+[ai_import_r3_sub]
+Fiecare import trece printr-un ecran de confirmare — rămâneți în control
 
 [pricing_tag]
 Prețuri
 
 [pricing_title]
-Prețuri simple și oneste
+Prețuri simple și corecte
 
 [pricing_subtitle]
-Începe gratuit. Upgradează când afacerea ta crește. Fără contracte, anulare oricând.
+Începeți gratuit. Faceți upgrade când afacerea dvs. crește. Fără contracte, anulați oricând.
 
 [p_free_name]
 Gratuit
@@ -180,7 +309,7 @@ Gratuit
 pentru totdeauna
 
 [p_free_desc]
-Tot ce ai nevoie pentru a începe.
+Tot ce aveți nevoie pentru a începe.
 
 [p_free_l1]
 Până la 3 clienți
@@ -192,9 +321,18 @@ Până la 3 clienți
 Urmărire timp
 
 [p_free_l4]
-Export facturi PDF
+Export factură PDF
+
+[p_free_l5]
+Motor TVA UE
 
 [p_free_l6]
+Note de credit și facturi anulate
+
+[p_free_l7]
+14 zile de probă Pro incluse
+
+[p_free_l8]
 :free_limit importuri AI pe zi
 
 [p_free_cta]
@@ -210,7 +348,7 @@ Starter
 pe lună
 
 [p_starter_desc]
-Pentru freelanceri în creștere.
+Pentru freelancerii în creștere.
 
 [p_starter_l1]
 Clienți nelimitați
@@ -225,13 +363,22 @@ Urmărire timp
 Toate regulile TVA UE
 
 [p_starter_l5]
-Memento plăți
+Memento-uri de plată
+
+[p_starter_l6]
+Urmărire cheltuieli
 
 [p_starter_l7]
+Până la 3 metode de plată
+
+[p_starter_l8]
+Căutare automată companie — 10/zi
+
+[p_starter_l9]
 :starter_limit importuri AI pe zi
 
 [p_starter_cta]
-Alege Starter
+Începe Starter
 
 [p_pro_name]
 Pro
@@ -243,7 +390,7 @@ Pro
 pe lună
 
 [p_pro_desc]
-Pentru freelanceri serioși.
+Pentru freelancerii serioși.
 
 [p_pro_l1]
 Totul nelimitat
@@ -255,18 +402,30 @@ Facturi recurente
 Portal client
 
 [p_pro_l4]
-Peppol / e-Facturare (UBL 2.1)
+Peppol / Facturare Electronică (UBL 2.1)
 
 [p_pro_l5]
-Mod Scutire TVA (toate cele 27 de țări UE)
+Mod Scutire TVA (toate cele 27 UE)
 
 [p_pro_l6]
 Toate regulile TVA UE
 
 [p_pro_l7]
-Plăți online prin Stripe (comision 2%)
+Conformitate specifică țării
 
 [p_pro_l8]
+Cote TVA pe linie
+
+[p_pro_l9]
+Metode de plată nelimitate
+
+[p_pro_l10]
+Căutări de companii nelimitate
+
+[p_pro_l11]
+Plăți online prin Stripe (taxă 2%)
+
+[p_pro_l12]
 Importuri AI nelimitate
 
 [p_pro_cta]
@@ -274,6 +433,12 @@ Mergi la Pro
 
 [p_popular]
 Cel mai popular
+
+[p_byok_label]
+Folosiți propria cheie API Gemini — importuri nelimitate
+
+[p_byok_desc]
+Pe orice plan, puteți adăuga propria cheie API Google Gemini gratuită în Setări → AI. Odată configurată, toate importurile de documente AI folosesc cota dvs. Google — nu se aplică limite ale aplicației.
 
 [faq_tag]
 FAQ
@@ -285,83 +450,73 @@ FAQ
 InvoiceKit este cu adevărat conform cu TVA-ul UE?
 
 [faq1_a]
-Da. InvoiceKit calculează automat TVA-ul corect pentru fiecare factură pe baza țării tale, a țării clientului și dacă acesta are un cod de TVA UE valid. Gestionează corect cotele standard, taxarea inversă, OSS și scenariile scutite din afara UE.
+Da. InvoiceKit calculează automat TVA-ul corect pentru fiecare factură pe baza țării dvs., țării clientului dvs. și dacă acesta are un număr de TVA UE valid. Gestionează corect cotele standard, taxarea inversă, OSS și scenariile de scutire din afara UE.
 
 [faq2_q]
-Ce țări din UE sunt suportate?
+Ce țări UE sunt suportate?
 
 [faq2_a]
-Toate cele 27 de state membre ale UE. Cotele TVA sunt hardcodate pentru BG, DE, FR, RO, PL, CZ, IT, ES, NL, PT, AT, BE, HR, HU, SE și toate celelalte. Cotele sunt actualizate când legislația UE se schimbă.
+Toate cele 27 de state membre ale UE. Cotele TVA sunt codificate pentru BG, DE, FR, RO, PL, CZ, IT, ES, NL, PT, AT, BE, HR, HU, SE și toate celelalte. Cotele sunt actualizate ori de câte ori se modifică legislația UE.
 
 [faq3_q]
-InvoiceKit acceptă facturi recurente?
+InvoiceKit suportă facturi recurente?
 
 [faq3_a]
-Da. Poți transforma orice factură în recurentă cu intervale săptămânale, lunare, trimestriale sau anuale. InvoiceKit clonează și emite automat factura la data scadentă — nu trebuie să faci nimic.
+Da. Puteți transforma orice factură în una recurentă cu intervale săptămânale, lunare, trimestriale sau anuale. InvoiceKit clonează și emite automat factura la data scadenței — nu trebuie să faceți nimic.
 
 [faq4_q]
 Cum funcționează urmărirea timpului?
 
 [faq4_a]
-Creează proiecte cu clienți și tarife orare. Folosește cronometrul start/stop integrat în timp ce lucrezi. Tot timpul urmărit este stocat și poate fi convertit direct în linii de factură cu un clic.
+Creați proiecte cu clienți și tarife orare. Folosiți cronometrul integrat start/stop în timp ce lucrați. Tot timpul urmărit este stocat și poate fi convertit direct în linii de factură cu un singur clic.
 
 [faq5_q]
 Există o perioadă de probă gratuită?
 
 [faq5_a]
-Da. Toate conturile noi încep cu o perioadă de probă Pro de 14 zile — nu este necesar cardul de credit. Ai acces complet la Pro din prima zi. După perioada de probă, rămâi pe planul gratuit dacă nu alegi să faci upgrade.
-
-
-[pay_tag]
-Plăți online
-
-[pay_title]
-Primiți plăți direct. Mereu.
-
-[pay_desc]
-Conectați contul Stripe și transformați fiecare factură într-un link de plată. Clienții plătesc cu cardul — fondurile ajung direct în contul dvs. bancar, nu la un intermediar. Transferurile bancare prin IBAN sunt întotdeauna gratuite.
-
-[pay_r1_label]
-Stripe Connect — direct în banca dvs.
-
-[pay_r1_sub]
-Utilizăm Stripe Connect Express. Plata cu cardul a clientului dvs. merge direct în contul dvs. bancar. InvoiceKit nu reține niciodată banii dvs.
-
-[pay_r2_label]
-Portal client — fără înregistrare
-
-[pay_r2_sub]
-Fiecare factură primește un link tokenizat securizat. Clientul dvs. îl deschide în orice browser, vede factura și plătește cu un singur clic.
-
-[pay_r3_label]
-Doar 2% pentru plăți cu cardul — transferuri gratuite
-
-[pay_r3_sub]
-Un comision de platformă de 2% se aplică doar pentru plăți cu cardul. Transferurile bancare prin IBAN sunt complet gratuite.
+Da. Fiecare cont nou începe cu o probă Pro de 14 zile — nu este necesar un card de credit. Aveți acces Pro complet din prima zi. După probă, rămâneți pe planul Gratuit dacă nu alegeți să faceți upgrade.
 
 [faq6_q]
 Cum funcționează plățile online?
 
 [faq6_a]
-Conectați contul Stripe în Setări → Plăți. InvoiceKit generează un link de plată securizat pentru fiecare factură. Clientul dvs. dă clic pe Plătește acum și plătește cu cardul. Fondurile ajung direct în contul dvs. bancar — InvoiceKit nu reține niciodată banii dvs. Se aplică un comision de platformă de 2% la plățile cu cardul. Transferurile bancare prin IBAN sunt întotdeauna gratuite.
+Conectați contul Stripe în Setări → Plăți. InvoiceKit generează un link de plată securizat pentru fiecare factură. Clientul dvs. face clic pe Plătește Acum și plătește cu cardul. Fondurile ajung direct în contul dvs. bancar — InvoiceKit nu vă reține niciodată banii. O taxă de platformă de 2% se aplică plăților cu cardul. Transferurile bancare prin IBAN sunt întotdeauna gratuite.
 
 [faq7_q]
 Cum funcționează importul de documente cu AI?
 
 [faq7_a]
-InvoiceKit poate citi facturi și documente de cheltuieli (PDF, JPEG, PNG) și extrage automat furnizorul, suma, data și liniile utilizând Google Gemini AI. Utilizatorii planului gratuit primesc :free_limit importuri AI pe zi; planul Starter oferă :starter_limit. Utilizatorii Pro beneficiază de importuri nelimitate. La orice plan, puteți adăuga propria cheie Gemini API gratuită în Setări → AI pentru a elimina toate limitele.
+InvoiceKit poate citi documente de facturi și cheltuieli (PDF, JPEG, PNG) și extrage automat furnizorul, suma, data și liniile de articole folosind Google Gemini AI. Utilizatorii planului Gratuit primesc :free_limit importuri AI pe zi; utilizatorii planului Starter primesc :starter_limit. Utilizatorii Pro au importuri nelimitate. Pe orice plan, puteți adăuga propria cheie API Gemini gratuită în Setări → AI pentru a elimina toate limitele.
 
-[p_byok_label]
-Folosiți propria cheie API Gemini — importuri nelimitate
+[faq8_q]
+Ce sunt notele de credit și facturile anulate?
 
-[p_byok_desc]
-La orice plan, puteți adăuga propria cheie API Google Gemini gratuită în Setări → AI. Odată configurată, toate importurile de documente AI folosesc cota dvs. Google — fără limite impuse de aplicație.
+[faq8_a]
+Notele de credit vă permit să anulați parțial sau total o factură trimisă. Anularea (сторно) anulează complet o factură. Ambele generează documente corespunzătoare cu referințe legale la factura originală. Disponibil pe toate planurile.
+
+[faq9_q]
+Ce este conformitatea specifică fiecărei țări?
+
+[faq9_a]
+Dincolo de TVA-ul UE, InvoiceKit validează facturile în raport cu cerințele legale specifice fiecărei țări. Bulgaria este complet suportată astăzi — inclusiv câmpuri obligatorii, texte de bază legală și cote TVA pe linie. Mai multe țări sunt adăugate.
+
+[faq10_q]
+Ce este Peppol / Facturarea Electronică?
+
+[faq10_a]
+Peppol este standardul UE pentru facturarea electronică (UBL 2.1). InvoiceKit generează fișiere XML conforme Peppol BIS Billing 3.0 pe care le puteți trimite la portalul de facturare electronică al țării dvs. sau direct clienților care acceptă facturi structurate. Disponibil pe planul Pro.
+
+[faq11_q]
+Cum funcționează căutarea automată de companii?
+
+[faq11_a]
+Introduceți un număr de TVA sau un număr de înregistrare național când adăugați un client. InvoiceKit interogează mai întâi baza de date EU VIES, apoi apelează la AI pentru numerele non-VIES. Numele companiei, adresa și statutul TVA se completează automat. Limitele de căutare depind de planul dvs.; adăugarea propriei chei API Gemini gratuite elimină toate limitele.
 
 [cta_title]
-Ești gata să facturezi ca un european?
+Gata să facturați ca un european?
 
 [cta_subtitle]
-Alătură-te freelancerilor europeni care au încetat să se lupte cu foile de calcul și au început să fie plătiți la timp.
+Alăturați-vă freelancerilor UE care au renunțat la foi de calcul și au început să fie plătiți la timp.
 
 [cta_button]
 Începe gratuit astăzi →
@@ -370,43 +525,10 @@ Alătură-te freelancerilor europeni care au încetat să se lupte cu foile de c
 Facturare conformă UE pentru freelanceri europeni.
 
 [footer_privacy]
-Politică de confidențialitate
+Politica de Confidențialitate
 
 [footer_terms]
-Termeni de serviciu
+Termeni și Condiții
 
 [footer_copy]
 © 2026 NetShell. Toate drepturile rezervate.
-
-[f10_title]
-Import de documente cu IA
-
-[f10_desc]
-Încărcați facturi, chitanțe sau documente de cheltuieli. IA extrage automat sumele, datele, furnizorii și TVA. Revizuiți și salvați cu un clic.
-
-[ai_import_tag]
-Import bazat pe IA
-
-[ai_import_title]
-Lăsați IA să se ocupe de hârtii
-
-[ai_import_desc]
-Încărcați un PDF, JPG sau PNG al oricărui document. Gemini IA citește și extrage toate datele pentru dvs. Revizuiți câmpurile extrase, ajustați dacă este necesar și salvați ca ciornă de factură sau cheltuială cu un clic.
-
-[ai_import_r1_label]
-PDF, JPG & PNG suportate
-
-[ai_import_r1_sub]
-Încărcați până la 10 fișiere odată — procesate în paralel de IA
-
-[ai_import_r2_label]
-Extracție automată completă
-
-[ai_import_r2_sub]
-Sume, date, coduri TVA, nume furnizori și linii — extrase instant
-
-[ai_import_r3_label]
-Revizuire înainte de salvare
-
-[ai_import_r3_sub]
-Fiecare import trece printr-un ecran de confirmare — dvs. rămâneți în control
