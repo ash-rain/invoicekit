@@ -290,11 +290,6 @@
                         @endphp
                         <div class="inv-label">{{ $docLabel }}</div>
                         <div class="inv-num">{{ $invoice->invoice_number }}</div>
-                        @if ($invoice->status === 'paid')
-                            <span class="paid-chip">&#10003; {{ __('PAID') }}</span>
-                        @elseif ($invoice->status === 'cancelled')
-                            <span class="cancelled-chip">&#10007; {{ __('CANCELLED') }}</span>
-                        @endif
                     </div>
                 </td>
             </tr>
@@ -371,6 +366,17 @@
             </tr>
         </table>
 
+        {{-- Credit/Debit note reference --}}
+        @if (in_array($invoice->document_type, ['credit_note', 'debit_note']))
+            <div class="correction-reference" style="margin: 0 0 12px; padding: 6px 8px; background: #f9f9f9; border-left: 3px solid #ccc; font-size: 8.5pt;">
+                <p><strong>{{ __('Regarding invoice') }}:</strong> № {{ $invoice->original_invoice_number }}
+                {{ __('from') }} {{ $invoice->original_invoice_date?->format('d.m.Y') }}</p>
+                @if ($invoice->correction_reason)
+                    <p><strong>{{ __('Reason') }}:</strong> {{ $invoice->correction_reason }}</p>
+                @endif
+            </div>
+        @endif
+
         {{-- Items --}}
         <table class="items">
             <thead>
@@ -396,7 +402,7 @@
 
         {{-- VAT Notice --}}
         @php $vatType = $invoice->vat_type ?? 'standard'; @endphp
-        @if ($invoice->vat_exempt_applied && $invoice->vat_legal_basis)
+        @if ($invoice->vat_legal_basis)
             <div class="vat-notice exempt">{!! nl2br(e($invoice->vat_legal_basis)) !!}</div>
         @elseif($vatType === 'reverse_charge')
             <div class="vat-notice reverse-charge">{!! __(
@@ -416,13 +422,26 @@
                     <td class="right">{{ formatCurrency($invoice->currency, (float) $invoice->subtotal) }}</td>
                 </tr>
                 @if (!$invoice->vat_exempt_applied)
-                    <tr>
-                        <td>{{ __('VAT') }}@if ($invoice->vat_rate > 0)
-                                ({{ $invoice->vat_rate }}%)
-                            @endif
-                        </td>
-                        <td class="right">{{ formatCurrency($invoice->currency, (float) $invoice->vat_amount) }}</td>
-                    </tr>
+                    @if ($invoice->vat_summary && count($invoice->vat_summary) > 1)
+                        @foreach ($invoice->vat_summary as $group)
+                            <tr>
+                                <td>{{ __('Tax base') }} {{ $group['rate'] }}%</td>
+                                <td class="right">{{ number_format($group['base'], 2) }} {{ $invoice->currency }}</td>
+                            </tr>
+                            <tr>
+                                <td>{{ __('VAT') }} {{ $group['rate'] }}%</td>
+                                <td class="right">{{ number_format($group['vat'], 2) }} {{ $invoice->currency }}</td>
+                            </tr>
+                        @endforeach
+                    @else
+                        <tr>
+                            <td>{{ __('VAT') }}@if ($invoice->vat_rate > 0)
+                                    ({{ $invoice->vat_rate }}%)
+                                @endif
+                            </td>
+                            <td class="right">{{ formatCurrency($invoice->currency, (float) $invoice->vat_amount) }}</td>
+                        </tr>
+                    @endif
                 @endif
                 <tr class="grand-total">
                     <td>{{ __('Total Due') }}</td>

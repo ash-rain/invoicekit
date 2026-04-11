@@ -351,16 +351,6 @@
             </tr>
         </table>
 
-        {{-- Paid / Cancelled stamp --}}
-        @if ($invoice->status === 'paid')
-            <div class="status-overlay">
-                <span class="status-paid">{{ __('PAID') }}</span>
-            </div>
-        @elseif($invoice->status === 'cancelled')
-            <div class="status-overlay">
-                <span class="status-cancelled">{{ __('CANCELLED') }}</span>
-            </div>
-        @endif
 
         {{-- Parties --}}
         <table class="parties" cellpadding="0" cellspacing="0">
@@ -486,7 +476,7 @@
 
         {{-- VAT Notice --}}
         @php $vatType = $invoice->vat_type ?? 'standard'; @endphp
-        @if ($invoice->vat_exempt_applied && $invoice->vat_legal_basis)
+        @if ($invoice->vat_legal_basis)
             <div class="vat-notice exempt">
                 {!! nl2br(e($invoice->vat_legal_basis)) !!}
             </div>
@@ -514,22 +504,35 @@
                     <td class="right">{{ formatCurrency($invoice->currency, (float) $invoice->subtotal) }}</td>
                 </tr>
                 @if (!$invoice->vat_exempt_applied)
-                    <tr>
-                        <td>
-                            {{ __('VAT') }}
-                            @if ($invoice->vat_rate > 0)
-                                ({{ $invoice->vat_rate }}%)
-                            @endif
-                        </td>
-                        <td class="right">{{ formatCurrency($invoice->currency, (float) $invoice->vat_amount) }}</td>
-                    </tr>
-                    @if ($invoice->vat_amount_bgn && $invoice->currency !== 'BGN')
+                    @if ($invoice->vat_summary && count($invoice->vat_summary) > 1)
+                        @foreach ($invoice->vat_summary as $group)
+                            <tr>
+                                <td>{{ __('Tax base') }} {{ $group['rate'] }}%</td>
+                                <td class="right">{{ number_format($group['base'], 2) }} {{ $invoice->currency }}</td>
+                            </tr>
+                            <tr>
+                                <td>{{ __('VAT') }} {{ $group['rate'] }}%</td>
+                                <td class="right">{{ number_format($group['vat'], 2) }} {{ $invoice->currency }}</td>
+                            </tr>
+                        @endforeach
+                    @else
                         <tr>
-                            <td style="font-size:8.5pt; color:#6b7280;">{{ __('VAT in BGN') }}</td>
-                            <td class="right" style="font-size:8.5pt; color:#6b7280;">
-                                BGN {{ number_format((float) $invoice->vat_amount_bgn, 2) }}
+                            <td>
+                                {{ __('VAT') }}
+                                @if ($invoice->vat_rate > 0)
+                                    ({{ $invoice->vat_rate }}%)
+                                @endif
                             </td>
+                            <td class="right">{{ formatCurrency($invoice->currency, (float) $invoice->vat_amount) }}</td>
                         </tr>
+                        @if ($invoice->vat_amount_bgn && $invoice->currency !== 'BGN')
+                            <tr>
+                                <td style="font-size:8.5pt; color:#6b7280;">{{ __('VAT in BGN') }}</td>
+                                <td class="right" style="font-size:8.5pt; color:#6b7280;">
+                                    BGN {{ number_format((float) $invoice->vat_amount_bgn, 2) }}
+                                </td>
+                            </tr>
+                        @endif
                     @endif
                 @endif
                 <tr class="grand-total">
