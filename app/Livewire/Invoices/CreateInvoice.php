@@ -54,7 +54,7 @@ class CreateInvoice extends Component
 
     public string $receivedByName = '';
 
-    // Line items: array of ['description', 'unit', 'quantity', 'unit_price']
+    // Line items: array of ['description', 'unit', 'quantity', 'unit_price', 'vat_rate_key']
     public array $items = [];
 
     public bool $vatExemptActive = false;
@@ -69,13 +69,15 @@ class CreateInvoice extends Component
     // Computed totals (updated reactively)
     public float $subtotal = 0.0;
 
-    public float $vatRate = 0.0;
+    public ?float $vatRate = null;
 
     public float $vatAmount = 0.0;
 
     public float $total = 0.0;
 
     public string $vatType = 'standard';
+
+    public array $vatSummary = [];
 
     public function mount(?Invoice $invoice = null): void
     {
@@ -114,6 +116,7 @@ class CreateInvoice extends Component
                 'unit' => $item->unit ?? '',
                 'quantity' => (string) $item->quantity,
                 'unit_price' => (string) $item->unit_price,
+                'vat_rate_key' => $item->vat_rate_key ?? 'standard',
             ])->toArray();
         } else {
             $this->issueDate = now()->format('Y-m-d');
@@ -141,7 +144,7 @@ class CreateInvoice extends Component
     public function addItem(): void
     {
         $unit = ($this->sellerCountry === 'BG') ? 'бр.' : '';
-        $this->items[] = ['description' => '', 'unit' => $unit, 'quantity' => '1', 'unit_price' => '0.00'];
+        $this->items[] = ['description' => '', 'unit' => $unit, 'quantity' => '1', 'unit_price' => '0.00', 'vat_rate_key' => 'standard'];
     }
 
     public function removeItem(int $index): void
@@ -211,10 +214,57 @@ class CreateInvoice extends Component
         }
 
         $this->subtotal = round($subtotal, 2);
-        $this->vatRate = $vatResult['rate'];
-        $this->vatAmount = $vatResult['amount'];
         $this->vatType = $vatResult['type'];
-        $this->total = round($subtotal + $vatResult['amount'], 2);
+
+        // For standard VAT type, use per-item rates from VatRateService
+        if ($vatResult['type'] === 'standard') {
+            $vatRateService = app(\App\Services\VatRateService::class);
+            $groups = [];
+            $totalVat = 0.0;
+            $rates = [];
+
+            foreach ($this->items as $item) {
+                $qty = max(0.0, (float) ($item['quantity'] ?? 0));
+                $price = max(0.0, (float) ($item['unit_price'] ?? 0));
+                $lineBase = round($qty * $price, 2);
+                $vatRateKey = $item['vat_rate_key'] ?? 'standard';
+                $itemRate = (float) ($vatRateService->rateForKey($this->sellerCountry, $vatRateKey) ?? 20.0);
+                $lineVat = round($lineBase * $itemRate / 100, 2);
+                $rateKey = (string) $itemRate;
+
+                if (! isset($groups[$rateKey])) {
+                    $groups[$rateKey] = [
+                        'rate' => $itemRate,
+                        'label' => $vatRateService->ratesForCountry($this->sellerCountry)[$vatRateKey]['label'] ?? "VAT {$itemRate}%",
+                        'base' => 0.0,
+                        'vat' => 0.0,
+                    ];
+                    $rates[] = $itemRate;
+                }
+
+                $groups[$rateKey]['base'] = round($groups[$rateKey]['base'] + $lineBase, 2);
+                $groups[$rateKey]['vat'] = round($groups[$rateKey]['vat'] + $lineVat, 2);
+                $totalVat += $lineVat;
+            }
+
+            $this->vatAmount = round($totalVat, 2);
+            $this->vatSummary = array_values($groups);
+            // Single rate → use it; mixed → null
+            $uniqueRates = array_unique($rates);
+            $this->vatRate = count($uniqueRates) === 1 ? reset($uniqueRates) : null;
+        } else {
+            // Non-standard: use EuVatService result uniformly
+            $this->vatAmount = $vatResult['amount'];
+            $this->vatRate = $vatResult['rate'];
+            $this->vatSummary = $subtotal > 0 ? [[
+                'rate' => $vatResult['rate'],
+                'label' => 'VAT '.$vatResult['rate'].'%',
+                'base' => $subtotal,
+                'vat' => $vatResult['amount'],
+            ]] : [];
+        }
+
+        $this->total = round($subtotal + $this->vatAmount, 2);
     }
 
     protected function rules(): array
@@ -241,6 +291,7 @@ class CreateInvoice extends Component
             'items.*.unit' => ['nullable', 'string', 'max:20'],
             'items.*.quantity' => ['required', 'numeric', 'min:0.01'],
             'items.*.unit_price' => ['required', 'numeric', 'min:0'],
+            'items.*.vat_rate_key' => ['nullable', 'string', 'max:50'],
         ];
     }
 
@@ -294,6 +345,7 @@ class CreateInvoice extends Component
                 'vat_rate' => $this->vatRate,
                 'vat_amount' => $this->vatAmount,
                 'vat_type' => $this->vatType,
+                'vat_summary' => $this->vatSummary ?: null,
                 'total' => $this->total,
                 'notes' => $this->notes ?: null,
                 'vat_exempt_applied' => $isExempt,
@@ -324,6 +376,15 @@ class CreateInvoice extends Component
                 $qty = (float) $item['quantity'];
                 $price = (float) $item['unit_price'];
                 $lineTotal = round($qty * $price, 2);
+                $vatRateKey = $item['vat_rate_key'] ?? 'standard';
+
+                if ($this->vatType === 'standard') {
+                    $vatRateService = app(\App\Services\VatRateService::class);
+                    $itemVatRate = (float) ($vatRateService->rateForKey($this->sellerCountry, $vatRateKey) ?? $this->vatRate ?? 20.0);
+                } else {
+                    $itemVatRate = (float) ($this->vatRate ?? 0.0);
+                    $vatRateKey = null; // Non-standard: no per-item key
+                }
 
                 InvoiceItem::create([
                     'invoice_id' => $this->invoice->id,
@@ -331,7 +392,8 @@ class CreateInvoice extends Component
                     'unit' => ($item['unit'] ?? '') ?: null,
                     'quantity' => $qty,
                     'unit_price' => $price,
-                    'vat_rate' => $this->vatRate,
+                    'vat_rate' => $itemVatRate,
+                    'vat_rate_key' => $vatRateKey,
                     'total' => $lineTotal,
                 ]);
             }
