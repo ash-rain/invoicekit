@@ -1,28 +1,37 @@
 <div class="min-h-screen flex items-center justify-center p-4" style="background:#f5f6fa;">
     <div class="w-full max-w-lg">
+
         {{-- Progress steps --}}
         <div class="mb-8">
             <div class="flex items-center justify-between">
-                @foreach ([1 => __('Company'), 2 => __('First Client'), 3 => __('First Project')] as $n => $label)
+                @php
+                $stepLabels = [
+                    1 => __('Business'),
+                    2 => __('VAT & Tax'),
+                    3 => __('Client'),
+                    4 => __('Project'),
+                    5 => __('Payment'),
+                    6 => __('Done'),
+                ];
+                @endphp
+                @foreach ($stepLabels as $n => $label)
                     <div class="flex items-center {{ $loop->last ? '' : 'flex-1' }}">
-                        <div class="w-9 h-9 rounded-full flex items-center justify-center text-sm font-bold shrink-0
-                            {{ $step >= $n ? 'text-[#0f1117]' : 'bg-gray-200 text-gray-500' }}"
-                            style="{{ $step >= $n ? 'background:#f59e0b;' : '' }}">
+                        <div class="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold shrink-0
+                            {{ $step > $n ? 'bg-green-500 text-white' : ($step === $n ? 'text-[#0f1117]' : 'bg-gray-200 text-gray-500') }}"
+                            style="{{ $step === $n ? 'background:#f59e0b;' : '' }}">
                             @if ($step > $n)
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
-                                        d="M5 13l4 4L19 7" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
                                 </svg>
                             @else
                                 {{ $n }}
                             @endif
                         </div>
-                        <span
-                            class="ml-2 text-xs font-semibold hidden sm:inline {{ $step >= $n ? 'text-[#0f1117]' : 'text-gray-400' }}">
+                        <span class="ml-1.5 text-xs font-semibold hidden sm:inline {{ $step >= $n ? 'text-[#0f1117]' : 'text-gray-400' }}">
                             {{ $label }}
                         </span>
                         @if (!$loop->last)
-                            <div class="flex-1 h-0.5 mx-3 {{ $step > $n ? 'bg-[#f59e0b]' : 'bg-gray-200' }}"></div>
+                            <div class="flex-1 h-0.5 mx-2 {{ $step > $n ? 'bg-green-400' : 'bg-gray-200' }}"></div>
                         @endif
                     </div>
                 @endforeach
@@ -30,110 +39,139 @@
         </div>
 
         <div class="bg-white rounded-2xl shadow-xl p-8">
+
+            {{-- Step headings --}}
             <div class="mb-6 text-center">
                 <h1 class="text-2xl font-bold text-[#0f1117]" style="font-family:'Syne',sans-serif;">
-                    @if ($step === 1)
-                        {{ __('Welcome to InvoiceKit 👋') }}
-                    @elseif ($step === 2)
-                        {{ __('Add Your First Client') }}
-                    @else
-                        {{ __('Set Up Your First Project') }}
+                    @if ($step === 1) {{ __('Welcome to InvoiceKit 👋') }}
+                    @elseif ($step === 2) {{ __('VAT & Tax Setup') }}
+                    @elseif ($step === 3) {{ __('Add Your First Client') }}
+                    @elseif ($step === 4) {{ __('Set Up a Project') }}
+                    @elseif ($step === 5) {{ __('Payment Method') }}
+                    @else {{ __('You\'re all set! 🎉') }}
                     @endif
                 </h1>
                 <p class="text-gray-500 text-sm mt-1.5">
-                    @if ($step === 1)
-                        {{ __('Tell us a bit about your business.') }}
-                    @elseif ($step === 2)
-                        {{ __('Who are you invoicing?') }}
-                    @else
-                        {{ __('Optional: create a project to start tracking time.') }}
+                    @if ($step === 1) {{ __('Tell us a bit about your business.') }}
+                    @elseif ($step === 2) {{ __('Your VAT and tax registration details.') }}
+                    @elseif ($step === 3) {{ __('Who are you invoicing?') }}
+                    @elseif ($step === 4) {{ __('Optional: create a project to start tracking time.') }}
+                    @elseif ($step === 5) {{ __('Optional: add a payment method shown on invoices.') }}
+                    @else {{ __('Here\'s what you can do next.') }}
                     @endif
                 </p>
             </div>
 
-            {{-- Step 1: Company Info --}}
+            {{-- ─── Step 1: Business Info ─── --}}
             @if ($step === 1)
                 <div class="space-y-4">
                     <div>
-                        <label
-                            class="block text-sm font-medium text-gray-700 mb-1">{{ __('Your Name / Company Name') }}</label>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">{{ __('Your Name / Company Name') }}</label>
                         <input wire:model="companyName" type="text"
                             class="w-full border border-gray-300 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
                             placeholder="ACME Freelance Ltd.">
-                        @error('companyName')
-                            <p class="text-red-600 text-xs mt-1">{{ $message }}</p>
-                        @enderror
+                        @error('companyName') <p class="text-red-600 text-xs mt-1">{{ $message }}</p> @enderror
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-1">{{ __('Your Country') }}</label>
-                        <select wire:model="companyCountry"
+                        <select wire:model.live="companyCountry"
                             class="w-full border border-gray-300 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
                             @foreach ($countries as $code => $name)
                                 <option value="{{ $code }}">{{ $name }}</option>
                             @endforeach
                         </select>
-                        @error('companyCountry')
-                            <p class="text-red-600 text-xs mt-1">{{ $message }}</p>
-                        @enderror
-                    </div>
-                    <div class="grid grid-cols-2 gap-3">
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">{{ __('Address') }} <span
-                                    class="text-gray-400 font-normal text-xs">({{ __('optional') }})</span></label>
-                            <input wire:model="companyAddress" type="text"
-                                class="w-full border border-gray-300 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                                placeholder="{{ __('Street address') }}" />
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">{{ __('Phone') }} <span
-                                    class="text-gray-400 font-normal text-xs">({{ __('optional') }})</span></label>
-                            <input wire:model="companyPhone" type="text"
-                                class="w-full border border-gray-300 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                                placeholder="+49 123 456789" />
-                        </div>
+                        @error('companyCountry') <p class="text-red-600 text-xs mt-1">{{ $message }}</p> @enderror
                     </div>
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">{{ __('Bank IBAN') }} <span
-                                class="text-gray-400 font-normal text-xs">({{ __('optional, shown on invoices') }})</span></label>
-                        <input wire:model="companyBankIban" type="text"
+                        <label class="block text-sm font-medium text-gray-700 mb-1">{{ __('Address') }} <span class="text-gray-400 font-normal text-xs">({{ __('optional') }})</span></label>
+                        <input wire:model="companyAddress" type="text"
                             class="w-full border border-gray-300 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                            placeholder="DE89 3704 0044 0532 0130 00" />
+                            placeholder="{{ __('Street address') }}">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">{{ __('Phone') }} <span class="text-gray-400 font-normal text-xs">({{ __('optional') }})</span></label>
+                        <input wire:model="companyPhone" type="text"
+                            class="w-full border border-gray-300 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                            placeholder="+359 88 123 4567">
                     </div>
                 </div>
                 <div class="mt-6 flex justify-end">
-                    <button wire:click="nextStep"
-                        class="px-6 py-2.5 bg-[#0f1117] text-white rounded-xl text-sm font-bold hover:bg-[#1a1f2e]">
+                    <button wire:click="nextStep" class="px-6 py-2.5 bg-[#0f1117] text-white rounded-xl text-sm font-bold hover:bg-[#1a1f2e]">
                         {{ __('Continue →') }}
                     </button>
                 </div>
             @endif
 
-            {{-- Step 2: First Client --}}
+            {{-- ─── Step 2: VAT & Tax ─── --}}
             @if ($step === 2)
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">
+                            {{ __('VAT Number') }}
+                            @if ($this->isEuCountry)
+                                <span class="text-red-500">*</span>
+                            @else
+                                <span class="text-gray-400 font-normal text-xs">({{ __('optional') }})</span>
+                            @endif
+                        </label>
+                        @if ($this->vatNumberHint)
+                            <p class="text-xs text-indigo-500 mb-1">{{ $this->vatNumberHint }}</p>
+                        @endif
+                        <input wire:model="vatNumber" type="text"
+                            class="w-full border border-gray-300 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                            placeholder="e.g. {{ strtoupper($companyCountry) }}123456789">
+                        @error('vatNumber') <p class="text-red-600 text-xs mt-1">{{ $message }}</p> @enderror
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">
+                            {{ $this->registrationNumberLabel }} <span class="text-gray-400 font-normal text-xs">({{ __('optional') }})</span>
+                        </label>
+                        <input wire:model="registrationNumber" type="text"
+                            class="w-full border border-gray-300 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                            placeholder="{{ $this->registrationNumberHint }}">
+                    </div>
+                    @if ($this->isEuCountry)
+                        <div class="rounded-xl border border-gray-200 p-4">
+                            <div class="flex items-start gap-3">
+                                <input wire:model.live="vatExempt" type="checkbox" id="vat_exempt"
+                                    class="mt-0.5 w-4 h-4 rounded accent-amber-500">
+                                <div>
+                                    <label for="vat_exempt" class="text-sm font-medium text-gray-700 cursor-pointer">{{ __('VAT Exempt (small business)') }}</label>
+                                    @if ($this->vatExemptThreshold)
+                                        <p class="text-xs text-gray-500 mt-0.5">{{ __('Threshold for :country: :threshold', ['country' => $companyCountry, 'threshold' => $this->vatExemptThreshold]) }}</p>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                    @endif
+                </div>
+                <div class="mt-6 flex justify-between">
+                    <button wire:click="previousStep" class="px-4 py-2.5 text-gray-600 hover:text-gray-900 text-sm font-medium">{{ __('← Back') }}</button>
+                    <button wire:click="nextStep" class="px-6 py-2.5 bg-[#0f1117] text-white rounded-xl text-sm font-bold hover:bg-[#1a1f2e]">{{ __('Continue →') }}</button>
+                </div>
+            @endif
+
+            {{-- ─── Step 3: First Client ─── --}}
+            @if ($step === 3)
                 <div class="space-y-4">
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-1">{{ __('Client Name') }}</label>
                         <input wire:model="clientName" type="text"
                             class="w-full border border-gray-300 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
                             placeholder="TechCorp GmbH">
-                        @error('clientName')
-                            <p class="text-red-600 text-xs mt-1">{{ $message }}</p>
-                        @enderror
+                        @error('clientName') <p class="text-red-600 text-xs mt-1">{{ $message }}</p> @enderror
                     </div>
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">{{ __('Client Email') }} <span
-                                class="text-gray-400">{{ __('(optional)') }}</span></label>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">{{ __('Client Email') }} <span class="text-gray-400 font-normal text-xs">({{ __('optional') }})</span></label>
                         <input wire:model="clientEmail" type="email"
                             class="w-full border border-gray-300 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
                             placeholder="billing@techcorp.de">
-                        @error('clientEmail')
-                            <p class="text-red-600 text-xs mt-1">{{ $message }}</p>
-                        @enderror
+                        @error('clientEmail') <p class="text-red-600 text-xs mt-1">{{ $message }}</p> @enderror
                     </div>
                     <div class="grid grid-cols-2 gap-4">
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-1">{{ __('Country') }}</label>
-                            <select wire:model="clientCountry"
+                            <select wire:model.live="clientCountry"
                                 class="w-full border border-gray-300 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
                                 @foreach ($countries as $code => $name)
                                     <option value="{{ $code }}">{{ $name }}</option>
@@ -150,64 +188,157 @@
                             </select>
                         </div>
                     </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">{{ __('Client VAT Number') }} <span class="text-gray-400 font-normal text-xs">({{ __('optional — enables reverse charge') }})</span></label>
+                        <input wire:model="clientVatNumber" type="text"
+                            class="w-full border border-gray-300 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                            placeholder="DE123456789">
+                    </div>
                 </div>
                 <div class="mt-6 flex justify-between">
-                    <button wire:click="previousStep"
-                        class="px-4 py-2.5 text-gray-600 hover:text-gray-900 text-sm font-medium">
-                        {{ __('← Back') }}
-                    </button>
-                    <button wire:click="nextStep"
-                        class="px-6 py-2.5 bg-[#0f1117] text-white rounded-xl text-sm font-bold hover:bg-[#1a1f2e]">
-                        {{ __('Continue →') }}
-                    </button>
+                    <button wire:click="previousStep" class="px-4 py-2.5 text-gray-600 hover:text-gray-900 text-sm font-medium">{{ __('← Back') }}</button>
+                    <button wire:click="nextStep" class="px-6 py-2.5 bg-[#0f1117] text-white rounded-xl text-sm font-bold hover:bg-[#1a1f2e]">{{ __('Continue →') }}</button>
                 </div>
             @endif
 
-            {{-- Step 3: First Project --}}
-            @if ($step === 3)
+            {{-- ─── Step 4: First Project ─── --}}
+            @if ($step === 4)
                 <div class="space-y-4">
                     <div class="flex items-start gap-3 p-3.5 bg-amber-50 rounded-xl border border-amber-100">
-                        <input wire:model.live="skipInvoice" type="checkbox" id="skip"
-                            class="mt-0.5 w-4 h-4 rounded text-amber-500">
-                        <label for="skip" class="text-sm text-gray-700 cursor-pointer">
-                            {{ __("Skip for now — I'll set up a project later") }}
-                        </label>
+                        <input wire:model.live="skipProject" type="checkbox" id="skip_project" class="mt-0.5 w-4 h-4 rounded text-amber-500">
+                        <label for="skip_project" class="text-sm text-gray-700 cursor-pointer">{{ __("Skip for now — I'll set up a project later") }}</label>
                     </div>
-
-                    @if (!$skipInvoice)
+                    @if (!$skipProject)
                         <div>
-                            <label
-                                class="block text-sm font-medium text-gray-700 mb-1">{{ __('Project Name') }}</label>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">{{ __('Project Name') }}</label>
                             <input wire:model="projectName" type="text"
                                 class="w-full border border-gray-300 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
                                 placeholder="Website Redesign">
-                            @error('projectName')
-                                <p class="text-red-600 text-xs mt-1">{{ $message }}</p>
-                            @enderror
+                            @error('projectName') <p class="text-red-600 text-xs mt-1">{{ $message }}</p> @enderror
                         </div>
                         <div>
-                            <label
-                                class="block text-sm font-medium text-gray-700 mb-1">{{ __('Hourly Rate (:currency)', ['currency' => $clientCurrency]) }}</label>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">{{ __('Hourly Rate (:currency)', ['currency' => $clientCurrency]) }}</label>
                             <input wire:model="hourlyRate" type="number" step="0.01" min="0"
                                 class="w-full border border-gray-300 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
                                 placeholder="75.00">
-                            @error('hourlyRate')
-                                <p class="text-red-600 text-xs mt-1">{{ $message }}</p>
-                            @enderror
+                            @error('hourlyRate') <p class="text-red-600 text-xs mt-1">{{ $message }}</p> @enderror
                         </div>
                     @endif
                 </div>
                 <div class="mt-6 flex justify-between">
-                    <button wire:click="previousStep"
-                        class="px-4 py-2.5 text-gray-600 hover:text-gray-900 text-sm font-medium">
-                        {{ __('← Back') }}
-                    </button>
+                    <button wire:click="previousStep" class="px-4 py-2.5 text-gray-600 hover:text-gray-900 text-sm font-medium">{{ __('← Back') }}</button>
+                    <button wire:click="nextStep" class="px-6 py-2.5 bg-[#0f1117] text-white rounded-xl text-sm font-bold hover:bg-[#1a1f2e]">{{ __('Continue →') }}</button>
+                </div>
+            @endif
+
+            {{-- ─── Step 5: Payment Method ─── --}}
+            @if ($step === 5)
+                <div class="space-y-4">
+                    <div class="flex items-start gap-3 p-3.5 bg-amber-50 rounded-xl border border-amber-100">
+                        <input wire:model.live="skipPayment" type="checkbox" id="skip_payment" class="mt-0.5 w-4 h-4 rounded text-amber-500">
+                        <label for="skip_payment" class="text-sm text-gray-700 cursor-pointer">{{ __("Skip — I'll add a payment method in Settings") }}</label>
+                    </div>
+                    @if (!$skipPayment)
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">{{ __('Payment Type') }}</label>
+                            <div class="grid grid-cols-2 gap-3">
+                                <button wire:click="$set('paymentMethodType', 'bank_transfer')" type="button"
+                                    class="p-3 rounded-xl border text-sm font-medium text-center transition-colors
+                                        {{ $paymentMethodType === 'bank_transfer' ? 'border-amber-400 bg-amber-50 text-amber-800' : 'border-gray-200 text-gray-600 hover:border-gray-300' }}">
+                                    🏦 {{ __('Bank Transfer') }}
+                                </button>
+                                <button wire:click="$set('paymentMethodType', 'cash')" type="button"
+                                    class="p-3 rounded-xl border text-sm font-medium text-center transition-colors
+                                        {{ $paymentMethodType === 'cash' ? 'border-amber-400 bg-amber-50 text-amber-800' : 'border-gray-200 text-gray-600 hover:border-gray-300' }}">
+                                    💵 {{ __('Cash') }}
+                                </button>
+                            </div>
+                        </div>
+                        @if ($paymentMethodType === 'bank_transfer')
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">
+                                    {{ __('IBAN') }}
+                                    @if ($this->ibanHint)
+                                        <span class="text-xs text-indigo-500 font-normal">({{ $this->ibanHint }})</span>
+                                    @endif
+                                </label>
+                                <input wire:model="bankIban" type="text"
+                                    class="w-full border border-gray-300 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                                    placeholder="BG80 BNBG 9661 1020 3456 78">
+                                @error('bankIban') <p class="text-red-600 text-xs mt-1">{{ $message }}</p> @enderror
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">{{ __('BIC / SWIFT') }} <span class="text-gray-400 font-normal text-xs">({{ __('optional') }})</span></label>
+                                <input wire:model="bankBic" type="text"
+                                    class="w-full border border-gray-300 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                                    placeholder="BNBGBGSF">
+                            </div>
+                        @endif
+                        <p class="text-xs text-gray-400">{{ __('Stripe payments can be connected later in Settings → Payments.') }}</p>
+                    @endif
+                </div>
+                <div class="mt-6 flex justify-between">
+                    <button wire:click="previousStep" class="px-4 py-2.5 text-gray-600 hover:text-gray-900 text-sm font-medium">{{ __('← Back') }}</button>
+                    <button wire:click="nextStep" class="px-6 py-2.5 bg-[#0f1117] text-white rounded-xl text-sm font-bold hover:bg-[#1a1f2e]">{{ __('Continue →') }}</button>
+                </div>
+            @endif
+
+            {{-- ─── Step 6: You're All Set ─── --}}
+            @if ($step === 6)
+                <div class="space-y-4">
+                    <div class="grid grid-cols-2 gap-3">
+                        <a href="{{ route('invoices.create') }}"
+                            class="p-4 rounded-xl border border-gray-200 hover:border-amber-300 hover:bg-amber-50 transition-colors text-center">
+                            <div class="text-2xl mb-1">📄</div>
+                            <div class="text-sm font-semibold text-[#0f1117]">{{ __('Create Invoice') }}</div>
+                            <div class="text-xs text-gray-500 mt-0.5">{{ __('Bill your first client') }}</div>
+                        </a>
+                        <a href="{{ route('timer') }}"
+                            class="p-4 rounded-xl border border-gray-200 hover:border-amber-300 hover:bg-amber-50 transition-colors text-center">
+                            <div class="text-2xl mb-1">⏱️</div>
+                            <div class="text-sm font-semibold text-[#0f1117]">{{ __('Start Timer') }}</div>
+                            <div class="text-xs text-gray-500 mt-0.5">{{ __('Track your first hours') }}</div>
+                        </a>
+                        <a href="{{ route('invoices.import') }}"
+                            class="p-4 rounded-xl border border-gray-200 hover:border-amber-300 hover:bg-amber-50 transition-colors text-center">
+                            <div class="text-2xl mb-1">🤖</div>
+                            <div class="text-sm font-semibold text-[#0f1117]">{{ __('Import Document') }}</div>
+                            <div class="text-xs text-gray-500 mt-0.5">{{ __('Let AI read your paperwork') }}</div>
+                        </a>
+                        {{-- Context-aware 4th card --}}
+                        @if ($skipPayment)
+                            <a href="{{ route('settings.index') }}?tab=business"
+                                class="p-4 rounded-xl border border-amber-300 bg-amber-50 transition-colors text-center">
+                                <div class="text-2xl mb-1">🏦</div>
+                                <div class="text-sm font-semibold text-amber-800">{{ __('Add Payment Method') }}</div>
+                                <div class="text-xs text-amber-600 mt-0.5">{{ __('So clients know how to pay') }}</div>
+                            </a>
+                        @elseif ($skipProject)
+                            <a href="{{ route('projects.index') }}"
+                                class="p-4 rounded-xl border border-gray-200 hover:border-amber-300 hover:bg-amber-50 transition-colors text-center">
+                                <div class="text-2xl mb-1">📁</div>
+                                <div class="text-sm font-semibold text-[#0f1117]">{{ __('Create a Project') }}</div>
+                                <div class="text-xs text-gray-500 mt-0.5">{{ __('Set up time tracking') }}</div>
+                            </a>
+                        @else
+                            <a href="{{ route('settings.index') }}"
+                                class="p-4 rounded-xl border border-gray-200 hover:border-amber-300 hover:bg-amber-50 transition-colors text-center">
+                                <div class="text-2xl mb-1">⚙️</div>
+                                <div class="text-sm font-semibold text-[#0f1117]">{{ __('Explore Settings') }}</div>
+                                <div class="text-xs text-gray-500 mt-0.5">{{ __('Customize your account') }}</div>
+                            </a>
+                        @endif
+                    </div>
+                </div>
+                <div class="mt-6 flex justify-center">
                     <button wire:click="complete"
-                        class="px-6 py-2.5 bg-[#0f1117] text-white rounded-xl text-sm font-bold hover:bg-[#1a1f2e]">
-                        {{ __('🚀 Launch InvoiceKit') }}
+                        class="px-8 py-3 text-[#0f1117] rounded-xl text-sm font-bold"
+                        style="background:#f59e0b;">
+                        {{ __('Go to Dashboard →') }}
                     </button>
                 </div>
             @endif
+
         </div>
 
         <p class="text-center text-xs text-gray-400 mt-4">
