@@ -42,6 +42,12 @@ class CreateInvoice extends Component
 
     public ?int $originalInvoiceId = null;
 
+    public ?string $originalInvoiceNumber = null;
+
+    public ?string $originalInvoiceDate = null;
+
+    public string $correctionReason = '';
+
     public string $taxEventDate = '';
 
     public string $issuedByName = '';
@@ -96,6 +102,9 @@ class CreateInvoice extends Component
             $this->vatExemptOverride = $this->vatExemptActive && ! $invoice->vat_exempt_applied;
             $this->documentType = $invoice->document_type ?? 'invoice';
             $this->originalInvoiceId = $invoice->original_invoice_id;
+            $this->originalInvoiceNumber = $invoice->original_invoice_number;
+            $this->originalInvoiceDate = $invoice->original_invoice_date?->toDateString();
+            $this->correctionReason = $invoice->correction_reason ?? '';
             $this->taxEventDate = $invoice->tax_event_date?->format('Y-m-d') ?? '';
             $this->issuedByName = $invoice->issued_by_name ?? '';
             $this->receivedByName = $invoice->received_by_name ?? '';
@@ -221,6 +230,8 @@ class CreateInvoice extends Component
             'invoiceTemplate' => ['required', 'string', 'in:'.implode(',', array_keys(app(\App\Services\InvoiceTemplateService::class)->getAvailableTemplates()))],
             'documentType' => ['required', 'string', 'in:invoice,credit_note,debit_note,proforma'],
             'originalInvoiceId' => ['nullable', 'integer', 'exists:invoices,id'],
+            'originalInvoiceNumber' => ['nullable', 'string', 'max:50'],
+            'correctionReason' => ['nullable', 'string', 'max:500'],
             'taxEventDate' => ['nullable', 'date'],
             'issuedByName' => ['nullable', 'string', 'max:200'],
             'receivedByName' => ['nullable', 'string', 'max:200'],
@@ -289,6 +300,9 @@ class CreateInvoice extends Component
                 'vat_legal_basis' => $exemptNotice,
                 'document_type' => $this->documentType,
                 'original_invoice_id' => $this->originalInvoiceId,
+                'original_invoice_number' => $this->originalInvoiceNumber,
+                'original_invoice_date' => $this->originalInvoiceDate ?: null,
+                'correction_reason' => $this->correctionReason ?: null,
                 'tax_event_date' => $this->taxEventDate ?: null,
                 'issued_by_name' => $this->issuedByName ?: null,
                 'received_by_name' => $this->receivedByName ?: null,
