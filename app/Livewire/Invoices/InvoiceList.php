@@ -5,6 +5,7 @@ namespace App\Livewire\Invoices;
 use App\Models\Client;
 use App\Models\Invoice;
 use App\Notifications\InvoicePaidNotification;
+use App\Services\InvoiceValidationService;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Layout;
@@ -49,9 +50,24 @@ class InvoiceList extends Component
     public function markSent(int $invoiceId): void
     {
         $invoice = Invoice::where('user_id', Auth::id())->findOrFail($invoiceId);
-        if ($invoice->status === 'draft') {
-            $invoice->update(['status' => 'sent']);
+
+        if ($invoice->status !== 'draft') {
+            return;
         }
+
+        // Check validation gate for BG companies
+        $company = Auth::user()->currentCompany;
+        if ($company && in_array(strtoupper($company->country ?? ''), ['BG'])) {
+            $service = new InvoiceValidationService;
+            $invoice->loadMissing(['items', 'client']);
+            if (! $service->canIssue($invoice, $company)) {
+                session()->flash('error', __('Cannot issue: missing required fields'));
+
+                return;
+            }
+        }
+
+        $invoice->update(['status' => 'sent']);
     }
 
     public function markPaid(int $invoiceId): void

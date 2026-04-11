@@ -7,6 +7,7 @@ use App\Models\Invoice;
 use App\Models\InvoiceItem;
 use App\Models\PaymentMethod;
 use App\Services\EuVatService;
+use App\Services\InvoiceValidationService;
 use App\Services\PlanService;
 use App\Services\VatExemptionService;
 use Illuminate\Support\Facades\Auth;
@@ -79,6 +80,10 @@ class CreateInvoice extends Component
 
     public array $vatSummary = [];
 
+    public string $vatLegalBasis = '';
+
+    public bool $legalBasisManuallyEdited = false;
+
     public function mount(?Invoice $invoice = null): void
     {
         $userId = Auth::id();
@@ -118,6 +123,9 @@ class CreateInvoice extends Component
                 'unit_price' => (string) $item->unit_price,
                 'vat_rate_key' => $item->vat_rate_key ?? 'standard',
             ])->toArray();
+            $this->vatLegalBasis = $invoice->vat_legal_basis ?? '';
+            // When editing, treat any existing legal basis as manually set to preserve it
+            $this->legalBasisManuallyEdited = ! empty($this->vatLegalBasis);
         } else {
             $this->issueDate = now()->format('Y-m-d');
             $this->dueDate = now()->addDays(30)->format('Y-m-d');
@@ -178,6 +186,11 @@ class CreateInvoice extends Component
     public function updatedVatExemptOverride(): void
     {
         $this->recalculate();
+    }
+
+    public function updatedVatLegalBasis(): void
+    {
+        $this->legalBasisManuallyEdited = true;
     }
 
     private function selectedClient(): ?Client
@@ -265,6 +278,62 @@ class CreateInvoice extends Component
         }
 
         $this->total = round($subtotal + $this->vatAmount, 2);
+
+        $this->autoPopulateLegalBasis();
+    }
+
+    private function autoPopulateLegalBasis(): void
+    {
+        if ($this->legalBasisManuallyEdited) {
+            return;
+        }
+
+        $legalBases = require base_path('config/vat_legal_bases.php');
+
+        // For reverse_charge: auto-fill with the reverse_charge legal basis text
+        if ($this->vatType === 'reverse_charge') {
+            $text = $legalBases[$this->sellerCountry]['reverse_charge'] ?? null;
+            if ($text) {
+                $this->vatLegalBasis = $text;
+            }
+
+            return;
+        }
+
+        // For standard VAT type: collect zero-rate item keys and look up their legal basis
+        if ($this->vatType === 'standard') {
+            $vatRateService = app(\App\Services\VatRateService::class);
+            $countryBases = $legalBases[$this->sellerCountry] ?? [];
+
+            // Map vat_rate_key values to vat_legal_bases keys where names differ
+            $keyMap = [
+                'zero_export' => 'export_non_eu',
+                'zero_intra_eu' => 'intra_eu_supply',
+            ];
+
+            $texts = [];
+            foreach ($this->items as $item) {
+                $vatRateKey = $item['vat_rate_key'] ?? 'standard';
+                $rate = (float) ($vatRateService->rateForKey($this->sellerCountry, $vatRateKey) ?? 20.0);
+
+                if ($rate === 0.0) {
+                    $legalKey = $keyMap[$vatRateKey] ?? $vatRateKey;
+                    if (isset($countryBases[$legalKey])) {
+                        $text = $countryBases[$legalKey];
+                        if (! in_array($text, $texts, true)) {
+                            $texts[] = $text;
+                        }
+                    }
+                }
+            }
+
+            if (! empty($texts)) {
+                $this->vatLegalBasis = implode('; ', $texts);
+            } else {
+                // No zero-rate items: clear if it was auto-populated
+                $this->vatLegalBasis = '';
+            }
+        }
     }
 
     protected function rules(): array
@@ -313,13 +382,14 @@ class CreateInvoice extends Component
 
         DB::transaction(function () {
             $isExempt = $this->vatExemptActive && ! $this->vatExemptOverride;
-            $exemptNotice = null;
-            if ($isExempt) {
+
+            // When vat-exempt, use the exemption notice if no legal basis was manually set or auto-populated
+            if ($isExempt && empty($this->vatLegalBasis)) {
                 $company = Auth::user()->currentCompany;
-                $exemptNotice = app(VatExemptionService::class)->getInvoiceNotice(
+                $this->vatLegalBasis = app(VatExemptionService::class)->getInvoiceNotice(
                     $this->sellerCountry,
                     $company?->vat_exempt_notice_language ?? 'local'
-                );
+                ) ?? '';
             }
 
             // Calculate BGN VAT equivalent when seller is BG and currency is not BGN
@@ -349,7 +419,7 @@ class CreateInvoice extends Component
                 'total' => $this->total,
                 'notes' => $this->notes ?: null,
                 'vat_exempt_applied' => $isExempt,
-                'vat_legal_basis' => $exemptNotice,
+                'vat_legal_basis' => $this->vatLegalBasis ?: null,
                 'document_type' => $this->documentType,
                 'original_invoice_id' => $this->originalInvoiceId,
                 'original_invoice_number' => $this->originalInvoiceNumber,
@@ -401,6 +471,42 @@ class CreateInvoice extends Component
 
         session()->flash('success', __('Invoice saved successfully.'));
         $this->redirect(route('invoices.index'), navigate: true);
+    }
+
+    #[Computed]
+    public function canIssue(): bool
+    {
+        if (! $this->invoice || ! $this->invoice->exists) {
+            return false;
+        }
+
+        $company = Auth::user()->currentCompany;
+        if (! $company) {
+            return true;
+        }
+
+        $service = new InvoiceValidationService;
+        $this->invoice->loadMissing(['items', 'client']);
+
+        return $service->canIssue($this->invoice, $company);
+    }
+
+    #[Computed]
+    public function validationErrors(): array
+    {
+        if (! $this->invoice || ! $this->invoice->exists) {
+            return [];
+        }
+
+        $company = Auth::user()->currentCompany;
+        if (! $company) {
+            return [];
+        }
+
+        $service = new InvoiceValidationService;
+        $this->invoice->loadMissing(['items', 'client']);
+
+        return $service->validate($this->invoice, $company)->errors();
     }
 
     public function render()
