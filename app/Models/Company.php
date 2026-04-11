@@ -40,12 +40,14 @@ class Company extends Model
         'vat_exempt',
         'vat_exempt_reason',
         'vat_exempt_notice_language',
+        'custom_invoice_rules',
     ];
 
     protected function casts(): array
     {
         return [
             'vat_exempt' => 'boolean',
+            'custom_invoice_rules' => 'array',
         ];
     }
 

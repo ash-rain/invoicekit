@@ -18,6 +18,8 @@ class InvoiceItem extends Model
         'unit_price',
         'vat_rate',
         'total',
+        'vat_rate_key',
+        'place_of_supply',
     ];
 
     protected $casts = [

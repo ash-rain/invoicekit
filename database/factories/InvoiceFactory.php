@@ -33,6 +33,8 @@ class InvoiceFactory extends Factory
             'notes' => null,
             'paid_at' => null,
             'language' => 'en',
+            'payment_due_date' => fake()->dateTimeBetween('+25 days', '+35 days'),
+            'document_type' => 'invoice',
         ];
     }
 
@@ -67,6 +69,35 @@ class InvoiceFactory extends Factory
         return $this->state(fn (array $attributes) => [
             'status' => 'sent',
             'due_date' => now()->addDays(3)->toDateString(),
+        ]);
+    }
+
+    public function creditNote(): static
+    {
+        return $this->state(fn (array $attributes) => [
+            'document_type' => 'credit_note',
+        ]);
+    }
+
+    public function debitNote(): static
+    {
+        return $this->state(fn (array $attributes) => [
+            'document_type' => 'debit_note',
+        ]);
+    }
+
+    public function proforma(): static
+    {
+        return $this->state(fn (array $attributes) => [
+            'document_type' => 'proforma',
+        ]);
+    }
+
+    public function cancelled(): static
+    {
+        return $this->state(fn (array $attributes) => [
+            'cancelled_at' => now(),
+            'cancellation_reason' => 'Test cancellation',
         ]);
     }
 }

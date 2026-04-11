@@ -286,7 +286,7 @@ class CreateInvoice extends Component
                 'total' => $this->total,
                 'notes' => $this->notes ?: null,
                 'vat_exempt_applied' => $isExempt,
-                'vat_exempt_notice' => $exemptNotice,
+                'vat_legal_basis' => $exemptNotice,
                 'document_type' => $this->documentType,
                 'original_invoice_id' => $this->originalInvoiceId,
                 'tax_event_date' => $this->taxEventDate ?: null,

@@ -63,7 +63,7 @@ class VatExemptInvoiceTest extends TestCase
 
         $this->assertNotNull($invoice);
         $this->assertTrue((bool) $invoice->vat_exempt_applied);
-        $this->assertNotNull($invoice->vat_exempt_notice);
+        $this->assertNotNull($invoice->vat_legal_basis);
         $this->assertSame(0.0, (float) $invoice->vat_amount);
         $this->assertSame(500.0, (float) $invoice->total);
     }

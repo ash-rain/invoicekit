@@ -23,6 +23,7 @@ class InvoiceItemFactory extends Factory
             'unit_price' => $unitPrice,
             'vat_rate' => 19.0,
             'total' => $total,
+            'vat_rate_key' => 'standard',
         ];
     }
 }

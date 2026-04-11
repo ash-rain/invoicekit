@@ -28,7 +28,7 @@ class Invoice extends Model
         'vat_type',
         'language',
         'vat_exempt_applied',
-        'vat_exempt_notice',
+        'vat_legal_basis',
         'stripe_payment_link_url',
         'template',
         'document_type',
@@ -41,6 +41,11 @@ class Invoice extends Model
         'vat_amount_bgn',
         'payment_method_id',
         'payment_method_snapshot',
+        'vat_summary',
+        'payment_due_date',
+        'correction_reason',
+        'original_invoice_number',
+        'original_invoice_date',
     ];
 
     protected $casts = [
@@ -56,6 +61,9 @@ class Invoice extends Model
         'vat_amount_bgn' => 'decimal:2',
         'vat_exempt_applied' => 'boolean',
         'payment_method_snapshot' => 'array',
+        'payment_due_date' => 'date',
+        'original_invoice_date' => 'date',
+        'vat_summary' => 'array',
     ];
 
     public function user(): BelongsTo

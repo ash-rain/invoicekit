@@ -486,9 +486,9 @@
 
         {{-- VAT Notice --}}
         @php $vatType = $invoice->vat_type ?? 'standard'; @endphp
-        @if ($invoice->vat_exempt_applied && $invoice->vat_exempt_notice)
+        @if ($invoice->vat_exempt_applied && $invoice->vat_legal_basis)
             <div class="vat-notice exempt">
-                {!! nl2br(e($invoice->vat_exempt_notice)) !!}
+                {!! nl2br(e($invoice->vat_legal_basis)) !!}
             </div>
         @elseif($vatType === 'reverse_charge')
             <div class="vat-notice reverse-charge">
