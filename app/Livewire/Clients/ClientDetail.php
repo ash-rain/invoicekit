@@ -5,6 +5,7 @@ namespace App\Livewire\Clients;
 use App\Models\Client;
 use App\Models\Expense;
 use App\Models\Invoice;
+use App\Services\InvoiceValidationService;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Layout;
@@ -22,6 +23,21 @@ class ClientDetail extends Component
         }
 
         $this->client = $client;
+    }
+
+    #[Computed]
+    public function completeness(): array
+    {
+        $service = new InvoiceValidationService;
+        $company = Auth::user()->currentCompany;
+        $sellerCountry = $company?->country ?? 'BG';
+        $validation = $service->clientCompleteness($this->client, $sellerCountry);
+
+        return [
+            'passes' => $validation->passes(),
+            'errors' => $validation->errors(),
+            'warnings' => $validation->warnings(),
+        ];
     }
 
     #[Computed]
