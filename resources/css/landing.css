@@ -1671,6 +1671,97 @@ details[open] summary.fq-q::after {
     transition-delay: .48s
 }
 
+/* ===== FEATURE GROUPS ===== */
+.feat-groups {
+    border-top: 1px solid var(--border)
+}
+
+.feat-group-block {
+    border-bottom: 1px solid var(--border)
+}
+
+.feat-group-hdr {
+    margin-bottom: 2.5rem
+}
+
+.feat-group-tag {
+    color: var(--amber)
+}
+
+.feat-group-title {
+    font-size: clamp(1.35rem, 2.4vw, 1.85rem);
+    font-weight: 800;
+    letter-spacing: -.02em;
+    line-height: 1.25;
+    margin-bottom: .55rem
+}
+
+.feat-group-sub {
+    max-width: 540px
+}
+
+.feat-4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.15rem
+}
+
+/* ===== COMPLIANCE SPOTLIGHT ===== */
+.compliance-section {
+    background: var(--bg1);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border)
+}
+
+.compliance-card-wrap {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0 2rem 5rem
+}
+
+.compliance-card {
+    background: rgba(245, 158, 11, .06);
+    border: 1px solid rgba(245, 158, 11, .25);
+    border-radius: var(--rl);
+    padding: 2.25rem
+}
+
+.compliance-card-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 1.25rem
+}
+
+.compliance-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: .85rem
+}
+
+.compliance-item {
+    display: flex;
+    align-items: flex-start;
+    gap: .75rem;
+    font-size: .92rem;
+    color: var(--muted);
+    line-height: 1.6
+}
+
+.compliance-check {
+    color: var(--amber);
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: .05em
+}
+
+.compliance-more {
+    text-align: center;
+    font-size: .82rem;
+    color: var(--subtle);
+    margin-top: 1.25rem
+}
+
 /* ===== RESPONSIVE ===== */
 @media(max-width:960px) {
     .hero-container {
@@ -1684,6 +1775,10 @@ details[open] summary.fq-q::after {
     }
 
     .feat-grid {
+        grid-template-columns: repeat(2, 1fr)
+    }
+
+    .feat-4 {
         grid-template-columns: repeat(2, 1fr)
     }
 
@@ -1734,6 +1829,10 @@ details[open] summary.fq-q::after {
     }
 
     .feat-mini {
+        grid-template-columns: 1fr
+    }
+
+    .feat-4 {
         grid-template-columns: 1fr
     }
 

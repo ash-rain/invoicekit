@@ -331,85 +331,87 @@
     {{-- ═══════════════════════════════════════════════════════════════ --}}
     {{-- SECTION: FEATURE GROUPS                                        --}}
     {{-- ═══════════════════════════════════════════════════════════════ --}}
-    <section id="features" class="py-20 bg-white">
-        <div class="max-w-6xl mx-auto px-4">
-            <div class="text-center mb-16">
-                <span class="inline-block px-3 py-1 text-xs font-semibold uppercase tracking-widest text-amber-600 bg-amber-50 rounded-full mb-4">{{ $g('features_tag') }}</span>
-                <h2 class="text-3xl md:text-4xl font-bold text-[#0f1117] mb-4" style="font-family:'Syne',sans-serif;">{{ $g('features_title') }}</h2>
-                <p class="text-gray-500 text-lg max-w-2xl mx-auto">{{ $g('features_subtitle') }}</p>
-            </div>
-
-            @php
-            $featureGroups = [
-                [
-                    'tag'      => 'group_invoicing_tag',
-                    'title'    => 'group_invoicing_title',
-                    'subtitle' => 'group_invoicing_subtitle',
-                    'features' => [
-                        ['icon' => '📄', 'title' => 'f1_title', 'desc' => 'f1_desc'],
-                        ['icon' => '↩️', 'title' => 'f2_title', 'desc' => 'f2_desc'],
-                        ['icon' => '🔁', 'title' => 'f3_title', 'desc' => 'f3_desc'],
-                        ['icon' => '🏛️', 'title' => 'f4_title', 'desc' => 'f4_desc'],
-                    ],
-                ],
-                [
-                    'tag'      => 'group_compliance_tag',
-                    'title'    => 'group_compliance_title',
-                    'subtitle' => 'group_compliance_subtitle',
-                    'features' => [
-                        ['icon' => '🇪🇺', 'title' => 'f5_title', 'desc' => 'f5_desc'],
-                        ['icon' => '✅', 'title' => 'f6_title', 'desc' => 'f6_desc'],
-                        ['icon' => '📊', 'title' => 'f7_title', 'desc' => 'f7_desc'],
-                        ['icon' => '🛡️', 'title' => 'f8_title', 'desc' => 'f8_desc'],
-                    ],
-                ],
-                [
-                    'tag'      => 'group_payments_tag',
-                    'title'    => 'group_payments_title',
-                    'subtitle' => 'group_payments_subtitle',
-                    'features' => [
-                        ['icon' => '💳', 'title' => 'f9_title', 'desc' => 'f9_desc'],
-                        ['icon' => '🏦', 'title' => 'f10_title', 'desc' => 'f10_desc'],
-                        ['icon' => '💱', 'title' => 'f11_title', 'desc' => 'f11_desc'],
-                        ['icon' => '🔍', 'title' => 'f12_title', 'desc' => 'f12_desc'],
-                    ],
-                ],
-                [
-                    'tag'      => 'group_productivity_tag',
-                    'title'    => 'group_productivity_title',
-                    'subtitle' => 'group_productivity_subtitle',
-                    'features' => [
-                        ['icon' => '⏱️', 'title' => 'f13_title', 'desc' => 'f13_desc'],
-                        ['icon' => '🧾', 'title' => 'f14_title', 'desc' => 'f14_desc'],
-                        ['icon' => '🤖', 'title' => 'f15_title', 'desc' => 'f15_desc'],
-                        ['icon' => '📱', 'title' => 'f16_title', 'desc' => 'f16_desc'],
-                    ],
-                ],
-            ];
-            @endphp
-
-            <div class="space-y-20">
-                @foreach ($featureGroups as $group)
-                <div>
-                    <div class="mb-8">
-                        <span class="inline-block px-3 py-1 text-xs font-semibold uppercase tracking-widest text-amber-600 bg-amber-50 rounded-full mb-3">{{ $g($group['tag']) }}</span>
-                        <h3 class="text-2xl font-bold text-[#0f1117] mb-2" style="font-family:'Syne',sans-serif;">{{ $g($group['title']) }}</h3>
-                        <p class="text-gray-500 max-w-2xl">{{ $g($group['subtitle']) }}</p>
-                    </div>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                        @foreach ($group['features'] as $feature)
-                        <div class="p-6 rounded-2xl border border-gray-100 bg-gray-50 hover:border-amber-200 hover:bg-amber-50 transition-colors">
-                            <div class="text-2xl mb-3">{{ $feature['icon'] }}</div>
-                            <h4 class="font-bold text-[#0f1117] mb-2">{{ $g($feature['title']) }}</h4>
-                            <p class="text-gray-500 text-sm leading-relaxed">{{ $g($feature['desc']) }}</p>
-                        </div>
-                        @endforeach
-                    </div>
-                </div>
-                @endforeach
-            </div>
+    <div id="features">
+        <div class="section tcenter">
+            <div class="s-tag">✦ {!! $g('features_tag') !!}</div>
+            <h2 class="s-title">{!! $g('features_title') !!}</h2>
+            <p class="s-sub center">{!! $g('features_subtitle') !!}</p>
         </div>
-    </section>
+
+        @php
+        $featureGroups = [
+            [
+                'tag'      => 'group_invoicing_tag',
+                'title'    => 'group_invoicing_title',
+                'subtitle' => 'group_invoicing_subtitle',
+                'color'    => 'icon-indigo',
+                'features' => [
+                    ['icon' => '📄', 'title' => 'f1_title', 'desc' => 'f1_desc'],
+                    ['icon' => '↩️', 'title' => 'f2_title', 'desc' => 'f2_desc'],
+                    ['icon' => '🔁', 'title' => 'f3_title', 'desc' => 'f3_desc'],
+                    ['icon' => '🏛️', 'title' => 'f4_title', 'desc' => 'f4_desc'],
+                ],
+            ],
+            [
+                'tag'      => 'group_compliance_tag',
+                'title'    => 'group_compliance_title',
+                'subtitle' => 'group_compliance_subtitle',
+                'color'    => 'icon-amber',
+                'features' => [
+                    ['icon' => '🇪🇺', 'title' => 'f5_title', 'desc' => 'f5_desc'],
+                    ['icon' => '✅', 'title' => 'f6_title', 'desc' => 'f6_desc'],
+                    ['icon' => '📊', 'title' => 'f7_title', 'desc' => 'f7_desc'],
+                    ['icon' => '🛡️', 'title' => 'f8_title', 'desc' => 'f8_desc'],
+                ],
+            ],
+            [
+                'tag'      => 'group_payments_tag',
+                'title'    => 'group_payments_title',
+                'subtitle' => 'group_payments_subtitle',
+                'color'    => 'icon-teal',
+                'features' => [
+                    ['icon' => '💳', 'title' => 'f9_title', 'desc' => 'f9_desc'],
+                    ['icon' => '🏦', 'title' => 'f10_title', 'desc' => 'f10_desc'],
+                    ['icon' => '💱', 'title' => 'f11_title', 'desc' => 'f11_desc'],
+                    ['icon' => '🔍', 'title' => 'f12_title', 'desc' => 'f12_desc'],
+                ],
+            ],
+            [
+                'tag'      => 'group_productivity_tag',
+                'title'    => 'group_productivity_title',
+                'subtitle' => 'group_productivity_subtitle',
+                'color'    => 'icon-violet',
+                'features' => [
+                    ['icon' => '⏱️', 'title' => 'f13_title', 'desc' => 'f13_desc'],
+                    ['icon' => '🧾', 'title' => 'f14_title', 'desc' => 'f14_desc'],
+                    ['icon' => '🤖', 'title' => 'f15_title', 'desc' => 'f15_desc'],
+                    ['icon' => '📱', 'title' => 'f16_title', 'desc' => 'f16_desc'],
+                ],
+            ],
+        ];
+        @endphp
+
+        <div class="feat-groups">
+            @foreach ($featureGroups as $group)
+            <div class="section feat-group-block">
+                <div class="feat-group-hdr">
+                    <div class="s-tag feat-group-tag">✦ {!! $g($group['tag']) !!}</div>
+                    <h3 class="feat-group-title">{!! $g($group['title']) !!}</h3>
+                    <p class="s-sub feat-group-sub">{!! $g($group['subtitle']) !!}</p>
+                </div>
+                <div class="feat-4">
+                    @foreach ($group['features'] as $feature)
+                    <div class="fc">
+                        <div class="fc-icon {{ $group['color'] }}">{{ $feature['icon'] }}</div>
+                        <div class="fc-title">{!! $g($feature['title']) !!}</div>
+                        <div class="fc-desc">{!! $g($feature['desc']) !!}</div>
+                    </div>
+                    @endforeach
+                </div>
+            </div>
+            @endforeach
+        </div>
+    </div>
 
     <!-- ====== AI IMPORT ====== -->
     <div class="pay-section sfull ai-import-section"
@@ -523,32 +525,27 @@
     {{-- ═══════════════════════════════════════════════════════════════ --}}
     {{-- SECTION: COMPLIANCE SPOTLIGHT                                  --}}
     {{-- ═══════════════════════════════════════════════════════════════ --}}
-    <section class="py-20 bg-[#0f1117] text-white">
-        <div class="max-w-6xl mx-auto px-4">
-            <div class="text-center mb-12">
-                <span class="inline-block px-3 py-1 text-xs font-semibold uppercase tracking-widest text-amber-400 bg-amber-400/10 rounded-full mb-4">{{ $g('compliance_tag') }}</span>
-                <h2 class="text-3xl md:text-4xl font-bold mb-4" style="font-family:'Syne',sans-serif;">{{ $g('compliance_title') }}</h2>
-                <p class="text-gray-400 text-lg max-w-2xl mx-auto">{{ $g('compliance_subtitle') }}</p>
-            </div>
-
-            <div class="max-w-2xl mx-auto">
-                <div class="rounded-2xl border border-amber-500/30 bg-amber-500/5 p-8">
-                    <h3 class="text-xl font-bold mb-6">{{ $g('compliance_bg_title') }}</h3>
-                    <ul class="space-y-3">
-                        @foreach (['compliance_bg_item1','compliance_bg_item2','compliance_bg_item3','compliance_bg_item4','compliance_bg_item5'] as $itemKey)
-                        <li class="flex items-start gap-3">
-                            <svg class="w-5 h-5 text-amber-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-                            </svg>
-                            <span class="text-gray-300">{{ $g($itemKey) }}</span>
-                        </li>
-                        @endforeach
-                    </ul>
-                </div>
-                <p class="text-center text-gray-500 text-sm mt-6">{{ $g('compliance_more') }}</p>
-            </div>
+    <div class="compliance-section sfull">
+        <div class="section tcenter">
+            <div class="s-tag" style="color:var(--amber)">✦ {!! $g('compliance_tag') !!}</div>
+            <h2 class="s-title">{!! $g('compliance_title') !!}</h2>
+            <p class="s-sub center">{!! $g('compliance_subtitle') !!}</p>
         </div>
-    </section>
+        <div class="compliance-card-wrap">
+            <div class="compliance-card">
+                <div class="compliance-card-title">{!! $g('compliance_bg_title') !!}</div>
+                <ul class="compliance-list">
+                    @foreach (['compliance_bg_item1','compliance_bg_item2','compliance_bg_item3','compliance_bg_item4','compliance_bg_item5'] as $itemKey)
+                    <li class="compliance-item">
+                        <span class="compliance-check">✓</span>
+                        <span>{!! $g($itemKey) !!}</span>
+                    </li>
+                    @endforeach
+                </ul>
+            </div>
+            <p class="compliance-more">{!! $g('compliance_more') !!}</p>
+        </div>
+    </div>
 
     <!-- ====== ONLINE PAYMENTS ====== -->
     <div class="pay-section sfull">
