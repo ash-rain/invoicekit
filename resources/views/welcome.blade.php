@@ -625,12 +625,9 @@
                 <div class="p-period">{!! $g('p_free_period') !!}</div>
                 <div class="p-desc">{!! $g('p_free_desc') !!}</div>
                 <ul class="p-feats">
-                    <li>{!! $g('p_free_l1') !!}</li>
-                    <li>{!! $g('p_free_l2') !!}</li>
-                    <li>{!! $g('p_free_l3') !!}</li>
-                    <li>{!! $g('p_free_l4') !!}</li>
-                    <li>{!! $g('p_free_l5') !!}</li>
-                    <li>{!! $g('p_free_l6') !!}</li>
+                    @foreach (['p_free_l1','p_free_l2','p_free_l3','p_free_l4','p_free_l5','p_free_l6','p_free_l7','p_free_l8'] as $k)
+                        <li>{!! $g($k) !!}</li>
+                    @endforeach
                 </ul>
                 <a href="/register" class="p-cta p-out">{!! $g('p_free_cta') !!}</a>
             </div>
@@ -641,13 +638,9 @@
                 <div class="p-period">{!! $g('p_starter_period') !!}</div>
                 <div class="p-desc">{!! $g('p_starter_desc') !!}</div>
                 <ul class="p-feats">
-                    <li>{!! $g('p_starter_l1') !!}</li>
-                    <li>{!! $g('p_starter_l2') !!}</li>
-                    <li>{!! $g('p_starter_l3') !!}</li>
-                    <li>{!! $g('p_starter_l4') !!}</li>
-                    <li>{!! $g('p_starter_l5') !!}</li>
-                    <li>{!! $g('p_starter_l6') !!}</li>
-                    <li>{!! $g('p_starter_l7') !!}</li>
+                    @foreach (['p_starter_l1','p_starter_l2','p_starter_l3','p_starter_l4','p_starter_l5','p_starter_l6','p_starter_l7','p_starter_l8','p_starter_l9'] as $k)
+                        <li>{!! $g($k) !!}</li>
+                    @endforeach
                 </ul>
                 <a href="/register" class="p-cta p-pri">{!! $g('p_starter_cta') !!}</a>
             </div>
@@ -657,14 +650,9 @@
                 <div class="p-period">{!! $g('p_pro_period') !!}</div>
                 <div class="p-desc">{!! $g('p_pro_desc') !!}</div>
                 <ul class="p-feats">
-                    <li>{!! $g('p_pro_l1') !!}</li>
-                    <li>{!! $g('p_pro_l2') !!}</li>
-                    <li>{!! $g('p_pro_l3') !!}</li>
-                    <li>{!! $g('p_pro_l4') !!}</li>
-                    <li>{!! $g('p_pro_l5') !!}</li>
-                    <li>{!! $g('p_pro_l6') !!}</li>
-                    <li>{!! $g('p_pro_l7') !!}</li>
-                    <li>{!! $g('p_pro_l8') !!}</li>
+                    @foreach (['p_pro_l1','p_pro_l2','p_pro_l3','p_pro_l4','p_pro_l5','p_pro_l6','p_pro_l7','p_pro_l8','p_pro_l9','p_pro_l10','p_pro_l11','p_pro_l12'] as $k)
+                        <li>{!! $g($k) !!}</li>
+                    @endforeach
                 </ul>
                 <a href="/register" class="p-cta p-out">{!! $g('p_pro_cta') !!}</a>
             </div>
@@ -692,11 +680,19 @@
             <h2 class="s-title">{!! $g('faq_title') !!}</h2>
         </div>
         <div class="faq-list">
-            @foreach (range(1, 7) as $n)
-                <details class="fq fade-up">
-                    <summary class="fq-q">{!! $g("faq{$n}_q") !!}</summary>
-                    <div class="fq-a">{!! $g("faq{$n}_a") !!}</div>
-                </details>
+            @php $faqs = range(1, 11); @endphp
+            @foreach ($faqs as $i)
+            <div x-data="{ open: false }" class="border-b border-gray-100">
+                <button @click="open = !open" class="w-full text-left py-5 flex justify-between items-center">
+                    <span class="font-semibold text-[#0f1117]">{{ $g("faq{$i}_q") }}</span>
+                    <svg class="w-5 h-5 text-gray-400 transition-transform" :class="{ 'rotate-180': open }" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                </button>
+                <div x-show="open" x-collapse class="pb-5 text-gray-500 text-sm leading-relaxed">
+                    {!! $gnl("faq{$i}_a") !!}
+                </div>
+            </div>
             @endforeach
         </div>
     </section>
