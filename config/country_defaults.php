@@ -40,7 +40,7 @@ return [
     ],
 
     'BG' => [
-        'currency' => 'BGN',
+        'currency' => 'EUR',
         'language' => 'bg',
         'invoice_numbering_format' => 'bg_sequential',
         'vat_exempt_default' => true,

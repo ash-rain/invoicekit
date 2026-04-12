@@ -192,12 +192,6 @@
             </div>
         </form>
 
-        {{-- Payment Methods --}}
-        <div class="mt-6 bg-white rounded-2xl border border-[#eaecf0] p-6">
-            <h3 class="text-sm font-bold text-gray-900 mb-4">{{ __('Payment Methods') }}</h3>
-            <p class="text-xs text-gray-500 mb-4">{{ __('Manage bank accounts and payment methods displayed on your invoices.') }}</p>
-            @livewire('settings.payment-methods')
-        </div>
     </div>
 
     {{-- ── INVOICING TAB ─────────────────────────────────────────────────────── --}}
@@ -607,36 +601,13 @@
             @endif
         </div>
 
-        {{-- Payment Methods Overview --}}
+        {{-- Payment Methods --}}
         <div class="mt-6 bg-white rounded-2xl border border-[#eaecf0] p-6">
             <h2 class="text-base font-semibold text-[#0f1117] mb-1" style="font-family:'Syne',sans-serif;">
                 {{ __('Payment Methods') }}
             </h2>
-            <p class="text-sm text-gray-500 mb-4">
-                {{ __('Payment methods shown on invoices and the client portal. Manage them in the Business tab.') }}
-            </p>
-            @php $paymentMethodsList = auth()->user()->currentCompany?->paymentMethods ?? collect(); @endphp
-            @if ($paymentMethodsList->count() > 0)
-                <div class="space-y-2">
-                    @foreach ($paymentMethodsList as $pm)
-                        <div class="flex items-center gap-2 text-sm">
-                            <span class="inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium {{ match($pm->type) { 'bank_transfer' => 'bg-blue-50 text-blue-700', 'stripe' => 'bg-purple-50 text-purple-700', 'cash' => 'bg-green-50 text-green-700', default => 'bg-gray-100 text-gray-600' } }}">
-                                {{ match($pm->type) { 'bank_transfer' => __('Bank Transfer'), 'stripe' => 'Stripe', 'cash' => __('Cash'), default => $pm->type } }}
-                            </span>
-                            <span class="text-gray-900">{{ $pm->displayLabel() }}</span>
-                            @if ($pm->is_default)
-                                <span class="text-xs text-indigo-600 font-medium">({{ __('Default') }})</span>
-                            @endif
-                        </div>
-                    @endforeach
-                </div>
-            @else
-                <p class="text-sm text-gray-400 italic">
-                    {{ __('No payment methods on file. Add them in the') }}
-                    <button type="button" wire:click="$set('activeTab', 'business')"
-                        class="text-indigo-600 hover:underline">{{ __('Business tab') }}</button>.
-                </p>
-            @endif
+            <p class="text-sm text-gray-500 mb-4">{{ __('Manage bank accounts and payment methods displayed on your invoices.') }}</p>
+            @livewire('settings.payment-methods')
         </div>
 
     </div>

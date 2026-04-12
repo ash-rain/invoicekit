@@ -13,7 +13,7 @@ use Livewire\Attributes\Computed;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 
-#[Layout('layouts.guest')]
+#[Layout('layouts.fullscreen')]
 class OnboardingWizard extends Component
 {
     public int $step = 1;
@@ -362,7 +362,7 @@ class OnboardingWizard extends Component
             'registrationNumber' => ['nullable', 'string', 'max:50'],
         ];
 
-        if ($this->isEuCountry) {
+        if ($this->isEuCountry && ! $this->vatExempt) {
             $rules['vatNumber'] = ['required', 'string', 'max:20'];
         }
 
