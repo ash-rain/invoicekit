@@ -117,16 +117,22 @@
 
     <div class="container">
         <h1>Terms of Service</h1>
-        <p class="updated">Last updated: March 2026</p>
+        <p class="updated">Last updated: April 2026</p>
 
         <p>These Terms of Service ("Terms") govern your use of InvoiceKit (the "Service"). By creating an account you
             agree to these Terms.</p>
 
-        <h2>1. Description of Service</h2>
-        <p>InvoiceKit is a SaaS platform for invoicing and time tracking designed for EU-based freelancers. Features
-            vary by subscription plan.</p>
+        <h2>1. Service Operator</h2>
+        <p>InvoiceKit is operated by <strong>NetShell Ltd.</strong> ("we", "us", "our"). NetShell is the data
+            controller, the contracting party for your subscription, and the entity responsible for the Service under
+            applicable law. References to "InvoiceKit" throughout these Terms refer to NetShell Ltd. acting as operator
+            of the Service.</p>
 
-        <h2>2. Account Responsibilities</h2>
+        <h2>2. Description of Service</h2>
+        <p>InvoiceKit is a SaaS platform for invoicing and time tracking designed for EU-based freelancers and small
+            businesses. Features vary by subscription plan.</p>
+
+        <h2>3. Account Responsibilities</h2>
         <ul>
             <li>You must provide accurate registration information.</li>
             <li>You are responsible for keeping your password secure.</li>
@@ -134,31 +140,37 @@
             <li>You must be at least 18 years old to use the Service.</li>
         </ul>
 
-        <h2>3. Subscription Plans and Billing</h2>
-        <p>InvoiceKit offers Free, Starter (€15/month), and Pro (€29/month) plans. Payments are processed by Stripe.
-            Subscriptions renew automatically. You may cancel at any time; cancellation takes effect at the end of the
-            billing period.</p>
+        <h2>4. Subscription Plans and Billing</h2>
+        <p>InvoiceKit offers Free, Starter, and Pro plans. Current pricing is displayed on the <a href="{{ url('/#pricing') }}">pricing page</a> and within the application. Subscriptions renew automatically. You may cancel at any time; cancellation takes effect at the end of the billing period.</p>
 
-        <h2>4. Acceptable Use</h2>
+        <h2>5. Payment Processing — Stripe</h2>
+        <p>Subscription payments are processed by <strong>Stripe, Inc.</strong> Stripe is an independent third-party payment processor. NetShell is not responsible for Stripe's systems, availability, or any errors in payment processing. Your payment data is held by Stripe under <a href="https://stripe.com/privacy" target="_blank" rel="noopener">Stripe's Privacy Policy</a> and is never stored on InvoiceKit's servers. Disputes about charges should be directed to <a href="mailto:billing@invoicekit.eu">billing@invoicekit.eu</a>; we will liaise with Stripe on your behalf where possible.</p>
+
+        <h2>6. Infrastructure — Hetzner</h2>
+        <p>The Service is hosted on servers provided by <strong>Hetzner Online GmbH</strong>. Hetzner is responsible for the physical infrastructure and data-centre operations. NetShell is not liable for outages, data loss, or service interruptions caused by Hetzner's infrastructure failures, though we will make reasonable efforts to maintain availability and communicate incidents promptly.</p>
+
+        <h2>7. Acceptable Use</h2>
         <p>You may not use the Service for any unlawful purpose, including VAT fraud. You may not reverse-engineer,
             resell, or redistribute the Service.</p>
 
-        <h2>5. Data and Privacy</h2>
+        <h2>8. Data and Privacy</h2>
         <p>We handle your data in accordance with our <a href="{{ url('/privacy') }}">Privacy Policy</a>. You own your
             business data; we process it only to provide the Service.</p>
 
-        <h2>6. VAT Compliance Notice</h2>
+        <h2>9. VAT Compliance Notice</h2>
         <p>InvoiceKit automates VAT calculations based on the rules you configure. You remain responsible for the
             accuracy of VAT information submitted to tax authorities. InvoiceKit is not a tax advisor.</p>
 
-        <h2>7. Limitation of Liability</h2>
-        <p>To the maximum extent permitted by law, InvoiceKit is not liable for indirect, incidental, or consequential
-            damages arising from your use of the Service.</p>
+        <h2>10. Limitation of Liability</h2>
+        <p>To the maximum extent permitted by law, NetShell Ltd. is not liable for indirect, incidental, or
+            consequential damages arising from your use of the Service, including any issues originating from
+            third-party providers such as Stripe or Hetzner.</p>
 
-        <h2>8. Governing Law</h2>
-        <p>These Terms are governed by EU law and the laws of the country in which InvoiceKit is registered.</p>
+        <h2>11. Governing Law</h2>
+        <p>These Terms are governed by the laws of the jurisdiction in which NetShell Ltd. is registered. Any disputes
+            shall be subject to the exclusive jurisdiction of the courts of that jurisdiction.</p>
 
-        <h2>9. Contact</h2>
+        <h2>12. Contact</h2>
         <p>For questions about these Terms, contact <a href="mailto:legal@invoicekit.eu">legal@invoicekit.eu</a>.</p>
     </div>
 
