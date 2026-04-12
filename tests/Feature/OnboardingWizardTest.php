@@ -4,8 +4,6 @@ namespace Tests\Feature;
 
 use App\Livewire\OnboardingWizard;
 use App\Models\Client;
-use App\Models\Company;
-use App\Models\PaymentMethod;
 use App\Models\Project;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;

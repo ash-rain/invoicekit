@@ -115,8 +115,11 @@
                     <option value="">{{ __('— Company default —') }}</option>
                     @foreach ($paymentMethods as $pm)
                         <option value="{{ $pm->id }}">
-                            {{ $pm->displayLabel() }} ({{ match($pm->type) { 'bank_transfer' => __('Bank Transfer'), 'stripe' => 'Stripe', 'cash' => __('Cash'), default => $pm->type } }})
-                            @if ($pm->is_default) — {{ __('Default') }}@endif
+                            {{ $pm->displayLabel() }}
+                            ({{ match ($pm->type) {'bank_transfer' => __('Bank Transfer'),'stripe' => 'Stripe','cash' => __('Cash'),default => $pm->type} }})
+                            @if ($pm->is_default)
+                                — {{ __('Default') }}
+                            @endif
                         </option>
                     @endforeach
                 </select>
@@ -205,8 +208,7 @@
                     <label class="block text-sm font-medium text-gray-700 mb-1">
                         {{ __('To Invoice No.') }} <span class="text-red-500">*</span>
                     </label>
-                    <input wire:model="originalInvoiceId" type="number"
-                        placeholder="{{ __('Original invoice ID') }}"
+                    <input wire:model="originalInvoiceId" type="number" placeholder="{{ __('Original invoice ID') }}"
                         class="w-full border border-gray-300 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 @error('originalInvoiceId') border-red-400 @enderror" />
                     @error('originalInvoiceId')
                         <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
@@ -237,76 +239,81 @@
 
         {{-- Line items --}}
         <div class="bg-white rounded-2xl border border-[#eaecf0] overflow-hidden">
-            <div class="px-6 py-4 border-b border-[#eaecf0]">
+            <div class="px-4 py-3 md:px-6 md:py-4 border-b border-[#eaecf0]">
                 <h3 class="text-sm font-bold text-gray-900">{{ __('Line Items') }}</h3>
             </div>
 
-            <table class="min-w-full">
-                <thead class="bg-[#fafafa]">
-                    <tr>
-                        <th class="px-4 py-3 text-left text-[10px] font-bold uppercase tracking-wider text-gray-400">
-                            {{ __('Description') }}</th>
-                        <th
-                            class="px-4 py-3 text-left text-[10px] font-bold uppercase tracking-wider text-gray-400 w-24">
-                            {{ __('Unit') }}</th>
-                        <th
-                            class="px-4 py-3 text-right text-[10px] font-bold uppercase tracking-wider text-gray-400 w-24">
-                            {{ __('Qty') }}</th>
-                        <th
-                            class="px-4 py-3 text-right text-[10px] font-bold uppercase tracking-wider text-gray-400 w-32">
-                            {{ __('Unit Price') }}</th>
-                        <th
-                            class="px-4 py-3 text-right text-[10px] font-bold uppercase tracking-wider text-gray-400 w-32">
-                            {{ __('Line Total') }}</th>
-                        <th class="px-4 py-3 w-10"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($this->items as $i => $item)
-                        <tr class="border-t border-[#f3f4f6]" wire:key="item-{{ $i }}">
-                            <td class="px-4 py-2.5">
-                                <input wire:model.live="items.{{ $i }}.description" type="text"
-                                    placeholder="{{ __('Service description') }}"
-                                    class="w-full border border-gray-200 rounded-lg px-2 py-1.5 text-sm focus:outline-none focus:ring-1 focus:ring-indigo-400 @error('items.' . $i . '.description') border-red-400 @enderror" />
-                                @error('items.' . $i . '.description')
-                                    <p class="text-xs text-red-500">{{ $message }}</p>
-                                @enderror
-                            </td>
-                            <td class="px-4 py-2.5">
-                                <input wire:model="items.{{ $i }}.unit" type="text"
-                                    placeholder="{{ __('pcs.') }}"
-                                    class="w-full border border-gray-200 rounded-lg px-2 py-1.5 text-sm focus:outline-none focus:ring-1 focus:ring-indigo-400" />
-                            </td>
-                            <td class="px-4 py-2.5">
-                                <input wire:model.live="items.{{ $i }}.quantity" type="number"
-                                    step="0.01" min="0.01"
-                                    class="w-full border border-gray-200 rounded-lg px-2 py-1.5 text-sm text-right focus:outline-none focus:ring-1 focus:ring-indigo-400 @error('items.' . $i . '.quantity') border-red-400 @enderror" />
-                            </td>
-                            <td class="px-4 py-2.5">
-                                <input wire:model.live="items.{{ $i }}.unit_price" type="number"
-                                    step="0.01" min="0"
-                                    class="w-full border border-gray-200 rounded-lg px-2 py-1.5 text-sm text-right focus:outline-none focus:ring-1 focus:ring-indigo-400 @error('items.' . $i . '.unit_price') border-red-400 @enderror" />
-                            </td>
-                            <td class="px-4 py-2.5 text-right text-sm font-medium text-gray-700">
-                                {{ number_format((float) ($item['quantity'] ?? 0) * (float) ($item['unit_price'] ?? 0), 2) }}
-                            </td>
-                            <td class="px-4 py-2.5 text-center">
-                                @if (count($this->items) > 1)
-                                    <button type="button" wire:click="removeItem({{ $i }})"
-                                        class="text-red-400 hover:text-red-600">
-                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M6 18L18 6M6 6l12 12" />
-                                        </svg>
-                                    </button>
-                                @endif
-                            </td>
+            <div class="overflow-x-auto">
+                <table class="min-w-full">
+                    <thead class="bg-[#fafafa]">
+                        <tr>
+                            <th
+                                class="px-1.5 py-2 md:px-4 md:py-3 text-left text-[10px] font-bold uppercase tracking-wider text-gray-400">
+                                {{ __('Description') }}</th>
+                            <th
+                                class="hidden sm:table-cell px-1.5 py-2 md:px-4 md:py-3 text-left text-[10px] font-bold uppercase tracking-wider text-gray-400 w-24">
+                                {{ __('Unit') }}</th>
+                            <th
+                                class="px-1.5 py-2 md:px-4 md:py-3 text-right text-[10px] font-bold uppercase tracking-wider text-gray-400 w-16 md:w-24">
+                                {{ __('Qty') }}</th>
+                            <th
+                                class="px-1.5 py-2 md:px-4 md:py-3 text-right text-[10px] font-bold uppercase tracking-wider text-gray-400 w-20 md:w-32">
+                                {{ __('Unit Price') }}</th>
+                            <th
+                                class="px-1.5 py-2 md:px-4 md:py-3 text-right text-[10px] font-bold uppercase tracking-wider text-gray-400 w-20 md:w-32">
+                                {{ __('Line Total') }}</th>
+                            <th class="px-1 py-2 md:px-4 md:py-3 w-8 md:w-10"></th>
                         </tr>
-                    @endforeach
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        @foreach ($this->items as $i => $item)
+                            <tr class="border-t border-[#f3f4f6]" wire:key="item-{{ $i }}">
+                                <td class="px-1.5 py-1.5 md:px-4 md:py-2.5">
+                                    <input wire:model.live="items.{{ $i }}.description" type="text"
+                                        placeholder="{{ __('Service description') }}"
+                                        class="w-full border border-gray-200 rounded-lg px-1.5 py-1 md:px-2 md:py-1.5 text-sm focus:outline-none focus:ring-1 focus:ring-indigo-400 @error('items.' . $i . '.description') border-red-400 @enderror" />
+                                    @error('items.' . $i . '.description')
+                                        <p class="text-xs text-red-500">{{ $message }}</p>
+                                    @enderror
+                                </td>
+                                <td class="hidden sm:table-cell px-1.5 py-1.5 md:px-4 md:py-2.5">
+                                    <input wire:model="items.{{ $i }}.unit" type="text"
+                                        placeholder="{{ __('pcs.') }}"
+                                        class="w-full border border-gray-200 rounded-lg px-1.5 py-1 md:px-2 md:py-1.5 text-sm focus:outline-none focus:ring-1 focus:ring-indigo-400" />
+                                </td>
+                                <td class="px-1.5 py-1.5 md:px-4 md:py-2.5">
+                                    <input wire:model.live="items.{{ $i }}.quantity" type="number"
+                                        step="0.01" min="0.01"
+                                        class="w-full border border-gray-200 rounded-lg px-1.5 py-1 md:px-2 md:py-1.5 text-sm text-right focus:outline-none focus:ring-1 focus:ring-indigo-400 @error('items.' . $i . '.quantity') border-red-400 @enderror" />
+                                </td>
+                                <td class="px-1.5 py-1.5 md:px-4 md:py-2.5">
+                                    <input wire:model.live="items.{{ $i }}.unit_price" type="number"
+                                        step="0.01" min="0"
+                                        class="w-full border border-gray-200 rounded-lg px-1.5 py-1 md:px-2 md:py-1.5 text-sm text-right focus:outline-none focus:ring-1 focus:ring-indigo-400 @error('items.' . $i . '.unit_price') border-red-400 @enderror" />
+                                </td>
+                                <td
+                                    class="px-1.5 py-1.5 md:px-4 md:py-2.5 text-right text-xs md:text-sm font-medium text-gray-700">
+                                    {{ number_format((float) ($item['quantity'] ?? 0) * (float) ($item['unit_price'] ?? 0), 2) }}
+                                </td>
+                                <td class="px-0.5 py-1.5 md:px-4 md:py-2.5 text-center">
+                                    @if (count($this->items) > 1)
+                                        <button type="button" wire:click="removeItem({{ $i }})"
+                                            class="text-red-400 hover:text-red-600">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor"
+                                                viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M6 18L18 6M6 6l12 12" />
+                                            </svg>
+                                        </button>
+                                    @endif
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
 
-            <div class="px-6 py-3.5 border-t border-[#f3f4f6]">
+            <div class="px-4 py-3 md:px-6 md:py-3.5 border-t border-[#f3f4f6]">
                 <button type="button" wire:click="addItem"
                     class="text-sm font-semibold text-[#0f1117] hover:text-gray-500">
                     {{ __('+ Add line item') }}
