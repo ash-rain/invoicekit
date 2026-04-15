@@ -69,7 +69,11 @@ Route::get('/sitemap.xml', function () {
 })->name('sitemap');
 
 Route::get('/robots.txt', function () {
+    $baseUrl = url('/');
+
+    // ── Default crawlers ─────────────────────────────────────────────────────
     $content = "User-agent: *\n";
+    $content .= "Allow: /\n";
     $content .= "Disallow: /dashboard\n";
     $content .= "Disallow: /settings\n";
     $content .= "Disallow: /clients\n";
@@ -79,7 +83,42 @@ Route::get('/robots.txt', function () {
     $content .= "Disallow: /billing\n";
     $content .= "Disallow: /onboarding\n";
     $content .= "Disallow: /admin\n";
+    $content .= "Disallow: /portal\n";
+    $content .= "Disallow: /pay\n\n";
+
+    // ── Explicitly welcome AI crawlers to public pages ────────────────────
+    $aiCrawlers = [
+        'GPTBot',
+        'ChatGPT-User',
+        'Google-Extended',
+        'GoogleOther',
+        'Claude-Web',
+        'Anthropic-AI',
+        'PerplexityBot',
+        'Cohere-AI',
+        'Meta-ExternalAgent',
+    ];
+
+    foreach ($aiCrawlers as $bot) {
+        $content .= "User-agent: {$bot}\n";
+        $content .= "Allow: /\n";
+        $content .= "Allow: /blog\n";
+        $content .= "Allow: /llms.txt\n";
+        $content .= "Disallow: /dashboard\n";
+        $content .= "Disallow: /settings\n";
+        $content .= "Disallow: /clients\n";
+        $content .= "Disallow: /projects\n";
+        $content .= "Disallow: /invoices\n";
+        $content .= "Disallow: /timer\n";
+        $content .= "Disallow: /billing\n";
+        $content .= "Disallow: /onboarding\n";
+        $content .= "Disallow: /admin\n";
+        $content .= "Disallow: /portal\n";
+        $content .= "Disallow: /pay\n\n";
+    }
+
     $content .= 'Sitemap: '.route('sitemap')."\n";
+    $content .= "LLMs-Txt: {$baseUrl}/llms.txt\n";
 
     return response($content, 200, ['Content-Type' => 'text/plain']);
 })->name('robots');

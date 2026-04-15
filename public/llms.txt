@@ -1,0 +1,36 @@
+# InvoiceKit
+
+> EU-compliant invoicing and time tracking for European freelancers. Handles VAT reverse charge, OSS, credit notes, e-invoicing, and all 27 EU VAT rates automatically.
+
+InvoiceKit is a SaaS platform built for freelancers working in or with the European Union. It combines time tracking, invoice generation, expense management, and EU VAT compliance into a single tool. Pricing starts at €0/month (Free), with Starter at €9/month and Pro at €29/month.
+
+## Key Features
+
+- [Invoice Builder](https://invoicekit.eu): Generate PDF invoices with automatic EU VAT calculation, legal formatting, and sequential numbering
+- [EU VAT Engine](https://invoicekit.eu): Automatic VAT for every scenario — standard rate, reverse charge (B2B), OSS (B2C cross-border), and 0% exempt (non-EU)
+- [Time Tracking](https://invoicekit.eu): Start/stop timer per project with daily logs, weekly summaries, and monthly reports
+- [Expense Tracking](https://invoicekit.eu): Log expenses with receipt uploads, categories, vendor details, and CSV export
+- [Recurring Invoices](https://invoicekit.eu): Automatic weekly, monthly, quarterly, or yearly invoice generation
+- [Peppol / e-Invoicing](https://invoicekit.eu): UBL 2.1 / Peppol BIS Billing 3.0 compliant XML export
+- [Client Portal](https://invoicekit.eu): Secure tokenized links for clients to view and pay invoices via Stripe — no login required
+- [AI Document Import](https://invoicekit.eu): Upload PDF/JPG/PNG documents and extract invoice data automatically using AI
+- [Multi-Currency](https://invoicekit.eu): Invoice in EUR, USD, BGN, RON, PLN, CZK, or HUF
+- [24 EU Languages](https://invoicekit.eu): Full UI and PDF localisation for all official EU languages
+
+## Pricing
+
+- Free: €0/month — 3 clients, 5 invoices/month, time tracking, EU VAT engine, 14-day Pro trial
+- Starter: €9/month — Unlimited clients, 20 invoices/month, expense tracking, payment reminders
+- Pro: €29/month — Unlimited everything, recurring invoices, client portal, Peppol e-invoicing, Stripe payments
+
+## EU VAT Coverage
+
+All 27 EU member states supported: Austria, Belgium, Bulgaria, Croatia, Cyprus, Czechia, Denmark, Estonia, Finland, France, Germany, Greece, Hungary, Ireland, Italy, Latvia, Lithuania, Luxembourg, Malta, Netherlands, Poland, Portugal, Romania, Slovakia, Slovenia, Spain, Sweden.
+
+## Links
+
+- [Homepage](https://invoicekit.eu)
+- [Blog](https://invoicekit.eu/blog)
+- [Register](https://invoicekit.eu/register)
+- [Privacy Policy](https://invoicekit.eu/privacy)
+- [Terms of Service](https://invoicekit.eu/terms)

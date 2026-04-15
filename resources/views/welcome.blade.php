@@ -195,6 +195,110 @@
 
     {{-- RSS Feed --}}
     <link rel="alternate" type="application/rss+xml" title="InvoiceKit Blog" href="{{ route('blog.feed') }}">
+
+    {{-- hreflang tags for AI & search engine language targeting --}}
+    @foreach ($availableLangs as $hrefLang)
+        <link rel="alternate" hreflang="{{ $hrefLang }}" href="{{ url('/?lang=' . $hrefLang) }}">
+    @endforeach
+    <link rel="alternate" hreflang="x-default" href="{{ url('/') }}">
+
+    {{-- LLMs.txt discovery --}}
+    <link rel="alternate" type="text/plain" title="LLMs.txt" href="{{ url('/llms.txt') }}">
+
+    {{-- JSON-LD: Organization --}}
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "InvoiceKit",
+        "url": "{{ url('/') }}",
+        "logo": "{{ url('/img/logo.png') }}",
+        "description": "{!! $g('hero_subheadline') !!}",
+        "foundingDate": "2025",
+        "areaServed": {
+            "@type": "Place",
+            "name": "European Union"
+        },
+        "sameAs": []
+    }
+    </script>
+
+    {{-- JSON-LD: SoftwareApplication --}}
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "InvoiceKit",
+        "applicationCategory": "BusinessApplication",
+        "applicationSubCategory": "Invoicing & Time Tracking",
+        "operatingSystem": "Web, iOS, Android (PWA)",
+        "url": "{{ url('/') }}",
+        "description": "{!! $g('hero_subheadline') !!}",
+        "screenshot": "{{ url('/images/og-thumb.png') }}",
+        "featureList": "EU VAT Compliance, Time Tracking, Invoice Generation, Expense Tracking, Recurring Invoices, Peppol e-Invoicing, Client Portal, AI Document Import, Multi-Currency, 24 EU Languages",
+        "availableLanguage": [{!! collect($availableLangs)->map(fn ($l) => '"' . $l . '"')->implode(', ') !!}],
+        "inLanguage": "{{ $lang }}",
+        "offers": [
+            {
+                "@type": "Offer",
+                "name": "Free",
+                "price": "0",
+                "priceCurrency": "EUR",
+                "priceValidUntil": "{{ now()->addYear()->format('Y-m-d') }}",
+                "description": "3 clients, 5 invoices/month, time tracking, EU VAT engine"
+            },
+            {
+                "@type": "Offer",
+                "name": "Starter",
+                "price": "9",
+                "priceCurrency": "EUR",
+                "priceValidUntil": "{{ now()->addYear()->format('Y-m-d') }}",
+                "billingIncrement": "P1M",
+                "description": "Unlimited clients, 20 invoices/month, expense tracking"
+            },
+            {
+                "@type": "Offer",
+                "name": "Pro",
+                "price": "29",
+                "priceCurrency": "EUR",
+                "priceValidUntil": "{{ now()->addYear()->format('Y-m-d') }}",
+                "billingIncrement": "P1M",
+                "description": "Unlimited everything, recurring invoices, client portal, Peppol e-invoicing"
+            }
+        ],
+        "provider": {
+            "@type": "Organization",
+            "name": "NetShell",
+            "url": "{{ url('/') }}"
+        }
+    }
+    </script>
+
+    {{-- JSON-LD: FAQPage --}}
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            @foreach ([
+                ['faq1_q', 'faq1_a'], ['faq2_q', 'faq2_a'], ['faq3_q', 'faq3_a'],
+                ['faq4_q', 'faq4_a'], ['faq5_q', 'faq5_a'], ['faq6_q', 'faq6_a'],
+                ['faq7_q', 'faq7_a'], ['faq8_q', 'faq8_a'], ['faq9_q', 'faq9_a'],
+                ['faq10_q', 'faq10_a'], ['faq11_q', 'faq11_a'],
+            ] as $i => $faq)
+            {
+                "@type": "Question",
+                "name": "{!! $g($faq[0]) !!}",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "{!! $g($faq[1]) !!}"
+                }
+            }@if ($i < 10),@endif
+            @endforeach
+        ]
+    }
+    </script>
+
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=inter:400,500,600,700,800,900&display=swap" rel="stylesheet">
     @vite('resources/css/landing.css')
