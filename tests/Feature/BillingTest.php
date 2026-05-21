@@ -152,6 +152,8 @@ class BillingTest extends TestCase
 
     public function test_webhook_endpoint_is_accessible_without_auth_or_csrf(): void
     {
+        config(['services.stripe.webhook_secret' => null]);
+
         // No CSRF / no auth — should not 401 or 419
         $response = $this->postJson(route('billing.webhook'), [
             'type' => 'unknown.event',
