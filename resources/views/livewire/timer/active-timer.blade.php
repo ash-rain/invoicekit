@@ -13,7 +13,7 @@
             >
                 <option value="">{{ __('— Select project —') }}</option>
                 @foreach($projects as $project)
-                    <option value="{{ $project->id }}">{{ $project->client->name }} / {{ $project->name }}</option>
+                    <option value="{{ $project->id }}">{{ $project->client?->name ?? '—' }} / {{ $project->name }}</option>
                 @endforeach
             </select>
             @error('projectId') <p class="mt-1 text-xs text-red-500">{{ $message }}</p> @enderror

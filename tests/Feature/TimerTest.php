@@ -133,6 +133,20 @@ class TimerTest extends TestCase
             ->assertSet('description', 'Ongoing task');
     }
 
+    public function test_timer_page_renders_when_user_has_a_project_without_a_client(): void
+    {
+        $user = User::factory()->create();
+        Project::factory()->create(['user_id' => $user->id, 'client_id' => null]);
+
+        Livewire::actingAs($user)
+            ->test(\App\Livewire\Timer\ActiveTimer::class)
+            ->assertOk();
+
+        Livewire::actingAs($user)
+            ->test(\App\Livewire\Timer\ManualTimeEntry::class)
+            ->assertOk();
+    }
+
     // ──────────────────────────────────────────────────────────────────
     // Manual time entry
     // ──────────────────────────────────────────────────────────────────
