@@ -208,7 +208,7 @@
     {{-- JSON-LD: Organization --}}
     <script type="application/ld+json">
     {
-        "@context": "https://schema.org",
+        "@@context": "https://schema.org",
         "@type": "Organization",
         "name": "InvoiceKit",
         "url": "{{ url('/') }}",
@@ -226,7 +226,7 @@
     {{-- JSON-LD: SoftwareApplication --}}
     <script type="application/ld+json">
     {
-        "@context": "https://schema.org",
+        "@@context": "https://schema.org",
         "@type": "SoftwareApplication",
         "name": "InvoiceKit",
         "applicationCategory": "BusinessApplication",
@@ -277,7 +277,7 @@
     {{-- JSON-LD: FAQPage --}}
     <script type="application/ld+json">
     {
-        "@context": "https://schema.org",
+        "@@context": "https://schema.org",
         "@type": "FAQPage",
         "mainEntity": [
             @foreach ([
