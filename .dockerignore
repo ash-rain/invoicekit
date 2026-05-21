@@ -15,10 +15,6 @@ public/hot
 .gitignore
 .gitattributes
 .editorconfig
-.dockerignore
-Dockerfile
-docker-compose*.yml
-docker/
 
 # Local env / secrets
 .env
