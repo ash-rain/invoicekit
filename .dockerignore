@@ -1,0 +1,44 @@
+# Runtime data (bind-mounted or regenerated in image)
+storage/
+bootstrap/cache/*
+!bootstrap/cache/.gitignore
+
+# Build artifacts (regenerated during image build)
+vendor/
+node_modules/
+public/build/
+public/hot
+
+# VCS / CI / tooling
+.git/
+.github/
+.gitignore
+.gitattributes
+.editorconfig
+.dockerignore
+Dockerfile
+docker-compose*.yml
+docker/
+
+# Local env / secrets
+.env
+.env.*
+!.env.example
+
+# IDE / OS noise
+.idea/
+.vscode/
+.fleet/
+*.swp
+.DS_Store
+
+# Tests / docs (not needed in production image)
+tests/
+phpunit.xml
+.phpunit.result.cache
+*.md
+
+# Misc
+.claude/
+.mcp.json
+boost.json
