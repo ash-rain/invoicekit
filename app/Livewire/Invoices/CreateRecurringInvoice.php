@@ -6,6 +6,7 @@ use App\Models\Client;
 use App\Models\RecurringInvoice;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\Rule;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
@@ -102,7 +103,7 @@ class CreateRecurringInvoice extends Component
     public function save(): void
     {
         $this->validate([
-            'clientId' => ['required', 'integer', 'exists:clients,id'],
+            'clientId' => ['required', 'integer', Rule::exists('clients', 'id')->where('user_id', Auth::id())],
             'frequency' => ['required', 'in:monthly,quarterly,annually'],
             'nextSendDate' => ['required', 'date', 'after_or_equal:today'],
             'currency' => ['required', 'string', 'max:10'],

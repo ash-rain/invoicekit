@@ -40,7 +40,7 @@ class AppServiceProvider extends ServiceProvider
      */
     private function configureMinioTemporaryUrls(): void
     {
-        $publicEndpoint = env('MINIO_PUBLIC_ENDPOINT');
+        $publicEndpoint = config('filesystems.disks.minio.public_endpoint');
 
         if (! $publicEndpoint) {
             return;
@@ -60,10 +60,9 @@ class AppServiceProvider extends ServiceProvider
                 ],
             ]);
 
-            $command = $client->getCommand('PutObject', array_merge([
+            $command = $client->getCommand('GetObject', array_merge([
                 'Bucket' => $config['bucket'],
                 'Key' => $path,
-                'ACL' => 'private',
             ], $options));
 
             return (string) $client->createPresignedRequest($command, $expiration)->getUri();

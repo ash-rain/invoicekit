@@ -19,17 +19,18 @@ class StripeWebhookController extends Controller
         $sigHeader = $request->header('Stripe-Signature');
         $secret = config('services.stripe.webhook_secret');
 
-        if ($secret) {
-            try {
-                $event = Webhook::constructEvent($payload, $sigHeader, $secret);
-            } catch (SignatureVerificationException $e) {
-                Log::warning('Stripe webhook signature verification failed.', ['error' => $e->getMessage()]);
+        if (! $secret || $secret === 'whsec_') {
+            Log::error('Stripe webhook secret is not configured; refusing to process unsigned event.');
 
-                return response('Invalid signature', 400);
-            }
-        } else {
-            // No webhook secret — parse JSON as nested objects for consistent access
-            $event = json_decode($payload);
+            return response('Webhook not configured', 500);
+        }
+
+        try {
+            $event = Webhook::constructEvent($payload, $sigHeader, $secret);
+        } catch (SignatureVerificationException $e) {
+            Log::warning('Stripe webhook signature verification failed.', ['error' => $e->getMessage()]);
+
+            return response('Invalid signature', 400);
         }
 
         $type = $event->type ?? null;
@@ -55,13 +56,25 @@ class StripeWebhookController extends Controller
         // Invoice payment: mark invoice as paid
         if ($type === 'invoice_payment') {
             $invoiceId = is_array($session) ? ($session['metadata']['invoice_id'] ?? null) : ($session->metadata->invoice_id ?? null);
+            $invoiceId = (int) $invoiceId;
 
-            if (! $invoiceId) {
+            if ($invoiceId <= 0) {
                 return;
             }
 
-            $invoice = \App\Models\Invoice::find($invoiceId);
+            $invoice = \App\Models\Invoice::with('user')->find($invoiceId);
             if (! $invoice || $invoice->status === 'paid') {
+                return;
+            }
+
+            // Cross-check: the Stripe customer that paid must belong to the same user as the invoice.
+            $sessionCustomerId = is_array($session) ? ($session['customer'] ?? null) : ($session->customer ?? null);
+            if ($sessionCustomerId && $invoice->user?->stripe_customer_id && $invoice->user->stripe_customer_id !== $sessionCustomerId) {
+                Log::warning('Stripe checkout.session.completed customer mismatch for invoice payment.', [
+                    'invoice_id' => $invoice->id,
+                    'session_customer' => $sessionCustomerId,
+                ]);
+
                 return;
             }
 

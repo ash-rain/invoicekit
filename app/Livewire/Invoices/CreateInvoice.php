@@ -12,6 +12,7 @@ use App\Services\PlanService;
 use App\Services\VatExemptionService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\Rule;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
@@ -339,7 +340,7 @@ class CreateInvoice extends Component
     protected function rules(): array
     {
         return [
-            'clientId' => ['required', 'integer'],
+            'clientId' => ['required', 'integer', Rule::exists('clients', 'id')->where('user_id', Auth::id())],
             'invoiceNumber' => ['required', 'string', 'max:50'],
             'issueDate' => ['required', 'date'],
             'dueDate' => ['required', 'date', 'after_or_equal:'.($this->issueDate ?: now()->format('Y-m-d'))],
@@ -348,13 +349,13 @@ class CreateInvoice extends Component
             'language' => ['required', 'string', 'in:'.implode(',', config('invoicekit.supported_languages', ['en']))],
             'invoiceTemplate' => ['required', 'string', 'in:'.implode(',', array_keys(app(\App\Services\InvoiceTemplateService::class)->getAvailableTemplates()))],
             'documentType' => ['required', 'string', 'in:invoice,credit_note,debit_note,proforma'],
-            'originalInvoiceId' => ['nullable', 'integer', 'exists:invoices,id'],
+            'originalInvoiceId' => ['nullable', 'integer', Rule::exists('invoices', 'id')->where('user_id', Auth::id())],
             'originalInvoiceNumber' => ['nullable', 'string', 'max:50'],
             'correctionReason' => ['nullable', 'string', 'max:500'],
             'taxEventDate' => ['nullable', 'date'],
             'issuedByName' => ['nullable', 'string', 'max:200'],
             'receivedByName' => ['nullable', 'string', 'max:200'],
-            'paymentMethodId' => ['nullable', 'integer', 'exists:payment_methods,id'],
+            'paymentMethodId' => ['nullable', 'integer', Rule::exists('payment_methods', 'id')->where('company_id', Auth::user()?->currentCompany?->id)],
             'items' => ['required', 'array', 'min:1'],
             'items.*.description' => ['required', 'string', 'max:500'],
             'items.*.unit' => ['nullable', 'string', 'max:20'],

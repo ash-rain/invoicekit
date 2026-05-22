@@ -331,16 +331,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::delete('/push-subscriptions', [PushSubscriptionController::class, 'destroy'])->name('push-subscriptions.destroy');
 });
 
-// Public invoice view (for payment links)
-Route::get('/pay/{invoice}', function ($invoice) {
-    $invoice = \App\Models\Invoice::with(['client', 'items'])->findOrFail($invoice);
-
-    return view('invoices.pay', compact('invoice'));
-})->name('invoices.pay');
-
 // Client invoice portal (public, token-based)
 Route::get('/portal/{token}', [InvoicePortalController::class, 'show'])->name('invoice.portal');
-Route::post('/portal/{token}/auth', [InvoicePortalController::class, 'authenticate'])->name('invoice.portal.auth');
+Route::post('/portal/{token}/auth', [InvoicePortalController::class, 'authenticate'])
+    ->middleware('throttle:10,1')
+    ->name('invoice.portal.auth');
 
 // Stripe webhooks (public — no CSRF, no auth)
 Route::post('/billing/webhook', [StripeWebhookController::class, 'handle'])->name('billing.webhook');

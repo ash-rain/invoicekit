@@ -48,6 +48,12 @@ class ActiveTimer extends Component
             return;
         }
 
+        if (! Project::where('user_id', Auth::id())->whereKey($this->projectId)->exists()) {
+            $this->addError('projectId', __('Please select a project.'));
+
+            return;
+        }
+
         $entry = TimeEntry::create([
             'user_id' => Auth::id(),
             'project_id' => $this->projectId,

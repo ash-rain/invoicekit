@@ -9,6 +9,7 @@ use App\Models\InvoiceItem;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Rule;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
@@ -159,7 +160,7 @@ class ImportReview extends Component
     public function confirm(): void
     {
         $this->validate([
-            'clientId' => ['required', 'integer', 'exists:clients,id'],
+            'clientId' => ['required', 'integer', Rule::exists('clients', 'id')->where('user_id', Auth::id())],
             'invoiceNumber' => ['required', 'string', 'max:100'],
             'issueDate' => ['required', 'date'],
             'dueDate' => ['required', 'date'],

@@ -5,6 +5,7 @@ namespace App\Livewire\Timer;
 use App\Models\Project;
 use App\Models\TimeEntry;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 use Livewire\Component;
 
 class ManualTimeEntry extends Component
@@ -27,7 +28,7 @@ class ManualTimeEntry extends Component
     public function save(): void
     {
         $this->validate([
-            'projectId' => 'required|integer',
+            'projectId' => ['required', 'integer', Rule::exists('projects', 'id')->where('user_id', Auth::id())],
             'date' => 'required|date',
             'startTime' => 'required|date_format:H:i',
             'endTime' => ['required', 'date_format:H:i', 'after:'.($this->startTime ?: '00:00')],

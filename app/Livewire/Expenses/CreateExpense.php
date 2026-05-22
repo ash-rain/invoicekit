@@ -6,6 +6,7 @@ use App\Models\Client;
 use App\Models\Expense;
 use App\Models\Project;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
@@ -77,8 +78,8 @@ class CreateExpense extends Component
             'currency' => ['required', 'string', 'max:10'],
             'category' => ['required', 'in:software,hardware,travel,hosting,marketing,other'],
             'date' => ['required', 'date'],
-            'clientId' => ['nullable', 'integer', 'exists:clients,id'],
-            'projectId' => ['nullable', 'integer', 'exists:projects,id'],
+            'clientId' => ['nullable', 'integer', Rule::exists('clients', 'id')->where('user_id', Auth::id())],
+            'projectId' => ['nullable', 'integer', Rule::exists('projects', 'id')->where('user_id', Auth::id())],
             'receipt' => ['nullable', 'file', 'mimes:jpg,jpeg,png,pdf', 'max:10240'],
         ]);
 
