@@ -19,7 +19,8 @@ RUN apk add --no-cache \
     icu-dev \
     nodejs \
     npm \
-    supervisor
+    supervisor \
+    su-exec
 
 # Configure and install PHP extensions
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp \

@@ -1,6 +1,18 @@
 #!/usr/bin/env bash
 set -e
 
+# ---------------------------------------------------------------------------
+# Drop root privileges before doing any real work. Nothing below this line
+# needs root: storage/ and bootstrap/cache/ are already chowned to www-data
+# at build time (see Dockerfile), and all setup here is just `php artisan`
+# calls plus a Postgres readiness check. Re-exec ourselves as www-data via
+# su-exec so the whole entrypoint — and the php-fpm master/workers it execs
+# into at the end — run unprivileged.
+# ---------------------------------------------------------------------------
+if [ "$(id -u)" = "0" ]; then
+    exec su-exec www-data "$0" "$@"
+fi
+
 BOOTSTRAP_FLAG="/var/www/storage/app/.bootstrapped"
 
 # ---------------------------------------------------------------------------
