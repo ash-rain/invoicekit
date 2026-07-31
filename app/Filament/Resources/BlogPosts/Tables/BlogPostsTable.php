@@ -16,10 +16,16 @@ class BlogPostsTable
     {
         return $table
             ->columns([
+                TextColumn::make('thumbnail_emoji')
+                    ->label('Emoji')
+                    ->placeholder('📝'),
                 TextColumn::make('title')
                     ->searchable()
                     ->sortable()
                     ->limit(60),
+                TextColumn::make('category.name')
+                    ->label('Category')
+                    ->placeholder('—'),
                 TextColumn::make('admin.name')
                     ->label('Author')
                     ->sortable(),

@@ -5,6 +5,7 @@ namespace App\Filament\Resources\BlogPosts\Schemas;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\RichEditor;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Components\Section;
@@ -33,6 +34,13 @@ class BlogPostForm
                             ->maxLength(255)
                             ->unique(ignoreRecord: true)
                             ->columnSpanFull(),
+                        Select::make('category_id')
+                            ->label('Category')
+                            ->relationship('category', 'name')
+                            ->searchable()
+                            ->preload()
+                            ->nullable()
+                            ->columnSpanFull(),
                         RichEditor::make('body')
                             ->required()
                             ->fileAttachmentsDisk('s3')
@@ -46,6 +54,11 @@ class BlogPostForm
                             ->visibility('public')
                             ->nullable()
                             ->columnSpanFull(),
+                        TextInput::make('thumbnail_emoji')
+                            ->label('Thumbnail Emoji')
+                            ->maxLength(16)
+                            ->nullable()
+                            ->helperText('Shown on the blog index when there is no Featured Image. Falls back to 📝 if left blank.'),
                     ]),
                 Section::make('SEO')
                     ->columns(1)

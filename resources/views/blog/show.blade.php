@@ -62,6 +62,8 @@ echo json_encode([
             <span class="text-gray-600">{{ $post->title }}</span>
         </nav>
 
+        @include('blog.partials.category-nav', ['categories' => $categories, 'activeCategory' => $post->category])
+
         {{-- Header --}}
         <header class="mb-10">
             <h1 class="text-4xl font-bold text-gray-900 leading-tight mb-4">{{ $post->title }}</h1>
