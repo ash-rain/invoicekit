@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Admin;
 use App\Models\Client;
 use App\Models\Invoice;
 use App\Models\InvoiceItem;
@@ -25,6 +26,16 @@ class DatabaseSeeder extends Seeder
                 'email_verified_at' => now(),
             ]
         );
+
+        Admin::firstOrCreate(
+            ['email' => 'demo@invoicekit.test'],
+            [
+                'name' => 'Demo Admin',
+                'password' => Hash::make('password'),
+            ]
+        );
+
+        $this->call(CountryComplianceBlogPostSeeder::class);
 
         // Skip demo data if already seeded for this user
         if ($user->clients()->exists()) {
