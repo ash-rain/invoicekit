@@ -38,6 +38,10 @@ class UsersTable
                         default => 'gray',
                     })
                     ->sortable(),
+                TextColumn::make('invoices_count')
+                    ->label('Invoices')
+                    ->counts('invoices')
+                    ->sortable(),
                 TextColumn::make('created_at')
                     ->label('Joined')
                     ->date()

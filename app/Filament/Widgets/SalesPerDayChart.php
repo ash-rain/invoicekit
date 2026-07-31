@@ -2,13 +2,14 @@
 
 namespace App\Filament\Widgets;
 
+use App\Models\Invoice;
 use App\Models\User;
 use Filament\Widgets\ChartWidget;
 use Illuminate\Support\Carbon;
 
 class SalesPerDayChart extends ChartWidget
 {
-    protected ?string $heading = 'New Paid Subscriptions (Last 30 Days)';
+    protected ?string $heading = 'New Paid Subscriptions & Invoices (Last 30 Days)';
 
     protected function getData(): array
     {
@@ -21,6 +22,11 @@ class SalesPerDayChart extends ChartWidget
             ->groupBy('date')
             ->pluck('count', 'date');
 
+        $invoiceCounts = Invoice::where('created_at', '>=', now()->subDays(29)->startOfDay())
+            ->selectRaw('DATE(created_at) as date, COUNT(*) as count')
+            ->groupBy('date')
+            ->pluck('count', 'date');
+
         return [
             'datasets' => [
                 [
@@ -28,6 +34,12 @@ class SalesPerDayChart extends ChartWidget
                     'data' => $days->map(fn (Carbon $day) => $counts[$day->toDateString()] ?? 0)->values()->all(),
                     'backgroundColor' => 'rgba(16, 185, 129, 0.6)',
                     'borderColor' => 'rgb(16, 185, 129)',
+                ],
+                [
+                    'label' => 'New Invoices',
+                    'data' => $days->map(fn (Carbon $day) => $invoiceCounts[$day->toDateString()] ?? 0)->values()->all(),
+                    'backgroundColor' => 'rgba(99, 102, 241, 0.6)',
+                    'borderColor' => 'rgb(99, 102, 241)',
                 ],
             ],
             'labels' => $days->map(fn (Carbon $day) => $day->format('M d'))->values()->all(),
