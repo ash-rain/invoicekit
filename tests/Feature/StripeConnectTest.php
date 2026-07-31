@@ -5,10 +5,12 @@ namespace Tests\Feature;
 use App\Models\Invoice;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\Concerns\InteractsWithStripeWebhooks;
 use Tests\TestCase;
 
 class StripeConnectTest extends TestCase
 {
+    use InteractsWithStripeWebhooks;
     use RefreshDatabase;
 
     // ── Auth guards ───────────────────────────────────────────────────────────
@@ -188,14 +190,12 @@ class StripeConnectTest extends TestCase
 
     public function test_webhook_account_updated_marks_user_as_onboarded(): void
     {
-        config(['services.stripe.webhook_secret' => null]);
-
         $user = User::factory()->create([
             'stripe_connect_id' => 'acct_webhook123',
             'stripe_connect_onboarded' => false,
         ]);
 
-        $this->postJson(route('billing.webhook'), [
+        $this->postStripeWebhook([
             'type' => 'account.updated',
             'data' => [
                 'object' => [
@@ -212,14 +212,12 @@ class StripeConnectTest extends TestCase
 
     public function test_webhook_account_updated_disables_previously_onboarded_account(): void
     {
-        config(['services.stripe.webhook_secret' => null]);
-
         $user = User::factory()->create([
             'stripe_connect_id' => 'acct_webhook456',
             'stripe_connect_onboarded' => true,
         ]);
 
-        $this->postJson(route('billing.webhook'), [
+        $this->postStripeWebhook([
             'type' => 'account.updated',
             'data' => [
                 'object' => [
@@ -287,14 +285,12 @@ class StripeConnectTest extends TestCase
 
     public function test_webhook_account_deauthorized_clears_connect_fields(): void
     {
-        config(['services.stripe.webhook_secret' => null]);
-
         $user = User::factory()->create([
             'stripe_connect_id' => 'acct_deauth123',
             'stripe_connect_onboarded' => true,
         ]);
 
-        $this->postJson(route('billing.webhook'), [
+        $this->postStripeWebhook([
             'type' => 'account.application.deauthorized',
             'data' => [
                 'object' => [
@@ -310,9 +306,7 @@ class StripeConnectTest extends TestCase
 
     public function test_webhook_account_deauthorized_does_nothing_for_unknown_account(): void
     {
-        config(['services.stripe.webhook_secret' => null]);
-
-        $this->postJson(route('billing.webhook'), [
+        $this->postStripeWebhook([
             'type' => 'account.application.deauthorized',
             'data' => [
                 'object' => [
@@ -326,15 +320,13 @@ class StripeConnectTest extends TestCase
 
     public function test_webhook_checkout_completed_marks_invoice_as_paid(): void
     {
-        config(['services.stripe.webhook_secret' => null]);
-
         $user = User::factory()->create([
             'stripe_connect_id' => 'acct_test123',
             'stripe_connect_onboarded' => true,
         ]);
         $invoice = Invoice::factory()->create(['user_id' => $user->id, 'status' => 'sent']);
 
-        $this->postJson(route('billing.webhook'), [
+        $this->postStripeWebhook([
             'type' => 'checkout.session.completed',
             'data' => [
                 'object' => [
@@ -353,8 +345,6 @@ class StripeConnectTest extends TestCase
 
     public function test_webhook_checkout_completed_does_not_double_mark_paid_invoice(): void
     {
-        config(['services.stripe.webhook_secret' => null]);
-
         $user = User::factory()->create();
         $invoice = Invoice::factory()->create([
             'user_id' => $user->id,
@@ -363,7 +353,7 @@ class StripeConnectTest extends TestCase
         ]);
         $originalPaidAt = $invoice->paid_at->toDateString();
 
-        $this->postJson(route('billing.webhook'), [
+        $this->postStripeWebhook([
             'type' => 'checkout.session.completed',
             'data' => [
                 'object' => [

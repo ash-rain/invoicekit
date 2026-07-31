@@ -139,7 +139,7 @@ class DashboardTest extends TestCase
             'user_id' => $user->id,
             'client_id' => $client->id,
             'total' => 200.00,
-            'paid_at' => now()->subMonth(),
+            'paid_at' => now()->startOfMonth()->subDay(),
         ]);
 
         Livewire::actingAs($user)
@@ -183,7 +183,7 @@ class DashboardTest extends TestCase
         \App\Models\Expense::factory()->create([
             'user_id' => $user->id,
             'amount' => 50.00,
-            'date' => now()->subMonth(),
+            'date' => now()->startOfMonth()->subDay(),
         ]);
 
         Livewire::actingAs($user)

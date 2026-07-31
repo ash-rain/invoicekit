@@ -7,10 +7,12 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Mail;
+use Tests\Concerns\InteractsWithStripeWebhooks;
 use Tests\TestCase;
 
 class BillingTest extends TestCase
 {
+    use InteractsWithStripeWebhooks;
     use RefreshDatabase;
 
     // ── Auth guards ───────────────────────────────────────────────────────────
@@ -152,22 +154,15 @@ class BillingTest extends TestCase
 
     public function test_webhook_endpoint_is_accessible_without_auth_or_csrf(): void
     {
-        config(['services.stripe.webhook_secret' => null]);
-
-        // No CSRF / no auth — should not 401 or 419
-        $response = $this->postJson(route('billing.webhook'), [
+        // No CSRF / no auth — a correctly signed event should not 401 or 419
+        $this->postStripeWebhook([
             'type' => 'unknown.event',
             'data' => ['object' => []],
-        ]);
-
-        // Without a signature secret configured it will process and return OK
-        $response->assertOk();
+        ])->assertOk();
     }
 
     public function test_webhook_handles_checkout_session_completed(): void
     {
-        config(['services.stripe.webhook_secret' => null]);
-
         $user = User::factory()->create([
             'stripe_customer_id' => 'cus_test123',
             'plan' => 'free',
@@ -183,7 +178,7 @@ class BillingTest extends TestCase
             ],
         ];
 
-        $this->postJson(route('billing.webhook'), $payload)->assertOk();
+        $this->postStripeWebhook($payload)->assertOk();
 
         $user->refresh();
         $this->assertEquals('pro', $user->plan);
@@ -193,8 +188,6 @@ class BillingTest extends TestCase
 
     public function test_webhook_handles_subscription_updated(): void
     {
-        config(['services.stripe.webhook_secret' => null]);
-
         $user = User::factory()->create([
             'stripe_customer_id' => 'cus_upd789',
             'plan' => 'free',
@@ -209,11 +202,12 @@ class BillingTest extends TestCase
                     'customer' => 'cus_upd789',
                     'status' => 'active',
                     'current_period_end' => $futureTimestamp,
+                    'items' => ['data' => [['price' => ['id' => 'price_pro']]]],
                 ],
             ],
         ];
 
-        $this->postJson(route('billing.webhook'), $payload)->assertOk();
+        $this->postStripeWebhook($payload)->assertOk();
 
         $user->refresh();
         $this->assertEquals('active', $user->subscription_status);
@@ -223,8 +217,6 @@ class BillingTest extends TestCase
 
     public function test_webhook_handles_subscription_deleted(): void
     {
-        config(['services.stripe.webhook_secret' => null]);
-
         $user = User::factory()->create([
             'stripe_customer_id' => 'cus_del321',
             'plan' => 'pro',
@@ -241,7 +233,7 @@ class BillingTest extends TestCase
             ],
         ];
 
-        $this->postJson(route('billing.webhook'), $payload)->assertOk();
+        $this->postStripeWebhook($payload)->assertOk();
 
         $user->refresh();
         $this->assertEquals('free', $user->plan);
@@ -252,8 +244,6 @@ class BillingTest extends TestCase
     public function test_webhook_handles_payment_failed(): void
     {
         Mail::fake();
-        config(['services.stripe.webhook_secret' => null]);
-
         $user = User::factory()->create([
             'stripe_customer_id' => 'cus_fail777',
             'plan' => 'pro',
@@ -269,7 +259,7 @@ class BillingTest extends TestCase
             ],
         ];
 
-        $this->postJson(route('billing.webhook'), $payload)->assertOk();
+        $this->postStripeWebhook($payload)->assertOk();
 
         $user->refresh();
         $this->assertEquals('past_due', $user->subscription_status);
@@ -278,8 +268,6 @@ class BillingTest extends TestCase
 
     public function test_webhook_with_unknown_customer_does_not_error(): void
     {
-        config(['services.stripe.webhook_secret' => null]);
-
         $payload = [
             'type' => 'checkout.session.completed',
             'data' => [
@@ -290,7 +278,7 @@ class BillingTest extends TestCase
             ],
         ];
 
-        $this->postJson(route('billing.webhook'), $payload)->assertOk();
+        $this->postStripeWebhook($payload)->assertOk();
     }
 
     // ── User model helpers ────────────────────────────────────────────────────
@@ -484,8 +472,6 @@ class BillingTest extends TestCase
 
     public function test_webhook_subscription_updated_with_cancel_at_period_end_sets_canceled_status(): void
     {
-        config(['services.stripe.webhook_secret' => null]);
-
         $futureTimestamp = Carbon::now()->addMonth()->timestamp;
 
         $user = User::factory()->create([
@@ -508,7 +494,7 @@ class BillingTest extends TestCase
             ],
         ];
 
-        $this->postJson(route('billing.webhook'), $payload)->assertOk();
+        $this->postStripeWebhook($payload)->assertOk();
 
         $user->refresh();
         $this->assertEquals('canceled', $user->subscription_status);
@@ -518,8 +504,6 @@ class BillingTest extends TestCase
 
     public function test_webhook_subscription_updated_without_cancel_at_period_end_syncs_stripe_status(): void
     {
-        config(['services.stripe.webhook_secret' => null]);
-
         $futureTimestamp = Carbon::now()->addMonth()->timestamp;
 
         $user = User::factory()->create([
@@ -542,9 +526,36 @@ class BillingTest extends TestCase
             ],
         ];
 
-        $this->postJson(route('billing.webhook'), $payload)->assertOk();
+        $this->postStripeWebhook($payload)->assertOk();
 
         $user->refresh();
         $this->assertEquals('active', $user->subscription_status);
+    }
+
+    // ── Webhook: signature enforcement ───────────────────────────────────────
+
+    public function test_webhook_is_rejected_when_signing_secret_not_configured(): void
+    {
+        config(['services.stripe.webhook_secret' => null]);
+
+        $this->postJson(route('billing.webhook'), [
+            'type' => 'checkout.session.completed',
+            'data' => ['object' => ['customer' => 'cus_test123']],
+        ])->assertStatus(500);
+    }
+
+    public function test_webhook_is_rejected_when_signature_is_invalid(): void
+    {
+        config(['services.stripe.webhook_secret' => 'whsec_configured_secret']);
+
+        $this->call(
+            'POST',
+            route('billing.webhook'),
+            [],
+            [],
+            [],
+            ['HTTP_STRIPE_SIGNATURE' => 't=123,v1=deadbeef', 'CONTENT_TYPE' => 'application/json'],
+            json_encode(['type' => 'checkout.session.completed', 'data' => ['object' => []]]),
+        )->assertStatus(400);
     }
 }
