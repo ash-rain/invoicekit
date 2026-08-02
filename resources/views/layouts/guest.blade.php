@@ -27,6 +27,11 @@
             gtag('config', '{{ config('services.google.analytics_id') }}');
         </script>
     @endif
+
+    @if (config('services.turnstile.site_key'))
+        <!-- Cloudflare Turnstile -->
+        <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+    @endif
 </head>
 
 <body class="antialiased" style="font-family:'DM Sans',sans-serif;background:#0f1117;">

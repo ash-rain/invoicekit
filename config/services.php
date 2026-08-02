@@ -59,4 +59,9 @@ return [
         'endpoint' => env('GEMINI_ENDPOINT', 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent'),
     ],
 
+    'turnstile' => [
+        'site_key' => env('TURNSTILE_SITE_KEY', '0x4AAAAAAEEpSSrAUEuD0yXH'),
+        'secret_key' => env('TURNSTILE_SECRET'),
+    ],
+
 ];

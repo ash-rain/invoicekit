@@ -16,6 +16,13 @@
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
+        @if (config('services.turnstile.site_key'))
+            <div class="mt-4">
+                <div class="cf-turnstile" data-sitekey="{{ config('services.turnstile.site_key') }}" data-action="turnstile-spin-v2"></div>
+                <x-input-error :messages="$errors->get('cf-turnstile-response')" class="mt-2" />
+            </div>
+        @endif
+
         <div class="flex items-center justify-end mt-4">
             <x-primary-button>
                 {{ __('Email Password Reset Link') }}
