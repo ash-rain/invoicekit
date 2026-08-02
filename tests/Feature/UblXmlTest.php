@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\Client;
+use App\Models\Company;
 use App\Models\Invoice;
 use App\Models\InvoiceItem;
 use App\Models\User;
@@ -183,5 +184,188 @@ class UblXmlTest extends TestCase
         $lines = $xpath->query('//cac:InvoiceLine');
 
         $this->assertSame(3, $lines->length);
+    }
+
+    // ── Multi-rate TaxSubtotal (BG-23) ──────────────────────────────────────────
+
+    public function test_service_generates_one_tax_subtotal_per_vat_summary_group(): void
+    {
+        $user = User::factory()->create();
+        $client = Client::factory()->create(['user_id' => $user->id]);
+        $invoice = Invoice::factory()->create([
+            'user_id' => $user->id,
+            'client_id' => $client->id,
+            'subtotal' => '1100.00',
+            'vat_rate' => null,
+            'vat_amount' => '281.00',
+            'total' => '1381.00',
+            'vat_summary' => [
+                ['rate' => 20.0, 'base' => 1000.0, 'vat' => 200.0, 'label' => 'Standard 20%'],
+                ['rate' => 9.0, 'base' => 100.0, 'vat' => 81.0, 'label' => 'Reduced 9%'],
+            ],
+        ]);
+        InvoiceItem::factory()->create([
+            'invoice_id' => $invoice->id,
+            'vat_rate' => '20.00',
+            'total' => '1000.00',
+        ]);
+        InvoiceItem::factory()->create([
+            'invoice_id' => $invoice->id,
+            'vat_rate' => '9.00',
+            'total' => '100.00',
+        ]);
+
+        $xml = app(UblXmlService::class)->generate($invoice);
+
+        $dom = new \DOMDocument;
+        $dom->loadXML($xml);
+        $xpath = new \DOMXPath($dom);
+        $xpath->registerNamespace('cac', 'urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2');
+        $xpath->registerNamespace('cbc', 'urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2');
+
+        $subtotals = $xpath->query('//cac:TaxTotal/cac:TaxSubtotal');
+        $this->assertSame(2, $subtotals->length);
+
+        $taxableAmounts = [];
+        $taxAmounts = [];
+        $percents = [];
+        foreach ($subtotals as $subtotal) {
+            $taxableAmounts[] = $xpath->evaluate('string(cbc:TaxableAmount)', $subtotal);
+            $taxAmounts[] = $xpath->evaluate('string(cbc:TaxAmount)', $subtotal);
+            $percents[] = $xpath->evaluate('string(cac:TaxCategory/cbc:Percent)', $subtotal);
+        }
+
+        $this->assertContains('1000', $taxableAmounts);
+        $this->assertContains('100', $taxableAmounts);
+        $this->assertContains('200', $taxAmounts);
+        $this->assertContains('81', $taxAmounts);
+        $this->assertContains('20', $percents);
+        $this->assertContains('9', $percents);
+    }
+
+    public function test_service_generates_single_tax_subtotal_when_vat_summary_absent(): void
+    {
+        $user = User::factory()->create();
+        $client = Client::factory()->create(['user_id' => $user->id]);
+        $invoice = Invoice::factory()->create([
+            'user_id' => $user->id,
+            'client_id' => $client->id,
+            'subtotal' => '100.00',
+            'vat_rate' => '19.00',
+            'vat_amount' => '19.00',
+            'total' => '119.00',
+            'vat_summary' => null,
+        ]);
+        InvoiceItem::factory()->create(['invoice_id' => $invoice->id, 'total' => '100.00']);
+
+        $xml = app(UblXmlService::class)->generate($invoice);
+
+        $dom = new \DOMDocument;
+        $dom->loadXML($xml);
+        $xpath = new \DOMXPath($dom);
+        $xpath->registerNamespace('cac', 'urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2');
+
+        $subtotals = $xpath->query('//cac:TaxTotal/cac:TaxSubtotal');
+        $this->assertSame(1, $subtotals->length);
+    }
+
+    // ── Line-level ClassifiedTaxCategory (BG-25) ─────────────────────────────────
+
+    public function test_line_classified_tax_category_reflects_item_vat_rate(): void
+    {
+        $user = User::factory()->create();
+        $client = Client::factory()->create(['user_id' => $user->id]);
+        $invoice = Invoice::factory()->create([
+            'user_id' => $user->id,
+            'client_id' => $client->id,
+            'vat_rate' => null,
+            'vat_summary' => [
+                ['rate' => 20.0, 'base' => 1000.0, 'vat' => 200.0, 'label' => 'Standard 20%'],
+                ['rate' => 9.0, 'base' => 100.0, 'vat' => 9.0, 'label' => 'Reduced 9%'],
+            ],
+        ]);
+        InvoiceItem::factory()->create([
+            'invoice_id' => $invoice->id,
+            'vat_rate' => '20.00',
+            'total' => '1000.00',
+        ]);
+        InvoiceItem::factory()->create([
+            'invoice_id' => $invoice->id,
+            'vat_rate' => '9.00',
+            'total' => '100.00',
+        ]);
+
+        $xml = app(UblXmlService::class)->generate($invoice);
+
+        $dom = new \DOMDocument;
+        $dom->loadXML($xml);
+        $xpath = new \DOMXPath($dom);
+        $xpath->registerNamespace('cac', 'urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2');
+        $xpath->registerNamespace('cbc', 'urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2');
+
+        $percents = $xpath->query('//cac:InvoiceLine/cac:Item/cac:ClassifiedTaxCategory/cbc:Percent');
+        $this->assertSame(2, $percents->length);
+
+        $values = [];
+        foreach ($percents as $percent) {
+            $values[] = $percent->textContent;
+        }
+
+        $this->assertContains('20.00', $values);
+        $this->assertContains('9.00', $values);
+    }
+
+    // ── PaymentMeans / IBAN (BT-84) ──────────────────────────────────────────────
+
+    public function test_payment_means_included_when_company_has_iban(): void
+    {
+        $user = User::factory()->create();
+        $company = Company::factory()->create([
+            'user_id' => $user->id,
+            'bank_iban' => 'BG80BNBG96611020345678',
+        ]);
+        $user->update(['current_company_id' => $company->id]);
+
+        $client = Client::factory()->create(['user_id' => $user->id]);
+        $invoice = Invoice::factory()->create(['user_id' => $user->id, 'client_id' => $client->id]);
+        InvoiceItem::factory()->create(['invoice_id' => $invoice->id]);
+
+        $xml = app(UblXmlService::class)->generate($invoice);
+
+        $dom = new \DOMDocument;
+        $dom->loadXML($xml);
+        $xpath = new \DOMXPath($dom);
+        $xpath->registerNamespace('cac', 'urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2');
+        $xpath->registerNamespace('cbc', 'urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2');
+
+        $paymentMeans = $xpath->query('//cac:PaymentMeans');
+        $this->assertSame(1, $paymentMeans->length);
+
+        $iban = $xpath->evaluate('string(//cac:PaymentMeans/cac:PayeeFinancialAccount/cbc:ID)');
+        $this->assertSame('BG80BNBG96611020345678', $iban);
+    }
+
+    public function test_payment_means_omitted_when_company_has_no_iban(): void
+    {
+        $user = User::factory()->create();
+        $company = Company::factory()->create([
+            'user_id' => $user->id,
+            'bank_iban' => null,
+        ]);
+        $user->update(['current_company_id' => $company->id]);
+
+        $client = Client::factory()->create(['user_id' => $user->id]);
+        $invoice = Invoice::factory()->create(['user_id' => $user->id, 'client_id' => $client->id]);
+        InvoiceItem::factory()->create(['invoice_id' => $invoice->id]);
+
+        $xml = app(UblXmlService::class)->generate($invoice);
+
+        $dom = new \DOMDocument;
+        $dom->loadXML($xml);
+        $xpath = new \DOMXPath($dom);
+        $xpath->registerNamespace('cac', 'urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2');
+
+        $paymentMeans = $xpath->query('//cac:PaymentMeans');
+        $this->assertSame(0, $paymentMeans->length);
     }
 }

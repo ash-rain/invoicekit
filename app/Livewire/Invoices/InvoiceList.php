@@ -55,9 +55,9 @@ class InvoiceList extends Component
             return;
         }
 
-        // Check validation gate for BG companies
+        // Check validation gate for BG/BE companies
         $company = Auth::user()->currentCompany;
-        if ($company && in_array(strtoupper($company->country ?? ''), ['BG'])) {
+        if ($company && in_array(strtoupper($company->country ?? ''), ['BG', 'BE'])) {
             $service = new InvoiceValidationService;
             $invoice->loadMissing(['items', 'client']);
             if (! $service->canIssue($invoice, $company)) {
@@ -161,6 +161,14 @@ class InvoiceList extends Component
     public function clients()
     {
         return Client::where('user_id', Auth::id())->orderBy('name')->get(['id', 'name']);
+    }
+
+    #[Computed]
+    public function showPolandKsefBanner(): bool
+    {
+        $company = Auth::user()->currentCompany;
+
+        return $company && strtoupper($company->country ?? '') === 'PL';
     }
 
     public function render()

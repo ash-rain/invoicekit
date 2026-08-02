@@ -149,6 +149,16 @@ class UblXmlService
         $customerParty->appendChild($buyerParty);
         $root->appendChild($customerParty);
 
+        // BT-84 Payment account identifier
+        if ($company?->bank_iban) {
+            $paymentMeans = $dom->createElement('cac:PaymentMeans');
+            $this->addCbc($dom, $paymentMeans, 'PaymentMeansCode', '30');
+            $payeeFinancialAccount = $dom->createElement('cac:PayeeFinancialAccount');
+            $this->addCbc($dom, $payeeFinancialAccount, 'ID', $company->bank_iban);
+            $paymentMeans->appendChild($payeeFinancialAccount);
+            $root->appendChild($paymentMeans);
+        }
+
         // BG-22 Document totals
         $legalMonetaryTotal = $dom->createElement('cac:LegalMonetaryTotal');
         $this->addCbcWithAttr($dom, $legalMonetaryTotal, 'LineExtensionAmount', (string) $invoice->subtotal, ['currencyID' => $invoice->currency ?? 'EUR']);
@@ -159,25 +169,48 @@ class UblXmlService
 
         // BG-23 Tax total
         $taxTotal = $dom->createElement('cac:TaxTotal');
-        $this->addCbcWithAttr($dom, $taxTotal, 'TaxAmount', (string) $invoice->vat_amount, ['currencyID' => $invoice->currency ?? 'EUR']);
-        $taxSubtotal = $dom->createElement('cac:TaxSubtotal');
-        $this->addCbcWithAttr($dom, $taxSubtotal, 'TaxableAmount', (string) $invoice->subtotal, ['currencyID' => $invoice->currency ?? 'EUR']);
-        $this->addCbcWithAttr($dom, $taxSubtotal, 'TaxAmount', (string) $invoice->vat_amount, ['currencyID' => $invoice->currency ?? 'EUR']);
-        $taxCategory = $dom->createElement('cac:TaxCategory');
 
-        if ($invoice->vat_exempt_applied) {
-            $this->addCbc($dom, $taxCategory, 'ID', 'E');
-            $this->addCbc($dom, $taxCategory, 'Percent', '0');
+        if (! $invoice->vat_exempt_applied && is_array($invoice->vat_summary) && count($invoice->vat_summary) > 0) {
+            $totalVatAmount = round(array_sum(array_map(fn (array $group): float => (float) $group['vat'], $invoice->vat_summary)), 2);
+            $this->addCbcWithAttr($dom, $taxTotal, 'TaxAmount', (string) $totalVatAmount, ['currencyID' => $invoice->currency ?? 'EUR']);
+
+            foreach ($invoice->vat_summary as $group) {
+                $taxSubtotal = $dom->createElement('cac:TaxSubtotal');
+                $this->addCbcWithAttr($dom, $taxSubtotal, 'TaxableAmount', (string) $group['base'], ['currencyID' => $invoice->currency ?? 'EUR']);
+                $this->addCbcWithAttr($dom, $taxSubtotal, 'TaxAmount', (string) $group['vat'], ['currencyID' => $invoice->currency ?? 'EUR']);
+
+                $taxCategory = $dom->createElement('cac:TaxCategory');
+                $this->addCbc($dom, $taxCategory, 'ID', 'S');
+                $this->addCbc($dom, $taxCategory, 'Percent', (string) $group['rate']);
+
+                $taxSchemeNode = $dom->createElement('cac:TaxScheme');
+                $this->addCbc($dom, $taxSchemeNode, 'ID', 'VAT');
+                $taxCategory->appendChild($taxSchemeNode);
+                $taxSubtotal->appendChild($taxCategory);
+                $taxTotal->appendChild($taxSubtotal);
+            }
         } else {
-            $this->addCbc($dom, $taxCategory, 'ID', 'S');
-            $this->addCbc($dom, $taxCategory, 'Percent', (string) $invoice->vat_rate);
+            $this->addCbcWithAttr($dom, $taxTotal, 'TaxAmount', (string) $invoice->vat_amount, ['currencyID' => $invoice->currency ?? 'EUR']);
+            $taxSubtotal = $dom->createElement('cac:TaxSubtotal');
+            $this->addCbcWithAttr($dom, $taxSubtotal, 'TaxableAmount', (string) $invoice->subtotal, ['currencyID' => $invoice->currency ?? 'EUR']);
+            $this->addCbcWithAttr($dom, $taxSubtotal, 'TaxAmount', (string) $invoice->vat_amount, ['currencyID' => $invoice->currency ?? 'EUR']);
+            $taxCategory = $dom->createElement('cac:TaxCategory');
+
+            if ($invoice->vat_exempt_applied) {
+                $this->addCbc($dom, $taxCategory, 'ID', 'E');
+                $this->addCbc($dom, $taxCategory, 'Percent', '0');
+            } else {
+                $this->addCbc($dom, $taxCategory, 'ID', 'S');
+                $this->addCbc($dom, $taxCategory, 'Percent', (string) $invoice->vat_rate);
+            }
+
+            $taxSchemeNode = $dom->createElement('cac:TaxScheme');
+            $this->addCbc($dom, $taxSchemeNode, 'ID', 'VAT');
+            $taxCategory->appendChild($taxSchemeNode);
+            $taxSubtotal->appendChild($taxCategory);
+            $taxTotal->appendChild($taxSubtotal);
         }
 
-        $taxSchemeNode = $dom->createElement('cac:TaxScheme');
-        $this->addCbc($dom, $taxSchemeNode, 'ID', 'VAT');
-        $taxCategory->appendChild($taxSchemeNode);
-        $taxSubtotal->appendChild($taxCategory);
-        $taxTotal->appendChild($taxSubtotal);
         $root->appendChild($taxTotal);
 
         // BG-25 Invoice lines
@@ -191,9 +224,11 @@ class UblXmlService
             $this->addCbc($dom, $itemNode, 'Description', $item->description ?? '');
             $this->addCbc($dom, $itemNode, 'Name', $item->description ?? '');
 
+            $lineVatRate = $item->vat_rate !== null ? $item->vat_rate : $invoice->vat_rate;
+
             $classifiedTax = $dom->createElement('cac:ClassifiedTaxCategory');
             $this->addCbc($dom, $classifiedTax, 'ID', $invoice->vat_exempt_applied ? 'E' : 'S');
-            $this->addCbc($dom, $classifiedTax, 'Percent', (string) ($invoice->vat_exempt_applied ? 0 : $invoice->vat_rate));
+            $this->addCbc($dom, $classifiedTax, 'Percent', (string) ($invoice->vat_exempt_applied ? 0 : $lineVatRate));
             $itemTaxScheme = $dom->createElement('cac:TaxScheme');
             $this->addCbc($dom, $itemTaxScheme, 'ID', 'VAT');
             $classifiedTax->appendChild($itemTaxScheme);

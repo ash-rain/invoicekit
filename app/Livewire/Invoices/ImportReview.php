@@ -157,6 +157,77 @@ class ImportReview extends Component
         return Client::where('user_id', Auth::id())->orderBy('name')->get(['id', 'name']);
     }
 
+    #[Computed]
+    public function queue()
+    {
+        return DocumentImport::where('user_id', Auth::id())
+            ->where('document_type', 'invoice')
+            ->where('batch_id', $this->import->batch_id)
+            ->orderBy('created_at')
+            ->get();
+    }
+
+    #[Computed]
+    public function positionInQueue(): int
+    {
+        $index = $this->queue->search(fn (DocumentImport $i) => $i->id === $this->import->id);
+
+        return $index === false ? 1 : $index + 1;
+    }
+
+    #[Computed]
+    public function totalInQueue(): int
+    {
+        return max(1, $this->queue->count());
+    }
+
+    #[Computed]
+    public function prevReviewable(): ?DocumentImport
+    {
+        $current = $this->import;
+
+        return $this->queue
+            ->filter(fn (DocumentImport $i) => $i->id !== $current->id
+                && $i->isExtracted()
+                && $i->created_at <= $current->created_at)
+            ->last();
+    }
+
+    #[Computed]
+    public function nextReviewable(): ?DocumentImport
+    {
+        $current = $this->import;
+
+        return $this->queue
+            ->filter(fn (DocumentImport $i) => $i->id !== $current->id
+                && $i->isExtracted()
+                && $i->created_at >= $current->created_at)
+            ->first();
+    }
+
+    public function goToImport(int $importId): void
+    {
+        $this->redirect(route('invoices.import.review', $importId), navigate: true);
+    }
+
+    private function redirectAfterAction(string $fallbackRoute): void
+    {
+        $next = DocumentImport::where('user_id', Auth::id())
+            ->where('document_type', 'invoice')
+            ->where('id', '!=', $this->import->id)
+            ->where('status', 'extracted')
+            ->orderBy('created_at')
+            ->first();
+
+        if ($next) {
+            $this->redirect(route('invoices.import.review', $next), navigate: true);
+
+            return;
+        }
+
+        $this->redirect(route($fallbackRoute), navigate: true);
+    }
+
     public function confirm(): void
     {
         $this->validate([
@@ -208,7 +279,7 @@ class ImportReview extends Component
             ]);
         });
 
-        $this->redirect(route('invoices.index'), navigate: true);
+        $this->redirectAfterAction('invoices.index');
     }
 
     public function deleteImport(): void
@@ -221,13 +292,13 @@ class ImportReview extends Component
 
         $import->delete();
 
-        $this->redirect(route('invoices.import'), navigate: true);
+        $this->redirectAfterAction('invoices.import');
     }
 
     public function skip(): void
     {
         $this->import->update(['status' => 'completed']);
-        $this->redirect(route('invoices.import'), navigate: true);
+        $this->redirectAfterAction('invoices.import');
     }
 
     public function render()

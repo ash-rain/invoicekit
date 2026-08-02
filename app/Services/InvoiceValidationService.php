@@ -82,6 +82,23 @@ class InvoiceValidationService
             }
         }
 
+        // Belgium mandates structured Peppol/UBL e-invoicing for domestic B2B
+        // invoices (effective 1 Jan 2026). A plain PDF alone does not satisfy
+        // this — the seller must have generated the structured UBL export.
+        if (
+            strtoupper($company->country ?? '') === 'BE'
+            && strtoupper($invoice->client?->country ?? '') === 'BE'
+            && ! $this->isEmpty($invoice->client?->vat_number)
+            && $invoice->document_type === 'invoice'
+            && $invoice->xml_exported_at === null
+        ) {
+            $errors[] = [
+                'field' => 'xml_export',
+                'message' => 'Belgian B2B invoices must be issued as a structured Peppol/UBL invoice. Download the XML export before marking this invoice as sent.',
+                'legal_ref' => 'Peppol BIS Billing 3.0 mandate — Belgium B2B e-invoicing, effective 1 Jan 2026',
+            ];
+        }
+
         // Merge custom company rules
         $customResult = $this->validateCustomRules($invoice, $company);
 

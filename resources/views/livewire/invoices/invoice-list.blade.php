@@ -1,5 +1,15 @@
 <div class="p-6 lg:p-8">
 
+    @if ($this->showPolandKsefBanner)
+        <div class="mb-6 p-4 rounded-xl border flex items-start gap-3 bg-yellow-50 border-yellow-200 text-yellow-800">
+            <span class="text-base leading-none mt-0.5">⚠️</span>
+            <div class="text-sm">
+                <strong>{{ __("Poland's KSeF e-invoicing grace period ends 31 December 2026") }}</strong>
+                — {{ __('from 1 January 2027, penalties of up to 100% of invoice VAT apply for invoices not issued through KSeF. InvoiceKit does not yet support KSeF submission.') }}
+            </div>
+        </div>
+    @endif
+
     {{-- Page header --}}
     <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-7">
         <div>

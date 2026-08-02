@@ -1,28 +1,120 @@
 <div class="p-6 lg:p-8">
 
     {{-- Page header --}}
-    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-7">
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-5">
         <div>
             <h1 class="text-[26px] font-bold text-gray-900 leading-tight"
                 style="font-family:'Syne',sans-serif;letter-spacing:-0.025em;">{{ __('Extracted Data') }}</h1>
             <p class="mt-0.5 text-sm text-gray-500">
                 {{ __('Review and confirm to create your :type.', ['type' => __('invoice')]) }}
-                — @if($this->fileUrl)<a href="{{ $this->fileUrl }}" target="_blank" class="font-medium text-indigo-600 hover:underline">{{ $import->original_filename }}</a>@else<span class="font-medium text-gray-700">{{ $import->original_filename }}</span>@endif
+                — @if ($this->fileUrl)
+                    <a href="{{ $this->fileUrl }}" target="_blank"
+                        class="font-medium text-indigo-600 hover:underline">{{ $import->original_filename }}</a>
+                @else
+                    <span class="font-medium text-gray-700">{{ $import->original_filename }}</span>
+                @endif
             </p>
         </div>
-        <div class="flex items-center gap-2 self-start sm:self-auto">
-            <button wire:click="deleteImport" wire:confirm="{{ __('Delete this import and its file?') }}"
-                class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold border border-red-200 text-red-500 hover:bg-red-50 transition">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                        d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                </svg>
-                {{ __('Delete') }}
-            </button>
-            <button wire:click="skip"
-                class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold border border-gray-200 text-gray-500 hover:bg-gray-50 transition">
-                {{ __('Skip') }}
-            </button>
+        <a href="{{ route('invoices.import') }}" wire:navigate
+            class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold border border-gray-200 text-gray-700 hover:bg-gray-50 transition self-start sm:self-auto">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+            </svg>
+            {{ __('Upload more') }}
+        </a>
+    </div>
+
+    {{-- Queue: progress + actions + prev/next nav --}}
+    @php
+        $pos = $this->positionInQueue;
+        $tot = $this->totalInQueue;
+        $pct = $tot > 0 ? (int) round(($pos / $tot) * 100) : 0;
+    @endphp
+    <div class="bg-white rounded-2xl mb-6" style="border:1px solid #eaecf0;">
+        <div class="px-5 pt-4 pb-3">
+            <div class="flex items-center justify-between mb-2">
+                <span
+                    class="text-xs font-bold text-gray-500 uppercase tracking-wider">{{ __('Extraction Queue') }}</span>
+                <span
+                    class="text-xs font-semibold text-gray-600">{{ __('File :n of :t', ['n' => $pos, 't' => $tot]) }}</span>
+            </div>
+            <div class="h-2 w-full rounded-full bg-gray-100 overflow-hidden">
+                <div class="h-full rounded-full transition-all duration-500"
+                    style="width: {{ $pct }}%; background: #4f46e5;"></div>
+            </div>
+        </div>
+
+        <div class="px-5 py-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3"
+            style="border-top:1px solid #f3f4f6;">
+            {{-- Prev / Next nav --}}
+            <div class="flex items-center gap-2">
+                @if ($this->prevReviewable)
+                    <button wire:click="goToImport({{ $this->prevReviewable->id }})"
+                        class="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-semibold text-gray-700 hover:bg-gray-100 transition"
+                        style="border:1px solid #e5e7eb;">
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+                        </svg>
+                        {{ __('Prev') }}
+                    </button>
+                @else
+                    <button disabled
+                        class="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-semibold text-gray-300 cursor-not-allowed"
+                        style="border:1px solid #f3f4f6;">
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+                        </svg>
+                        {{ __('Prev') }}
+                    </button>
+                @endif
+
+                @if ($this->nextReviewable)
+                    <button wire:click="goToImport({{ $this->nextReviewable->id }})"
+                        class="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-semibold text-gray-700 hover:bg-gray-100 transition"
+                        style="border:1px solid #e5e7eb;">
+                        {{ __('Next') }}
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                        </svg>
+                    </button>
+                @else
+                    <button disabled
+                        class="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-semibold text-gray-300 cursor-not-allowed"
+                        style="border:1px solid #f3f4f6;">
+                        {{ __('Next') }}
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                        </svg>
+                    </button>
+                @endif
+            </div>
+
+            {{-- Big actions --}}
+            <div class="flex items-center gap-3">
+                <button wire:click="deleteImport" wire:confirm="{{ __('Discard this import and its file?') }}"
+                    class="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-bold text-red-600 bg-red-50 hover:bg-red-100 transition-all"
+                    style="border:1px solid #fecaca;">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                    {{ __('Discard') }}
+                </button>
+                <button wire:click="confirm" wire:loading.attr="disabled" wire:target="confirm"
+                    wire:loading.class="opacity-60 cursor-not-allowed"
+                    class="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-bold text-white transition-all"
+                    style="background:#0f1117;" onmouseover="this.style.background='#1e2130'"
+                    onmouseout="this.style.background='#0f1117'">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span wire:loading.remove wire:target="confirm">{{ __('Accept') }}</span>
+                    <span wire:loading wire:target="confirm">{{ __('Saving…') }}</span>
+                </button>
+            </div>
         </div>
     </div>
 
@@ -180,15 +272,6 @@
                             {{ number_format($this->total, 2) }}</span>
                     </div>
                 </div>
-
-                <button wire:click="confirm" wire:loading.attr="disabled"
-                    wire:loading.class="opacity-60 cursor-not-allowed"
-                    class="mt-5 w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-sm font-bold transition-all"
-                    style="background:#0f1117;color:white;" onmouseover="this.style.background='#1e2130'"
-                    onmouseout="this.style.background='#0f1117'">
-                    <span wire:loading.remove>{{ __('Confirm Import') }}</span>
-                    <span wire:loading>{{ __('Saving...') }}</span>
-                </button>
             </div>
 
             {{-- Source document --}}

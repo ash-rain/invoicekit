@@ -211,7 +211,9 @@ class DocumentImportTest extends TestCase
         Storage::disk('minio')->put('imports/1/test.pdf', 'fake-content');
 
         $user = User::factory()->create();
-        $import = DocumentImport::factory()->extracted()->forInvoice()->create([
+        // Use a failed import: the importer page only manages non-extracted entries
+        // (extracted ones auto-redirect to the review page on mount).
+        $import = DocumentImport::factory()->failed()->forInvoice()->create([
             'user_id' => $user->id,
             'stored_path' => 'imports/1/test.pdf',
         ]);
@@ -228,12 +230,66 @@ class DocumentImportTest extends TestCase
     {
         $user = User::factory()->create();
         $other = User::factory()->create();
-        $import = DocumentImport::factory()->extracted()->forInvoice()->create(['user_id' => $other->id]);
+        $import = DocumentImport::factory()->failed()->forInvoice()->create(['user_id' => $other->id]);
 
         $this->expectException(\Illuminate\Database\Eloquent\ModelNotFoundException::class);
 
         \Livewire\Livewire::actingAs($user)
             ->test(\App\Livewire\DocumentImporter::class)
             ->call('deleteImport', $import->id);
+    }
+
+    public function test_selecting_files_auto_triggers_import_without_button_click(): void
+    {
+        Storage::fake('minio');
+        Queue::fake();
+
+        $user = User::factory()->create();
+        $file = \Illuminate\Http\UploadedFile::fake()->create('receipt.pdf', 100, 'application/pdf');
+
+        \Livewire\Livewire::actingAs($user)
+            ->test(\App\Livewire\DocumentImporter::class, ['type' => 'invoice'])
+            ->set('files', [$file]);
+
+        // updatedFiles auto-fires startImport → record created + job dispatched
+        $this->assertDatabaseCount('document_imports', 1);
+        $this->assertDatabaseHas('document_imports', [
+            'user_id' => $user->id,
+            'document_type' => 'invoice',
+            'original_filename' => 'receipt.pdf',
+            'status' => 'pending',
+        ]);
+        Queue::assertPushed(ProcessDocumentImport::class);
+    }
+
+    public function test_importer_mount_redirects_to_review_when_extracted_import_exists(): void
+    {
+        $user = User::factory()->create();
+        $extracted = DocumentImport::factory()->extracted()->forInvoice()->create(['user_id' => $user->id]);
+
+        $this->actingAs($user)
+            ->get(route('invoices.import'))
+            ->assertRedirect(route('invoices.import.review', $extracted));
+    }
+
+    public function test_importer_mount_does_not_redirect_when_no_extracted_imports(): void
+    {
+        $user = User::factory()->create();
+        DocumentImport::factory()->pending()->forInvoice()->create(['user_id' => $user->id]);
+
+        $this->actingAs($user)
+            ->get(route('invoices.import'))
+            ->assertOk();
+    }
+
+    public function test_importer_mount_only_considers_matching_document_type(): void
+    {
+        $user = User::factory()->create();
+        // Extracted expense should not redirect from the invoice importer.
+        DocumentImport::factory()->extracted()->forExpense()->create(['user_id' => $user->id]);
+
+        $this->actingAs($user)
+            ->get(route('invoices.import'))
+            ->assertOk();
     }
 }

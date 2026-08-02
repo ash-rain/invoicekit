@@ -306,6 +306,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
         $xml = app(\App\Services\UblXmlService::class)->generate($invoice);
 
+        $invoice->update(['xml_exported_at' => now()]);
+
         return response($xml, 200, [
             'Content-Type' => 'application/xml',
             'Content-Disposition' => 'attachment; filename="invoice-'.$invoice->invoice_number.'.xml"',

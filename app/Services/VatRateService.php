@@ -15,7 +15,28 @@ class VatRateService
     /** @return array<string, array{rate: int|float, label: string, legal_ref?: string}> */
     public function ratesForCountry(string $countryCode): array
     {
-        return $this->rates[strtoupper($countryCode)] ?? [];
+        $rates = $this->rates[strtoupper($countryCode)] ?? [];
+
+        return array_filter($rates, fn (array $entry) => $this->isCurrentlyActive($entry));
+    }
+
+    /**
+     * A rate entry is active when today falls within its optional valid_from/valid_until
+     * window. Entries without a window are always active.
+     */
+    private function isCurrentlyActive(array $entry): bool
+    {
+        $today = date('Y-m-d');
+
+        if (isset($entry['valid_from']) && $today < $entry['valid_from']) {
+            return false;
+        }
+
+        if (isset($entry['valid_until']) && $today > $entry['valid_until']) {
+            return false;
+        }
+
+        return true;
     }
 
     public function rateForKey(string $countryCode, string $key): int|float|null

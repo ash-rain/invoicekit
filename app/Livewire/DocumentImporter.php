@@ -27,12 +27,12 @@ class DocumentImporter extends Component
 
     public string $batchId = '';
 
-    public bool $uploading = false;
-
     public function mount(string $type = 'invoice'): void
     {
         $this->documentType = in_array($type, ['invoice', 'expense']) ? $type : 'invoice';
         $this->batchId = (string) Str::uuid();
+
+        $this->redirectIfExtractedReady();
     }
 
     public function updatedFiles(): void
@@ -41,6 +41,10 @@ class DocumentImporter extends Component
             'files.*' => ['file', 'mimes:jpg,jpeg,png,pdf', 'max:10240'],
             'files' => ['array', 'max:10'],
         ]);
+
+        if (! empty($this->files)) {
+            $this->startImport();
+        }
     }
 
     public function startImport(): void
@@ -100,7 +104,23 @@ class DocumentImporter extends Component
         }
 
         $this->files = [];
-        $this->uploading = false;
+    }
+
+    public function redirectIfExtractedReady(): void
+    {
+        $extracted = DocumentImport::where('user_id', Auth::id())
+            ->where('document_type', $this->documentType)
+            ->where('status', 'extracted')
+            ->orderBy('created_at')
+            ->first();
+
+        if ($extracted) {
+            $route = $this->documentType === 'invoice'
+                ? 'invoices.import.review'
+                : 'expenses.import.review';
+
+            $this->redirect(route($route, $extracted), navigate: true);
+        }
     }
 
     public function retryImport(int $importId): void

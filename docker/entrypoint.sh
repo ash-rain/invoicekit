@@ -40,6 +40,15 @@ echo "[entrypoint] Caches rebuilt."
 php artisan migrate --force
 
 # ---------------------------------------------------------------------------
+# Ensure the MinIO bucket exists — idempotent, so it runs on EVERY boot.
+# The object-storage volume can be wiped (e.g. `docker compose down -v`)
+# independently of the bind-mounted storage/ dir that holds the bootstrap
+# flag, so bucket creation must not live behind the first-time-only guard.
+# ---------------------------------------------------------------------------
+echo "[entrypoint] Ensuring MinIO bucket exists..."
+php artisan storage:minio-init || true
+
+# ---------------------------------------------------------------------------
 # First-time bootstrap — guarded by a flag file in storage/app/
 # ---------------------------------------------------------------------------
 if [ ! -f "$BOOTSTRAP_FLAG" ]; then
@@ -60,10 +69,6 @@ if [ ! -f "$BOOTSTRAP_FLAG" ]; then
         echo "[entrypoint] Generating VAPID keys..."
         php artisan webpush:vapid || true
     fi
-
-    # Initialise MinIO bucket (best-effort — MinIO may take a moment to start)
-    echo "[entrypoint] Initialising MinIO bucket..."
-    php artisan storage:minio-init || true
 
     touch "$BOOTSTRAP_FLAG"
     echo "[entrypoint] First-time bootstrap complete."

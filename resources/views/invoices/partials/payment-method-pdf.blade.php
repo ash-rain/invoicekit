@@ -1,6 +1,7 @@
 {{-- Payment method details for PDF invoices --}}
 @php
     $pm = $invoice->resolvedPaymentMethod();
+    $showKsefReference = $invoice->ksef_id && strtoupper($company->country ?? '') === 'PL';
 @endphp
 @if ($pm)
     @if ($pm['type'] === 'bank_transfer')
@@ -12,6 +13,9 @@
         @endif
         @if ($pm['bank_bic'] ?? null)
             BIC: {{ $pm['bank_bic'] }}<br>
+        @endif
+        @if ($showKsefReference)
+            {{ __('Payment reference') }}: KSeF {{ $invoice->ksef_id }}<br>
         @endif
     @elseif ($pm['type'] === 'cash')
         {{ __('Payment in cash') }}<br>
@@ -31,5 +35,8 @@
     IBAN: {{ $company->bank_iban }}<br>
     @if ($company->bank_bic)
         BIC: {{ $company->bank_bic }}<br>
+    @endif
+    @if ($showKsefReference)
+        {{ __('Payment reference') }}: KSeF {{ $invoice->ksef_id }}<br>
     @endif
 @endif

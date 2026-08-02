@@ -340,6 +340,131 @@ class ImportReviewTest extends TestCase
     // Client auto-match
     // ─────────────────────────────────────────────────────────────────
 
+    // ─────────────────────────────────────────────────────────────────
+    // Queue: advance to next extracted after action
+    // ─────────────────────────────────────────────────────────────────
+
+    public function test_invoice_confirm_redirects_to_next_extracted_when_more_in_queue(): void
+    {
+        $user = User::factory()->create();
+        $client = Client::factory()->create(['user_id' => $user->id]);
+
+        $first = DocumentImport::factory()->extracted()->forInvoice()->create([
+            'user_id' => $user->id,
+            'extracted_data' => [
+                'invoice_number' => 'INV-A',
+                'issue_date' => '2026-01-01',
+                'due_date' => '2026-02-01',
+                'currency' => 'EUR',
+                'line_items' => [],
+            ],
+        ]);
+        $second = DocumentImport::factory()->extracted()->forInvoice()->create([
+            'user_id' => $user->id,
+            'created_at' => $first->created_at->addSecond(),
+        ]);
+
+        \Livewire\Livewire::actingAs($user)
+            ->test(\App\Livewire\Invoices\ImportReview::class, ['import' => $first])
+            ->set('clientId', $client->id)
+            ->set('invoiceNumber', 'INV-A')
+            ->set('issueDate', '2026-01-01')
+            ->set('dueDate', '2026-02-01')
+            ->set('currency', 'EUR')
+            ->set('vatRate', 0)
+            ->set('items', [['description' => 'Item', 'quantity' => '1', 'unit_price' => '10']])
+            ->call('confirm')
+            ->assertRedirect(route('invoices.import.review', $second));
+    }
+
+    public function test_invoice_delete_redirects_to_next_extracted_when_more_in_queue(): void
+    {
+        $user = User::factory()->create();
+
+        $first = DocumentImport::factory()->extracted()->forInvoice()->create(['user_id' => $user->id]);
+        $second = DocumentImport::factory()->extracted()->forInvoice()->create([
+            'user_id' => $user->id,
+            'created_at' => $first->created_at->addSecond(),
+        ]);
+
+        \Livewire\Livewire::actingAs($user)
+            ->test(\App\Livewire\Invoices\ImportReview::class, ['import' => $first])
+            ->call('deleteImport')
+            ->assertRedirect(route('invoices.import.review', $second));
+    }
+
+    public function test_expense_confirm_redirects_to_next_extracted_when_more_in_queue(): void
+    {
+        Storage::fake('minio');
+
+        $user = User::factory()->create();
+
+        $first = DocumentImport::factory()->extracted()->forExpense()->create([
+            'user_id' => $user->id,
+            'extracted_data' => [
+                'description' => 'first',
+                'amount' => 5.00,
+                'currency' => 'EUR',
+                'category' => 'other',
+                'date' => '2026-01-01',
+            ],
+        ]);
+        $second = DocumentImport::factory()->extracted()->forExpense()->create([
+            'user_id' => $user->id,
+            'created_at' => $first->created_at->addSecond(),
+            'extracted_data' => [
+                'description' => 'second',
+                'amount' => 5.00,
+                'currency' => 'EUR',
+                'category' => 'other',
+                'date' => '2026-01-02',
+            ],
+        ]);
+
+        \Livewire\Livewire::actingAs($user)
+            ->test(\App\Livewire\Expenses\ImportReview::class, ['import' => $first])
+            ->set('description', 'first')
+            ->set('amount', '5.00')
+            ->set('currency', 'EUR')
+            ->set('category', 'other')
+            ->set('date', '2026-01-01')
+            ->call('confirm')
+            ->assertRedirect(route('expenses.import.review', $second));
+    }
+
+    public function test_invoice_go_to_import_redirects_to_target_review(): void
+    {
+        $user = User::factory()->create();
+        $first = DocumentImport::factory()->extracted()->forInvoice()->create(['user_id' => $user->id]);
+        $second = DocumentImport::factory()->extracted()->forInvoice()->create(['user_id' => $user->id]);
+
+        \Livewire\Livewire::actingAs($user)
+            ->test(\App\Livewire\Invoices\ImportReview::class, ['import' => $first])
+            ->call('goToImport', $second->id)
+            ->assertRedirect(route('invoices.import.review', $second));
+    }
+
+    public function test_invoice_queue_position_and_total_reflect_batch(): void
+    {
+        $user = User::factory()->create();
+        $batch = (string) \Illuminate\Support\Str::uuid();
+
+        $a = DocumentImport::factory()->extracted()->forInvoice()->create([
+            'user_id' => $user->id, 'batch_id' => $batch,
+        ]);
+        $b = DocumentImport::factory()->extracted()->forInvoice()->create([
+            'user_id' => $user->id, 'batch_id' => $batch, 'created_at' => $a->created_at->addSecond(),
+        ]);
+        $c = DocumentImport::factory()->extracted()->forInvoice()->create([
+            'user_id' => $user->id, 'batch_id' => $batch, 'created_at' => $a->created_at->addSeconds(2),
+        ]);
+
+        \Livewire\Livewire::actingAs($user)
+            ->test(\App\Livewire\Invoices\ImportReview::class, ['import' => $b])
+            ->assertSet('positionInQueue', 2)
+            ->assertSet('totalInQueue', 3);
+    }
+
     public function test_invoice_review_auto_matches_client_by_vat_number(): void
     {
         $user = User::factory()->create();

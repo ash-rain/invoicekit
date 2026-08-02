@@ -46,6 +46,8 @@ class Invoice extends Model
         'correction_reason',
         'original_invoice_number',
         'original_invoice_date',
+        'xml_exported_at',
+        'ksef_id',
     ];
 
     protected $casts = [
@@ -64,6 +66,7 @@ class Invoice extends Model
         'payment_due_date' => 'date',
         'original_invoice_date' => 'date',
         'vat_summary' => 'array',
+        'xml_exported_at' => 'datetime',
     ];
 
     public function user(): BelongsTo

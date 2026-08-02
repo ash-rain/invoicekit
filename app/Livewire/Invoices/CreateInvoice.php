@@ -68,6 +68,9 @@ class CreateInvoice extends Component
     // Seller VAT country (from user's current company or fallback)
     public string $sellerCountry = 'BG';
 
+    // Poland KSeF reference number (recorded manually, not fetched from the KSeF API)
+    public ?string $ksefId = null;
+
     // Computed totals (updated reactively)
     public float $subtotal = 0.0;
 
@@ -116,6 +119,7 @@ class CreateInvoice extends Component
             $this->taxEventDate = $invoice->tax_event_date?->format('Y-m-d') ?? '';
             $this->issuedByName = $invoice->issued_by_name ?? '';
             $this->receivedByName = $invoice->received_by_name ?? '';
+            $this->ksefId = $invoice->ksef_id;
             $this->paymentMethodId = $invoice->payment_method_id ?? $this->paymentMethodId;
             $this->items = $invoice->items->map(fn ($item) => [
                 'description' => $item->description,
@@ -355,6 +359,7 @@ class CreateInvoice extends Component
             'taxEventDate' => ['nullable', 'date'],
             'issuedByName' => ['nullable', 'string', 'max:200'],
             'receivedByName' => ['nullable', 'string', 'max:200'],
+            'ksefId' => ['nullable', 'string', 'max:50'],
             'paymentMethodId' => ['nullable', 'integer', Rule::exists('payment_methods', 'id')->where('company_id', Auth::user()?->currentCompany?->id)],
             'items' => ['required', 'array', 'min:1'],
             'items.*.description' => ['required', 'string', 'max:500'],
@@ -429,6 +434,7 @@ class CreateInvoice extends Component
                 'tax_event_date' => $this->taxEventDate ?: null,
                 'issued_by_name' => $this->issuedByName ?: null,
                 'received_by_name' => $this->receivedByName ?: null,
+                'ksef_id' => $this->sellerCountry === 'PL' ? ($this->ksefId ?: null) : null,
                 'vat_amount_bgn' => $vatAmountBgn,
                 'payment_method_id' => $this->paymentMethodId,
                 'payment_method_snapshot' => $this->paymentMethodId

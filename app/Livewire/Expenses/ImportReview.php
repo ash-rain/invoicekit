@@ -111,6 +111,77 @@ class ImportReview extends Component
         return Project::where('user_id', Auth::id())->orderBy('name')->get(['id', 'name']);
     }
 
+    #[Computed]
+    public function queue()
+    {
+        return DocumentImport::where('user_id', Auth::id())
+            ->where('document_type', 'expense')
+            ->where('batch_id', $this->import->batch_id)
+            ->orderBy('created_at')
+            ->get();
+    }
+
+    #[Computed]
+    public function positionInQueue(): int
+    {
+        $index = $this->queue->search(fn (DocumentImport $i) => $i->id === $this->import->id);
+
+        return $index === false ? 1 : $index + 1;
+    }
+
+    #[Computed]
+    public function totalInQueue(): int
+    {
+        return max(1, $this->queue->count());
+    }
+
+    #[Computed]
+    public function prevReviewable(): ?DocumentImport
+    {
+        $current = $this->import;
+
+        return $this->queue
+            ->filter(fn (DocumentImport $i) => $i->id !== $current->id
+                && $i->isExtracted()
+                && $i->created_at <= $current->created_at)
+            ->last();
+    }
+
+    #[Computed]
+    public function nextReviewable(): ?DocumentImport
+    {
+        $current = $this->import;
+
+        return $this->queue
+            ->filter(fn (DocumentImport $i) => $i->id !== $current->id
+                && $i->isExtracted()
+                && $i->created_at >= $current->created_at)
+            ->first();
+    }
+
+    public function goToImport(int $importId): void
+    {
+        $this->redirect(route('expenses.import.review', $importId), navigate: true);
+    }
+
+    private function redirectAfterAction(string $fallbackRoute): void
+    {
+        $next = DocumentImport::where('user_id', Auth::id())
+            ->where('document_type', 'expense')
+            ->where('id', '!=', $this->import->id)
+            ->where('status', 'extracted')
+            ->orderBy('created_at')
+            ->first();
+
+        if ($next) {
+            $this->redirect(route('expenses.import.review', $next), navigate: true);
+
+            return;
+        }
+
+        $this->redirect(route($fallbackRoute), navigate: true);
+    }
+
     public function confirm(): void
     {
         $this->validate([
@@ -149,7 +220,7 @@ class ImportReview extends Component
             'expense_id' => $expense->id,
         ]);
 
-        $this->redirect(route('expenses.index'), navigate: true);
+        $this->redirectAfterAction('expenses.index');
     }
 
     public function deleteImport(): void
@@ -162,13 +233,13 @@ class ImportReview extends Component
 
         $import->delete();
 
-        $this->redirect(route('expenses.import'), navigate: true);
+        $this->redirectAfterAction('expenses.import');
     }
 
     public function skip(): void
     {
         $this->import->update(['status' => 'completed']);
-        $this->redirect(route('expenses.import'), navigate: true);
+        $this->redirectAfterAction('expenses.import');
     }
 
     public function render()

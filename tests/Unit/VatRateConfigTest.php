@@ -78,4 +78,77 @@ class VatRateConfigTest extends TestCase
             $this->assertArrayHasKey('standard', $this->config[$country], "Missing standard rate for: {$country}");
         }
     }
+
+    public function test_romania_standard_rate_is_21_with_consolidated_reduced_rate(): void
+    {
+        $this->assertSame(21, $this->config['RO']['standard']['rate']);
+        $this->assertSame(11, $this->config['RO']['reduced']['rate']);
+    }
+
+    public function test_estonia_standard_rate_is_24(): void
+    {
+        $this->assertSame(24, $this->config['EE']['standard']['rate']);
+    }
+
+    public function test_ireland_has_reduced_hospitality_rate_of_9(): void
+    {
+        $this->assertSame(9, $this->config['IE']['reduced_hospitality']['rate']);
+    }
+
+    public function test_belgium_hospitality_rate_raised_to_12(): void
+    {
+        $this->assertSame(12, $this->config['BE']['reduced_hospitality']['rate']);
+    }
+
+    public function test_germany_has_reduced_hospitality_rate_of_7(): void
+    {
+        $this->assertSame(7, $this->config['DE']['reduced_hospitality']['rate']);
+    }
+
+    public function test_lithuania_has_reduced_rates_for_accommodation_and_books(): void
+    {
+        $this->assertSame(12, $this->config['LT']['reduced_accommodation_transport_culture']['rate']);
+        $this->assertSame(5, $this->config['LT']['reduced_books']['rate']);
+    }
+
+    public function test_sweden_temporary_food_rate_has_valid_from_and_until(): void
+    {
+        $entry = $this->config['SE']['reduced_food_temporary'];
+        $this->assertSame(6, $entry['rate']);
+        $this->assertSame('2026-04-01', $entry['valid_from']);
+        $this->assertSame('2027-12-31', $entry['valid_until']);
+    }
+
+    public function test_czech_republic_has_reduced_restaurant_and_zero_medicine_rates(): void
+    {
+        $this->assertSame(12, $this->config['CZ']['reduced_restaurant']['rate']);
+        $this->assertSame(0, $this->config['CZ']['zero_prescription_medicine']['rate']);
+        $this->assertNotEmpty($this->config['CZ']['zero_prescription_medicine']['legal_ref']);
+    }
+
+    public function test_finland_reduced_rate_is_13_5(): void
+    {
+        $this->assertSame(13.5, $this->config['FI']['reduced']['rate']);
+    }
+
+    public function test_austria_has_zero_rated_hygiene_essentials(): void
+    {
+        $this->assertSame(0, $this->config['AT']['zero_hygiene_essential']['rate']);
+        $this->assertNotEmpty($this->config['AT']['zero_hygiene_essential']['legal_ref']);
+    }
+
+    public function test_slovakia_has_increased_rate_for_sugar_salt_products(): void
+    {
+        $this->assertSame(23, $this->config['SK']['increased_sugar_salt_products']['rate']);
+    }
+
+    public function test_latvia_has_temporary_essential_food_rate_and_conditional_book_rate(): void
+    {
+        $food = $this->config['LV']['reduced_essential_food'];
+        $this->assertSame(12, $food['rate']);
+        $this->assertSame('2026-07-01', $food['valid_from']);
+        $this->assertSame('2027-06-30', $food['valid_until']);
+
+        $this->assertSame(5, $this->config['LV']['reduced_books']['rate']);
+    }
 }
